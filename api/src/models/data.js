@@ -1,6 +1,7 @@
 {
-    "name": ,
-    "image":,
+    "name": "Rio manso" ,
+    "primaryImage":,
+    "secondaryImage":,
     "description":,
     "location":,
     "date":,

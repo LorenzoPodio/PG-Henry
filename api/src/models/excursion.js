@@ -13,7 +13,11 @@ module.exports = (sequelize) => {
        allowNull: false,
       autoIncrement: true,
     },
-    image: {
+    primaryImage: {
+      type: DataTypes.STRING,
+     allowNull: true,
+    },
+    secondaryImage: {
       type: DataTypes.STRING,
      allowNull: true,
     },
