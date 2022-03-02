@@ -1,0 +1,26 @@
+{
+    "excursiones": [
+        {
+            "name": "Rio manso",
+            "primaryImage": "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-03.jpg",
+            "secondaryImage": "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg",
+            "description": "El río Manso es el límite sur del parque nacional Nahuel Huapi. Este paseo escolta las orillas del río, recorriendo todo el valle hasta llegar a la frontera argentino-chilena. Allí el camino se acaba, pero mediante una caminata liviana de unos mil metros, se accede a El León, un pueblo vecino en la República de Chile. Para aquellos que deseen cruzar la cordillera, hay un destacamento de Gendarmería Nacional y Migraciones. Si buscás aventura, existen opciones para cruzar mediante cabalgatas, trekking y hasta rafting, siempre acompañados de operadores turísticos.",
+            "location": "Bariloche",
+            "date": "Lunes a Viernes",
+            "time": "10, 12, 15 y 17 hs",
+            "price": "250",
+            "extra": "nada"
+        },
+        {
+            "name": "Rio manso",
+            "primaryImage": "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-03.jpg",
+            "secondaryImage": "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg",
+            "description": "El río Manso es el límite sur del parque nacional Nahuel Huapi. Este paseo escolta las orillas del río, recorriendo todo el valle hasta llegar a la frontera argentino-chilena. Allí el camino se acaba, pero mediante una caminata liviana de unos mil metros, se accede a El León, un pueblo vecino en la República de Chile. Para aquellos que deseen cruzar la cordillera, hay un destacamento de Gendarmería Nacional y Migraciones. Si buscás aventura, existen opciones para cruzar mediante cabalgatas, trekking y hasta rafting, siempre acompañados de operadores turísticos.",
+            "location": "Bariloche",
+            "date": "Lunes a Viernes",
+            "time": "10, 12, 15 y 17 hs",
+            "price": "250",
+            "extra": "nada"
+        }
+    ]
+}
