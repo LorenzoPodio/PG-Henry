@@ -1,13 +1,13 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Excursiones } from './components/Excursiones/Excursiones';
+import { Excursions } from './components/Excursions/Excursions';
 
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route excat path='/' element={<Excursiones/>}/>
+        <Route exact path='/' element={<Excursions/>}/>
         <Route/>
         <Route/>
       </Routes>
