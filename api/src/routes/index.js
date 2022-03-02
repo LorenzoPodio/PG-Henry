@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-
+const addExcursion = require('./addExcursion')
 
 // const genres = require('./genres');
 
@@ -8,6 +8,6 @@ const router = Router();
 
 
 
-// router.use("/genres", genres)
+router.use("/addexcursion", addExcursion)
 
 module.exports = router;

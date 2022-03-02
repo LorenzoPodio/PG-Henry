@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, NOW } = require('sequelize');
 
 module.exports = (sequelize) => {
   
@@ -13,12 +13,8 @@ module.exports = (sequelize) => {
        allowNull: false,
       autoIncrement: true,
     },
-    primaryImage: {
-      type: DataTypes.STRING,
-     allowNull: true,
-    },
-    secondaryImage: {
-      type: DataTypes.STRING,
+    Images: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
      allowNull: true,
     },
     description: {
@@ -30,11 +26,11 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     date: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     time: {
-      type: DataTypes.TIME,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     price: {
