@@ -8,7 +8,8 @@
             "date": "Lunes a Viernes",
             "time": "10, 12, 15 y 17 hs",
             "price": "250",
-            "extra": "nada"
+            "extra": "nada",
+            "excursionType": "Trekking"
         },
         {
             "name": "Rio manso",

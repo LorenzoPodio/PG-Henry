@@ -13,6 +13,7 @@ addExcursion.post("/", async (req, res, next) => {
       time,
       price,
       extra,
+      excursionType,
     } = req.body;
     if (!name || !description || !location || !date || !time) {
       return res.status(500).send("Necessary parameters not found");
@@ -27,6 +28,7 @@ addExcursion.post("/", async (req, res, next) => {
       time,
       price,
       extra,
+      excursionType,
     });
     return res.status(202).json(newExcursion);
   } catch (error) {
