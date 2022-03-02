@@ -1,6 +1,7 @@
 const { Router } = require ("express");
 const { Excursion } = require('../db');
 const getExcursion = Router ();
+const { Sequelize, Op } = require("sequelize");
 
 getExcursion.get("/", async (req, res, next) => {
 try{
@@ -8,7 +9,7 @@ try{
       if (name){
           const excursionName = await Excursion.findAll({
               where : {
-                  name: name
+                  name: { [Op.iLike]: `%${name}%` },
               }
           });
           excursionName.length? res.status(200).send(excursionName)
