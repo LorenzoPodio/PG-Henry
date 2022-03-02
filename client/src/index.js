@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { ExcursionesProvider } from './context/ExcursionesContext';
+import { ExcursionsProvider } from './context/ExcursionsContext';
 import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-  <ExcursionesProvider>
+  <ExcursionsProvider>
     <Router>
       <App />
     </Router>
-  </ExcursionesProvider>,
+  </ExcursionsProvider>,
   document.getElementById('root')
 );
 
