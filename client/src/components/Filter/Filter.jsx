@@ -14,7 +14,7 @@ export default function Filter({ items, defaultDescription, handleFilter, filter
         <option value="default">{defaultDescription}</option>
         {items?.map((item) => {
           return (
-            <option key={item.location} value={item[filterType]}>
+            <option key={item.id} value={item[filterType]}>
               {item[filterType]}
             </option>
           );
