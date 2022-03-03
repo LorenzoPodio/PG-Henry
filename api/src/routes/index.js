@@ -3,12 +3,13 @@ const router = Router();
 const addExcursion = require('./addExcursion')
 const addAdmin = require('./addAdmin')
 const getExcursion = require('./getExcursion')
-const deleteExcursion = require('./deleteExcursion')
+const deleteExcursion = require('./deleteExcursion');
+const putExcursion = require('./putExcursion');
 
 
 
 
-
+router.use("/changeexcursion", putExcursion)
 router.use("/deleteexcursion", deleteExcursion)
 router.use("/getexcursion", getExcursion)
 router.use("/addexcursion", addExcursion)
