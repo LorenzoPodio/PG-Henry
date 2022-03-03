@@ -10,7 +10,7 @@ export function NavBar() {
             <div className='landing-link'>
                 <div className='logotipo'></div>
                 <Link
-                    style={{ textDecoration: "none", color: "white", paddingLeft: "10px" }} to={"/Home"}>
+                    style={{ textDecoration: "none", color: "white", paddingLeft: "10px" }} to={"/"}>
                     ExcursionApp
                 </Link>
             </div>
