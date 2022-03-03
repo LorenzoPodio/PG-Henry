@@ -24,12 +24,12 @@ getExcursion.get("/", async (req, res, next) => {
             excursionLocation.length ? res.status(200).send(excursionLocation)
                 : res.status(500).send("Excursion not found");
         } else if (date) {
-            var day = date;
+            let day = date.charAt(0).toUpperCase() + date.slice(1);
             const excursionDate = await Excursion.findAll({
 
                 where: {
 
-                    date: { [Op.contains]: [`${day}`] }
+                    date: { [Op.contains]: [day] }
                 }
             });
             excursionDate.length ? res.status(200).send(excursionDate)
