@@ -34,8 +34,15 @@ getExcursion.get("/", async (req, res, next) => {
             });
             excursionDate.length ? res.status(200).send(excursionDate)
                 : res.status(500).send("Excursion not found");
-        }
-        else {
+        }else if (excursionType) {
+            const exType = await Excursion.findAll({
+                where: {
+                    excursionType: { [Op.iLike]: `%${excursionType}%` },
+                }
+            });
+            exType.length ? res.status(200).send(exType)
+                : res.status(500).send("Excursion not found");
+        }else {
             const excursion = await Excursion.findAll()
             return res.status(200).send(excursion)
         }
