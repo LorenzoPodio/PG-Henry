@@ -159,18 +159,14 @@ export default function Register() {
   return (
     <div>
       <div class="container1">
-        <div>
+        <div className="card">
+        {/* {<div>
           <img src={"/"} alt="nf" />
+        </div>} */}
+        <div className="bienvenidos">
+            <h2 className="h2-reg">Bienvenido</h2>
         </div>
-        <div>
-          <div>
-            <h2>Bienvenido</h2>
-            <p>
-              Complete el formulario para continuar..
-            </p>
-          </div>
-        </div>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className="formR" onSubmit={(e) => handleSubmit(e)}>
           <div >
             <div >
               <input
@@ -184,7 +180,7 @@ export default function Register() {
             </div>
           </div>
           {errors.name && (
-            <p className="errorMsg" id="error_en_reg">
+            <p className="errorMsg">
               {errors.name}
             </p>
           )}
@@ -202,7 +198,7 @@ export default function Register() {
             </div>
           </div>
           {errors.lastname && (
-            <p className="errorMsg" id="error_en_reg">
+            <p className="errorMsg">
               {errors.lastname}
             </p>
           )}
@@ -220,7 +216,7 @@ export default function Register() {
             </div>
           </div>
           {errors.dni && (
-            <p id="error_en_reg" className="errorMsg">
+            <p className="errorMsg">
               {errors.dni}
             </p>
           )}
@@ -237,7 +233,7 @@ export default function Register() {
             </div>
           </div>
           {errors.email && (
-            <p className="errorMsg" id="error_en_reg">
+            <p className="errorMsg">
               {errors.email}
             </p>
           )}
@@ -254,7 +250,7 @@ export default function Register() {
             </div>
           </div>
           {errors.pass1 && (
-            <p className="errorMsg" id="error_en_reg">
+            <p className="errorMsg">
               {errors.pass1}
             </p>
           )}
@@ -270,7 +266,7 @@ export default function Register() {
             </div>
           </div>
           {errors.pass && (
-            <p className="errorMsg" id="error_en_reg">
+            <p className="errorMsg">
               {errors.pass}
             </p>
           )}
@@ -287,25 +283,23 @@ export default function Register() {
             </div>
           </div>
           {errors.adress && (
-            <p className="errorMsg" id="error_en_reg">
+            <p className="errorMsg">
               {errors.adress}
             </p>
           )}
-          <button
-            id="reg_cont_lg"
+          <div className="botonesReg">
+          <button className="botonRegistrar"
             value="Submit"
             type="submit"
           >
             Registrarse
           </button>
-          <div>
-            <div>
-              <Link to={"/"}>
-                <button>Volver a inicio</button>
-              </Link>
-            </div>
+              
+          <button className="botonInicio"><Link to={"/"}>Volver a inicio</Link></button>
+              
           </div>
         </form>
+        </div>
       </div>
     </div>
   );
