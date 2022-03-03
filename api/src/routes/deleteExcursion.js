@@ -13,7 +13,7 @@ deleteExcursion.delete("/", async (req, res, next) => {
               id: id
           }
       })
-      res.status(202).json("La excursión fue eliminada exitosamente")
+      res.status(202).json("Deleted")
   } catch (error) {
     next(error);
   }
