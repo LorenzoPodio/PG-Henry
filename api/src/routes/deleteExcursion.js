@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const deleteExcursion = Router();
 const { Excursion } = require("../db");
-const { Sequelize, Op } = require("sequelize");
 
 deleteExcursion.delete("/", async (req, res, next) => {
   try {
