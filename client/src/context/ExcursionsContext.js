@@ -12,7 +12,7 @@ export const ExcursionsProvider = ({ children }) => {
 
   useEffect(() => {
     getExcursions().then((r) => {
-      return setAllExcursions(r), setData(r);
+      return (setAllExcursions(r), setData(r));
     });
   }, []);
 
