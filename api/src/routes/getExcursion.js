@@ -6,7 +6,7 @@ const { Sequelize, Op } = require("sequelize");
 getExcursion.get("/", async (req, res, next) => {
     try {
 
-        const { name, location, date } = req.query;
+        const { name, location, date,excursionType } = req.query;
         if (name) {
             const excursionName = await Excursion.findAll({
                 where: {
