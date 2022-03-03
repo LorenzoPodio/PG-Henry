@@ -5,6 +5,10 @@ export const Prices = () => {
   const { allExcursions } = useExcursionsContext();
 
   return (
+    <div>
+      {allExcursions &&
+        allExcursions.map((e) => {
+          return (
             <div className="flex flex-col">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -65,8 +69,11 @@ export const Prices = () => {
                 </div>
               </div>
             </div>
-            )
-        }
+          )
+        })}
+    </div>
+  );
+}
 
 
 
