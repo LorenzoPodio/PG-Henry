@@ -56,7 +56,7 @@
         "extra": "Menores acompañados"
     },
     {
-        "name": "Buceo Nahuel Huapi ",
+        "name": "Buceo Nahuel Huapi",
         "Images": [
             "https://barilocheturismo.gob.ar/images/aventura/buceo/buceo_03.jpg",
             "https://barilocheturismo.gob.ar/images/aventura/buceo/buceo_01.jpg"
@@ -70,17 +70,73 @@
         "extra": "Mejor temporada de buceo: De noviembre a abril. Temperatura del agua: invierno 2° a 4°, primavera y verano entre 8° y 12°."
     },
     {
-        "name": "Jujuy",
+        "name": "Cerro Jujuy",
         "Images": [
             "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
             "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
         ],
-        "description": "La temperatura del agua varía según la estación y el tamaño del lago. A fines del verano, por ejemplo, el Nahuel Huapi tiene entre 13 y 14 grados centígrados. Durante todo el año se pueden hacer inmersiones con traje húmedo: el espesor recomendado es entre 5 y 7 milímetros en dos piezas, botas y capucha. Este tipo de trajes permite la entrada de poca agua, que se calienta fácilmente con el calor del cuerpo dentro del traje se mantiene una temperatura agradable. Los instructores están habilitados por la Administración de Parques Nacionales, son reconocidos por Prefectura Naval Argentina y cuentan con seguros. Además, trabajan bajo normas de seguridad y estándares de procedimientos de PADI (Professional Association of Diving Instructors) y OLAS (Organización Latinoamericana de Actividades Subacuáticas).Esta primera experiencia de buceo tiene una duración total de dos horas aproximadamente, ya que se todo comienza con una breve clase teórica donde te contarán cómo se usa el equipo de buceo, para que sirve, nociones de buceo y las señas para comunicarse abajo del agua. Después totalmente equipados comenzaran la practicas, en superficie, con el agua hasta la cintura y, a continuación, se bucea.Para realizar el bautismo no hace falta tener experiencia previa o saber nadar. Pueden hacerlo personas mayores de 10 años, y en buenas condiciones de salud.",
-        "location": "Bariloche",
-        "excursionType": "Lacustre",
-        "date": ["Viernes", "Sabado", "Domingo"],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "Jujuy",
+        "excursionType": "Trekking",
+        "date": ["Lunes"],
         "time": ["11", "15"],
-        "price": "3200",
-        "extra": "Mejor temporada de buceo: De noviembre a abril. Temperatura del agua: invierno 2° a 4°, primavera y verano entre 8° y 12°."
+        "price": "1100",
+        "extra": "a quo magni similique perferendis."
+    },
+    {
+        "name": "Montaña Mendoza",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "Mendoza",
+        "excursionType": "Trekking",
+        "date": ["Martes"],
+        "time": ["9", "13"],
+        "price": "1150",
+        "extra": "a quo magni similique perferendis."
+    },
+    {
+        "name": "Rio Mendoza",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "Mendoza",
+        "excursionType": "Lacustre",
+        "date": ["Miercoles"],
+        "time": ["8", "12"],
+        "price": "2100",
+        "extra": "a quo magni similique perferendis."
+    },
+    {
+        "name": "Paseo San Juan",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "San Juan",
+        "excursionType": "Bus",
+        "date": ["Jueves"],
+        "time": ["14"],
+        "price": "5000",
+        "extra": "a quo magni similique perferendis."
+    },
+    {
+        "name": "Navegación Catamarca",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "Catamarca",
+        "excursionType": "Lacustre",
+        "date": ["Jueves"],
+        "time": ["14"],
+        "price": "6000",
+        "extra": "a quo magni similique perferendis."
     }
 ]
