@@ -17,7 +17,7 @@ addAdmin.post("/", async (req, res, next) => {
       name: nameUpper,
       lastName: lastNameUpper,
     });
-    return res.status(202).json(newAdmin);
+    return res.status(201).json(newAdmin);
   } catch (error) {
     next(error);
   }

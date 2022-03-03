@@ -30,7 +30,7 @@ addExcursion.post("/", async (req, res, next) => {
       extra,
       excursionType,
     });
-    return res.status(202).json(newExcursion);
+    return res.status(201).json(newExcursion);
   } catch (error) {
     next(error);
   }
