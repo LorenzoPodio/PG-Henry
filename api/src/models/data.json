@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Rio manso",
+        "Images": [
+            "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-03.jpg",
+            "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg"
+        ],
+        "description": "El río Manso es el límite sur del parque nacional Nahuel Huapi. Este paseo escolta las orillas del río, recorriendo todo el valle hasta llegar a la frontera argentino-chilena. Allí el camino se acaba, pero mediante una caminata liviana de unos mil metros, se accede a El León, un pueblo vecino en la República de Chile. Para aquellos que deseen cruzar la cordillera, hay un destacamento de Gendarmería Nacional y Migraciones. Si buscás aventura, existen opciones para cruzar mediante cabalgatas, trekking y hasta rafting, siempre acompañados de operadores turísticos.",
+        "location": "Bariloche",
+        "date": ["Viernes", "Sabado", "Domingo"],
+        "time": ["10", "12", "15", "17"],
+        "price": "250",
+        "extra": "Llevar malla",
+        "excursionType": "Trekking"
+    },
+    {
+        "name": "Circuito chico",
+        "Images": [
+            "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-03.jpg",
+            "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-02.jpg"
+        ],
+        "description": "La excursión por el Circuito Chico comienza en el centro de la ciudad. Bordeando la margen sur del lago Nahuel Huapi, a medida que se avanza por la Av. Bustillo, encontrarás a la altura del km 20, el Club Regatas. Allí se halla la península de San Pedro y el Puerto Bueno, donde podrás disfrutar de un mirador.Luego de recorrer la península, se arriba a la Villa Llao Llao, en el km 23. Allí encontrarás un mirador excepcional y otros grandes atractivos de la zona: el Hotel Llao Llao, con su imponente marco natural, el parque municipal Llao Llao, donde podrás realizar tranquilas caminatas por el bosque y la capilla San Eduardo, cuya arquitectura se integra con la naturaleza circundante. Muy cerca de ese lugar se encuentra Puerto Pañuelo, punto de partida de las excursiones lacustres a isla Victoria, bosque de Arrayanes y Puerto Blest.A continuación, el circuito se interna en la península Llao Llao. En el km 30 nace un camino que conduce a Villa Tacul, sobre la bahía Llao Llao. Siguiendo el recorrido, rumbo al Lago Escondido, podrás visitar la casa del guardaparques municipal, para no perderte ninguna de las atracciones que este circuito te ofrece. Ya dejando atrás la península, en el km 33, el camino cruza el puente del arroyo Angostura. Desde este lugar parte un desvío que permite continuar hacia la zona de Bahía López, donde se imponen los paredones rocosos de los cerros López y Capilla.Prosiguiendo por el Circuito Chico, al arribar al km 40 encontrarás otro punto panorámico, a 945 m.s.n.m., con una excelente vista del lago Moreno y de la península Llao Llao. Continuando por la margen del lago Moreno, a la altura del km 42, se encuentra el puente que comunica sus partes este y oeste. Allí podrás desviarte hacia la izquierda para conocer Colonia Suiza, donde se pueden visitar sus chacras y campings, y saborear un rico té.Reanudando el recorrido del circuito, ya a 17 kilómetros del centro de la ciudad, está el cerro Campanario: desde el mirador y la confitería ubicados en la cima se pueden disfrutar las más increíbles vistas panorámicas. Finalmente, a partir del km 45 se retoma el camino para regresar a Bariloche.",
+        "location": "Bariloche",
+        "excursionType": "Trekking",
+        "date": [ "Sabado", "Domingo"],
+        "time": ["10", "12", "15", "17"],
+        "price": "500",
+        "extra": "Menores acompañados"
+    },
+    {
+        "name": "Circuito Grande",
+        "Images": [
+            "https://barilocheturismo.gob.ar/images/excursiones/circuito-grande/circuito-grande-03.jpg",
+            "https://barilocheturismo.gob.ar/images/excursiones/circuito-grande/circuito-grande-02.jpg"
+        ],
+        "description": "Se accede saliendo desde Bariloche hacia el noreste, por la ruta nacional 237. El recorrido cruza el arroyo Ñireco y el río Ñirihuau. Luego, tras alcanzar las nacientes en el lago Nahuel Huapi del río Limay (límite de las provincias de Río Negro y Neuquén), la ruta lo llevará a través de las costas de este río hasta llegar a su confluencia con el río Traful. Se pueden realizar paradas intermedias en Villa Llanquin y el Anfiteatro del río Limay, así como en el Valle Encantado, donde se pueden ver extrañas figuras delineadas por las formaciones rocosas.Unos kilómetros más adelante se llega a Confluencia y, desde allí, se toma la ruta Provincial 65, de ripio. Se recorre el valle del río Traful, cruzando algunos de sus afluentes (el río Cuyin Manzano y el río Minero) hasta llegar al lago Traful, en cuya costa sur poblada de hermosos bosques de coihues, se encuentra la localidad de Villa Traful. En este destino se puede visitar el muelle principal, recorrer su pintoresco centro o acercarse hasta alguna de las hermosas cascadas que se forman en el arroyo Coacó y el arroyo Blanco.Continuando por la costa del lago Traful hacia el oeste, se arriba a Puerto Arrayán, la cascada del arroyo Catarata y, finalmente, a Paso Portezuelo, portal de acceso al Camino de los Siete Lagos (RN 40).La ruta sigue hacia el sur. Luego de visitar los lagos Correntoso y Espejo, se llega a Villa La Angostura. Allí se puede recorrer su pintoresco centro turístico y aprovechar la variada oferta de gastronomía autóctona. El retorno se realiza a través del istmo de la península Quetrihue, aprovechando sus inigualables vistas y regresando hacia Bariloche por la ruta 40.",
+        "location": "Bariloche",
+        "excursionType": "Bus",
+        "date": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"],
+        "time": ["10", "15"],
+        "price": "900",
+        "extra": "Menores acompañados"
+    },
+    {
+        "name": "El Bolson",
+        "Images": [
+            "https://barilocheturismo.gob.ar/images/excursiones/el-bolson/el-bolson-03.jpg",
+            "https://barilocheturismo.gob.ar/images/excursiones/el-bolson/el-bolson-01.jpg"
+        ],
+        "description": "La ciudad se encuentra a 129 kilómetros de Bariloche y se llega por la ruta Nacional 40, yendo hacia el sur. Los primeros kilómetros se realizan a través de las costas de los lagos Gutiérrez, Mascardi y Guillelmo, hasta traspasar el puente sobre el río Villegas. Este bellísimo tramo del camino atraviesa extensas plantaciones de coníferas.Aproximadamente a mitad de camino se encuentra El Foyel, una pequeña población de la comuna de El Manso. Allí brindan servicios de cafetería y comida, en los paradores ubicados a la vera de la ruta. También hay cabañas y albergues para alojarse.Continuando el recorrido, algunos kilómetros más adelante, se ubica la comunidad de las Guaitecas, de ascendencia mapuche, que durante los fines de semana ofrece una gran variedad de artesanías. En el Cerro Piltriquitron se puede visitar el Bosque Tallado, una instalación artística atípica, en donde se aprovecharon los vestigios de un bosque incendiado para dar vida a las obras de artistas locales, bañando al lugar de una atmósfera mística.Una de las mayores atracciones de la ciudad es la Feria Artesanal ubicada en la plaza Pagano, en pleno centro. Allí se puede ver la elaboración en vivo y en directo de piezas en diferentes metales, cerámicas, madera, tejidos, vitraux, cuchillería, bijouterie, etc.Desde la ciudad, se puede optar por continuar la excursión hacia dos lugares diferentes. Una opción es llegar hasta el parque nacional Lago Puelo, ubicado a 16 km de El Bolsón, traspasando el límite interprovincial entre Río Negro y Chubut. La otra consiste en dirigirse hacia El Maitén, para conocer La Trochita, un antiguo tren a vapor convertido hoy en una verdadera reliquia histórica, de gran atractivo turístico. Se trata de un recorrido de 45 km aproximadamente. Antes de viajar, conviene consultar los días y los horarios de los paseos en tren.Aquellos que cuenten con vehículo propio, también pueden recorrer el mirador del río Azul, el valle de Mallín Ahogado y el mirador del Cerrito Amigo; o visitar la exposición de aves patagónicas, el museo de rocas o algunas de las cascadas cercanas.",
+        "location": "Bariloche",
+        "excursionType": "Bus",
+        "date": [ "Martes", "Miercoles", "Jueves", "Viernes"],
+        "time": ["10"],
+        "price": "1200",
+        "extra": "Menores acompañados"
+    },
+    {
+        "name": "Buceo Nahuel Huapi ",
+        "Images": [
+            "https://barilocheturismo.gob.ar/images/aventura/buceo/buceo_03.jpg",
+            "https://barilocheturismo.gob.ar/images/aventura/buceo/buceo_01.jpg"
+        ],
+        "description": "La temperatura del agua varía según la estación y el tamaño del lago. A fines del verano, por ejemplo, el Nahuel Huapi tiene entre 13 y 14 grados centígrados. Durante todo el año se pueden hacer inmersiones con traje húmedo: el espesor recomendado es entre 5 y 7 milímetros en dos piezas, botas y capucha. Este tipo de trajes permite la entrada de poca agua, que se calienta fácilmente con el calor del cuerpo dentro del traje se mantiene una temperatura agradable. Los instructores están habilitados por la Administración de Parques Nacionales, son reconocidos por Prefectura Naval Argentina y cuentan con seguros. Además, trabajan bajo normas de seguridad y estándares de procedimientos de PADI (Professional Association of Diving Instructors) y OLAS (Organización Latinoamericana de Actividades Subacuáticas).Esta primera experiencia de buceo tiene una duración total de dos horas aproximadamente, ya que se todo comienza con una breve clase teórica donde te contarán cómo se usa el equipo de buceo, para que sirve, nociones de buceo y las señas para comunicarse abajo del agua. Después totalmente equipados comenzaran la practicas, en superficie, con el agua hasta la cintura y, a continuación, se bucea.Para realizar el bautismo no hace falta tener experiencia previa o saber nadar. Pueden hacerlo personas mayores de 10 años, y en buenas condiciones de salud.",
+        "location": "Bariloche",
+        "excursionType": "Lacustre",
+        "date": ["Viernes", "Sabado", "Domingo"],
+        "time": ["11", "15"],
+        "price": "3200",
+        "extra": "Mejor temporada de buceo: De noviembre a abril. Temperatura del agua: invierno 2° a 4°, primavera y verano entre 8° y 12°."
+    }
+]
