@@ -1,6 +1,8 @@
 import React from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import Filter from "../Filter/Filter";
+import SortByPrice from "../Sort/SortByPrice";
+
 
 export const Excursions = () => {
   const {
@@ -33,6 +35,11 @@ export const Excursions = () => {
         defaultDescription="Tipo de excursión"
         handleFilter={handlerFilterByType}
         filterType="excursionType"
+      />
+
+      <SortByPrice
+        items={allExcursions}
+        defaultDescription="Ordenamiento Precios"
       />
 
       <pre>{JSON.stringify(data, null, 2)}</pre>
