@@ -6,11 +6,15 @@ export default function Filter({
   handleFilter,
   filterType,
 }) {
-  // handleFilter: Función que llama a la ruta del back con el filtro correspondiente, recibe como parametro el valor seleccionado
-  // items: Opciones para filtrar
-  //fitlerType: String --> date, excursionType o location
 
   const days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"];
+
+  let options = []; //["bariloche"] ["trecking"]
+  items?.map((item) => {
+    if (!options.includes(item[filterType])) {
+      return options.push(item[filterType]);
+    }
+  });
 
   return (
     <div>
@@ -20,10 +24,10 @@ export default function Filter({
       >
         <option value="allItems">{defaultDescription}</option>
         {defaultDescription !== "Fechas" ? (
-          items?.map((item) => {
+          options?.map((option, i) => {
             return (
-              <option key={item.id} value={item[filterType]}>
-                {item[filterType]}
+              <option key={i} value={option}>
+                {option}
               </option>
             );
           })
