@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import Register from './components/Registro/Register'
 import { Prices } from './components/Prices/Prices';
 import { ExcursionDetail } from "./components/ExcursionDetail/ExcursionDetail.jsx";
+import { AdminPanel } from './components/AdminPanel/AdminPanel'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/compras" element={<Purchases />} />
         <Route path="/nosotros" element={<About />} />
         <Route path='/excursion/detalle/:id' element={<ExcursionDetail/>}/>
+        <Route path='/panelAdmin' element={<AdminPanel/>}/>
       </Routes>
     </div>
   );
