@@ -66,6 +66,15 @@ export const ExcursionsProvider = ({ children }) => {
       }
     );
   };
+
+  //postAdmin
+  const addAdmin = (user) => {
+    return axios.post("http://localhost:3001/addadmin", user).then((response) =>response.data)
+    .catch(err => {
+      console.log(err)
+    })
+    }
+    
   //
 
   // Feature Sort
@@ -102,6 +111,7 @@ export const ExcursionsProvider = ({ children }) => {
         handlerFilterByDate,
         handlerFilterByType,
         handlePriceOrder,
+        addAdmin,
       }}
     >
       {children}

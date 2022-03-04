@@ -1,23 +1,24 @@
+
+
 import "./Register.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //import { registrarCliente, getClients } from "../../actions/index";
 import swal from "sweetalert";
-
+import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export default function Register() {
-  
 
-  //const dispatch = useDispatch();
+  const { addAdmin } = useExcursionsContext();
+
   //const clientes = useSelector((state) => state.clientes);
-  const clientes = [{}]
+  const clientes = [{}] //traerme userAdmins
   const regExName = /^[A-Za-z][a-zA-Z ]{2,40}$/;
   const regExEmail = /^\S+@\S+$/i;
-  const [registrado, setregistrado] = useState(false);
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
-    lastname: "",
+    lastName: "",
     dni: "",
     email: "",
     password: "",
@@ -31,13 +32,10 @@ export default function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // setErrors(validate({
-    //   ...input,
-    //   [e.target.name]: e.target.value
-    // }));
-
-
-    
+     setErrors(validate({
+       ...input,
+       [e.target.name]: e.target.value
+     }));
     // for (let i = 0; i < clientes.length; i++) {
     //   if (clientes[i].email === input.email || clientes[i].dni === input.dni) {
     //     swal(
@@ -58,9 +56,9 @@ export default function Register() {
         ...input,password:pass.pass1})
       if (Object.values(validate(input)).length === 0) {
           console.log(input);
-        //dispatch(registrarCliente(input));
+        addAdmin(input)
         swal( "Usuario Creado con exito", "En instantes seras redirigido para iniciar sesion", "success" );
-        //setTimeout(() => (window.location.href = "/login"), 2000);
+        setTimeout(() => (window.location.href = "/login"), 2000);
       } else {
         swal("Error", "Revisa los errores antes de continuar", "error");
       }
@@ -73,11 +71,11 @@ export default function Register() {
       errors.name = "Nombre requerido, hasta 40 caracteres";
     }
     if (
-      !input.lastname ||
-      input.lastname === "" ||
-      !regExName.test(input.lastname)
+      !input.lastName ||
+      input.lastName === "" ||
+      !regExName.test(input.lastName)
     ) {
-      errors.lastname = "Apellido requerido";
+      errors.lastName = "Apellido requerido";
     }
     if (
       !input.dni ||
@@ -150,12 +148,14 @@ export default function Register() {
       [e.target.name]: e.target.value,
     });
   }
-  // useEffect(() => {
-  //   if(pass.pass1 !== "" && pass.pass2 !== ""){
-  //   if(pass.pass1 === pass.pass2){
-  //     setInput({...input, passowrd: pass.pass1})
-  //   }}
-  // }, [pass])
+
+   useEffect(() => {
+     if(pass.pass1 !== "" && pass.pass2 !== ""){
+     if(pass.pass1 === pass.pass2){
+       setInput({...input, passowrd: pass.pass1})
+     }}
+   }, [pass])
+
   return (
     <div>
       <div class="container1">
@@ -192,14 +192,14 @@ export default function Register() {
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="Apellido"
-                value={input.lastname}
-                name="lastname"
+                value={input.lastName}
+                name="lastName"
               />
             </div>
           </div>
-          {errors.lastname && (
+          {errors.lastName && (
             <p className="errorMsg">
-              {errors.lastname}
+              {errors.lastName}
             </p>
           )}
 
@@ -294,9 +294,7 @@ export default function Register() {
           >
             Registrarse
           </button>
-              
           <button className="botonInicio"><Link to={"/"}>Volver a inicio</Link></button>
-              
           </div>
         </form>
         </div>
