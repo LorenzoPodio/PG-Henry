@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import Register from './components/Registro/Register'
 import { Prices } from './components/Prices/Prices';
 import { ExcursionDetail } from "./components/ExcursionDetail/ExcursionDetail.jsx";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
         <Route path="/nosotros" element={<About />} />
         <Route path='/excursion/detalle/:id' element={<ExcursionDetail/>}/>
       </Routes>
+
+      
+      <Footer/>
     </div>
   );
 }
