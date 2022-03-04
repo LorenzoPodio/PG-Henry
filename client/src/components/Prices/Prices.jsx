@@ -10,7 +10,7 @@ export const Prices = () => {
       {allExcursions &&
         allExcursions.map((e) => {
           return (
-              <div>
+              <div key={e.id}>
                 <h1>Tarifa de todas las excursiones</h1>
               <p>{e.name} </p>
               <p>{e.location}</p>
