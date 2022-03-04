@@ -3,10 +3,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //import { registrarCliente, getClients } from "../../actions/index";
 import swal from "sweetalert";
-
+import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export default function Register() {
-  
+
+  const { addAdmin } = useExcursionsContext();
+
+  // let { user, email, password, name, lastName } = req.body;
+
 
   //const dispatch = useDispatch();
   //const clientes = useSelector((state) => state.clientes);
@@ -17,7 +21,7 @@ export default function Register() {
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
-    lastname: "",
+    lastName: "",
     dni: "",
     email: "",
     password: "",
@@ -58,7 +62,7 @@ export default function Register() {
         ...input,password:pass.pass1})
       if (Object.values(validate(input)).length === 0) {
           console.log(input);
-        //dispatch(registrarCliente(input));
+        addAdmin(input)
         swal( "Usuario Creado con exito", "En instantes seras redirigido para iniciar sesion", "success" );
         //setTimeout(() => (window.location.href = "/login"), 2000);
       } else {
@@ -73,11 +77,11 @@ export default function Register() {
       errors.name = "Nombre requerido, hasta 40 caracteres";
     }
     if (
-      !input.lastname ||
-      input.lastname === "" ||
-      !regExName.test(input.lastname)
+      !input.lastName ||
+      input.lastName === "" ||
+      !regExName.test(input.lastName)
     ) {
-      errors.lastname = "Apellido requerido";
+      errors.lastName = "Apellido requerido";
     }
     if (
       !input.dni ||
@@ -192,14 +196,14 @@ export default function Register() {
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="Apellido"
-                value={input.lastname}
-                name="lastname"
+                value={input.lastName}
+                name="lastName"
               />
             </div>
           </div>
-          {errors.lastname && (
+          {errors.lastName && (
             <p className="errorMsg">
-              {errors.lastname}
+              {errors.lastName}
             </p>
           )}
 

@@ -14,7 +14,7 @@ export const Prices = () => {
                         <tr>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                            className="px-10 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                           >
                             nombre
                           </th>
@@ -45,8 +45,7 @@ export const Prices = () => {
                           <tr key={e.name}>
                             <td className="px-6 py-4 whitespace-nowrap">
                               <div className="flex items-center">
-                                <div className="flex-shrink-0 h-10 w-10">
-                                </div>
+                                
                                 <div className="ml-4">
                                   <div className="text-sm font-medium text-gray-900">{e.name}</div>
                                 </div>
