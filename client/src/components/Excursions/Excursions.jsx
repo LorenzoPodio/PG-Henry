@@ -13,8 +13,6 @@ export const Excursions = () => {
     allExcursions,
   } = useExcursionsContext();
 
-  console.log('data :>> ', data);
-  console.log('allExcursions', allExcursions);
 
   return (
     <div>
