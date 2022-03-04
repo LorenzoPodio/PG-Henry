@@ -4,6 +4,8 @@
           "password": "12345",
           "name": "Pepito",
           "lastName": "Fulano",
+          "adress": "Calle falsa 123",
+          "dni": 12345678,
           "isAdmin": true
     }
 ]

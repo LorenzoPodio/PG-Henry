@@ -51,6 +51,14 @@ export function NavBar() {
             Mis Compras
           </Link>
         </div>
+        <div className="link-panel-admin">
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to={"/panelAdmin"}
+          >
+            Panel Admin
+          </Link>
+        </div>
       </div>
     </div>
   );
