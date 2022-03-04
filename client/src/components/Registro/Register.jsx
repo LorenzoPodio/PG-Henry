@@ -1,3 +1,5 @@
+
+
 import "./Register.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -9,15 +11,10 @@ export default function Register() {
 
   const { addAdmin } = useExcursionsContext();
 
-  // let { user, email, password, name, lastName } = req.body;
-
-
-  //const dispatch = useDispatch();
   //const clientes = useSelector((state) => state.clientes);
-  const clientes = [{}]
+  const clientes = [{}] //traerme userAdmins
   const regExName = /^[A-Za-z][a-zA-Z ]{2,40}$/;
   const regExEmail = /^\S+@\S+$/i;
-  const [registrado, setregistrado] = useState(false);
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
@@ -35,13 +32,10 @@ export default function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // setErrors(validate({
-    //   ...input,
-    //   [e.target.name]: e.target.value
-    // }));
-
-
-    
+     setErrors(validate({
+       ...input,
+       [e.target.name]: e.target.value
+     }));
     // for (let i = 0; i < clientes.length; i++) {
     //   if (clientes[i].email === input.email || clientes[i].dni === input.dni) {
     //     swal(
@@ -64,7 +58,7 @@ export default function Register() {
           console.log(input);
         addAdmin(input)
         swal( "Usuario Creado con exito", "En instantes seras redirigido para iniciar sesion", "success" );
-        //setTimeout(() => (window.location.href = "/login"), 2000);
+        setTimeout(() => (window.location.href = "/login"), 2000);
       } else {
         swal("Error", "Revisa los errores antes de continuar", "error");
       }
@@ -154,12 +148,14 @@ export default function Register() {
       [e.target.name]: e.target.value,
     });
   }
-  // useEffect(() => {
-  //   if(pass.pass1 !== "" && pass.pass2 !== ""){
-  //   if(pass.pass1 === pass.pass2){
-  //     setInput({...input, passowrd: pass.pass1})
-  //   }}
-  // }, [pass])
+
+   useEffect(() => {
+     if(pass.pass1 !== "" && pass.pass2 !== ""){
+     if(pass.pass1 === pass.pass2){
+       setInput({...input, passowrd: pass.pass1})
+     }}
+   }, [pass])
+
   return (
     <div>
       <div class="container1">
@@ -298,9 +294,7 @@ export default function Register() {
           >
             Registrarse
           </button>
-              
           <button className="botonInicio"><Link to={"/"}>Volver a inicio</Link></button>
-              
           </div>
         </form>
         </div>
