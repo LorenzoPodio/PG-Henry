@@ -1,5 +1,6 @@
-import { hardExcursions } from "../infoHard";
+import axios from "axios";
 
-export const getExcursions = () => {
-  console.log('excursiones', hardExcursions[0]);
-}
+export const getExcursions = async() => {
+  const {data} = await axios.get("http://localhost:3001/getexcursion");
+  return data;
+};

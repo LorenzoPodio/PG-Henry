@@ -14,19 +14,23 @@ module.exports = (sequelize) => {
             allowNull: false,
             autoIncrement: true,
         },
-        user: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        lastname: {
+        adress: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        dni: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        lastName: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        mail: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
         },
