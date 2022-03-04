@@ -1,18 +1,15 @@
-
-
 import "./Register.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-//import { registrarCliente, getClients } from "../../actions/index";
 import swal from "sweetalert";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export default function Register() {
 
-  const { addAdmin } = useExcursionsContext();
+  const { addAdmin, userAdmins} = useExcursionsContext();
+  
 
-  //const clientes = useSelector((state) => state.clientes);
-  const clientes = [{}] //traerme userAdmins
+  const admins = userAdmins //traerme userAdmins
   const regExName = /^[A-Za-z][a-zA-Z ]{2,40}$/;
   const regExEmail = /^\S+@\S+$/i;
   const [errors, setErrors] = useState({});
@@ -32,28 +29,20 @@ export default function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
      setErrors(validate({
        ...input,
        [e.target.name]: e.target.value
      }));
-    // for (let i = 0; i < clientes.length; i++) {
-    //   if (clientes[i].email === input.email || clientes[i].dni === input.dni) {
-    //     swal(
-    //       "Error",
-    //       "El mail ya corresponde a un usuario registrado",
-    //       "warning"
-    //     );
-    //     setregistrado(true);
-    //     break;
-    //   }
-    // }
-    const arr = clientes.filter( d => d.email ===input.email || d.dni === input.dni)
+
+    const arr = admins.filter( d => d.email === input.email || d.dni === input.dni)
     if(arr.length!==0){
       swal( "Error", "El mail o Dni ya corresponde a un usuario registrado", "warning" );
     }else{
 
       setInput({
         ...input,password:pass.pass1})
+
       if (Object.values(validate(input)).length === 0) {
           console.log(input);
         addAdmin(input)
