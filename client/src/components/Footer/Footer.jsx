@@ -17,7 +17,7 @@ export const Footer = () => {
           </div>
           <div className="social-container">
           <div className="social"><SocialIcon url="https://facebook.com" /></div>
-          <div className="social"><SocialIcon  url="https://twitter.com/jaketrent" /></div>
+          <div className="social"><SocialIcon  url="https://twitter.com" /></div>
           <div className="social"><SocialIcon url="https://google.com" /></div>
           <div className="social"><SocialIcon url="instagram.com" /></div>
           <div className="social"><SocialIcon url="https://www.linkedin.com/" /></div>
