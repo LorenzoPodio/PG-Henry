@@ -47,6 +47,15 @@ export const ExcursionsProvider = ({ children }) => {
       }
     );
   };
+
+  //postAdmin
+  const addAdmin = (user) => {
+    return axios.post("http://localhost:3001/addadmin", user).then((response) =>response.data)
+    .catch(err => {
+      console.log(err)
+    })
+    }
+    
   //
 
   return (
@@ -59,6 +68,7 @@ export const ExcursionsProvider = ({ children }) => {
         handlerFilterByLocation,
         handlerFilterByDate,
         handlerFilterByType,
+        addAdmin
       }}
     >
       {children}

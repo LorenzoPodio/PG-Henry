@@ -56,7 +56,7 @@
         "extra": "Menores acompañados"
     },
     {
-        "name": "Buceo Nahuel Huapi ",
+        "name": "Buceo Nahuel Huapi",
         "Images": [
             "https://barilocheturismo.gob.ar/images/aventura/buceo/buceo_03.jpg",
             "https://barilocheturismo.gob.ar/images/aventura/buceo/buceo_01.jpg"
@@ -68,5 +68,75 @@
         "time": ["11", "15"],
         "price": "3200",
         "extra": "Mejor temporada de buceo: De noviembre a abril. Temperatura del agua: invierno 2° a 4°, primavera y verano entre 8° y 12°."
+    },
+    {
+        "name": "Cerro Jujuy",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "Jujuy",
+        "excursionType": "Trekking",
+        "date": ["Lunes"],
+        "time": ["11", "15"],
+        "price": "1100",
+        "extra": "a quo magni similique perferendis."
+    },
+    {
+        "name": "Montaña Mendoza",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "Mendoza",
+        "excursionType": "Trekking",
+        "date": ["Martes"],
+        "time": ["9", "13"],
+        "price": "1150",
+        "extra": "a quo magni similique perferendis."
+    },
+    {
+        "name": "Rio Mendoza",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "Mendoza",
+        "excursionType": "Lacustre",
+        "date": ["Miercoles"],
+        "time": ["8", "12"],
+        "price": "2100",
+        "extra": "a quo magni similique perferendis."
+    },
+    {
+        "name": "Paseo San Juan",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "San Juan",
+        "excursionType": "Bus",
+        "date": ["Jueves"],
+        "time": ["14"],
+        "price": "5000",
+        "extra": "a quo magni similique perferendis."
+    },
+    {
+        "name": "Navegación Catamarca",
+        "Images": [
+            "https://www.blogdelfotografo.com/wp-content/uploads/2020/04/fotografo-paisajes.jpg",
+            "https://mott.pe/noticias/wp-content/uploads/2019/03/los-50-paisajes-maravillosos-del-mundo-para-tomar-fotos-1280x720.jpg"
+        ],
+        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "location": "Catamarca",
+        "excursionType": "Lacustre",
+        "date": ["Jueves"],
+        "time": ["14"],
+        "price": "6000",
+        "extra": "a quo magni similique perferendis."
     }
 ]
