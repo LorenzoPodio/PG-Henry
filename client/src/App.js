@@ -4,17 +4,14 @@ import Purchases from "./components/Purchases/Purchases";
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Excursions } from './components/Excursions/Excursions';
-
 import { ExcursionsPost } from './components/ExcursionsPost/ExcursionsPost';
-
-
 import { NavBar } from './components/NavBar/NavBar.jsx';
 import Login from './components/Login/Login';
 import Register from './components/Registro/Register'
 import { Prices } from './components/Prices/Prices';
 import { ExcursionDetail } from "./components/ExcursionDetail/ExcursionDetail.jsx";
+import { AdminPanel } from './components/AdminPanel/AdminPanel'
 import { Footer } from "./components/Footer/Footer";
-
 
 function App() {
   return (
@@ -32,6 +29,7 @@ function App() {
         <Route path="/compras" element={<Purchases />} />
         <Route path="/nosotros" element={<About />} />
         <Route path='/excursion/detalle/:id' element={<ExcursionDetail/>}/>
+        <Route path='/panelAdmin' element={<AdminPanel/>}/>
 
       </Routes>
 
