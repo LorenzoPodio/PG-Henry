@@ -1,3 +1,6 @@
+
+import { About } from "./components/About/About";
+import Purchases from "./components/Purchases/Purchases";
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Excursions } from './components/Excursions/Excursions';
@@ -10,12 +13,14 @@ import { ExcursionDetail } from "./components/ExcursionDetail/ExcursionDetail.js
 function App() {
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <Routes>
-        <Route exact path='/Excursiones' element={<Excursions/>}/>
-        <Route exact path='/login' element={<Login/>}/>
-        <Route exact path='/registro' element={<Register/>}/>
-        <Route path='/tarifas' element={<Prices/>}/>
+        <Route exact path="/excursiones" element={<Excursions />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/registro" element={<Register />} />
+        <Route path="/tarifas" element={<Prices />} />
+        <Route path="/compras" element={<Purchases />} />
+        <Route path="/nosotros" element={<About />} />
         <Route path='/excursion/detalle/:id' element={<ExcursionDetail/>}/>
       </Routes>
     </div>
