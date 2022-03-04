@@ -13,7 +13,7 @@ export const ExcursionsProvider = ({ children }) => {
 
   useEffect(() => {
     getExcursions().then((r) => {
-      return setAllExcursions(r), setData(r), setExcursionFiltered(r);
+      return (setAllExcursions(r), setData(r), setExcursionFiltered(r));
     });
   }, []);
 
