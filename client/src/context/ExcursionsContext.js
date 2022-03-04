@@ -13,46 +13,55 @@ export const ExcursionsProvider = ({ children }) => {
 
   useEffect(() => {
     getExcursions().then((r) => {
-      return (setAllExcursions(r), setData(r), setExcursionFiltered(r));
+      return setAllExcursions(r), setData(r), setExcursionFiltered(r);
     });
   }, []);
 
   //feature_filter-implemented
   const handlerFilterByLocation = (value) => {
     if (value === "allItems") {
-      return setData((prevState) => allExcursions);
+      return (
+        setData((prevState) => allExcursions),
+        setExcursionFiltered((prevState) => allExcursions)
+      );
     }
     axios(`http://localhost:3001/getexcursion?location=${value}`).then(
       (response) => {
         return (
           setData((prevState) => response.data),
-          setExcursionFiltered(() => response.data)
+          setExcursionFiltered((prevState) => response.data)
         );
       }
     );
   };
   const handlerFilterByDate = (value) => {
     if (value === "allItems") {
-      return setData((prevState) => allExcursions);
+      return (
+        setData((prevState) => allExcursions),
+        setExcursionFiltered((prevState) => allExcursions)
+      );
     }
     axios(`http://localhost:3001/getexcursion?date=${value}`).then(
       (response) => {
         return (
           setData((prevState) => response.data),
-          setExcursionFiltered(() => response.data)
+          setExcursionFiltered((prevState) => response.data)
         );
       }
     );
   };
   const handlerFilterByType = (value) => {
     if (value === "allItems") {
-      return setData((prevState) => allExcursions);
+      return (
+        setData((prevState) => allExcursions),
+        setExcursionFiltered((prevState) => allExcursions)
+      );
     }
     axios(`http://localhost:3001/getexcursion?excursionType=${value}`).then(
       (response) => {
         return (
           setData((prevState) => response.data),
-          setExcursionFiltered(() => response.data)
+          setExcursionFiltered((prevState) => response.data)
         );
       }
     );
