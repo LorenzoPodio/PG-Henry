@@ -21,7 +21,7 @@ export function NavBar() {
 
       <div className="links-nav">
         <div className="link-home">
-          <Link style={{ textDecoration: "none", color: "white" }} to={"/"}>
+          <Link style={{ textDecoration: "none", color: "white" }} to={"/excursiones"}>
             Excursiones
           </Link>
         </div>
