@@ -12,16 +12,14 @@ import { Prices } from './components/Prices/Prices';
 import { ExcursionDetail } from "./components/ExcursionDetail/ExcursionDetail.jsx";
 import { AdminPanel } from './components/AdminPanel/AdminPanel'
 import { Footer } from "./components/Footer/Footer";
+import {NavBar2} from './components/NavBar/NavBar2'
 
 function App() {
   return (
     <div>
-      <NavBar />
+      <NavBar2 />
       <Routes>
-
         <Route exact path='/crearExcursion' element={<ExcursionsPost/>}/>
-        <Route/>
-
         <Route exact path="/excursiones" element={<Excursions />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/registro" element={<Register />} />
@@ -30,10 +28,7 @@ function App() {
         <Route path="/nosotros" element={<About />} />
         <Route path='/excursion/detalle/:id' element={<ExcursionDetail/>}/>
         <Route path='/panelAdmin' element={<AdminPanel/>}/>
-
       </Routes>
-
-      
       <Footer/>
     </div>
   );
