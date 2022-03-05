@@ -25,6 +25,8 @@ conn.sync({ force: true }).then(() => {
       email: a.email,
       password: a.password,
       name: a.name,
+      dni:a.dni,
+      adress:a.adress,
       lastName: a.lastName,
       isAdmin: a.isAdmin}
     }))

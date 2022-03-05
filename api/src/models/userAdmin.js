@@ -3,11 +3,11 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define("userAdmin", {
     id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-         allowNull: false,
-        autoIncrement: true,
-      },
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -20,6 +20,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    adress: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    dni: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,7 +35,7 @@ module.exports = (sequelize) => {
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-      allowNull: false
+      allowNull: true
     },
   });
 };

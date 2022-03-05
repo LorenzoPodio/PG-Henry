@@ -1,9 +1,11 @@
 [
     {
-          "email": "",
+          "email": "pepito@gmail.com",
           "password": "12345",
           "name": "Pepito",
           "lastName": "Fulano",
+          "dni": "39222444",
+          "adress": "la plata 123",
           "isAdmin": true
     }
 ]

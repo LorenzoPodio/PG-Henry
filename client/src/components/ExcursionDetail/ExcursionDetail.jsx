@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const ExcursionDetail = () => {
+ 
   return (
     <div>
       <h1>Detalle de Excursion</h1>

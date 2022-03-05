@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
+import {getAllUserAdmins} from './util/getAllUserAdmins'
 import axios from "axios";
 
 export const ExcurcionsContext = createContext();
@@ -7,6 +8,7 @@ export const ExcurcionsContext = createContext();
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
 
 export const ExcursionsProvider = ({ children }) => {
+  const [userAdmins, setUserAdmins] = useState();//constante que contiene todos los user admins
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
@@ -15,6 +17,8 @@ export const ExcursionsProvider = ({ children }) => {
     getExcursions().then((r) => {
       return setAllExcursions(r, setData(r), setExcursionFiltered(r));
     });
+
+    getAllUserAdmins().then((r) => {return setUserAdmins(r)});
   }, []);
 
   //feature_filter-implemented
@@ -144,6 +148,7 @@ export const ExcursionsProvider = ({ children }) => {
         handleFilter,
         handlePriceOrder,
         addAdmin,
+        userAdmins
       }}
     >
       {children}
