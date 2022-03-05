@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
-import {getAllUserAdmins} from './util/getAllUserAdmins'
+import { getAllUserAdmins } from "./util/getAllUserAdmins";
 import axios from "axios";
 
 export const ExcurcionsContext = createContext();
@@ -8,44 +8,42 @@ export const ExcurcionsContext = createContext();
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
 
 export const ExcursionsProvider = ({ children }) => {
-  const [userAdmins, setUserAdmins] = useState();//constante que contiene todos los user admins
+  const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
+  const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`);
 
   useEffect(() => {
     getExcursions().then((r) => {
       return setAllExcursions(r, setData(r), setExcursionFiltered(r));
     });
 
-    getAllUserAdmins().then((r) => {return setUserAdmins(r)});
+    getAllUserAdmins().then((r) => {
+      return setUserAdmins(r);
+    });
   }, []);
 
   //feature_filter-implemented
-  const handleFilter = (objFilter) => {
-   
-
-    const URL = `http://localhost:3001/getexcursion?`;
-
-    if (objFilter.hasOwnProperty("location")) {
-      if (objFilter.location !== "allItems") {
-        URL.concat(`&location=${objFilter.location}`);
+  const handleFilter = (name, value) => {
+    if (value !== "allItems") {
+      if (!URL.includes(name)) {
+        setURL((prevState) => prevState.concat(`${name}=${value}&`));
+      } else {
+        const regex = new RegExp(`${name}[^&]*&`);
+        setURL((prevState) =>
+          prevState.replace(regex, `${name}=${encodeURIComponent(value)}&`)
+        );
       }
+      console.log(URL);
+    }
+    if (value === "allItems") {
+      const regex = new RegExp(`${name}[^&]*&`);
+        setURL((prevState) =>
+          prevState.replace(regex, ``)
+        );
     }
 
-    if (objFilter.hasOwnProperty("date")) {
-      if (objFilter.date !== "allItems") {
-        URL.concat(`&date=${objFilter.date}`);
-      }
-    }
-
-    if (objFilter.hasOwnProperty("excursionType")) {
-      if (objFilter.excursionType !== "allItems") {
-        URL.concat(`&excursionType=${objFilter.excursionType}`);
-      }
-    }
-    console.log("objfilter en contexto >>> ", objFilter)
-    console.log("URL en contexto" , URL);
     return axios(URL).then((response) => {
       return (
         setData((prevState) => response.data),
@@ -53,55 +51,6 @@ export const ExcursionsProvider = ({ children }) => {
       );
     });
   };
-
-  // const handlerFilterByLocation = (value) => {
-  //   if (value === "allItems") {
-  //     return (
-  //       setData((prevState) => allExcursions),
-  //       setExcursionFiltered((prevState) => allExcursions)
-  //     );
-  //   }
-  //   axios(`http://localhost:3001/getexcursion?location=${value}`).then(
-  //     (response) => {
-  //       return (
-  //         setData((prevState) => response.data),
-  //         setExcursionFiltered((prevState) => response.data)
-  //       );
-  //     }
-  //   );
-  // };
-  // const handlerFilterByDate = (value) => {
-  //   if (value === "allItems") {
-  //     return (
-  //       setData((prevState) => allExcursions),
-  //       setExcursionFiltered((prevState) => allExcursions)
-  //     );
-  //   }
-  //   axios(`http://localhost:3001/getexcursion?date=${value}`).then(
-  //     (response) => {
-  //       return (
-  //         setData((prevState) => response.data),
-  //         setExcursionFiltered((prevState) => response.data)
-  //       );
-  //     }
-  //   );
-  // };
-  // const handlerFilterByType = (value) => {
-  //   if (value === "allItems") {
-  //     return (
-  //       setData((prevState) => allExcursions),
-  //       setExcursionFiltered((prevState) => allExcursions)
-  //     );
-  //   }
-  //   axios(`http://localhost:3001/getexcursion?excursionType=${value}`).then(
-  //     (response) => {
-  //       return (
-  //         setData((prevState) => response.data),
-  //         setExcursionFiltered((prevState) => response.data)
-  //       );
-  //     }
-  //   );
-  // };
 
   //postAdmin
   const addAdmin = (user) => {
@@ -148,7 +97,7 @@ export const ExcursionsProvider = ({ children }) => {
         handleFilter,
         handlePriceOrder,
         addAdmin,
-        userAdmins
+        userAdmins,
       }}
     >
       {children}
