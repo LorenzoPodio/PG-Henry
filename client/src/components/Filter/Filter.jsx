@@ -1,5 +1,4 @@
 // Componente que retorna un select con todas las opciones para filtrar
-import { useState } from "react";
 
 export default function Filter({
   items,
@@ -10,7 +9,6 @@ export default function Filter({
   // handleFilter: Función que llama a la ruta del back con el filtro correspondiente, recibe como parametro el valor seleccionado
   // items: Opciones para filtrar
   //fitlerType: String --> date, excursionType o location
-  const [objFilter, setObjFilter] = useState({}); //{location: bariloche, date: miercoles, excursionType: trekking}
 
   const days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"];
 
@@ -20,17 +18,13 @@ export default function Filter({
       return options.push(item[filterType]);
     }
   });
-  
+
   return (
     <div>
       <select
-        name={{ defaultDescription }}
+        name={filterType}
         onChange={(event) => {
-          setObjFilter((prevState) => {
-            return { ...prevState, [event.target.name]: [event.target.value] };
-          });
-          console.log("objeto en filter >>" , objFilter);
-          return handleFilter(objFilter);
+          return handleFilter(event.target.name , event.target.value);
         }}
       >
         <option value="allItems">{defaultDescription}</option>
