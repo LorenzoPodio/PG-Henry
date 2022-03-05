@@ -81,6 +81,26 @@ export const ExcursionsProvider = ({ children }) => {
     
   //
 
+  //postExcursion
+  const addExcursion = (excursion) => {
+    return axios.post("http://localhost:3001/addexcursion", excursion).then((response) =>response.data)
+    .catch(err => {
+      console.log(err)
+    })
+    }
+    
+  //
+
+  //deleteExcursion
+  const deleteExcursion = (id) => {
+    return axios.delete(`http://localhost:3001/deleteexcursion?id=${id}`).then((response) =>response.data)
+    .catch(err => {
+      console.log(err)
+    })
+    }
+    
+  //
+
   // Feature Sort
   function handlePriceOrder(e) {
     e.preventDefault();
@@ -116,7 +136,9 @@ export const ExcursionsProvider = ({ children }) => {
         handlerFilterByType,
         handlePriceOrder,
         addAdmin,
-        userAdmins
+        userAdmins,
+        addExcursion,
+        deleteExcursion
       }}
     >
       {children}

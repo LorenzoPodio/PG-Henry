@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import swal from "sweetalert";
+
 export const ExcursionsPost = () => {
 
+  const { addExcursion} = useExcursionsContext();
 
   const navigate = useNavigate();
   const [input, setInput] = useState({
@@ -20,6 +22,7 @@ export const ExcursionsPost = () => {
 
   const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
   const price = [500, 1000, 1500, 2000, 2500]
+  const type =["Trekking", "Bus", "Lacustre"]
 
   function handleChange(e) {
     setInput(() => {
@@ -32,6 +35,7 @@ export const ExcursionsPost = () => {
     });
   }
 
+  /// HANDLE CHECKBOX DE DATE
   const handleCheckboxDate = (e) => {
     console.log(input);
     if (e.target.checked) {
@@ -52,6 +56,7 @@ export const ExcursionsPost = () => {
     }
   };
 
+   /// HANDLE CHECKBOX DE TIME
   const handleCheckboxTime = (e) => {
     console.log(input);
     if (e.target.checked) {
@@ -72,26 +77,15 @@ export const ExcursionsPost = () => {
     }
   };
 
-  const handleCheckboxType = (e) => {
-    console.log(input);
-    if (e.target.checked) {
-      console.log(e.target.checked);
-      setInput((prevState) => {
-        return {
-          ...prevState,
-          excursionType: [...prevState.excursionType, e.target.value],
-        };
-      });
+   /// HANDLE DE EXCURSIONTYPE
+    function handleType(e) {
+      setInput({
+        ...input,
+        location: e.target.value
+    })
     }
-    if (!e.target.checked) {
-      console.log(e.target.checked);
-      input.excursionType.splice(input.excursionType.indexOf(e.target.value), 1);
-      setInput((prevState) => {
-        return { ...prevState };
-      });
-    }
-  };
 
+  ///HANDLE DE IMAGENES
   function handleArray(e) {
     setInput({
       ...input,
@@ -100,6 +94,7 @@ export const ExcursionsPost = () => {
   console.log(input)
   }
 
+  ///HANDLE DE LOCATION
   function handleLocation(e) {
     setInput({
       ...input,
@@ -107,6 +102,7 @@ export const ExcursionsPost = () => {
   })
   }
 
+  ///HANDLE DE PRICE
   function handlePrice(e) {
     setInput({
       ...input,
@@ -114,9 +110,11 @@ export const ExcursionsPost = () => {
   })
   }
 
+  ///SUBMIT
   const handleSubmit = (e) => {
+    e.preventDefault()
     console.log(input)
-    // promesa de envio de data aca
+    addExcursion(input)
     setInput({
       name: "",
       Images: [],
@@ -129,11 +127,10 @@ export const ExcursionsPost = () => {
       excursionType: "",
     });
     swal("Excursión creada exitosamente");
-    navigate("/panelAdmin")
+    setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
   };
 
   return (
-  
   <div className="grid place-content-center">
     <form onSubmit={(e) => handleSubmit(e)}>
 
@@ -657,32 +654,12 @@ export const ExcursionsPost = () => {
                       Agrega el tipo de excursión.
                     </label>
                     <div className="mt-1">
-                    <input
-                        type={"checkbox"}
-                        id="trekking"
-                        value={"trekking"}
-                        name="excursionType"
-                        onChange={(e) => handleCheckboxType(e)}
-                      />
-                      <label htmlFor="trekking">Trekking</label>
-                      <br />
-                      <input
-                        type={"checkbox"}
-                        id="bus"
-                        value={"bus"}
-                        name="excursionType"
-                        onChange={(e) => handleCheckboxType(e)}
-                      />
-                      <label htmlFor="bus">Bus</label>
-                      <br />
-                      <input
-                        type={"checkbox"}
-                        id="lacustre"
-                        value={"lacustre"}
-                        name="lacustre"
-                        onChange={(e) => handleCheckboxType(e)}
-                      />
-                      <label htmlFor="lacustre">Lacustre</label>
+                    <select className="" onChange={(e) => handlePrice(e)}>
+                        <option name='location' value=''>Seleccione Tipo de Excursion</option>
+                        {type?.map(t =>
+                            <option name='location' value={t}>{t}</option>
+                        )}
+                    </select>
                     </div>
                   </div>
                 </div>
@@ -693,12 +670,14 @@ export const ExcursionsPost = () => {
       </div>
       {/* Boton */}
       <div className="px-4 py-3 bg-white text-right sm:px-6 grid place-content-center">
+        
         <button
           type="submit"
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
         >
           Registrar Excursion
         </button>
+    
       </div>
     </form>
     </div>

@@ -1,21 +1,34 @@
 import React from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import {PencilIcon, TrashIcon, PlusCircleIcon} from '@heroicons/react/solid';
+import swal from "sweetalert";
 
 export const AdminPanel = () => {
-  const { allExcursions } = useExcursionsContext();
+  const { allExcursions, deleteExcursion } = useExcursionsContext();
 
   function handleEdit(e){
 
   }
 
   function handleDelete(e){
-      
+    swal({
+      title: "Eliminar Excursion!",
+      text: "Esta Seguro que quiere eliminar la excursion " + e.target.name,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((value) => {
+        if(value === true){
+          swal(`Excursion ${e.target.name} eliminada con exito`, {icon: "success"});
+          deleteExcursion(e.target.value)
+        }else swal(`La excursion ${e.target.name} no ha sido eliminada!`);
+});    
 }
 
 
   return (
-          <div className="grid place-content-center">
+          <div className="grid place-content-center" id="top">
             <h1 className="grid place-content-center mt-10">PANEL DE CONTROL</h1>
             <div className="flex flex-col w-fit m-10">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -97,6 +110,8 @@ export const AdminPanel = () => {
                             <button
                             onClick={(e) => handleDelete(e)}
                             type="button"
+                            value={e.id}
+                            name={e.name}
                             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                             >
                             <TrashIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
@@ -113,6 +128,7 @@ export const AdminPanel = () => {
                 </div>
               </div>
               <span className="hidden sm:block my-10">
+                            <a href="/crearExcursion#">
                             <button
                             onClick={(e) => handleEdit(e)}
                             type="button"
@@ -121,6 +137,7 @@ export const AdminPanel = () => {
                             <PlusCircleIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
                             Agregar Excursion
                             </button>
+                            </a>
                             </span>
             </div>
           </div>

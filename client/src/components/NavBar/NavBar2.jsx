@@ -1,23 +1,40 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect} from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { ShoppingCartIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
-const navigation = [
-  { name: 'Excursiones', href: '/excursiones', current: false },
-  { name: 'Tarifas', href: '/tarifas', current: false },
-  { name: 'Sobre Nosotros', href: '/nosotros', current: false },
-  { name: 'Panel Admin', href: '/panelAdmin', current: false },
-  { name: 'Registrarse', href: '/registro', current: false },
-  { name: 'Login', href: '/login', current: false }
-]
 
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export function NavBar2() {
+
+  const [navigation, setNavigation] = useState([
+    { name: 'Excursiones', href: '/excursiones', current: false },
+    { name: 'Tarifas', href: '/tarifas', current: false },
+    { name: 'Sobre Nosotros', href: '/nosotros', current: false },
+    { name: 'Panel Admin', href: '/panelAdmin', current: false },
+    { name: 'Registrarse', href: '/registro', current: false },
+    { name: 'Login', href: '/login', current: false }
+  ])
+  
+
+  
+  function handleClick(e){
+    console.log(e.target.value)
+    navigation.map((item) => {
+      if(item.name === e.target.value){
+        item.current=true
+      } else {
+        item.current=false
+      }
+    })
+    setNavigation(navigation)
+    console.log(navigation)
+  }
+  
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
@@ -37,13 +54,16 @@ export function NavBar2() {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                <Link to="/">
+                  <button value={""} onClick={(e) => handleClick(e)}>
+                  <Link to="/">
                   <img
                     className="block lg:hidden h-8 w-auto"
                     src="https://img.icons8.com/color/48/000000/around-the-globe.png"
                     alt="Workflow"
                   />
                   </Link>
+                  </button>
+                  <button value={""} onClick={(e) => handleClick(e)}>
                   <Link to="/">
                   <img
                     className="hidden lg:block h-8 w-auto"
@@ -51,13 +71,17 @@ export function NavBar2() {
                     alt="Workflow"
                   />
                   </Link>
+                  </button>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      
+                      <Link key={item.href} to={item.href}>
+                      <button
                         key={item.name}
-                        href={item.href}
+                        value={item.name}
+                        onClick={(e) => handleClick(e)}
                         className={classNames(
                           item.current ? 'bg-sky-900 text-white' : 'text-white hover:bg-sky-500 hover:text-white',
                           'px-3 py-2 rounded-md text-sm font-medium'
@@ -65,7 +89,9 @@ export function NavBar2() {
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </a>
+                      </button>
+                      </Link>
+                      
                     ))}
                   </div>
                 </div>
@@ -131,20 +157,24 @@ export function NavBar2() {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current ? 'bg-sky-500 text-white' : 'text-white hover:bg-sky-500 hover:text-white',
-                    'block px-3 py-2 rounded-md text-base font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
+            {navigation.map((item) => (
+              <Disclosure.Button>
+                      <Link key={item.href} to={item.href}>
+                      <button
+                        key={item.name}
+                        value={item.name}
+                        onClick={(e) => handleClick(e)}
+                        className={classNames(
+                          item.current ? 'bg-sky-900 text-white' : 'text-white hover:bg-sky-500 hover:text-white',
+                          'px-3 py-2 rounded-md text-sm font-medium'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </button>
+                      </Link>
+                      </Disclosure.Button>
+                    ))}
             </div>
           </Disclosure.Panel>
         </>
