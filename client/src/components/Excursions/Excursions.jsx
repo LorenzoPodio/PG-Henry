@@ -7,9 +7,7 @@ import SortByPrice from "../SortByPrice/SortByPrice";
 export const Excursions = () => {
   const {
     data,
-    handlerFilterByLocation,
-    handlerFilterByDate,
-    handlerFilterByType,
+    handleFilter,
     allExcursions,
   } = useExcursionsContext();
 
@@ -21,19 +19,19 @@ export const Excursions = () => {
         <Filter
           items={allExcursions}
           defaultDescription="Locación"
-          handleFilter={handlerFilterByLocation}
+          handleFilter={handleFilter}
           filterType="location"
         />
         <Filter
           items={allExcursions}
           defaultDescription="Fechas"
-          handleFilter={handlerFilterByDate}
+          handleFilter={handleFilter}
           filterType="date"
         />
         <Filter
           items={allExcursions}
           defaultDescription="Tipo de excursión"
-          handleFilter={handlerFilterByType}
+          handleFilter={handleFilter}
           filterType="excursionType"
         />
       </div>
