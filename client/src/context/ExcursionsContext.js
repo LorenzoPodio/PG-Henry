@@ -49,7 +49,6 @@ export const ExcursionsProvider = ({ children }) => {
           prevState.replace(regex, `${name}=${encodeURIComponent(value)}&`)
         );
       }
-      console.log(URL);
     }
     if (value === "allItems") {
       const regex = new RegExp(`${name}[^&]*&`);
