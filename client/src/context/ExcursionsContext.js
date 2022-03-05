@@ -12,7 +12,7 @@ export const ExcursionsProvider = ({ children }) => {
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
-  const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`);
+  const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
 
   useEffect(() => {
     getExcursions().then((r) => {
@@ -23,6 +23,20 @@ export const ExcursionsProvider = ({ children }) => {
       return setUserAdmins(r);
     });
   }, []);
+
+  useEffect(() => {
+    axios(URL)
+      .then((response) => {
+        return (
+          setData((prevState) => response.data),
+          setExcursionFiltered((prevState) => response.data)
+        );
+      })
+      .catch((e) => {
+        setExcursionFiltered("Excursiones no encontradas");
+        setData("Excursiones no encontradas");
+      });
+  }, [URL]);
 
   //feature_filter-implemented
   const handleFilter = (name, value) => {
@@ -39,17 +53,8 @@ export const ExcursionsProvider = ({ children }) => {
     }
     if (value === "allItems") {
       const regex = new RegExp(`${name}[^&]*&`);
-        setURL((prevState) =>
-          prevState.replace(regex, ``)
-        );
+      setURL((prevState) => prevState.replace(regex, ``));
     }
-
-    return axios(URL).then((response) => {
-      return (
-        setData((prevState) => response.data),
-        setExcursionFiltered((prevState) => response.data)
-      );
-    });
   };
 
   //postAdmin
@@ -61,7 +66,6 @@ export const ExcursionsProvider = ({ children }) => {
         console.log(err);
       });
   };
-
   //
 
   // Feature Sort
