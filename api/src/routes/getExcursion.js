@@ -1,10 +1,11 @@
 const { Router } = require("express");
-const { Excursion } = require('../db');
+const { Excursion } = require("../db");
 const getExcursion = Router();
 const { Sequelize, Op } = require("sequelize");
 
 getExcursion.get("/", async (req, res, next) => {
   try {
+
     const { id, name, location, date, excursionType } = req.query;
     if (name) {
       const excursionName = await Excursion.findAll({
@@ -17,6 +18,49 @@ getExcursion.get("/", async (req, res, next) => {
     } else if (id) {
       const excursionId = await Excursion.findByPk(id);
       excursionId ? res.status(200).send(excursionId)
+    } else if (date && excursionType && location) {
+      let day = date.charAt(0).toUpperCase() + date.slice(1);
+      const exDateTypeLoc = await Excursion.findAll({
+        where: {
+          date: { [Op.contains]: [day] },
+          excursionType: { [Op.iLike]: `%${excursionType}%` },
+          location: { [Op.iLike]: `%${location}%` },
+        },
+      });
+      exDateTypeLoc.length
+        ? res.status(200).send(exDateTypeLoc)
+        : res.status(500).send("Excursion not found");
+    } else if (date && excursionType) {
+      let day = date.charAt(0).toUpperCase() + date.slice(1);
+      const exDateType = await Excursion.findAll({
+        where: {
+          date: { [Op.contains]: [day] },
+          excursionType: { [Op.iLike]: `%${excursionType}%` },
+        },
+      });
+      exDateType.length
+        ? res.status(200).send(exDateType)
+        : res.status(500).send("Excursion not found");
+    } else if (date && location) {
+      let day = date.charAt(0).toUpperCase() + date.slice(1);
+      const exDateLoc = await Excursion.findAll({
+        where: {
+          date: { [Op.contains]: [day] },
+          location: { [Op.iLike]: `%${location}%` },
+        },
+      });
+      exDateLoc.length
+        ? res.status(200).send(exDateLoc)
+        : res.status(500).send("Excursion not found");
+    } else if (location && excursionType) {
+      const exLocType = await Excursion.findAll({
+        where: {
+          location: { [Op.iLike]: `%${location}%` },
+          excursionType: { [Op.iLike]: `%${excursionType}%` },
+        },
+      });
+      exLocType.length
+        ? res.status(200).send(exLocType)
         : res.status(500).send("Excursion not found");
     } else if (location) {
       const excursionLocation = await Excursion.findAll({
@@ -29,9 +73,7 @@ getExcursion.get("/", async (req, res, next) => {
     } else if (date) {
       let day = date.charAt(0).toUpperCase() + date.slice(1);
       const excursionDate = await Excursion.findAll({
-
         where: {
-
           date: { [Op.contains]: [day] }
         }
       });
@@ -53,6 +95,7 @@ getExcursion.get("/", async (req, res, next) => {
   catch (error) {
     next(error)
   }
-})
+});
+
 
 module.exports = getExcursion;

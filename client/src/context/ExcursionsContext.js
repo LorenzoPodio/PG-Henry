@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
+import {getAllUserAdmins} from './util/getAllUserAdmins'
 import axios from "axios";
 
 export const ExcurcionsContext = createContext();
@@ -7,6 +8,7 @@ export const ExcurcionsContext = createContext();
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
 
 export const ExcursionsProvider = ({ children }) => {
+  const [userAdmins, setUserAdmins] = useState();//constante que contiene todos los user admins
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
@@ -16,7 +18,7 @@ export const ExcursionsProvider = ({ children }) => {
     getExcursions().then((r) => {
       return (setAllExcursions(r), setData(r), setExcursionFiltered(r));
     });
-
+    getAllUserAdmins().then((r) => {return setUserAdmins(r)});
   }, []);
   
   const getExcursionById = id => {
@@ -89,6 +91,26 @@ export const ExcursionsProvider = ({ children }) => {
     
   //
 
+  //postExcursion
+  const addExcursion = (excursion) => {
+    return axios.post("http://localhost:3001/addexcursion", excursion).then((response) =>response.data)
+    .catch(err => {
+      console.log(err)
+    })
+    }
+    
+  //
+
+  //deleteExcursion
+  const deleteExcursion = (id) => {
+    return axios.delete(`http://localhost:3001/deleteexcursion?id=${id}`).then((response) =>response.data)
+    .catch(err => {
+      console.log(err)
+    })
+    }
+    
+  //
+
   // Feature Sort
   function handlePriceOrder(e) {
     e.preventDefault();
@@ -127,6 +149,9 @@ export const ExcursionsProvider = ({ children }) => {
         handlerFilterByType,
         handlePriceOrder,
         addAdmin,
+        userAdmins,
+        addExcursion,
+        deleteExcursion
       }}
     >
       {children}
