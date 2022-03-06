@@ -16,7 +16,7 @@ export const ExcursionsProvider = ({ children }) => {
 
   useEffect(() => {
     getExcursions().then((r) => {
-      return setAllExcursions(r, setData(r), setExcursionFiltered(r));
+      return setAllExcursions(r), setData(r), setExcursionFiltered(r);
     });
 
     getAllUserAdmins().then((r) => {
@@ -101,6 +101,8 @@ export const ExcursionsProvider = ({ children }) => {
         handlePriceOrder,
         addAdmin,
         userAdmins,
+        setAllExcursions,
+        setExcursionFiltered,
       }}
     >
       {children}

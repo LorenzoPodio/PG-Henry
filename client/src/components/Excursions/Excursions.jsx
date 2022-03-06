@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import Filter from "../Filter/Filter";
 import { ExcursionCard } from "../ExcursionCard/ExcursionCard";
 import SortByPrice from "../SortByPrice/SortByPrice";
 
 export const Excursions = () => {
-  const { data, handleFilter, allExcursions } = useExcursionsContext();
+  const {
+    data,
+    handleFilter,
+    allExcursions,
+    getExcursions,
+    setAllExcursions,
+    setData,
+    setExcursionFiltered,
+  } = useExcursionsContext();
+
+  useEffect(() => {
+    getExcursions().then((r) => {
+      return (setAllExcursions(r), setData(r), setExcursionFiltered(r));
+    });
+  }, []);
 
   return (
     <div>
