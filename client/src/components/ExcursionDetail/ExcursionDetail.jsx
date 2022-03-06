@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import { useParams } from "react-router-dom";
-import Example from '../InputSelect/InputSelect';
+import InputSelect from '../InputSelect/InputSelect';
+import { ShoppingCartIcon } from '@heroicons/react/solid'
 
 export const ExcursionDetail = () => {
   const { id } = useParams();
@@ -17,8 +18,8 @@ export const ExcursionDetail = () => {
   return (
     <div className="md:flex items-start justify-center py-2 px-2">
       <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-        <img className="w-full" alt="img excursion" src={excursionByid?.Images[0]} />
-        <img className="mt-2 w-full" alt="img excursion" src={excursionByid?.Images[1]} />
+        <img className="w-11/12" alt="img excursion" src={excursionByid?.Images[0]} />
+        <img className="mt-2 w-11/12" alt="img excursion" src={excursionByid?.Images[1]} />
       </div>
       <div className="md:hidden">
         <img className="w-full" alt="img excursion" src={excursionByid?.Images[0]} />
@@ -41,14 +42,21 @@ export const ExcursionDetail = () => {
             {excursionByid?.name}
           </h1>
         </div>
-        <div className='inline-flex w-1/2 border-b border-gray-200 items-center justify-between'>
-          <div className="py-2 border-b border-gray-200 flex items-center justify-between">
+        <div className='inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start'>
+          <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/2">
             <p className="text-base leading-4 text-gray-800">Dia:</p>
-            <Example/>
+            {excursionByid?.date && <InputSelect options={excursionByid?.date}/>}
           </div>
-          <div className="py-2 border-b border-gray-200 flex items-center justify-between">
+          <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/2">
             <p className="text-base leading-4 text-gray-800">Hora:</p>
+            {excursionByid?.time && <InputSelect options={excursionByid?.time}/>}
           </div>
+        </div>
+        <div>
+          <p className="max-h-72 overflow-y-scroll text-sm lg:leading-tight leading-normal text-gray-600 mt-0">{excursionByid?.description}</p>
+          <p className="text-base leading-4 mt-4 text-gray-600">Tipo de Excursión: {excursionByid?.excursionType}</p>
+          <p className="text-base leading-4 mt-3 text-gray-600">Extra: {excursionByid?.extra}</p>
+          <p className="text-base font-bold leading-4 mt-3 mb-3 text-gray-600">$ {excursionByid?.price}</p>
         </div>
         <button
           className="
@@ -66,13 +74,8 @@ export const ExcursionDetail = () => {
 					"
         >
           Agregar al Carrito
+          <ShoppingCartIcon className="w-5 h-5 ml-1"/>
         </button>
-        <div>
-          <p className="max-h-60 overflow-y-scroll text-sm lg:leading-tight leading-normal text-gray-600 mt-4">{excursionByid?.description}</p>
-          <p className="text-base leading-4 mt-5 text-gray-600">Tipo de Excursión: {excursionByid?.excursionType}</p>
-          <p className="text-base leading-4 mt-3 text-gray-600">Extra: {excursionByid?.extra}</p>
-          <p className="text-base font-bold leading-4 mt-3 text-gray-600">$ {excursionByid?.price}</p>
-        </div>
       </div>
     </div>
   );
