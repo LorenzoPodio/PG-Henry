@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
+import swal from "sweetalert";
 
 export const ExcursionsPost = () => {
+
+  const { addExcursion} = useExcursionsContext();
+
   const navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
@@ -16,6 +20,10 @@ export const ExcursionsPost = () => {
     excursionType: "",
   });
 
+  const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
+  const price = [500, 1000, 1500, 2000, 2500]
+  const type =["Trekking", "Bus", "Lacustre"]
+
   function handleChange(e) {
     setInput(() => {
       console.log(e.target.value);
@@ -27,7 +35,8 @@ export const ExcursionsPost = () => {
     });
   }
 
-  const handleCheckbox = (e) => {
+  /// HANDLE CHECKBOX DE DATE
+  const handleCheckboxDate = (e) => {
     console.log(input);
     if (e.target.checked) {
       console.log(e.target.checked);
@@ -47,35 +56,65 @@ export const ExcursionsPost = () => {
     }
   };
 
-  function handleArray(e) {
-    setInput(() => {
-      console.log(e.target.value);
-      console.log(e);
-      console.log(input);
-      return {
+   /// HANDLE CHECKBOX DE TIME
+  const handleCheckboxTime = (e) => {
+    console.log(input);
+    if (e.target.checked) {
+      console.log(e.target.checked);
+      setInput((prevState) => {
+        return {
+          ...prevState,
+          time: [...prevState.time, e.target.value],
+        };
+      });
+    }
+    if (!e.target.checked) {
+      console.log(e.target.checked);
+      input.time.splice(input.time.indexOf(e.target.value), 1);
+      setInput((prevState) => {
+        return { ...prevState };
+      });
+    }
+  };
+
+   /// HANDLE DE EXCURSIONTYPE
+    function handleType(e) {
+      setInput({
         ...input,
-        [e.target.name]: input[e.target.name].concat(e.target.value),
-      };
-    });
+        location: e.target.value
+    })
+    }
+
+  ///HANDLE DE IMAGENES
+  function handleArray(e) {
+    setInput({
+      ...input,
+      Images: input.Images.includes(e.target.value) ? [...input.Images] : [...input.Images, e.target.value]
+  })
+  console.log(input)
   }
 
-  function handleNewImage(e) {
-    e.preventDefault();
-    console.log("e.target", e.target.firstChild.value);
-    console.log("soy el evento", e);
-    console.log("soy el input", input);
-    e.target.firstChild.value
-      ? setInput(() => {
-          return {
-            ...input,
-            Images: input.Images.concat(e.target.firstChild.value),
-          };
-        })
-      : console.log("evento vacio");
+  ///HANDLE DE LOCATION
+  function handleLocation(e) {
+    setInput({
+      ...input,
+      location: e.target.value
+  })
   }
 
+  ///HANDLE DE PRICE
+  function handlePrice(e) {
+    setInput({
+      ...input,
+      price: e.target.value
+  })
+  }
+
+  ///SUBMIT
   const handleSubmit = (e) => {
-    // promesa de envio de data aca
+    e.preventDefault()
+    console.log(input)
+    addExcursion(input)
     setInput({
       name: "",
       Images: [],
@@ -87,11 +126,14 @@ export const ExcursionsPost = () => {
       extra: "",
       excursionType: "",
     });
-    alert("Excursión creada exitosamente");
+    swal("Excursión creada exitosamente");
+    setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
   };
 
   return (
-    <div>
+  <div className="grid place-content-center">
+    <form onSubmit={(e) => handleSubmit(e)}>
+
       {/* Name */}
       <div>
         <div className="hidden sm:block" aria-hidden="true">
@@ -108,7 +150,7 @@ export const ExcursionsPost = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -132,10 +174,11 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </form>
+            
           </div>
         </div>
       </div>
+
       {/* Images */}
       <div>
         <div className="hidden sm:block" aria-hidden="true">
@@ -164,16 +207,34 @@ export const ExcursionsPost = () => {
                   <div>
                     <div className="mt-1">
                       <div>
-                        <form onSubmit={(e) => handleNewImage(e)}>
+                        
                           <input
-                            type={"text"}
+                            onChange={(e) => handleArray(e)}
+                            type="text"
                             id="Images"
                             name="Images"
                             className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            placeholder="https://imagenDeMuestra.jpg"
+                            placeholder="https://imagenDeMuestra1.jpg"
                           />
-                          <button type="submit">Cargar Imagen</button>
-                        </form>
+
+                          <input
+                            onChange={(e) => handleArray(e)}
+                            type="text"
+                            id="Images"
+                            name="Images"
+                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            placeholder="https://imagenDeMuestra2.jpg"
+                          />
+
+                          <input
+                            onChange={(e) => handleArray(e)}
+                            type="text"
+                            id="Images"
+                            name="Images"
+                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            placeholder="https://imagenDeMuestra3.jpg"
+                          />
+                        
                       </div>
                     </div>
                   </div>
@@ -187,6 +248,7 @@ export const ExcursionsPost = () => {
           </div>
         </div>
       </div>
+
       {/* Description */}
       <div>
         <div className="hidden sm:block" aria-hidden="true">
@@ -203,7 +265,7 @@ export const ExcursionsPost = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -230,10 +292,11 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </form>
+            
           </div>
         </div>
       </div>
+
       {/* Location */}
       <div>
         <div className="hidden sm:block" aria-hidden="true">
@@ -250,7 +313,7 @@ export const ExcursionsPost = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+           
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -261,15 +324,12 @@ export const ExcursionsPost = () => {
                       Agrega el lugar donde se realizará tu excursión.
                     </label>
                     <div className="mt-1">
-                      <textarea
-                        id="location"
-                        name="location"
-                        rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="País,Provincia,Ciudad..."
-                        defaultValue={""}
-                        onChange={(e) => handleChange(e)}
-                      />
+                    <select className="" onChange={(e) => handleLocation(e)}>
+                        <option name='location' value=''>Seleccione Ubicacion</option>
+                        {locations?.map(locat =>
+                            <option name='location' value={locat}>{locat}</option>
+                        )}
+                    </select>
                     </div>
                     <p className="mt-2 text-sm text-gray-500">
                       Agregar referencias puede ser una buena opción.
@@ -277,10 +337,11 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </form>
+    
           </div>
         </div>
       </div>
+
       {/* Date */}
       <div>
         <div className="hidden sm:block" aria-hidden="true">
@@ -297,7 +358,7 @@ export const ExcursionsPost = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -313,7 +374,7 @@ export const ExcursionsPost = () => {
                         id="monday"
                         value={"Lunes"}
                         name="date"
-                        onChange={(e) => handleCheckbox(e)}
+                        onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="monday">Lunes</label>
                       <br />
@@ -322,7 +383,7 @@ export const ExcursionsPost = () => {
                         id="tuesday"
                         value={"Martes"}
                         name="date"
-                        onChange={(e) => handleCheckbox(e)}
+                        onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="tuesday">Martes</label>
                       <br />
@@ -331,7 +392,7 @@ export const ExcursionsPost = () => {
                         id="wednesday"
                         value={"Miercoles"}
                         name="date"
-                        onChange={(e) => handleCheckbox(e)}
+                        onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="wednesday">Miercoles</label>
                       <br />
@@ -340,7 +401,7 @@ export const ExcursionsPost = () => {
                         id="thursday"
                         value={"Jueves"}
                         name="date"
-                        onChange={(e) => handleCheckbox(e)}
+                        onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="thursday">Jueves</label>
                       <br />
@@ -349,7 +410,7 @@ export const ExcursionsPost = () => {
                         id="friday"
                         value={"Viernes"}
                         name="date"
-                        onChange={(e) => handleCheckbox(e)}
+                        onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="friday">Viernes</label>
                       <br />
@@ -358,7 +419,7 @@ export const ExcursionsPost = () => {
                         id="saturday"
                         value={"Sabado"}
                         name="date"
-                        onChange={(e) => handleCheckbox(e)}
+                        onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="saturday">Sabado</label>
                       <br />
@@ -367,17 +428,18 @@ export const ExcursionsPost = () => {
                         id="sunday"
                         value={"Domingo"}
                         name="date"
-                        onChange={(e) => handleCheckbox(e)}
+                        onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="sunday">Domingo</label>
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
+          
           </div>
         </div>
       </div>
+
       {/* Time */}
       <div>
         <div className="hidden sm:block" aria-hidden="true">
@@ -394,7 +456,7 @@ export const ExcursionsPost = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -405,16 +467,68 @@ export const ExcursionsPost = () => {
                       Agrega el horario de salida de tu excursión.
                     </label>
                     <div className="mt-1">
-                      <input
-                        type={"time"}
-                        id="time"
+                    <input
+                        type={"checkbox"}
+                        id="8"
+                        value={"8"}
                         name="time"
-                        rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder=""
-                        defaultValue={""}
-                        onChange={(e) => handleArray(e)}
+                        onChange={(e) => handleCheckboxTime(e)}
                       />
+                      <label htmlFor="monday">08 hs</label>
+                      <br />
+                      <input
+                        type={"checkbox"}
+                        id="10"
+                        value={"10"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label htmlFor="tuesday">10 hs</label>
+                      <br />
+                      <input
+                        type={"checkbox"}
+                        id="12"
+                        value={"12"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label htmlFor="wednesday">12 hs</label>
+                      <br />
+                      <input
+                        type={"checkbox"}
+                        id="14"
+                        value={"14"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label htmlFor="thursday">14 hs</label>
+                      <br />
+                      <input
+                        type={"checkbox"}
+                        id="16"
+                        value={"16"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label htmlFor="friday">16 hs</label>
+                      <br />
+                      <input
+                        type={"checkbox"}
+                        id="18"
+                        value={"18"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label htmlFor="saturday">18 hs</label>
+                      <br />
+                      <input
+                        type={"checkbox"}
+                        id="20"
+                        value={"20"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label htmlFor="sunday">20 hs</label>
                     </div>
                     <p className="mt-2 text-sm text-gray-500">
                       Tener en cuenta un margen de retraso por imprevistos.
@@ -422,10 +536,11 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </form>
+        
           </div>
         </div>
       </div>
+
       {/* Price */}
       <div>
         <div className="hidden sm:block" aria-hidden="true">
@@ -442,7 +557,7 @@ export const ExcursionsPost = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+           
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -453,21 +568,17 @@ export const ExcursionsPost = () => {
                       Agrega el costo total de tu excursión.
                     </label>
                     <div className="mt-1">
-                      <input
-                        type={"number"}
-                        id="price"
-                        name="price"
-                        rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="Precio"
-                        defaultValue={""}
-                        onChange={(e) => handleChange(e)}
-                      />
+                    <select className="" onChange={(e) => handlePrice(e)}>
+                        <option name='location' value=''>Seleccione Precio</option>
+                        {price?.map(p =>
+                            <option name='location' value={p}>$ {p}</option>
+                        )}
+                    </select>
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
+      
           </div>
         </div>
       </div>
@@ -487,7 +598,7 @@ export const ExcursionsPost = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+          
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -512,7 +623,7 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </form>
+      
           </div>
         </div>
       </div>
@@ -532,7 +643,7 @@ export const ExcursionsPost = () => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+        
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -543,32 +654,32 @@ export const ExcursionsPost = () => {
                       Agrega el tipo de excursión.
                     </label>
                     <div className="mt-1">
-                      <textarea
-                        id="excursionType"
-                        name="excursionType"
-                        rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="Tipo de excursión"
-                        defaultValue={""}
-                        onChange={(e) => handleChange(e)}
-                      />
+                    <select className="" onChange={(e) => handlePrice(e)}>
+                        <option name='location' value=''>Seleccione Tipo de Excursion</option>
+                        {type?.map(t =>
+                            <option name='location' value={t}>{t}</option>
+                        )}
+                    </select>
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
+
           </div>
         </div>
       </div>
       {/* Boton */}
-      <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+      <div className="px-4 py-3 bg-white text-right sm:px-6 grid place-content-center">
+        
         <button
           type="submit"
-          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
         >
-          Enviar
+          Registrar Excursion
         </button>
+    
       </div>
+    </form>
     </div>
   );
 };

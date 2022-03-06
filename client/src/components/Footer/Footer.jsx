@@ -10,7 +10,7 @@ export const Footer = () => {
 
 
     return (
-        <div className="footer-container">
+        <div className="footer-container bg-sky-600">
           <div className="social-container">
           
           <p className="text">Realizado por Henry´s Students. Todos los derechos reservados</p>
