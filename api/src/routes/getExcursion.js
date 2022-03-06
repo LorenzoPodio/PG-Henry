@@ -17,7 +17,7 @@ getExcursion.get("/", async (req, res, next) => {
         : res.status(500).send("Excursion not found");
     } else if (id) {
       const excursionId = await Excursion.findByPk(id);
-      excursionId ? res.status(200).send(excursionId)
+      excursionId ? res.status(200).send(excursionId) : res.status(500).send("Excursion not found");
     } else if (date && excursionType && location) {
       let day = date.charAt(0).toUpperCase() + date.slice(1);
       const exDateTypeLoc = await Excursion.findAll({
