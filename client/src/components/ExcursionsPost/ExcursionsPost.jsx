@@ -5,7 +5,9 @@ import swal from "sweetalert";
 
 export const ExcursionsPost = () => {
 
-  const { addExcursion} = useExcursionsContext();
+  const { addExcursion } = useExcursionsContext();
+  
+
 
   const navigate = useNavigate();
   const [input, setInput] = useState({
@@ -81,7 +83,7 @@ export const ExcursionsPost = () => {
     function handleType(e) {
       setInput({
         ...input,
-        location: e.target.value
+        excursionType: e.target.value
     })
     }
 
@@ -112,6 +114,17 @@ export const ExcursionsPost = () => {
 
   ///SUBMIT
   const handleSubmit = (e) => {
+    if(input.Images.length <= 0 || 
+      input.date.length <= 0 ||
+      input.time.length <= 0 ||
+      !input.description ||
+      !input.excursionType ||
+      !input.name || 
+      !input.price ||
+      !input.location){
+        e.preventDefault();
+        swal("Complete todos los campos para continuar")
+      } else {
     e.preventDefault()
     console.log(input)
     addExcursion(input)
@@ -128,7 +141,7 @@ export const ExcursionsPost = () => {
     });
     swal("Excursión creada exitosamente");
     setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
-  };
+  }};
 
   return (
   <div className="grid place-content-center">
@@ -568,7 +581,7 @@ export const ExcursionsPost = () => {
                       Agrega el costo total de tu excursión.
                     </label>
                     <div className="mt-1">
-                    <select className="" onChange={(e) => handlePrice(e)}>
+                    <select className="" onClick={(e) => handlePrice(e)}>
                         <option name='location' value=''>Seleccione Precio</option>
                         {price?.map(p =>
                             <option name='location' value={p}>$ {p}</option>
@@ -654,7 +667,7 @@ export const ExcursionsPost = () => {
                       Agrega el tipo de excursión.
                     </label>
                     <div className="mt-1">
-                    <select className="" onChange={(e) => handlePrice(e)}>
+                    <select className="" onChange={(e) => handleType(e)}>
                         <option name='location' value=''>Seleccione Tipo de Excursion</option>
                         {type?.map(t =>
                             <option name='location' value={t}>{t}</option>
