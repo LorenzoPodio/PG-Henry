@@ -55,9 +55,9 @@ export const Excursions = () => {
                   key={e.id}
                   id={e.id}
                   name={e.name}
-                  primaryImage={e.Images[0]}
+                  images={e.Images}
                   location={e.location}
-                  date={e.date.join(", ")}
+                  date={e.date}
                   price={e.price}
                   excursionType={e.excursionType}
                 />

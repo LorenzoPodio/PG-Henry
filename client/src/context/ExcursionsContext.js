@@ -13,16 +13,24 @@ export const ExcursionsProvider = ({ children }) => {
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
+  const [excursionByid, setExcursionByid] = useState();
 
   useEffect(() => {
     getExcursions().then((r) => {
       return setAllExcursions(r), setData(r), setExcursionFiltered(r);
     });
-
-    getAllUserAdmins().then((r) => {
-      return setUserAdmins(r);
-    });
+    getAllUserAdmins().then((r) => {return setUserAdmins(r)});
   }, []);
+  
+  const getExcursionById = id => {
+    try {
+      axios(`http://localhost:3001/getexcursion?id=${id}`).then(resp => {
+        return (setExcursionByid(resp.data));
+      });
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
 
   useEffect(() => {
     axios(URL)
@@ -115,9 +123,12 @@ export const ExcursionsProvider = ({ children }) => {
       value={{
         data,
         allExcursions,
+        excursionByid,
+        setExcursionByid,
         setData,
         getExcursions,
         handleFilter,
+        getExcursionById,
         handlePriceOrder,
         addAdmin,
         userAdmins,
