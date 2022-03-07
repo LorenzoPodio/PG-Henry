@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export const AdminPanel = () => {
 
-  const { data, deleteExcursion } = useExcursionsContext();
+  const { allExcursions, deleteExcursion } = useExcursionsContext();
   const navigate = useNavigate()
 
   function handleEdit(e){
@@ -32,8 +32,10 @@ export const AdminPanel = () => {
 
   return (
           <div className="grid place-content-center" id="top">
-            <h1 className="grid place-content-center mt-10">PANEL DE CONTROL</h1>
-            <div className="flex flex-col w-fit m-10">
+            <h1 className="xl:text-4xl text-3xl text-center text-gray-800 font-extrabold pb-6 sm:w-4/6 w-5/6 mx-auto mt-5">
+            Panel De Control
+          </h1>
+            <div className="flex flex-col w-fit m-5">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -79,8 +81,8 @@ export const AdminPanel = () => {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                      {data &&
-                      data.map((e) => {
+                      {allExcursions &&
+                      allExcursions.map((e) => {
                       return (
                           <tr key={e.name}>
                             <td className="px-6 py-4 whitespace-nowrap">
