@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import { useNavigate, Link } from "react-router-dom";
+
 import swal from "sweetalert";
 
-export const ExcursionsPost = () => {
-  const { addExcursion, allExcursions } = useExcursionsContext();
+export const EditExcursion = () => {
 
-  const nameExcursions =
-    allExcursions &&
-    allExcursions.map((e) => {
-      return e.name;
-    });
-  console.log(nameExcursions);
+  const { editExcursion} = useExcursionsContext();
 
-  const navigate = useNavigate();
+  const queryString = window.location.search;
+
+  const urlParams = new URLSearchParams(queryString);
+
+  const id = urlParams.get('id')
+
+  console.log(id);
+  
   const [input, setInput] = useState({
     name: "",
     Images: [],
@@ -26,9 +27,9 @@ export const ExcursionsPost = () => {
     excursionType: "",
   });
 
-  const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"];
-  const price = [500, 1000, 1500, 2000, 2500];
-  const type = ["Trekking", "Bus", "Lacustre"];
+  const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
+  const price = [500, 1000, 1500, 2000, 2500]
+  const type =["Trekking", "Bus", "Lacustre"]
 
   function handleChange(e) {
     setInput(() => {
@@ -62,7 +63,7 @@ export const ExcursionsPost = () => {
     }
   };
 
-  /// HANDLE CHECKBOX DE TIME
+   /// HANDLE CHECKBOX DE TIME
   const handleCheckboxTime = (e) => {
     console.log(input);
     if (e.target.checked) {
@@ -83,108 +84,82 @@ export const ExcursionsPost = () => {
     }
   };
 
-  /// HANDLE DE EXCURSIONTYPE
-  function handleType(e) {
-    setInput({
-      ...input,
-      excursionType: e.target.value,
-    });
-  }
+   /// HANDLE DE EXCURSIONTYPE
+    function handleType(e) {
+      setInput({
+        ...input,
+        excursionType: e.target.value
+    })
+    }
 
   ///HANDLE DE IMAGENES
   function handleArray(e) {
     setInput({
       ...input,
-      Images: input.Images.includes(e.target.value)
-        ? [...input.Images]
-        : [...input.Images, e.target.value],
-    });
-    console.log(input);
+      Images: input.Images.includes(e.target.value) ? [...input.Images] : [...input.Images, e.target.value]
+  })
+  console.log(input)
   }
 
   ///HANDLE DE LOCATION
   function handleLocation(e) {
     setInput({
       ...input,
-      location: e.target.value,
-    });
+      location: e.target.value
+  })
   }
 
   ///HANDLE DE PRICE
   function handlePrice(e) {
     setInput({
       ...input,
-      price: e.target.value,
-    });
+      price: e.target.value
+  })
   }
 
   ///SUBMIT
   const handleSubmit = (e) => {
-    if (nameExcursions && nameExcursions.includes(input.name)) {
-      e.preventDefault();
-      swal({
-        title: "Ooops..",
-        icon: "error",
-        text: "Ya existe una excursion con este nombre, intente con otro",
-      });
-    } else if (
-      input.Images.length <= 0 ||
-      input.date.length <= 0 ||
-      input.time.length <= 0 ||
-      !input.description ||
-      !input.excursionType ||
-      !input.name ||
-      !input.price ||
-      !input.location
-    ) {
-      e.preventDefault();
-      swal({
-        title: "Ooops..",
-        icon: "error",
-        text: "Debe completar todos los campos para continuar",
-      });
-    } else {
-      e.preventDefault();
-      console.log(input);
-      addExcursion(input);
-      swal("Excursión creada exitosamente");
-      setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
-      setInput({
-        name: "",
-        Images: [],
-        description: "",
-        location: "",
-        date: [],
-        time: [],
-        price: 0,
-        extra: "",
-        excursionType: "",
-      });
-    }
+    e.preventDefault()
+    console.log(input)
+    console.log(id)
+    editExcursion(input, id)
+    setInput({
+      name: "",
+      Images: [],
+      description: "",
+      location: "",
+      date: [],
+      time: [],
+      price: 0,
+      extra: "",
+      excursionType: "",
+    });
+    
+    swal("Excursión modificada exitosamente");
+    setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
   };
 
   return (
-    <div className="grid place-content-center">
-      <h1 className="xl:text-5xl text-3xl text-center text-gray-700 font-extrabold sm:w-4/6 w-5/6 mx-auto">
-        Crea tu excursion
-      </h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        {/* Name */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+  <div className="grid place-content-center">
+    <form onSubmit={(e) => handleSubmit(e)}>
+
+      {/* Name */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Nombre de la excursión
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Nombre de la excursión
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -208,97 +183,98 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            
           </div>
         </div>
+      </div>
 
-        {/* Images */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+      {/* Images */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Imagenes de muestra
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Imagenes de muestra
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
-              <div className="shadow sm:rounded-md sm:overflow-hidden">
-                <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+            <div className="shadow sm:rounded-md sm:overflow-hidden">
+              <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                <div>
+                  <label
+                    htmlFor="about"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Agrega el link de las imagenes que quieras mostrar.
+                  </label>
                   <div>
-                    <label
-                      htmlFor="about"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Agrega el link de las imagenes que quieras mostrar.
-                    </label>
-                    <div>
-                      <div className="mt-1">
-                        <div>
-                          <form>
-                            <input
-                              onChange={(e) => handleArray(e)}
-                              type="text"
-                              id="Images"
-                              name="Images"
-                              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                              placeholder="https://imagenDeMuestra1.jpg"
-                            />
+                    <div className="mt-1">
+                      <div>
+                        
+                          <input
+                            onChange={(e) => handleArray(e)}
+                            type="text"
+                            id="Images"
+                            name="Images"
+                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            placeholder="https://imagenDeMuestra1.jpg"
+                          />
 
-                            <input
-                              onChange={(e) => handleArray(e)}
-                              type="text"
-                              id="Images"
-                              name="Images"
-                              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                              placeholder="https://imagenDeMuestra2.jpg"
-                            />
+                          <input
+                            onChange={(e) => handleArray(e)}
+                            type="text"
+                            id="Images"
+                            name="Images"
+                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            placeholder="https://imagenDeMuestra2.jpg"
+                          />
 
-                            <input
-                              onChange={(e) => handleArray(e)}
-                              type="text"
-                              id="Images"
-                              name="Images"
-                              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                              placeholder="https://imagenDeMuestra3.jpg"
-                            />
-                            <button type="submit|reset">Cargar Imagen</button>
-                          </form>
-                        </div>
+                          <input
+                            onChange={(e) => handleArray(e)}
+                            type="text"
+                            id="Images"
+                            name="Images"
+                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                            placeholder="https://imagenDeMuestra3.jpg"
+                          />
+                        
                       </div>
                     </div>
-                    <p className="mt-2 text-sm text-gray-500">
-                      Agrega imagenes que sean del lugar donde vas a realizar la
-                      excursión.
-                    </p>
                   </div>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Agrega imagenes que sean del lugar donde vas a realizar la
+                    excursión.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Description */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+      {/* Description */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Descripción de la excursión
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Descripción de la excursión
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+            
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -325,26 +301,28 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            
           </div>
         </div>
+      </div>
 
-        {/* Location */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+      {/* Location */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Ubicación de la excursión.
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Ubicación de la excursión.
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+           
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -355,16 +333,12 @@ export const ExcursionsPost = () => {
                       Agrega el lugar donde se realizará tu excursión.
                     </label>
                     <div className="mt-1">
-                      <select className="" onChange={(e) => handleLocation(e)}>
-                        <option name="location" value="">
-                          Seleccione Ubicacion
-                        </option>
-                        {locations?.map((locat) => (
-                          <option key={locat} name="location" value={locat}>
-                            {locat}
-                          </option>
-                        ))}
-                      </select>
+                    <select className="" onChange={(e) => handleLocation(e)}>
+                        <option name='location' value=''>Seleccione Ubicacion</option>
+                        {locations?.map(locat =>
+                            <option name='location' value={locat}>{locat}</option>
+                        )}
+                    </select>
                     </div>
                     <p className="mt-2 text-sm text-gray-500">
                       Agregar referencias puede ser una buena opción.
@@ -372,26 +346,28 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </div>
+    
           </div>
         </div>
+      </div>
 
-        {/* Date */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+      {/* Date */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Fecha de la excursión.
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Fecha de la excursión.
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -468,26 +444,28 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </div>
+          
           </div>
         </div>
+      </div>
 
-        {/* Time */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+      {/* Time */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Horario de salida.
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Horario de salida.
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+            
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -498,7 +476,7 @@ export const ExcursionsPost = () => {
                       Agrega el horario de salida de tu excursión.
                     </label>
                     <div className="mt-1">
-                      <input
+                    <input
                         type={"checkbox"}
                         id="8"
                         value={"8"}
@@ -567,26 +545,28 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </div>
+        
           </div>
         </div>
+      </div>
 
-        {/* Price */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+      {/* Price */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Precio de la excursión.
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Precio de la excursión.
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+           
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -597,39 +577,37 @@ export const ExcursionsPost = () => {
                       Agrega el costo total de tu excursión.
                     </label>
                     <div className="mt-1">
-                      <select className="" onClick={(e) => handlePrice(e)}>
-                        <option name="location" value="">
-                          Seleccione Precio
-                        </option>
-                        {price?.map((p) => (
-                          <option key={p} name="location" value={p}>
-                            $ {p}
-                          </option>
-                        ))}
-                      </select>
+                    <select className="" onChange={(e) => handlePrice(e)}>
+                        <option name='location' value=''>Seleccione Precio</option>
+                        {price?.map(p =>
+                            <option name='location' value={p}>$ {p}</option>
+                        )}
+                    </select>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+      
           </div>
         </div>
-        {/* Extra */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+      </div>
+      {/* Extra */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Información extra sobre la excursión.
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Información extra sobre la excursión.
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+          
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -654,25 +632,27 @@ export const ExcursionsPost = () => {
                   </div>
                 </div>
               </div>
-            </div>
+      
           </div>
         </div>
-        {/* Excursion Type */}
-        <div>
-          <div className="hidden sm:block" aria-hidden="true">
-            <div className="py-5">
-              <div className="border-t border-gray-200" />
+      </div>
+      {/* Excursion Type */}
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Tipo de excursión ofrecida.
+              </h3>
             </div>
           </div>
-          <div className="md:grid md:grid-cols-3 md:gap-6">
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Tipo de excursión ofrecida.
-                </h3>
-              </div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
+          <div className="mt-5 md:mt-0 md:col-span-2">
+        
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div>
@@ -683,33 +663,32 @@ export const ExcursionsPost = () => {
                       Agrega el tipo de excursión.
                     </label>
                     <div className="mt-1">
-                      <select className="" onChange={(e) => handleType(e)}>
-                        <option name="location" value="">
-                          Seleccione Tipo de Excursion
-                        </option>
-                        {type?.map((t) => (
-                          <option key={t} name="location" value={t}>
-                            {t}
-                          </option>
-                        ))}
-                      </select>
+                    <select className="" onChange={(e) => handleType(e)}>
+                        <option name='location' value=''>Seleccione Tipo de Excursion</option>
+                        {type?.map(t =>
+                            <option name='location' value={t}>{t}</option>
+                        )}
+                    </select>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+
           </div>
         </div>
-        {/* Boton */}
-        <div className="px-4 py-3 bg-white text-right sm:px-6 grid place-content-center">
-          <button
-            type="submit"
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-          >
-            Registrar Excursion
-          </button>
-        </div>
-      </form>
+      </div>
+      {/* Boton */}
+      <div className="px-4 py-3 bg-white text-right sm:px-6 grid place-content-center">
+        
+        <button
+          type="submit"
+          className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+        >
+          Registrar Excursion
+        </button>
+    
+      </div>
+    </form>
     </div>
   );
 };
