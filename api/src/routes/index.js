@@ -7,7 +7,7 @@ const deleteExcursion = require('./deleteExcursion');
 const putExcursion = require('./putExcursion');
 const changeDatesAdmin = require('./putDataAdmin');
 const getAllUserAdmins = require('./getAllUserAdmins')
-
+const setMail = require('./setMail')
 
 router.use("/changeadmin", changeDatesAdmin)
 router.use("/changeexcursion", putExcursion)
@@ -16,4 +16,5 @@ router.use("/getexcursion", getExcursion)
 router.use("/addexcursion", addExcursion)
 router.use("/addadmin", addAdmin)
 router.use("/getAllUserAdmins", getAllUserAdmins)
+router.use("/setMail", setMail)
 module.exports = router;
