@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect, useState} from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import {PencilIcon, TrashIcon, PlusCircleIcon} from '@heroicons/react/solid';
 import swal from "sweetalert";
@@ -10,7 +10,8 @@ export const AdminPanel = () => {
   const navigate = useNavigate()
 
   function handleEdit(e){
-    navigate(`/editarExcursion?id=${e.target.value}`)
+    console.log(e.target.name)
+    navigate(`/editarExcursion?id=${e.target.value}&name=${e.target.name}`)
   }
 
   function handleDelete(e){
@@ -89,7 +90,7 @@ export const AdminPanel = () => {
                               <div className="flex items-center">
                                 
                                 <div className="ml-4">
-                                  <div className="text-sm font-medium text-gray-900">{e.name + " " + e.id}</div>
+                                  <div className="text-sm font-medium text-gray-900">{e.name}</div>
                                 </div>
                               </div>
                             </td>
@@ -103,6 +104,7 @@ export const AdminPanel = () => {
                             <button
                             onClick={(e) => handleEdit(e)}
                             value={e.id}
+                            name={e.name}
                             type="button"
                             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                             >
@@ -149,6 +151,3 @@ export const AdminPanel = () => {
           </div>
             )
         }
-
-
-

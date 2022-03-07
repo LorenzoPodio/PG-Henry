@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 import swal from "sweetalert";
 
 export const EditExcursion = () => {
 
-  const { editExcursion} = useExcursionsContext();
+  //get params info
+  const { editExcursion, getExcursionById, excursionByid,} = useExcursionsContext();
 
   const queryString = window.location.search;
 
   const urlParams = new URLSearchParams(queryString);
 
   const id = urlParams.get('id')
-
-  console.log(id);
+  const name = urlParams.get('name')
+  
   
   const [input, setInput] = useState({
     name: "",
@@ -27,10 +28,16 @@ export const EditExcursion = () => {
     excursionType: "",
   });
 
+  //array for selects
   const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
   const price = [500, 1000, 1500, 2000, 2500]
   const type =["Trekking", "Bus", "Lacustre"]
+  
+  useEffect(() => {
+    getExcursionById(id)
+  }, [])
 
+  /// HANDLE INPUTS
   function handleChange(e) {
     setInput(() => {
       console.log(e.target.value);
@@ -141,6 +148,10 @@ export const EditExcursion = () => {
 
   return (
   <div className="grid place-content-center">
+    <h1 className="xl:text-4xl text-5xl text-center text-black font-extrabold pb-6 sm:w-4/6 w-5/6 mx-auto mt-5">
+            Panel De Edicion
+    </h1>
+    <h3 className="grid place-content-center font-bold text-2xl text-center pb-1">Estas editando la excursion : {name}</h3>
     <form onSubmit={(e) => handleSubmit(e)}>
 
       {/* Name */}
@@ -175,7 +186,7 @@ export const EditExcursion = () => {
                         name="name"
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="Ejemplo de nombre"
+                        placeholder={excursionByid?.name}
                         defaultValue={""}
                         onChange={(e) => handleChange(e)}
                       />
@@ -290,7 +301,7 @@ export const EditExcursion = () => {
                         name="description"
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="Descripción..."
+                        placeholder={excursionByid?.description}
                         defaultValue={""}
                         onChange={(e) => handleChange(e)}
                       />
@@ -624,7 +635,7 @@ export const EditExcursion = () => {
                         name="extra"
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="Ingresa información extra"
+                        placeholder={excursionByid?.extra}
                         defaultValue={""}
                         onChange={(e) => handleChange(e)}
                       />
