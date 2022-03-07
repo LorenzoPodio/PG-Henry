@@ -15,7 +15,6 @@ export const ExcursionsProvider = ({ children }) => {
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
-  const [querySearched, setSearchedQuery] = useState(''); //  Search By Query.
 
   useEffect(() => {
     getExcursions().then((r) => {
@@ -138,8 +137,6 @@ export const ExcursionsProvider = ({ children }) => {
         setExcursionFiltered,
         addExcursion,
         deleteExcursion,
-        querySearched,
-        setSearchedQuery,
       }}
     >
       {children}
