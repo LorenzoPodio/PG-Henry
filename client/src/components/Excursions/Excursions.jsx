@@ -3,6 +3,7 @@ import { useExcursionsContext } from "../../context/ExcursionsContext";
 import Filter from "../Filter/Filter";
 import { ExcursionCard } from "../ExcursionCard/ExcursionCard";
 import SortByPrice from "../SortByPrice/SortByPrice";
+import SearchBar from "../SearchBar/SearchBar";
 
 export const Excursions = () => {
   const {
@@ -24,6 +25,11 @@ export const Excursions = () => {
   return (
     <div>
       <h1>Excursiones</h1>
+
+      <div className='search-bar'>
+        <SearchBar/>
+      </div>
+
       <div className="inline-flex">
         <Filter
           items={allExcursions}

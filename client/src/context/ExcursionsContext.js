@@ -3,9 +3,12 @@ import { getExcursions } from "./util/getExcursions";
 import { getAllUserAdmins } from "./util/getAllUserAdmins";
 import axios from "axios";
 
-export const ExcurcionsContext = createContext();
+export const ExcurcionsContext = createContext({ query: "",
+searchHandler: () => {},
+});
 
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
+ 
 
 export const ExcursionsProvider = ({ children }) => {
   const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
@@ -14,6 +17,7 @@ export const ExcursionsProvider = ({ children }) => {
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
+  const [querySearched, setSearchedQuery] = useState(''); //  Search By Query.
 
   useEffect(() => {
     getExcursions().then((r) => {
@@ -135,7 +139,9 @@ export const ExcursionsProvider = ({ children }) => {
         setAllExcursions,
         setExcursionFiltered,
         addExcursion,
-        deleteExcursion
+        deleteExcursion,
+        querySearched,
+        setSearchedQuery,
       }}
     >
       {children}
