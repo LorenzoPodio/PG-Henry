@@ -12,13 +12,14 @@ recoverPass.post("/", async (req, res, next) => {
             }, 
         });
         let pass = user[0].password
+        let name= user[0].name
         var mailOptions = {
             from: "excursionappmail@gmail.com",
             to: email,
             subject: "Recupero de contraseña ExcursionApp",
             html: `<img src= "https://img.icons8.com/color/48/000000/around-the-globe.png" />
             <h3>ExcursionApp</h3>
-            <h3>Su contraseña es:</h3> <h1> ${pass}</h1> `
+            <h3>Hola ${name}, su contraseña es:</h3> <h1> ${pass}</h1> `
         }
         transporter.sendMail(mailOptions, (error, info) => {
             res.status(200).json("Contraseña enviada");
