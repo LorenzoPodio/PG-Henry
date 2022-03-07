@@ -6,7 +6,6 @@ import axios from "axios";
 export const ExcurcionsContext = createContext();
 
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
- 
 
 export const ExcursionsProvider = ({ children }) => {
   const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
@@ -18,20 +17,26 @@ export const ExcursionsProvider = ({ children }) => {
 
   useEffect(() => {
     getExcursions().then((r) => {
-      return setAllExcursions(r), setData(r), setExcursionFiltered(r);
+      return (
+        setAllExcursions(r),
+        setData(r),
+        setExcursionFiltered(r)
+      );
     });
-    getAllUserAdmins().then((r) => {return setUserAdmins(r)});
+    getAllUserAdmins().then((r) => {
+      return setUserAdmins(r);
+    });
   }, []);
-  
-  const getExcursionById = id => {
+
+  const getExcursionById = (id) => {
     try {
-      axios(`http://localhost:3001/getexcursion?id=${id}`).then(resp => {
-        return (setExcursionByid(resp.data));
+      axios(`http://localhost:3001/getexcursion?id=${id}`).then((resp) => {
+        return setExcursionByid(resp.data);
       });
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
     }
-  }
+  };
 
   useEffect(() => {
     axios(URL)
@@ -78,32 +83,44 @@ export const ExcursionsProvider = ({ children }) => {
 
   //postExcursion
   const addExcursion = (excursion) => {
-    return axios.post("http://localhost:3001/addexcursion", excursion).then((response) =>response.data)
-    .catch(err => {
-      console.log(err)
-    })
-    }
-    
+    return axios
+      .post("http://localhost:3001/addexcursion", excursion)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   //
 
   //deleteExcursion
   const deleteExcursion = (id) => {
-    return axios.delete(`http://localhost:3001/deleteexcursion?id=${id}`).then((response) =>response.data)
-    .catch(err => {
-      console.log(err)
-    })
-    }
-    
+    return axios
+      .delete(`http://localhost:3001/deleteexcursion?id=${id}`)
+      .then((response) => {
+        return (
+          setAllExcursions(response.data),
+          setData(response.data),
+          setExcursionFiltered(response.data)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   //
 
-   //editExcursion
-   const editExcursion = (excursion, id) => {
-    return axios.put(`http://localhost:3001/changeexcursion/${id}`, excursion).then((response) =>response.data)
-    .catch(err => {
-      console.log(err)
-    })
-    }
-    
+  //editExcursion
+  const editExcursion = (excursion, id) => {
+    return axios
+      .put(`http://localhost:3001/changeexcursion/${id}`, excursion)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   //
 
   // Feature Sort
@@ -147,7 +164,7 @@ export const ExcursionsProvider = ({ children }) => {
         setExcursionFiltered,
         addExcursion,
         deleteExcursion,
-        editExcursion
+        editExcursion,
       }}
     >
       {children}
