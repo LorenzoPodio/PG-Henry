@@ -44,7 +44,6 @@ export default function Register() {
         ...input,password:pass.pass1})
 
       if (Object.values(validate(input)).length === 0) {
-          console.log(input);
         addAdmin(input)
         swal( "Usuario Creado con exito", "En instantes seras redirigido para iniciar sesion", "success" );
         setTimeout(() => (window.location.href = "/login"), 2000);
@@ -147,7 +146,7 @@ export default function Register() {
 
   return (
     <div>
-      <div class="container1">
+      <div className="container1">
         <div className="card">
         {/* {<div>
           <img src={"/"} alt="nf" />
@@ -177,7 +176,7 @@ export default function Register() {
           <div>
             <div>
               <input
-                id="inpt_reg_new"
+                id="inpt_reg_new2"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="Apellido"
@@ -195,7 +194,7 @@ export default function Register() {
           <div>
             <div>
               <input
-                id="inpt_reg_new"
+                id="inpt_reg_new3"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="DNI  (Solo Numeros)"
@@ -212,7 +211,7 @@ export default function Register() {
           <div>
             <div>
               <input
-                id="inpt_reg_new"
+                id="inpt_reg_new4"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="Mail"
@@ -262,7 +261,7 @@ export default function Register() {
           <div>
             <div>
               <input
-                id="inpt_reg_new"
+                id="inpt_reg_new5"
                 onChange={(e) => handleChange(e)}
                 type="text"
                 placeholder="Direccion"

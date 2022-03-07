@@ -10,7 +10,6 @@ export const ExcursionsPost = () => {
   const nameExcursions = allExcursions && allExcursions.map((e) => {
     return e.name
   }); 
-  console.log(nameExcursions)
 
   
   const navigate = useNavigate();
@@ -32,8 +31,6 @@ export const ExcursionsPost = () => {
 
   function handleChange(e) {
     setInput(() => {
-      console.log(e.target.value);
-      console.log(input);
       return {
         ...input,
         [e.target.name]: e.target.value,
@@ -43,9 +40,7 @@ export const ExcursionsPost = () => {
 
   /// HANDLE CHECKBOX DE DATE
   const handleCheckboxDate = (e) => {
-    console.log(input);
     if (e.target.checked) {
-      console.log(e.target.checked);
       setInput((prevState) => {
         return {
           ...prevState,
@@ -54,7 +49,6 @@ export const ExcursionsPost = () => {
       });
     }
     if (!e.target.checked) {
-      console.log(e.target.checked);
       input.date.splice(input.date.indexOf(e.target.value), 1);
       setInput((prevState) => {
         return { ...prevState };
@@ -64,9 +58,7 @@ export const ExcursionsPost = () => {
 
    /// HANDLE CHECKBOX DE TIME
   const handleCheckboxTime = (e) => {
-    console.log(input);
     if (e.target.checked) {
-      console.log(e.target.checked);
       setInput((prevState) => {
         return {
           ...prevState,
@@ -75,7 +67,6 @@ export const ExcursionsPost = () => {
       });
     }
     if (!e.target.checked) {
-      console.log(e.target.checked);
       input.time.splice(input.time.indexOf(e.target.value), 1);
       setInput((prevState) => {
         return { ...prevState };
@@ -97,7 +88,6 @@ export const ExcursionsPost = () => {
       ...input,
       Images: input.Images.includes(e.target.value) ? [...input.Images] : [...input.Images, e.target.value]
   })
-  console.log(input)
   }
 
   ///HANDLE DE LOCATION
@@ -143,7 +133,6 @@ export const ExcursionsPost = () => {
         }
        else {
     e.preventDefault()
-    console.log(input)
     addExcursion(input)
     swal("Excursión creada exitosamente");
     setTimeout(() => (window.location.href = "/panelAdmin"), 3000);

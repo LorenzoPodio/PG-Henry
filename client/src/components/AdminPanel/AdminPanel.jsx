@@ -10,7 +10,7 @@ export const AdminPanel = () => {
   const navigate = useNavigate()
 
   function handleEdit(e){
-    navigate(`/editarExcursion?id=${e.target.value}`)
+    navigate(`/crearExcursion`)
   }
 
   function handleDelete(e){
@@ -32,7 +32,19 @@ export const AdminPanel = () => {
 
   return (
           <div className="grid place-content-center" id="top">
-            <h1 className="grid place-content-center mt-10">PANEL DE CONTROL</h1>
+            <span className="hidden sm:block my-2">
+                            <a href="/crearExcursion#">
+                            <button
+                            onClick={(e) => handleEdit(e)}
+                            type="button"
+                            className="rounded float-right inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                            >
+                            <PlusCircleIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
+                            Agregar Excursion
+                            </button>
+                            </a>
+                            </span>
+            <h1 className="grid place-content-center mt-0">PANEL DE CONTROL</h1>
             <div className="flex flex-col w-fit m-10">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -131,18 +143,7 @@ export const AdminPanel = () => {
                   </div>
                 </div>
               </div>
-              <span className="hidden sm:block my-10">
-                            <a href="/crearExcursion#">
-                            <button
-                            onClick={(e) => handleEdit(e)}
-                            type="button"
-                            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                            >
-                            <PlusCircleIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
-                            Agregar Excursion
-                            </button>
-                            </a>
-                            </span>
+              
             </div>
           </div>
             )
