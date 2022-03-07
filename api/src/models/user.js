@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
+
         },
         id: {
             type: DataTypes.INTEGER,
@@ -24,7 +25,8 @@ module.exports = (sequelize) => {
         },
         dni: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         lastName: {
             type: DataTypes.STRING,
@@ -33,6 +35,7 @@ module.exports = (sequelize) => {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true
         },
     }
     );

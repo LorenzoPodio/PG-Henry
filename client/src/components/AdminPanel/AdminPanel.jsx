@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export const AdminPanel = () => {
 
-  const { data, deleteExcursion } = useExcursionsContext();
+  const { allExcursions, deleteExcursion } = useExcursionsContext();
   const navigate = useNavigate()
 
   function handleEdit(e){
@@ -79,8 +79,8 @@ export const AdminPanel = () => {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                      {data &&
-                      data.map((e) => {
+                      {allExcursions &&
+                      allExcursions.map((e) => {
                       return (
                           <tr key={e.name}>
                             <td className="px-6 py-4 whitespace-nowrap">
