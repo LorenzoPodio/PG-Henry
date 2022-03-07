@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import { useNavigate, Link} from "react-router-dom";
+
 import swal from "sweetalert";
 
-export const ExcursionsPost = () => {
+export const EditExcursion = () => {
 
-  const { addExcursion} = useExcursionsContext();
+  const { editExcursion} = useExcursionsContext();
 
-  const navigate = useNavigate();
+  const queryString = window.location.search;
+
+  const urlParams = new URLSearchParams(queryString);
+
+  const id = urlParams.get('id')
+
+  console.log(id);
+  
   const [input, setInput] = useState({
     name: "",
     Images: [],
@@ -114,7 +121,8 @@ export const ExcursionsPost = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(input)
-    addExcursion(input)
+    console.log(id)
+    editExcursion(input, id)
     setInput({
       name: "",
       Images: [],
@@ -126,7 +134,8 @@ export const ExcursionsPost = () => {
       extra: "",
       excursionType: "",
     });
-    swal("Excursión creada exitosamente");
+    
+    swal("Excursión modificada exitosamente");
     setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
   };
 

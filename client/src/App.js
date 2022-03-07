@@ -13,6 +13,7 @@ import { AdminPanel } from './components/AdminPanel/AdminPanel'
 import { Footer } from "./components/Footer/Footer";
 import {NavBar2} from './components/NavBar/NavBar2'
 import { Landing } from "./components/Landing/Landing";
+import { EditExcursion } from "./components/EditExcursion/EditExcursion";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Landing/>}/>
         <Route exact path='/crearExcursion' element={<ExcursionsPost/>}/>
+        <Route exact path='/editarExcursion' element={<EditExcursion/>}/>
         <Route exact path="/excursiones" element={<Excursions />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/registro" element={<Register />} />

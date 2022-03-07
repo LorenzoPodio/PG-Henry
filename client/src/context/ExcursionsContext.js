@@ -101,6 +101,16 @@ export const ExcursionsProvider = ({ children }) => {
     
   //
 
+   //editExcursion
+   const editExcursion = (excursion, id) => {
+    return axios.put(`http://localhost:3001/changeexcursion/${id}`, excursion).then((response) =>response.data)
+    .catch(err => {
+      console.log(err)
+    })
+    }
+    
+  //
+
   // Feature Sort
   function handlePriceOrder(e) {
     e.preventDefault();
@@ -138,7 +148,8 @@ export const ExcursionsProvider = ({ children }) => {
         addAdmin,
         userAdmins,
         addExcursion,
-        deleteExcursion
+        deleteExcursion,
+        editExcursion
       }}
     >
       {children}

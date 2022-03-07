@@ -2,12 +2,15 @@ import React from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import {PencilIcon, TrashIcon, PlusCircleIcon} from '@heroicons/react/solid';
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 export const AdminPanel = () => {
-  const { allExcursions, deleteExcursion } = useExcursionsContext();
+
+  const { data, deleteExcursion } = useExcursionsContext();
+  const navigate = useNavigate()
 
   function handleEdit(e){
-
+    navigate(`/editarExcursion?id=${e.target.value}`)
   }
 
   function handleDelete(e){
@@ -76,15 +79,15 @@ export const AdminPanel = () => {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
-                      {allExcursions &&
-                      allExcursions.map((e) => {
+                      {data &&
+                      data.map((e) => {
                       return (
                           <tr key={e.name}>
                             <td className="px-6 py-4 whitespace-nowrap">
                               <div className="flex items-center">
                                 
                                 <div className="ml-4">
-                                  <div className="text-sm font-medium text-gray-900">{e.name}</div>
+                                  <div className="text-sm font-medium text-gray-900">{e.name + " " + e.id}</div>
                                 </div>
                               </div>
                             </td>
@@ -97,6 +100,7 @@ export const AdminPanel = () => {
                             <span className="hidden sm:block">
                             <button
                             onClick={(e) => handleEdit(e)}
+                            value={e.id}
                             type="button"
                             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                             >
