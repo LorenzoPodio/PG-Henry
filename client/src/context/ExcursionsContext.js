@@ -3,9 +3,7 @@ import { getExcursions } from "./util/getExcursions";
 import { getAllUserAdmins } from "./util/getAllUserAdmins";
 import axios from "axios";
 
-export const ExcurcionsContext = createContext({ query: "",
-searchHandler: () => {},
-});
+export const ExcurcionsContext = createContext();
 
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
  
