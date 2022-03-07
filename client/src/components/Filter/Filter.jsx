@@ -6,6 +6,9 @@ export default function Filter({
   handleFilter,
   filterType,
 }) {
+  // handleFilter: Función que llama a la ruta del back con el filtro correspondiente, recibe como parametro el valor seleccionado
+  // items: Opciones para filtrar
+  //fitlerType: String --> date, excursionType o location
 
   const days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"];
 
@@ -19,8 +22,10 @@ export default function Filter({
   return (
     <div>
       <select
-        name={{ defaultDescription }}
-        onChange={(e) => handleFilter(e.target.value)}
+        name={filterType}
+        onChange={(event) => {
+          return handleFilter(event.target.name , event.target.value);
+        }}
       >
         <option value="allItems">{defaultDescription}</option>
         {defaultDescription !== "Fechas" ? (
