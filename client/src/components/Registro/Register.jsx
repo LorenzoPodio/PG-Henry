@@ -41,7 +41,7 @@ export default function Register() {
         return { ...prevState, password: pass.pass1 };
       });
 
-      if (Object.values(validate(input)).length === 0) {
+      if (Object.values(validate(input, pass)).length === 0) {
         addAdmin(input);
         swal(
           "Usuario Creado con exito",
