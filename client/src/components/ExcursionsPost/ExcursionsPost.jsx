@@ -121,7 +121,11 @@ export const ExcursionsPost = () => {
      
       if (nameExcursions && nameExcursions.includes(input.name)) {
         e.preventDefault();
-        swal("Hay otra excursion con este nombre, intente con otro nombre") 
+        swal({
+          title: "Ooops..",
+          icon: "error",
+          text: "Ya existe una excursion con este nombre, intente con otro"
+        }) 
       } else if(input.Images.length <= 0 || 
         input.date.length <= 0 ||
         input.time.length <= 0 ||
@@ -131,7 +135,11 @@ export const ExcursionsPost = () => {
         !input.price ||
         !input.location){
           e.preventDefault();
-          swal("Complete todos los campos para continuar")
+          swal({
+            title: "Ooops..",
+            icon: "error",
+            text: "Debe completar todos los campos para continuar"
+          })
         }
        else {
     e.preventDefault()
