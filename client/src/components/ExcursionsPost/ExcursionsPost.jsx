@@ -5,10 +5,14 @@ import swal from "sweetalert";
 
 export const ExcursionsPost = () => {
 
-  const { addExcursion } = useExcursionsContext();
+  const { addExcursion, allExcursions } = useExcursionsContext();
+
+  const nameExcursions = allExcursions && allExcursions.map((e) => {
+    return e.name
+  }); 
+  console.log(nameExcursions)
+
   
-
-
   const navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
@@ -114,20 +118,27 @@ export const ExcursionsPost = () => {
 
   ///SUBMIT
   const handleSubmit = (e) => {
-    if(input.Images.length <= 0 || 
-      input.date.length <= 0 ||
-      input.time.length <= 0 ||
-      !input.description ||
-      !input.excursionType ||
-      !input.name || 
-      !input.price ||
-      !input.location){
+     
+      if (nameExcursions && nameExcursions.includes(input.name)) {
         e.preventDefault();
-        swal("Complete todos los campos para continuar")
-      } else {
+        swal("Hay otra excursion con este nombre, intente con otro nombre") 
+      } else if(input.Images.length <= 0 || 
+        input.date.length <= 0 ||
+        input.time.length <= 0 ||
+        !input.description ||
+        !input.excursionType ||
+        !input.name || 
+        !input.price ||
+        !input.location){
+          e.preventDefault();
+          swal("Complete todos los campos para continuar")
+        }
+       else {
     e.preventDefault()
     console.log(input)
     addExcursion(input)
+    swal("Excursión creada exitosamente");
+    setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
     setInput({
       name: "",
       Images: [],
@@ -138,9 +149,7 @@ export const ExcursionsPost = () => {
       price: 0,
       extra: "",
       excursionType: "",
-    });
-    swal("Excursión creada exitosamente");
-    setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
+    })
   }};
 
   return (
@@ -340,7 +349,7 @@ export const ExcursionsPost = () => {
                     <select className="" onChange={(e) => handleLocation(e)}>
                         <option name='location' value=''>Seleccione Ubicacion</option>
                         {locations?.map(locat =>
-                            <option name='location' value={locat}>{locat}</option>
+                            <option key={locat} name='location' value={locat}>{locat}</option>
                         )}
                     </select>
                     </div>
@@ -584,7 +593,7 @@ export const ExcursionsPost = () => {
                     <select className="" onClick={(e) => handlePrice(e)}>
                         <option name='location' value=''>Seleccione Precio</option>
                         {price?.map(p =>
-                            <option name='location' value={p}>$ {p}</option>
+                            <option key={p} name='location' value={p}>$ {p}</option>
                         )}
                     </select>
                     </div>
@@ -670,7 +679,7 @@ export const ExcursionsPost = () => {
                     <select className="" onChange={(e) => handleType(e)}>
                         <option name='location' value=''>Seleccione Tipo de Excursion</option>
                         {type?.map(t =>
-                            <option name='location' value={t}>{t}</option>
+                            <option key={t} name='location' value={t}>{t}</option>
                         )}
                     </select>
                     </div>
