@@ -6,6 +6,7 @@ import axios from "axios";
 export const ExcurcionsContext = createContext();
 
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
+ 
 
 export const ExcursionsProvider = ({ children }) => {
   const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
@@ -135,7 +136,7 @@ export const ExcursionsProvider = ({ children }) => {
         setAllExcursions,
         setExcursionFiltered,
         addExcursion,
-        deleteExcursion
+        deleteExcursion,
       }}
     >
       {children}
