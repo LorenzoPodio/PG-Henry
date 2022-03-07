@@ -5,6 +5,7 @@ const { Excursion } = require("../db");
 putExcursion.put("/:id", async (req, res, next) => {
   try {
     const excursionId = req.params.id;
+    console.log(excursionId)
     const {
       name,
       Images,
