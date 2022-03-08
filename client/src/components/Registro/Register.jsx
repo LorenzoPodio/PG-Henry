@@ -27,6 +27,11 @@ export default function Register() {
   function handleSubmit(e) {
     e.preventDefault();
 
+
+     setErrors(validate({
+       ...input,
+       [e.target.name]: e.target.value
+     }));
     const arr = admins.filter(
       (d) => d.email === input.email || d.dni === input.dni
     );
@@ -122,46 +127,41 @@ export default function Register() {
             {errors.name && <p className="errorMsg">{errors.name}</p>}
 
             <div>
-              <div>
-                <input
-                  id="inpt_reg_new"
-                  onChange={(e) => handleChange(e)}
-                  type="text"
-                  placeholder="Apellido"
-                  value={input.lastName}
-                  name="lastName"
-                />
-              </div>
+
+              <input
+                id="inpt_reg_new2"
+                onChange={(e) => handleChange(e)}
+                type="text"
+                placeholder="Apellido"
+                value={input.lastName}
+                name="lastName"
+              />
             </div>
             {errors.lastName && <p className="errorMsg">{errors.lastName}</p>}
-
             <div>
-              <div>
-                <input
-                  id="inpt_reg_new"
-                  onChange={(e) => handleChange(e)}
-                  type="text"
-                  placeholder="DNI  (Solo Numeros)"
-                  value={input.dni}
-                  name="dni"
-                />
-              </div>
+
+              <input
+                id="inpt_reg_new3"
+                onChange={(e) => handleChange(e)}
+                type="text"
+                placeholder="DNI  (Solo Numeros)"
+                value={input.dni}
+                name="dni"
+              />
             </div>
             {errors.dni && <p className="errorMsg">{errors.dni}</p>}
             <div>
-              <div>
-                <input
-                  id="inpt_reg_new"
-                  onChange={(e) => handleChange(e)}
-                  type="text"
-                  placeholder="Mail"
-                  value={input.email}
-                  name="email"
-                />
-              </div>
+
+              <input
+                id="inpt_reg_new4"
+                onChange={(e) => handleChange(e)}
+                type="text"
+                placeholder="Mail"
+                value={input.email}
+                name="email"
+              />
             </div>
             {errors.email && <p className="errorMsg">{errors.email}</p>}
-
             <div>
               <div>
                 <input
@@ -187,16 +187,15 @@ export default function Register() {
             </div>
             {errors.pass && <p className="errorMsg">{errors.pass}</p>}
             <div>
-              <div>
-                <input
-                  id="inpt_reg_new"
-                  onChange={(e) => handleChange(e)}
-                  type="text"
-                  placeholder="Direccion"
-                  value={input.adress}
-                  name="adress"
-                />
-              </div>
+
+              <input
+                id="inpt_reg_new5"
+                onChange={(e) => handleChange(e)}
+                type="text"
+                placeholder="Direccion"
+                value={input.adress}
+                name="adress"
+              />
             </div>
             {errors.adress && <p className="errorMsg">{errors.adress}</p>}
             <div className="botonesReg">

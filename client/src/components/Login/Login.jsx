@@ -26,7 +26,6 @@ export default function Login() {
 
    function handleSubmit(e){
        e.preventDefault(e)
-    console.log(input)
    }
 
     function handleChange(e) {

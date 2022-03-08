@@ -34,8 +34,7 @@ const { Excursion , UserAdmin, User } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-// Genre.belongsToMany(Videogame, {through : "Videogames_Generos"});
-// Videogame.belongsToMany(Genre, {through : "Videogames_Generos"});
+
 
 
 module.exports = {
