@@ -7,14 +7,10 @@ export const EditExcursion = () => {
 
   //get params info
   const { editExcursion, getExcursionById, excursionByid,} = useExcursionsContext();
-
   const queryString = window.location.search;
-
   const urlParams = new URLSearchParams(queryString);
-
   const id = urlParams.get('id')
   const name = urlParams.get('name')
-  
   
   const [input, setInput] = useState({
     name: "",
@@ -40,8 +36,6 @@ export const EditExcursion = () => {
   /// HANDLE INPUTS
   function handleChange(e) {
     setInput(() => {
-      console.log(e.target.value);
-      console.log(input);
       return {
         ...input,
         [e.target.name]: e.target.value,
@@ -51,9 +45,7 @@ export const EditExcursion = () => {
 
   /// HANDLE CHECKBOX DE DATE
   const handleCheckboxDate = (e) => {
-    console.log(input);
     if (e.target.checked) {
-      console.log(e.target.checked);
       setInput((prevState) => {
         return {
           ...prevState,
@@ -62,7 +54,6 @@ export const EditExcursion = () => {
       });
     }
     if (!e.target.checked) {
-      console.log(e.target.checked);
       input.date.splice(input.date.indexOf(e.target.value), 1);
       setInput((prevState) => {
         return { ...prevState };
@@ -72,9 +63,7 @@ export const EditExcursion = () => {
 
    /// HANDLE CHECKBOX DE TIME
   const handleCheckboxTime = (e) => {
-    console.log(input);
     if (e.target.checked) {
-      console.log(e.target.checked);
       setInput((prevState) => {
         return {
           ...prevState,
@@ -83,7 +72,6 @@ export const EditExcursion = () => {
       });
     }
     if (!e.target.checked) {
-      console.log(e.target.checked);
       input.time.splice(input.time.indexOf(e.target.value), 1);
       setInput((prevState) => {
         return { ...prevState };
@@ -105,7 +93,7 @@ export const EditExcursion = () => {
       ...input,
       Images: input.Images.includes(e.target.value) ? [...input.Images] : [...input.Images, e.target.value]
   })
-  console.log(input)
+
   }
 
   ///HANDLE DE LOCATION
@@ -127,8 +115,6 @@ export const EditExcursion = () => {
   ///SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(input)
-    console.log(id)
     editExcursion(input, id)
     setInput({
       name: "",
@@ -347,7 +333,7 @@ export const EditExcursion = () => {
                     <select className="" onChange={(e) => handleLocation(e)}>
                         <option name='location' value=''>Seleccione Ubicacion</option>
                         {locations?.map(locat =>
-                            <option name='location' value={locat}>{locat}</option>
+                            <option key= {locat} name='location' value={locat}>{locat}</option>
                         )}
                     </select>
                     </div>
@@ -591,7 +577,7 @@ export const EditExcursion = () => {
                     <select className="" onChange={(e) => handlePrice(e)}>
                         <option name='location' value=''>Seleccione Precio</option>
                         {price?.map(p =>
-                            <option name='location' value={p}>$ {p}</option>
+                            <option key={p} name='location' value={p}>$ {p}</option>
                         )}
                     </select>
                     </div>
@@ -677,7 +663,7 @@ export const EditExcursion = () => {
                     <select className="" onChange={(e) => handleType(e)}>
                         <option name='location' value=''>Seleccione Tipo de Excursion</option>
                         {type?.map(t =>
-                            <option name='location' value={t}>{t}</option>
+                            <option key= {t} name='location' value={t}>{t}</option>
                         )}
                     </select>
                     </div>

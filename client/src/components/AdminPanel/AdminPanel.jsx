@@ -7,8 +7,9 @@ export const AdminPanel = () => {
   const { allExcursions, deleteExcursion } = useExcursionsContext();
   const navigate = useNavigate();
 
-  function handleEdit(e) {
-    navigate(`/editarExcursion?id=${e.target.value}&name=${e.target.name}`);
+
+  function handleEdit(e){
+    navigate(`/crearExcursion`)
   }
 
   function handleDelete(e) {
@@ -29,58 +30,71 @@ export const AdminPanel = () => {
   }
 
   return (
-    <div className="grid place-content-center" id="top">
-      <h1 className="xl:text-4xl text-3xl text-center text-gray-800 font-extrabold pb-6 sm:w-4/6 w-5/6 mx-auto mt-5">
-        Panel De Control
-      </h1>
-      <div className="flex flex-col w-fit m-5">
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-10 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      nombre
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      locacion
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      tipo
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      precio
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      editar
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      borrar
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {allExcursions &&
-                    allExcursions.map((e) => {
+
+          <div className="grid place-content-center" id="top">
+
+            <span className="hidden sm:block my-2">
+                            <a href="/crearExcursion#">
+                            <button
+                            onClick={(e) => handleEdit(e)}
+                            type="button"
+                            className="rounded float-right inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                            >
+                            <PlusCircleIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
+                            Agregar Excursion
+                            </button>
+                            </a>
+                            </span>
+            <h1 className="grid place-content-center mt-0">PANEL DE CONTROL</h1>
+            <div className="flex flex-col w-fit m-10">
+
+              <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                  <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th
+                            scope="col"
+                            className="px-10 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            nombre
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            locacion
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            tipo
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            precio
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            editar
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                            borrar
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200">
+                      {allExcursions &&
+                      allExcursions.map((e) => {
                       return (
                         <tr key={e.name}>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -122,6 +136,7 @@ export const AdminPanel = () => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <span className="hidden sm:block">
+
                               <button
                                 onClick={(e) => handleDelete(e)}
                                 type="button"

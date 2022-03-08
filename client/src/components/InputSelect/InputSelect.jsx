@@ -4,7 +4,6 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
 export default function InputSelect(options) {
   const [selected, setSelected] = useState(options.options[0])
-  console.log('options', options);
 
   return (
     <div className="w-72">
