@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect, useState} from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import {PencilIcon, TrashIcon, PlusCircleIcon} from '@heroicons/react/solid';
 import swal from "sweetalert";
@@ -32,6 +32,7 @@ export const AdminPanel = () => {
 
   return (
           <div className="grid place-content-center" id="top">
+
             <span className="hidden sm:block my-2">
                             <a href="/crearExcursion#">
                             <button
@@ -46,6 +47,7 @@ export const AdminPanel = () => {
                             </span>
             <h1 className="grid place-content-center mt-0">PANEL DE CONTROL</h1>
             <div className="flex flex-col w-fit m-10">
+
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -99,7 +101,7 @@ export const AdminPanel = () => {
                               <div className="flex items-center">
                                 
                                 <div className="ml-4">
-                                  <div className="text-sm font-medium text-gray-900">{e.name + " " + e.id}</div>
+                                  <div className="text-sm font-medium text-gray-900">{e.name}</div>
                                 </div>
                               </div>
                             </td>
@@ -113,6 +115,7 @@ export const AdminPanel = () => {
                             <button
                             onClick={(e) => handleEdit(e)}
                             value={e.id}
+                            name={e.name}
                             type="button"
                             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                             >
@@ -143,11 +146,7 @@ export const AdminPanel = () => {
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
             )
         }
-
-
-
