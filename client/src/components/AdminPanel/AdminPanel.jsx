@@ -1,36 +1,36 @@
-import React ,{useEffect, useState} from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import {PencilIcon, TrashIcon, PlusCircleIcon} from '@heroicons/react/solid';
+import { PencilIcon, TrashIcon, PlusCircleIcon } from "@heroicons/react/solid";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
 export const AdminPanel = () => {
-
   const { allExcursions, deleteExcursion } = useExcursionsContext();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
 
   function handleEdit(e){
     navigate(`/crearExcursion`)
   }
 
-  function handleDelete(e){
+  function handleDelete(e) {
     swal({
       title: "Eliminar Excursion!",
       text: "Esta Seguro que quiere eliminar la excursion " + e.target.name,
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-      .then((value) => {
-        if(value === true){
-          swal(`Excursion ${e.target.name} eliminada con exito`, {icon: "success"});
-          deleteExcursion(e.target.value)
-        }else swal(`La excursion ${e.target.name} no ha sido eliminada!`);
-});    
-}
-
+    }).then((value) => {
+      if (value === true) {
+        swal(`Excursion ${e.target.name} eliminada con exito`, {
+          icon: "success",
+        });
+        deleteExcursion(e.target.value);
+      } else swal(`La excursion ${e.target.name} no ha sido eliminada!`);
+    });
+  }
 
   return (
+
           <div className="grid place-content-center" id="top">
 
             <span className="hidden sm:block my-2">
@@ -96,57 +96,86 @@ export const AdminPanel = () => {
                       {allExcursions &&
                       allExcursions.map((e) => {
                       return (
-                          <tr key={e.name}>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="flex items-center">
-                                
-                                <div className="ml-4">
-                                  <div className="text-sm font-medium text-gray-900">{e.name}</div>
+                        <tr key={e.name}>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">
+                                  {e.name}
                                 </div>
                               </div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">{e.location}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.excursionType}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.price}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm text-gray-900">
+                              {e.location}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {e.excursionType}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {e.price}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <span className="hidden sm:block">
-                            <button
-                            onClick={(e) => handleEdit(e)}
-                            value={e.id}
-                            name={e.name}
-                            type="button"
-                            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-                            >
-                            <PencilIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
-                            Editar
-                            </button>
+                              <button
+                                onClick={(e) => handleEdit(e)}
+                                value={e.id}
+                                name={e.name}
+                                type="button"
+                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                              >
+                                <PencilIcon
+                                  className="-ml-1 mr-2 h-5 w-5 text-white-500"
+                                  aria-hidden="true"
+                                />
+                                Editar
+                              </button>
                             </span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <span className="hidden sm:block">
-                            <button
-                            onClick={(e) => handleDelete(e)}
-                            type="button"
-                            value={e.id}
-                            name={e.name}
-                            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                            >
-                            <TrashIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
-                            Borrar
-                            </button>
+
+                              <button
+                                onClick={(e) => handleDelete(e)}
+                                type="button"
+                                value={e.id}
+                                name={e.name}
+                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                              >
+                                <TrashIcon
+                                  className="-ml-1 mr-2 h-5 w-5 text-white-500"
+                                  aria-hidden="true"
+                                />
+                                Borrar
+                              </button>
                             </span>
-                            
-                            </td>
-                          </tr>
-                      )})}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
             </div>
           </div>
-            )
-        }
+        </div>
+        <span className="hidden sm:block my-10">
+          <a href="/crearExcursion#">
+            <button
+              onClick={(e) => handleEdit(e)}
+              type="button"
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              <PlusCircleIcon
+                className="-ml-1 mr-2 h-5 w-5 text-white-500"
+                aria-hidden="true"
+              />
+              Agregar Excursion
+            </button>
+          </a>
+        </span>
+      </div>
+    </div>
+  );
+};

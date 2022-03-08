@@ -4,16 +4,18 @@ const { Excursion } = require("../db");
 
 deleteExcursion.delete("/", async (req, res, next) => {
   try {
-      let { id } = req.query;
-      if (!id) {
-        return res.status(500).send("Necessary parameters not found");
-      }
-      await Excursion.destroy({
-          where: {
-              id: id
-          }
-      })
-      res.status(202).json("Deleted")
+    let { id } = req.query;
+    if (!id) {
+      return res.status(500).send("Necessary parameters not found");
+    }
+    await Excursion.destroy({
+      where: {
+        id: id,
+      },
+    });
+
+    const excursions = await Excursion.findAll();
+    res.status(202).json(excursions);
   } catch (error) {
     next(error);
   }

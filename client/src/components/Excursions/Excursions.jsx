@@ -20,6 +20,7 @@ export const Excursions = () => {
     getExcursions().then((r) => {
       return (setAllExcursions(r), setData(r), setExcursionFiltered(r));
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
