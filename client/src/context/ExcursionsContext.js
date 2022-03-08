@@ -108,14 +108,19 @@ export const ExcursionsProvider = ({ children }) => {
         console.log(err);
       });
   };
-
   //
 
   //editExcursion
   const editExcursion = (excursion, id) => {
     return axios
       .put(`http://localhost:3001/changeexcursion/${id}`, excursion)
-      .then((response) => response.data)
+      .then((response) => {
+        return (
+          setAllExcursions(response.data),
+          setData(response.data),
+          setExcursionFiltered(response.data)
+        );
+      })
       .catch((err) => {
         console.log(err);
       });

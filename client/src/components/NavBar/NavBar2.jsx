@@ -19,7 +19,6 @@ export function NavBar2() {
 
   
   function handleClick(e){
-   
     navigation.map((item) => {
       if(item.name === e.target.value){
         item.current=true
@@ -28,7 +27,6 @@ export function NavBar2() {
       }
     })
     setNavigation(navigation)
-    
   }
   
   function classNames(...classes) {

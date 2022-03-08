@@ -5,7 +5,6 @@ const { Excursion } = require("../db");
 putExcursion.put("/:id", async (req, res, next) => {
   try {
     const excursionId = req.params.id;
-    console.log(excursionId)
     const {
       name,
       Images,
@@ -36,11 +35,12 @@ putExcursion.put("/:id", async (req, res, next) => {
         },
       }
     );
-    res.status(200).send("Changes ok")
+
+    const excursions = await Excursion.findAll();
+    res.status(200).json(excursions);
   } catch (error) {
     next(error);
   }
 });
-
 
 module.exports = putExcursion;
