@@ -10,7 +10,6 @@ export const AdminPanel = () => {
   const navigate = useNavigate()
 
   function handleEdit(e){
-    console.log(e.target.name)
     navigate(`/editarExcursion?id=${e.target.value}&name=${e.target.name}`)
   }
 
