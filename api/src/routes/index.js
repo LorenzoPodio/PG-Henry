@@ -5,12 +5,12 @@ const addAdmin = require('./addAdmin')
 const getExcursion = require('./getExcursion')
 const deleteExcursion = require('./deleteExcursion');
 const putExcursion = require('./putExcursion');
-const changeDatesAdmin = require('./putDataAdmin');
+const putDataAdmin = require('./putDataAdmin');
 const getAllUserAdmins = require('./getAllUserAdmins')
 const setMail = require('./setMail')
 const recoverPass = require('./recoverPass')
 
-router.use("/changeadmin", changeDatesAdmin)
+router.use("/putDataAdmin", putDataAdmin)
 router.use("/changeexcursion", putExcursion)
 router.use("/deleteexcursion", deleteExcursion)
 router.use("/getexcursion", getExcursion)
