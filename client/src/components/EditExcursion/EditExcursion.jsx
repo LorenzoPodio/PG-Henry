@@ -6,14 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 export const EditExcursion = () => {
   //get params info
+
   const navigate = useNavigate();
   const { editExcursion, getExcursionById, excursionByid } =
     useExcursionsContext();
-
   const queryString = window.location.search;
-
   const urlParams = new URLSearchParams(queryString);
-
   const id = urlParams.get("id");
   const name = urlParams.get("name");
 
@@ -33,7 +31,6 @@ export const EditExcursion = () => {
   const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"];
   const price = [500, 1000, 1500, 2000, 2500];
   const type = ["Trekking", "Bus", "Lacustre"];
-  
 
   useEffect(() => {
     getExcursionById(id);
@@ -61,6 +58,7 @@ export const EditExcursion = () => {
   function handleArray(e) {
     setInput({
       ...input,
+
       Images: input.Images.includes(e.target.value)
         ? [...input.Images]
         : [...input.Images, e.target.value],
@@ -89,7 +87,6 @@ export const EditExcursion = () => {
       extra: "",
       excursionType: "",
     });
-
     swal("Excursión modificada exitosamente");
     setTimeout(() => navigate("/panelAdmin"), 3000);
   };

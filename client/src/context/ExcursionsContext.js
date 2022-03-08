@@ -17,7 +17,11 @@ export const ExcursionsProvider = ({ children }) => {
 
   useEffect(() => {
     getExcursions().then((r) => {
-      return setAllExcursions(r), setData(r), setExcursionFiltered(r);
+      return (
+        setAllExcursions(r),
+        setData(r),
+        setExcursionFiltered(r)
+      );
     });
     getAllUserAdmins().then((r) => {
       return setUserAdmins(r);
@@ -93,12 +97,17 @@ export const ExcursionsProvider = ({ children }) => {
   const deleteExcursion = (id) => {
     return axios
       .delete(`http://localhost:3001/deleteexcursion?id=${id}`)
-      .then((response) => response.data)
+      .then((response) => {
+        return (
+          setAllExcursions(response.data),
+          setData(response.data),
+          setExcursionFiltered(response.data)
+        );
+      })
       .catch((err) => {
         console.log(err);
       });
   };
-
   //
 
   //editExcursion

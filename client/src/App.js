@@ -11,14 +11,14 @@ import { Prices } from './components/Prices/Prices';
 import { ExcursionDetail } from "./components/ExcursionDetail/ExcursionDetail.jsx";
 import { AdminPanel } from './components/AdminPanel/AdminPanel'
 import { Footer } from "./components/Footer/Footer";
-import {NavBar2} from './components/NavBar/NavBar2'
+import { NavBar2 } from './components/NavBar/NavBar2'
 import { Landing } from "./components/Landing/Landing";
 import { EditExcursion } from "./components/EditExcursion/EditExcursion";
 
 function App() {
   return (
     <div>
-      <NavBar2 />
+      <NavBar2/>
       <Routes>
         <Route exact path='/' element={<Landing/>}/>
         <Route exact path='/crearExcursion' element={<ExcursionsPost/>}/>
