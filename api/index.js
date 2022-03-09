@@ -1,7 +1,8 @@
 const excursiones = require('./src/models/data.json')
 const admins = require ('./src/models/admin.json')
 const server = require('./src/app.js');
-const { conn, Excursion, User  } = require('./src/db.js');
+const { conn, Excursion, User } = require('./src/db.js');
+
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {

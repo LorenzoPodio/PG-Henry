@@ -8,7 +8,8 @@ const putExcursion = require('./putExcursion');
 const changeDatesUser = require('./changeDatesUser');
 const addProduct = require('./addProduct')
 const setMail = require('./setMail')
-const recoverPass = require('./recoverPass')
+const recoverPass = require('./recoverPass');
+const deleteUser = require('./deleteUser');
 
 router.use("/changedatesUser", changeDatesUser)
 router.use("/changeexcursion", putExcursion)
@@ -19,5 +20,6 @@ router.use("/addUsers", addUsers)
 router.use("/addProduct", addProduct)
 router.use("/setmail", setMail)
 router.use("/recoverPass", recoverPass)
+router.use("/deleteaccount", deleteUser)
 
 module.exports = router;
