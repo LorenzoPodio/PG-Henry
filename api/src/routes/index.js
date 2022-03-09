@@ -6,7 +6,7 @@ const getExcursion = require('./getExcursion')
 const deleteExcursion = require('./deleteExcursion');
 const putExcursion = require('./putExcursion');
 const changeDatesUser = require('./changeDatesUser');
-
+const addProduct = require('./addProduct')
 const setMail = require('./setMail')
 const recoverPass = require('./recoverPass')
 
@@ -16,7 +16,7 @@ router.use("/deleteexcursion", deleteExcursion)
 router.use("/getexcursion", getExcursion)
 router.use("/addexcursion", addExcursion)
 router.use("/addUsers", addUsers)
-
+router.use("/addProduct", addProduct)
 router.use("/setmail", setMail)
 router.use("/recoverPass", recoverPass)
 
