@@ -39,6 +39,7 @@ Product.belongsToMany(Excursion, { through: 'exc_prod' });
 // User.hasMany(Order) //debe crear un campo "User_ID" en tabla Order -- un usuario tiene varias ordenes
 Order.hasMany(Order_detail) //debe crear campo "Order_ID" en tabla OrderDetail
 Product.hasMany(Order_detail) //debe crear campo "Product_ID" en tabla OrderDetail
+Order_detail.belongsTo(Product)
 // Order.belongsTo(User)  // una orden pertence a un solo usario 
 // Order_detail.belongsTo(Product)
 

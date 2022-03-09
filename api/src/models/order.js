@@ -12,5 +12,7 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM('cart', 'created', 'processing', 'cancelled', 'completed'),
             allowNull: false
         }
-    });
+    },
+    { timestamps: false }
+    );
 };
