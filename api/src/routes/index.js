@@ -10,7 +10,9 @@ const addProduct = require('./addProduct')
 const setMail = require('./setMail')
 const recoverPass = require('./recoverPass');
 const deleteUser = require('./deleteUser');
+const bannedUser = require('./bannedUser');
 
+router.use("/banuser", bannedUser)
 router.use("/changedatesUser", changeDatesUser)
 router.use("/changeexcursion", putExcursion)
 router.use("/deleteexcursion", deleteExcursion)

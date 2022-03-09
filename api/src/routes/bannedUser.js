@@ -20,3 +20,5 @@ bannedUser.put("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = bannedUser
