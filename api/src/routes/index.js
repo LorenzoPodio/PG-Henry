@@ -11,7 +11,9 @@ const setMail = require('./setMail')
 const recoverPass = require('./recoverPass');
 const deleteUser = require('./deleteUser');
 const bannedUser = require('./bannedUser');
+const getUsers = require('./getUsers');
 
+router.use("/getusers", getUsers)
 router.use("/banuser", bannedUser)
 router.use("/changedatesUser", changeDatesUser)
 router.use("/changeexcursion", putExcursion)
