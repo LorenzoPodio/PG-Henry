@@ -4,14 +4,14 @@ const { User } = require("../db");
 
 changeDatesUser.put("/:id", async (req, res, next) => {
   try {
-    const idAdmin = req.params.id;
+    const id = req.params.id;
     const { email, password, name, lastName, adress, dni } = req.body;
-    const user = await UserAdmin.findAll({
+    const user = await User.findAll({
       where: {
-        id: idAdmin,
+        id: id,
       }
     });
-    await UserAdmin.update(
+    await User.update(
       {
         email: email ? email : user[0].email,
         password: password ? password : user[0].password,
@@ -20,7 +20,7 @@ changeDatesUser.put("/:id", async (req, res, next) => {
       },
       {
         where: {
-          id: idAdmin,
+          id: id,
         },
       }
     );
