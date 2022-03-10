@@ -2,6 +2,7 @@ const { Router } = require("express");
 const addProduct = Router();
 const { Product } = require("../db.js");
 
+// Esto tiene que venir cuando agrega al carrito   
 
 addProduct.post("/", async (req, res, next) => {
     try {
@@ -24,7 +25,7 @@ addProduct.post("/", async (req, res, next) => {
         if (newProduct[0].stock - amount >= 0) {
 
 
-            const productStock = await Product.update(
+            await Product.update(
                 {
                     stock: newProduct[0].stock - amount,
                     name: newProduct[0].name,
@@ -42,8 +43,8 @@ addProduct.post("/", async (req, res, next) => {
 
 
 
-            res.status(200).json(productStock);
-        } else { res.status(404).send("No hay stock de esta excursion"); }
+            res.status(200).json(newProduct[0].stock);
+        } else { res.status(404).send(`Solo quedan ${newProduct[0].stock} cupos disponibles `); }
     } catch (error) {
         next(error)
 
