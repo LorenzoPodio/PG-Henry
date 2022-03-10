@@ -1,10 +1,11 @@
 const { Router } = require("express");
-const order = Router();
-const { Order } = require("../db.js");
+const createOrder = Router();
+const { Order } = require("../../db.js");
 
 // Esto tiene que venir cuando agrega al carrito
 
-order.post("/", async (req, res, next) => {
+//orderpost
+createOrder.post("/", async (req, res, next) => {
   try {
     const { id } = req.body;
     if (!id) {
@@ -32,4 +33,5 @@ order.post("/", async (req, res, next) => {
   }
 });
 
-module.exports = order;
+
+module.exports = createOrder;

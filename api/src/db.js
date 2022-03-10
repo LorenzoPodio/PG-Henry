@@ -47,8 +47,15 @@ Excursion.belongsToMany(Product, { through: "exc_prod" });
 User.hasMany(Order); //debe crear un campo "User_ID" en tabla Order -- un usuario tiene varias ordenes
 Order.belongsTo(User); // una orden pertence a un solo usario
 
-Product.belongsToMany(Order, { through: Order_detail });
 Order.belongsToMany(Product, { through: Order_detail });
+Product.belongsToMany(Order, { through: Order_detail });
+
+
+Product.hasMany(Order_detail);
+Order_detail.belongsTo(Product);
+
+Order.hasMany(Order_detail);
+Order_detail.belongsTo(Order);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
