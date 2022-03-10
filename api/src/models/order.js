@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
             // -cancelada (el usuario canceló la compra. Se cierra la orden como está y se crea una nueva)
             // -completada (el usuario pagó la compra. Se cierra la orden como está y se crea una nueva)
         status:{  
-            type: DataTypes.ENUM('cart', 'created', 'processing', 'cancelled', 'completed'),
+            type: DataTypes.ENUM('empty', 'buying', 'processingPay', 'cancelled', 'completed'),
             allowNull: false
         }
     },
