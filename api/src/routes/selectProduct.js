@@ -6,8 +6,8 @@ const { Product } = require("../db.js");
 
 selectProduct.post("/", async (req, res, next) => {
     try {
-        let { name, date, time, amount, price } = req.body;
-        if (!name || !date || !time || !amount || !price) {
+        let { name, date, time, quantity, price } = req.body;
+        if (!name || !date || !time || !quantity || !price) {
             return res.status(500).send("Necessary parameters not found");
         }
         const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
@@ -21,7 +21,7 @@ selectProduct.post("/", async (req, res, next) => {
             }
         });
 
-        if (newProduct[0].stock - amount >= 0) {
+        if (newProduct[0].stock - quantity >= 0) {
 
 
             // await Product.update(
@@ -42,7 +42,7 @@ selectProduct.post("/", async (req, res, next) => {
 
 
 
-            res.status(200).json(newProduct[0].stock);
+            res.status(200).json(newProduct[0].stock - quantity);
         } else { res.status(404).send(`Solo quedan ${newProduct[0].stock} cupos disponibles `); }
     } catch (error) {
         next(error)

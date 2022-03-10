@@ -21,7 +21,7 @@ addCart.post("/", async (req, res, next) =>{
               ],
             },
           });
-
+            // console.log(stateCart,'esto rompee')
             if (stateCart.dataValues.status === "empty"){
               stateCart.dataValues.status = "buying";
             }
@@ -32,7 +32,7 @@ addCart.post("/", async (req, res, next) =>{
                 userId: stateCart.dataValues.id
             }
         })
-        
+
         const product = await Product.findOne({
             where: {
                 name: name,
@@ -48,7 +48,7 @@ addCart.post("/", async (req, res, next) =>{
            productId: product.dataValues.id,
            orderId: stateCart.dataValues.id
         })
-          console.log(productInCart,'prrroodod')
+        //   console.log(productInCart,'prrroodod')
         //   let state = "buying";
         //   console.log( stateCart.dataValues.status,'cambiado?')
 
