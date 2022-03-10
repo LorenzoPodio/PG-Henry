@@ -21,18 +21,18 @@ addCart.post("/", async (req, res, next) =>{
               ],
             },
           });
-            // console.log(stateCart,'esto rompee')
+            console.log(stateCart,'esto rompee')
             if (stateCart.dataValues.status === "empty"){
               stateCart.dataValues.status = "buying";
             }
-        await Order.update({
+        const hola = await Order.update({
             status: "buying"
         },{
             where:{
-                userId: stateCart.dataValues.id
+                userId: stateCart.dataValues.userId
             }
         })
-
+            console.log(hola,'queondddddaa')
         const product = await Product.findOne({
             where: {
                 name: name,
