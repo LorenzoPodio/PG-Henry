@@ -22,19 +22,26 @@
 - Instalar dependencias en "api"  y "client"  `npm install`.
 - Levantar ambos servidores `npm start`.
 
-## Supuestos asumidos para la crecación de la App
+## Descripción
+La aplicación tiene como finalidad poder brindarle al usuario una visualización de diferentes
+ofertas de excursiones disponibles a poder realizarse en distintos lugares de Argentina.
+La plataforma no solo funcionará como un e-commerce de las excursiones, sino que también permitirá
+que los usuarios puedan reservar excursiones, sacando turno a través de la misma plataforma.
+El usuario podrá:
+- Visualizar ofertas de excursiones
+- Dar de alta un usuario en la plataforma
+- Logearse en la plataforma
+- Podrá seleccionar excursiones para agregarlas al carrito
+- Reservar turno en el dia y horario de las excursiones teniendo en cuenta limitaciones de cupo.
+- Pagar las excursiones
+- Contar con registro de sus excursiones compradas
 
 
 
-## Funcionamiento de los Features pedidos
+## Look and fell
 
- 
-#### Búsqueda
-
- 
+ `Insertar capturas de la plataforma `
 
 
 
- 
-## Observaciones
 
