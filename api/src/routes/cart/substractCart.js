@@ -47,7 +47,7 @@ substractCart.put("/", async (req, res, next) => {
                     }
                 })
             }
-            res.status(200).send(!detailState.length ? "0" : detailState)
+            res.status(200).send(`${detailState.length}`)
         }
     } catch (error) {
         next(error);

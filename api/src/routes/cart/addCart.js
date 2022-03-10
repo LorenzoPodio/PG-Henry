@@ -55,7 +55,11 @@ addCart.post("/", async (req, res, next) =>{
         //   const orderDetail = await Order_detail.findOrCreate({
             
         //   })
-          res.status(200).send(stateCart)
+        const cartAmount = await Order_detail.findAll({
+          
+          orderId: stateCart.dataValues.id
+       })
+          res.status(200).send([`${cartAmount.length}`,productInCart ])
         }
     
         

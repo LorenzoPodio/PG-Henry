@@ -42,7 +42,7 @@ selectProduct.post("/", async (req, res, next) => {
 
 
 
-            res.status(200).json(newProduct[0].stock - quantity);
+            res.status(200).json(newProduct[0].stock);
         } else { res.status(404).send(`Solo quedan ${newProduct[0].stock} cupos disponibles `); }
     } catch (error) {
         next(error)
