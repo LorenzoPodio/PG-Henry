@@ -18,8 +18,10 @@ const recoverPass = require('./recoverPass');
 const deleteUser = require('./deleteUser');
 const bannedUser = require('./bannedUser');
 const addCart = require("./cart/addCart");
+const substractCart = require("./cart/substractCart");
 
 
+router.use("/cart/substractcart", substractCart);
 router.use("/cart/addcart", addCart);
 router.use("/cart/getallorders", getAllOrders);
 router.use("/cart/orderpost", createOrder);
