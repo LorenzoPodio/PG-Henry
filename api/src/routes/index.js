@@ -11,7 +11,12 @@ const setMail = require('./setMail')
 const recoverPass = require('./recoverPass');
 const deleteUser = require('./deleteUser');
 const bannedUser = require('./bannedUser');
+const order = require('./prueba')
 
+
+
+
+router.use("/prueba/order", order)
 router.use("/banuser", bannedUser)
 router.use("/changedatesUser", changeDatesUser)
 router.use("/changeexcursion", putExcursion)
