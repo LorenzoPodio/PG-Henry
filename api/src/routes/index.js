@@ -14,6 +14,12 @@ const bannedUser = require('./bannedUser');
 const getUsers = require('./getUsers');
 
 router.use("/getusers", getUsers)
+const order = require('./prueba')
+
+
+
+
+router.use("/prueba/order", order)
 router.use("/banuser", bannedUser)
 router.use("/changedatesUser", changeDatesUser)
 router.use("/changeexcursion", putExcursion)
