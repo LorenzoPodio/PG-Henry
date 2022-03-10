@@ -13,11 +13,6 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-
-        },
-        day: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         date: {
             type: DataTypes.STRING,
