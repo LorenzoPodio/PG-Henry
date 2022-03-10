@@ -21,6 +21,7 @@ export const AdminPanel = () => {
       })
       .catch((err) => console.error(err));
   }, []);
+  //Products ---> Serian los productos que estan en la tabla Order relacionadas al usuario.
   const products = [
     { title: "Producto 1", quantity: 5, price: 10.52 },
     { title: "Producto 2", quantity: 15, price: 100.52 },
