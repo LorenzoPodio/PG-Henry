@@ -22,16 +22,16 @@ conn.sync({ force: true }).then(() => {
     )
 
 
-    // admins.forEach((a) => User.findOrCreate({
-    //   where: {
-    //   email: a.email,
-    //   password: a.password,
-    //   name: a.name,
-    //   dni:a.dni,
-    //   adress:a.adress,
-    //   lastName: a.lastName,
-    //   isAdmin: a.isAdmin}
-    // }))
+    admins.forEach((a) => User.findOrCreate({
+      where: {
+      email: a.email,
+      password: a.password,
+      name: a.name,
+      dni:a.dni,
+      adress:a.adress,
+      lastName: a.lastName,
+      isAdmin: a.isAdmin}
+    }))
 
 
   });

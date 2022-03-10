@@ -1,5 +1,11 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
+
+const getUsers = require("./getUsers");
+const createOrder = require("./cart/createOrder");
+const postOrderId = require("./cart/postOrderId");
+const getOrderId = require("./cart/getOrderId");
+const getAllOrders = require("./cart/getAllOrders");
 const addExcursion = require('./addExcursion')
 const addUsers = require('./addUsers')
 const getExcursion = require('./getExcursion')
@@ -12,6 +18,11 @@ const recoverPass = require('./recoverPass');
 const deleteUser = require('./deleteUser');
 const bannedUser = require('./bannedUser');
 
+
+router.use("/cart/getallorders", getAllOrders);
+router.use("/cart/orderpost", createOrder);
+router.use("/cart/getorderid", getOrderId);
+router.use("/cart/postorderid", postOrderId);
 router.use("/banuser", bannedUser)
 router.use("/changedatesUser", changeDatesUser)
 router.use("/changeexcursion", putExcursion)
@@ -23,5 +34,7 @@ router.use("/selectProduct", selectProduct)
 router.use("/setmail", setMail)
 router.use("/recoverPass", recoverPass)
 router.use("/deleteaccount", deleteUser)
+router.use("/getusers", getUsers);
+
 
 module.exports = router;
