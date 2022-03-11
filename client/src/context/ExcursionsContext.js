@@ -72,7 +72,7 @@ export const ExcursionsProvider = ({ children }) => {
   //postAdmin
   const addAdmin = (user) => {
     return axios
-      .post("http://localhost:3001/addadmin", user)
+      .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
       .catch((err) => {
         console.log(err);

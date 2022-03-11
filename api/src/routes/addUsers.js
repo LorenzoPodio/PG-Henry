@@ -1,9 +1,9 @@
 const { Router } = require("express");
-const addAdmin = Router();
-const { UserAdmin } = require("../db.js");
+const addUsers = Router();
+const { User } = require("../db.js");
 const transporter = require("../mailer/mailer")
 
-addAdmin.post("/", async (req, res, next) => {
+addUsers.post("/", async (req, res, next) => {
   try {
     let { email, password, name, lastName, dni, adress} = req.body;
     if (!name || !email || !password || !lastName ||!dni || !adress) {
@@ -11,7 +11,7 @@ addAdmin.post("/", async (req, res, next) => {
     }
     const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
     const lastNameUpper = lastName.charAt(0).toUpperCase() + lastName.slice(1);
-    const newAdmin = await UserAdmin.create({
+    const newUser = await User.create({
       email,
       password,
       name: nameUpper,
@@ -29,11 +29,11 @@ addAdmin.post("/", async (req, res, next) => {
       <h3>Hola ${nameUpper} ${lastNameUpper}, su usuario fue creado con éxito. Ya puede empezar a utilizar la plataforma</h1> `
   }
   transporter.sendMail(mailOptions, (error, info) => {
-    res.status(200).json(newAdmin);
+    res.status(200).json(newUser);
 });
   } catch (error) {
     res.status(500).send(error.message);
 }
 });
 
-module.exports = addAdmin;
+module.exports = addUsers;

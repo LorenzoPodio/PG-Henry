@@ -1,17 +1,17 @@
 const { Router } = require("express");
-const changeDatesAdmin = Router();
-const { UserAdmin } = require("../db");
+const changeDatesUser = Router();
+const { User } = require("../db");
 
-changeDatesAdmin.put("/:id", async (req, res, next) => {
+changeDatesUser.put("/:id", async (req, res, next) => {
   try {
-    const idAdmin = req.params.id;
-    const { email, password, name, lastName } = req.body;
-    const user = await UserAdmin.findAll({
+    const id = req.params.id;
+    const { email, password, name, lastName, adress, dni } = req.body;
+    const user = await User.findAll({
       where: {
-        id: idAdmin,
+        id: id,
       }
     });
-    await UserAdmin.update(
+    await User.update(
       {
         email: email ? email : user[0].email,
         password: password ? password : user[0].password,
@@ -20,7 +20,7 @@ changeDatesAdmin.put("/:id", async (req, res, next) => {
       },
       {
         where: {
-          id: idAdmin,
+          id: id,
         },
       }
     );
@@ -30,4 +30,4 @@ changeDatesAdmin.put("/:id", async (req, res, next) => {
   }
 });
 
-module.exports = changeDatesAdmin;
+module.exports = changeDatesUser;
