@@ -70,73 +70,157 @@
         "extra": "Mejor temporada de buceo: De noviembre a abril. Temperatura del agua: invierno 2° a 4°, primavera y verano entre 8° y 12°."
     },
     {
-        "name": "Cerro Jujuy",
+        "name": "Qubrada de Humahuaca",
         "Images": [
-            "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg",
-            "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-02.jpg"
+            "https://static1.evcdn.net/images/reduction/1144506_w-850_h-400_q-100_m-crop.jpg",
+            "https://blog.winesofargentina.com/wp-content/uploads/2015/11/quebrada-de-humahuaca.jpg"
         ],
-        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "description": "Un paseo por una quebrada imponente, donde predominan los colores en los cerros, gracias a miles de años de oxidación de los minerales en ellos.Los pueblos, paisajes, la cultura y su gente son los principales protagonistas de esta excursión.Viajaremos hasta la ciudad de Humahuaca, patrimonio de la Humanidad por la UNESCO, hacia los alrededores de la provincia de Jujuy, a tan solo unos pocos kilómetros del borde con Bolivia. Esta excursión nos permitirá apreciar los más impresionantes colores del Norte Argentino, su cultura, sus pueblos únicos y su gente.",
         "location": "Jujuy",
         "excursionType": "Trekking",
-        "date": ["Lunes"],
-        "time": ["11", "15"],
-        "price": "1100",
-        "extra": "a quo magni similique perferendis."
+        "date": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
+        "time": ["10", "11"],
+        "price": "4500",
+        "extra": "Pasajeros a partir de los 3 años."
     },
     {
-        "name": "Montaña Mendoza",
+        "name": "Salinas Grandes",
         "Images": [
-            "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg",
-            "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-02.jpg"
+            "https://elonce-media.elonce.com/fotos-nuevo/2017/10/20/o_1508551866.jpg",
+            "https://cdn.getyourguide.com/img/tour/5a74907116365.jpeg/146.jpg"
         ],
-        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "description": "Un paseo de altura que nos lleva a conocer el salar más visitado del Norte Argentino, atravesando los pueblos más pintorescos de la zona. Deleita tu espíritu aventurero con los paisajes más llamativos de la Puna Argentina.Viajaremos hasta las Salinas Grandes, territorio compartido entre Salta y Jujuy; de la mejor forma que es atravesando la provincia de Jujuy. De esta manera, podrás disfrutar de los mejores paisajes en su mejor momento, durante el recorrido se realizan paradas para caminar y sacar fotos, donde sacarás postales increíbles!",
+        "location": "Jujuy",
+        "excursionType": "Bus",
+        "date": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado", "Domingo"],
+        "time": ["10", "12"],
+        "price": "3400",
+        "extra": "Pasajeros a partir de los 3 años."
+    },
+    {
+        "name": "Iruya",
+        "Images": [
+            "https://dealtura.com.ar/images/iruya/iruya-town.jpg",
+            "https://tripin.travel/wp-content/uploads/2020/06/vista-aerea-iruya-fcbk-1024x538.jpg"
+        ],
+        "description": "Salimos temprano por la mañana de la provincia de Jujuy, paseando por los diferentes pueblos donde podremos visitar Purmamarca, el majestuoso Cerro de los 7 Colores, la Pollera de La Coya en Huacalera, la vegetación se torna más árida a medida que avanzamos pasando Humahuaca. Nos adentramos a un camino de cornisas, con paisajes montañosos únicos, cañones y pendientes espectaculares. Pasamos por el pequeño pueblo de Iturbe y alcanzamos la altura máxima en Apacheta Abra del Condor a 4000 msnm. Entre montañas con formas de pico, encontramos al mágico pueblito de Iruya, conocido por su sencillez y su gente, sus calles que cuentan historias en coplas con ascensos y descensos. Retomamos el camino para volver y pausamos en Humahuaca, donde tendremos tiempo libre para recorrer la plaza y almorzar. Nos encontramos a la vuelta con Uquía, El Trópico de Capricornio y la Paleta del Pintor en Maimará.Durante el recorrido se realizan paradas para caminar y sacar fotos!",
+        "location": "Jujuy",
+        "excursionType": "Bus",
+        "date": ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado", "Domingo"],
+        "time": ["10"],
+        "price": "5400",
+        "extra": "Pasajeros a partir de los 3 años."
+    },
+    {
+        "name": "Viñedos",
+        "Images": [
+            "https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/a2/6e/a0.jpg",
+            "https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/a4/7f/30.jpg"
+        ],
+        "description": "Mendoza es la región vinícola más grande y famosa de Argentina, famosa por sus malbec, así como cabernet sauvignon y chardonnay. En esta excursión para grupos pequeños, disfrute de una cata de vinos íntima y visitará tres bodegas diferentes, incluida una bodega boutique. Pruebe una gran variedad de vinos argentinos en catas guiadas por expertos de catas de vino y deguste un almuerzo gourmet de cinco platos, cada uno acompañado de vinos. Además de todos esto podra disfrutar de increibles vistas de las fincas de la zona, y realizar caminatas guiadas por los cultivos, donde aprenderá los mejores secretos del vino Argentino",
+        "location": "Mendoza",
+        "excursionType": "Bus",
+        "date": ["Miercoles", "Jueves","Viernes","Sabado", "Domingo"],
+        "time": ["9", "13", "15"],
+        "price": "6500",
+        "extra": "Traslado de ida y vuelta sin complicaciones a su hotel de Mendoza"
+    },
+    {
+        "name": "Aconcagua y Puente del Inca",
+        "Images": [
+            "https://cdn.getyourguide.com/img/tour/5d270118487af.jpeg/98.jpg",
+            "https://cdn.getyourguide.com/img/tour/5d2702393b3c9.jpeg/145.jpg"
+        ],
+        "description": "ste clásico tour de la provincia de Mendoza es un recorrido a través de la Ruta Internacional N°7, que comienza en el Acceso Sur, en la ciudad de Mendoza hasta llegar al límite con el Chile. Una ruta importante tanto histórica como paisajísticamente que hacen de esta excursión una vivencia inolvidable, imposible de explicar con imágenes y palabras.A 100 km de la ciudad capital está Uspallata, escenario de la ocupación indígena Huarpe en la época prehispánica y valle que sirve para poder diferenciar la finalización de la precordillera y el comienzo de la cordillera frontal.Más adelante, en Puente del Inca, a 2.720 metros sobre el nivel del mar, el río Las Cuevas ha horadado la montaña formando un puente natural a cuya vera afloran aguas termales.ntre Las Cuevas y el túnel internacional que lleva a Chile hay una ruta que, si las condiciones climáticas son favorables, permite ascender hacia el monumento del Cristo Redentor, emplazado a 4.200 metros de altura, que simboliza la fraternidad entre argentinos y chilenos. El regreso a la ciudad de Mendoza se realiza por la misma ruta.",
         "location": "Mendoza",
         "excursionType": "Trekking",
-        "date": ["Martes"],
-        "time": ["9", "13"],
-        "price": "1150",
-        "extra": "a quo magni similique perferendis."
+        "date": ["Viernes","Sabado", "Domingo"],
+        "time": ["9", "13", "15"],
+        "price": "7800",
+        "extra": "Traslado de ida y vuelta sin complicaciones a su hotel de Mendoza"
     },
     {
-        "name": "Rio Mendoza",
+        "name": "Rafting Potrerillos",
         "Images": [
-            "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg",
-            "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-02.jpg"
+            "https://latitur.com/uploads/media/cactus_product_tours_by_locals/329.empresa@xnoccioaventura.com/3968/thumb_3968_cactus_product_tours_by_locals_large.jpeg",
+            "https://latitur.com/uploads/media/cactus_product_tours_by_locals/329.empresa@xnoccioaventura.com/2051/thumb_2051_cactus_product_tours_by_locals_large.jpeg"
         ],
-        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "description": "Esta actividad tiene una duración promedio de 3:30hs en su totalidad, de las cuales prácticamente la mitad es en el agua. El rafting de nivel intermedio se realiza en el Río Mendoza, en el sector de Potrerillos. El recorrido es de 12 km y la duración del mismo depende de los intereses de los pasajeros, ya que pueden optar por una parada a mitad del camino para disfrutar de las maravillas que nos ofrece el lugar. Se brindan charlas tanto de seguridad como de navegación antes de comenzar la actividad en el río. Potrerillos es un pueblo de montaña que se ubica en el corazón de la cordillera frontal de la cadena montañosa de Los Andes.Esta zona de actividades es muy famosa por sus espectaculares vistas del cordón del Plata, el hermoso espejo de agua del Dique Potrerillos, sus lindos colores en el otoño, árboles, tierra y agua, en donde irrumpen los escurridizos Guanacos, que forman parte de la fauna autóctona de la provincia. Aquí ofrecemos un turismo aventura lleno de adrenalina para los más arriesgados, que buscan emociones fuertes, y nsaciones irrepetibles. Ubicada a 6 km. de la ciudad capital de la provincia de Mendoza. En la zona superior de la represa de Potrerillos.",
         "location": "Mendoza",
         "excursionType": "Lacustre",
-        "date": ["Miercoles"],
+        "date": ["Lunes", "Martes", "Miercoles"],
         "time": ["8", "12"],
-        "price": "2100",
-        "extra": "a quo magni similique perferendis."
+        "price": "4600",
+        "extra": "A partir de 12 años."
     },
     {
-        "name": "Paseo San Juan",
+        "name": "Parque Provincial de Ischigualasto",
         "Images": [
-            "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg",
-            "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-02.jpg"
+            "https://cdn2.civitatis.com/argentina/san-juan-argentina/galeria/header/rocas-parque-ischigualasto.jpg",
+            "https://cdn2.civitatis.com/argentina/san-juan-argentina/galeria/header/cancha-bochas-ischigualasto.jpg"
         ],
-        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+        "description": "Tras recogeros en vuestro hotel de San Juan a las 7:00 horas, nos desplazaremos por la mítica Ruta Nacional 150 hacia el Parque Provincial de Ischigualasto. Sus paisajes se asemejan mucho a los del satélite terrestre, por lo que este precioso espacio natural de Argentina también es conocido como el Valle de la Luna.Una vez lleguemos al parque, realizaremos una sencilla ruta de trekking por Ischigualasto de cuatro horas. En este recorrido contemplaremos las principales formaciones geológicas de la zona, entre las que destacan el submarino, el gusano y el hongo. Os explicaremos cómo la acción de la erosión ha moldeado de forma natural la silueta de estas rocas tan curiosas.Dentro del Parque Provincial de Ischigualasto, que está declarado Patrimonio de la Humanidad, visitaremos además la llamada Cancha de Bochas. Se trata de un extenso campo repleto de unas enormes bolas de piedra cuyos paisajes nos recordarán también a las llanuras de la Luna. Completaremos el recorrido visitando el mirador del Valle Pintado, otra de las joyas naturales del parque.",
         "location": "San Juan",
         "excursionType": "Bus",
-        "date": ["Jueves"],
-        "time": ["14"],
-        "price": "5000",
-        "extra": "a quo magni similique perferendis."
+        "date": ["Viernes","Sabado", "Domingo"],
+        "time": ["10","11"],
+        "price": "8500",
+        "extra": "No incluye la entrada al parque nacional."
     },
     {
-        "name": "Navegación Catamarca",
+        "name": "Snorkel y paddle surf en el Dique Punta Negra",
         "Images": [
-            "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg",
-            "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-02.jpg"
+            "https://cdn2.civitatis.com/argentina/san-juan-argentina/galeria/header/practicando-snorkel-punta-negra.jpg",
+            "https://cdn2.civitatis.com/argentina/san-juan-argentina/galeria/header/equipo-snorkel-dique-punta-negra.jpg"
         ],
-        "description": "qui consequuntur ducimus possimus quisquam amet similique\nsuscipit porro ipsam amet\neos veritatis officiis exercitationem vel fugit aut necessitatibus totam\nomnis rerum consequatur expedita quidem cumque explicabo. alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
-        "location": "Catamarca",
+        "description": "En el muelle os estarán esperando dos monitores, que se encargarán de impartiros una completa formación. Aprenderéis a manejar todo el equipo, conociendo las mejores técnicas de remo y de buceo. Cada instructor atenderá las características del grupo, que no superará las 8 personas. ¡Así el trato será mucho más personalizado. Al finalizar la teoría, comenzaremos la primera actividad acuática. ¿Preparados para practicar paddle surf? Para mantener el equilibrio sobre la tabla de SUP o Stand Up Paddle tendréis que manejar bien el remo. Ya veréis que no es tan difícil como parece. Navegaremos por diferentes puntos del embalse, donde cada vez iréis adquiriendo mayor soltura sobre la tabla.",
+        "location": "San Juan",
         "excursionType": "Lacustre",
-        "date": ["Jueves"],
-        "time": ["14"],
-        "price": "6000",
-        "extra": "a quo magni similique perferendis."
+        "date": ["Miercoles", "Jueves","Viernes","Sabado", "Domingo"],
+        "time": ["10","11", "14","16"],
+        "price": "4500",
+        "extra": "Incluye equipamiento de snorkel"
+    },
+    {
+        "name": "Excursión al Valle de Calingasta",
+        "Images": [
+            "https://cdn2.civitatis.com/argentina/san-juan-argentina/excursion-valle-calingasta-grid.jpg",
+            "https://i0.wp.com/www.turismoreligioso.travel/wp-content/uploads/2019/10/cristo-calingasta.jpg?fit=1038%2C584&ssl=1g"
+        ],
+        "description": "Empezaremos la excursión atravesando la localidad de Talacasto y la famosa Quebrada de las Burras. Una vez pasemos este accidente geográfico, nos adentraremos en el hermoso Valle de Calingasta. Dentro de esta depresión del oeste de Argentina destaca el pueblo de Barreal, donde tendréis una hora libre para comer por vuestra cuenta.Repuestas las fuerzas, desde Barreal nos desplazaremos hasta el cercano Parque Nacional El Leoncito. Este gran espacio natural andino del Valle de Calingasta destaca por sus asombrosos paisajes. Durante el recorrido por el parque os explicaremos algunas curiosidades de la fauna autóctona, cuyos principales animales son el suri cordillerano y una especie de llama: el guanaco.Seguiremos el tour visitando el Observatorio Astronómico de El Leoncito. En este centro de investigación científica conoceremos cómo se estudian los cuerpos celestes. Los astrónomos aprovechan al máximo la claridad de los cielos de esta zona, libre de contaminación lumínica. Tras esta visita, realizaremos una última parada en el Cerro Alcázar para disfrutar de las panorámicas que ofrece su cima.",
+        "location": "San Juan",
+        "excursionType": "Trekking",
+        "date": ["Miercoles", "Jueves","Viernes","Sabado", "Domingo"],
+        "time": ["10","11", "14","16"],
+        "price": "4500",
+        "extra": "Traer comida y bebida"
+    },
+    {
+        "name": "Crucero por los glaciares",
+        "Images": [
+            "https://cdn.getyourguide.com/img/tour/5ccc904ab251e.jpeg/98.jpg",
+            "https://cdn.getyourguide.com/img/tour/5ccc904ab251e.jpeg/97.jpg"
+        ],
+        "description": "En primer lugar se navega el Brazo Norte del lago Argentino, atravesando la Boca del Diablo puerta de acceso natural del brazo norte, hasta llegar al canal Upsala, donde nos encontraremos con gran cantidad de témpanos, la embarcación también navegara entre los témpanos y realizara paradas para disfrutar de esta maravillosa experiencia.Siguiendo con la navegación el catamarán se aproximara al Glaciar Upsala para tener una vista panorámica del mismo, la aproximación será la permitida por Parques Nacionales por seguridad.Luego ingresamos al Canal Spegazzini y momentos después tendremos la primera vista del Glaciar Seco. Continuamos navegando hasta el frente del Glaciar Spegazzini el más alto del Parque Nacional, la vista es impresionante y sus paredes llegan a los 140 metros de altura, donde también  contemplaremos los glaciares Heim Sur y Peineta.",
+        "location": "Santa Cruz",
+        "excursionType": "Lacustre",
+        "date": ["Viernes","Sabado", "Domingo"],
+        "time": ["10","11"],
+        "price": "11500",
+        "extra": "Se debe estar puntual en el puerto"
+    },{
+        "name": "El Chaltén",
+        "Images": [
+            "https://cdn.pixabay.com/photo/2017/07/27/20/06/laguna-de-los-tres-2546582_1280.jpg",
+            "https://laderasur.com/content/uploads/2021/04/cortesia-municipalidad-el-chalten.jpg"
+        ],
+        "description": "A la hora indicada, os recogeremos en vuestro hotel de El Calafate y nos desplazaremos en minibús rumbo norte por la Ruta 40.Esta carretera nos permitirá bordear el lago Argentino y cruzar el río Santa Cruz, donde os contaremos las experiencias que vivieron Darwin y Fitz Roy muy cerca de este lugar. La Ruta 40 también atraviesa el río La Leona. Nos detendremos en un hotel de paso de esta zona para que podáis tomar por vuestra cuenta un buen café con tortitas caseras.Continuaremos el trayecto en minibús por la Ruta 40 bordeando el lago Viedma. Nos detendremos en un mirador cercano para admirar desde allí el glaciar del mismo nombre y los cerros Torre y Fitz Roy. El desplazamiento en minibús concluirá en el precioso pueblo de montaña de El Chaltén.En El Chatlén visitaremos su Centro de Interpretación y seguiremos el recorrido en minibús hasta una Base Operativa. A partir de este momento, tendréis tiempo libre para realizar por vuestra cuenta diferentes rutas de senderismo por esta zona de la provincia argentina de Santa Cruz.",
+        "location": "Santa Cruz",
+        "excursionType": "Bus",
+        "date": ["Miercoles","Viernes","Sabado", "Domingo"],
+        "time": ["10", "11"],
+        "price": "9000",
+        "extra": "Incluye entrada al parque nacional"
     }
+    
 ]

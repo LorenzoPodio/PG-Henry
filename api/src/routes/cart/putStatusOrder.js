@@ -6,7 +6,7 @@ putStatusOrder.put("/:id", async (req, res, next) => {
     try {
         const { status } = req.body;
         const { id } = req.params;
-        if(status === "completed"){
+        
             // const cancelOrder =await User.findByPk(id, {
             //     include: [
             //       {
@@ -34,9 +34,7 @@ putStatusOrder.put("/:id", async (req, res, next) => {
 
             })
 
-        }else{
-                
-        }
+      
     } catch (error) {
         next(error)
     }
