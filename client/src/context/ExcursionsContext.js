@@ -28,11 +28,10 @@ export const ExcursionsProvider = ({ children }) => {
     });
   }, []);
 
-  const getExcursionById = (id) => {
+  const getExcursionById = async (id) => {
     try {
-      axios(`http://localhost:3001/getexcursion?id=${id}`).then((resp) => {
-        return setExcursionByid(resp.data);
-      });
+      const {data} = await axios(`http://localhost:3001/getexcursion?id=${id}`);
+      return setExcursionByid(data);
     } catch (error) {
       console.log("error", error);
     }
@@ -73,7 +72,7 @@ export const ExcursionsProvider = ({ children }) => {
   //postAdmin
   const addAdmin = (user) => {
     return axios
-      .post("http://localhost:3001/addadmin", user)
+      .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
       .catch((err) => {
         console.log(err);
@@ -99,8 +98,8 @@ export const ExcursionsProvider = ({ children }) => {
       .delete(`http://localhost:3001/deleteexcursion?id=${id}`)
       .then((response) => {
         return (
-          setAllExcursions(response.data),
           setData(response.data),
+          // setData(response.data),
           setExcursionFiltered(response.data)
         );
       })
