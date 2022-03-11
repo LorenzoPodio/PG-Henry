@@ -1,42 +1,49 @@
-const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
-module.exports = (sequelize) => {
-    // defino el modelo
-    sequelize.define('user', {
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
+const { DataTypes } = require("sequelize");
 
-        },
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false,
-            autoIncrement: true,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        adress: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        dni: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
-        },
-        lastName: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
-        },
-    }
-    );
+module.exports = (sequelize) => {
+  sequelize.define("user", {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    adress: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    dni: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
+    },
+    isBanned: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
+    },
+  },
+  { timestamps: false });
 };
