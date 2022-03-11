@@ -10,13 +10,17 @@ getOrderId.get("/:id", async (req, res, next) => {
         include: [
           { model: User , attributes : ["name"] },
           {
-            model: Product, attributes: ["name","date","day"],
+            model: Product, attributes: ["name","date"],
             include: [{ model: Order_detail, attributes: ["price","quantity"] }],
           },
         ],
       });
+      if (!orderId){
+        return res.status(500).send(`Cart ${id} was not found`)
+    }
+    else{
     //   console.log(orderId)
-      res.status(200).send(orderId)
+      res.status(200).send(orderId)}
     } catch (error) {
       next(error);
     }

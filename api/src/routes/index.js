@@ -19,8 +19,12 @@ const deleteUser = require('./deleteUser');
 const bannedUser = require('./bannedUser');
 const addCart = require("./cart/addCart");
 const substractCart = require("./cart/substractCart");
+const getCartUserId = require("./cart/getCartUserId");
+const putStatusOrder = require("./cart/putStatusOrder");
 
 
+router.use("/cart/canceledorder", putStatusOrder);
+router.use("/cart/getcartuserid", getCartUserId);
 router.use("/cart/substractcart", substractCart);
 router.use("/cart/addcart", addCart);
 router.use("/cart/getallorders", getAllOrders);

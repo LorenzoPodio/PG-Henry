@@ -21,18 +21,18 @@ addCart.post("/", async (req, res, next) =>{
               ],
             },
           });
-            console.log(stateCart,'esto rompee')
+            // console.log(stateCart,'esto rompee')
             if (stateCart.dataValues.status === "empty"){
               stateCart.dataValues.status = "buying";
             }
-        const hola = await Order.update({
+        await Order.update({
             status: "buying"
         },{
             where:{
                 userId: stateCart.dataValues.userId
             }
         })
-            console.log(hola,'queondddddaa')
+            // console.log(hola,'queondddddaa')
         const product = await Product.findOne({
             where: {
                 name: name,
@@ -56,8 +56,10 @@ addCart.post("/", async (req, res, next) =>{
             
         //   })
         const cartAmount = await Order_detail.findAll({
-          
-          orderId: stateCart.dataValues.id
+            where: {
+                orderId: stateCart.dataValues.id
+            }
+            
        })
           res.status(200).send([`${cartAmount.length}`,productInCart ])
         }

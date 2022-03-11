@@ -24,8 +24,8 @@ substractCart.put("/", async (req, res, next) => {
                     price: price
                 }, attributes: ["id"]
             })
-            console.log(product, 'queoondaaaa')
-            console.log(stateCart, 'ESTEE STATE CARTTTTTE')
+            // console.log(product, 'queoondaaaa')
+            // console.log(stateCart, 'ESTEE STATE CARTTTTTE')
             const destroy = await Order_detail.destroy({
                 where: {
                     productId: product.dataValues.id,
@@ -37,7 +37,7 @@ substractCart.put("/", async (req, res, next) => {
                     orderId: stateCart.dataValues.id
                 }
             })
-            console.log(detailState,'esteeeeeeeeeeee')
+            // console.log(detailState,'esteeeeeeeeeeee')
             if (detailState.length === 0) {
                 await Order.update({
                     status: "empty"
