@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function Comprar({ products, data }) {
+export default function Checkout({ products, data }) {
   useEffect(() => {
     const script = document.createElement("script"); //Crea un elemento html script
 
