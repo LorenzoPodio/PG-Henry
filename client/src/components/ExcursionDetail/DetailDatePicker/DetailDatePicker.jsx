@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
-// import DayPickerInput from 'react-day-picker/DayPickerInput';
-// import 'react-day-picker/lib/style.css';
-import DatePicker, { registerLocale , filterDate} from "react-datepicker";
-import { useExcursionsContext } from "../../../context/ExcursionsContext";
+import React, { useState } from 'react';
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
 registerLocale('es', es)
@@ -29,36 +26,14 @@ const daysCases = (array) => {
 
   return arr;
 }
-console.log('filterDate', filterDate);
-
-
 
 export const DetailDatePicker = ({ excursionDays }) => {
-  console.log('excursionsDays', excursionDays);
-  // const {
-  //   excursionByid,
-  //   setExcursionByid
-  // } = useExcursionsContext();
 
   const days = excursionDays? daysCases(excursionDays) : null;
-  // console.log('dias :>> ', days);
   const [startDate, setStartDate] = useState(new Date());
-  // console.log('excursionByid', excursionByid?.date)
-  // const arr = ['lunes', 'miercoles', 'viernes'];
-
-  // useEffect(() => {
-  //   return () => {
-  //     setExcursionByid();
-  //   }
-  // }, [setExcursionByid]);
-
 
   const isWeekday = (date) => {
-    // const days = [1,2,3];
-    // let week = [0,1,2,3,4,5,6]
     const day = date.getDay();
-    // week.filter(e => !days.includes(e));
-    // return week.forEach((e)=> day !== e );
     switch (days.length) {
       case 2:
         return day === days[0] || day === days[1]
@@ -75,10 +50,8 @@ export const DetailDatePicker = ({ excursionDays }) => {
       default:
         return day === days[0]
     };
-
   };
   
-
   return (
     <div>
       <DatePicker className='shadow-md text-center rounded-md h-9 w-72S'
