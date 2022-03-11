@@ -16,18 +16,22 @@ putExcursion.put("/:id", async (req, res, next) => {
       extra,
       excursionType,
     } = req.body;
-
+    const excursion = await Excursion.findAll({
+      where: {
+        id: excursionId,
+      }
+    });
     await Excursion.update(
       {
-        name: name,
-        Images: Images,
-        description: description,
-        location: location,
-        date: date,
-        time: time,
-        price: price,
-        extra: extra,
-        excursionType: excursionType,
+        name: name ? name : excursion[0].name,
+        Images: Images ? Images : excursion[0].Images,
+        description: description ? description : excursion[0].description,
+        location: location ? location : excursion[0].location,
+        date: date ? date : excursion[0].date,
+        time: time ? time : excursion[0].time,
+        price: price ? price : excursion[0].price,
+        extra: extra ? extra : excursion[0].extra,
+        excursionType: excursionType ? excursionType : excursion[0].excursionType,
       },
       {
         where: {

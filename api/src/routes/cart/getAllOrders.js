@@ -6,7 +6,10 @@ const { Order, Order_detail , User } = require("../../db");
 getAllOrders.get("/", async (req, res, next) => {
   try {
     const orders = await Order.findAll({
-      include: [{ model: User, attributes: ["name"] }, { model: Order_detail }],
+        where: {
+            status: ["completed", "cancelled"]
+        },
+      include: [{ model: User, attributes: ["name"] }, { model: Order_detail}],
     });
     res.status(200).send(orders);
   } catch (error) {

@@ -3,6 +3,7 @@ import { useExcursionsContext } from "../../context/ExcursionsContext";
 import { useParams } from "react-router-dom";
 import InputSelect from '../InputSelect/InputSelect';
 import { ShoppingCartIcon } from '@heroicons/react/solid'
+import { DetailDatePicker } from './DetailDatePicker/DetailDatePicker';
 
 export const ExcursionDetail = () => {
   const { id } = useParams();
@@ -45,7 +46,8 @@ export const ExcursionDetail = () => {
         <div className='inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start'>
           <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/2">
             <p className="text-base leading-4 text-gray-800">Dia:</p>
-            {excursionByid?.date && <InputSelect options={excursionByid?.date}/>}
+            {/* {excursionByid?.date && <InputSelect options={excursionByid?.date}/>} */}
+            <DetailDatePicker excursionDays={excursionByid?.date}/>
           </div>
           <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/2">
             <p className="text-base leading-4 text-gray-800">Hora:</p>

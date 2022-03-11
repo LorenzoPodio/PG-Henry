@@ -10,7 +10,7 @@ export const useExcursionsContext = () => useContext(ExcurcionsContext);
 export const ExcursionsProvider = ({ children }) => {
   const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
-  const [data, setData] = useState(); //Excursiones que se van a renderizar,
+  // const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
@@ -19,7 +19,7 @@ export const ExcursionsProvider = ({ children }) => {
     getExcursions().then((r) => {
       return (
         setAllExcursions(r),
-        setData(r),
+        // setData(r),
         setExcursionFiltered(r)
       );
     });
@@ -28,11 +28,10 @@ export const ExcursionsProvider = ({ children }) => {
     });
   }, []);
 
-  const getExcursionById = (id) => {
+  const getExcursionById = async (id) => {
     try {
-      axios(`http://localhost:3001/getexcursion?id=${id}`).then((resp) => {
-        return setExcursionByid(resp.data);
-      });
+      const {data} = await axios(`http://localhost:3001/getexcursion?id=${id}`);
+      return setExcursionByid(data);
     } catch (error) {
       console.log("error", error);
     }
@@ -42,13 +41,13 @@ export const ExcursionsProvider = ({ children }) => {
     axios(URL)
       .then((response) => {
         return (
-          setData((prevState) => response.data),
+          setAllExcursions((prevState) => response.data),
           setExcursionFiltered((prevState) => response.data)
         );
       })
       .catch((e) => {
         setExcursionFiltered("Excursiones no encontradas");
-        setData("Excursiones no encontradas");
+        setAllExcursions("Excursiones no encontradas");
       });
   }, [URL]);
 
@@ -73,7 +72,7 @@ export const ExcursionsProvider = ({ children }) => {
   //postAdmin
   const addAdmin = (user) => {
     return axios
-      .post("http://localhost:3001/addadmin", user)
+      .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
       .catch((err) => {
         console.log(err);
@@ -100,7 +99,7 @@ export const ExcursionsProvider = ({ children }) => {
       .then((response) => {
         return (
           setAllExcursions(response.data),
-          setData(response.data),
+          // setData(response.data),
           setExcursionFiltered(response.data)
         );
       })
@@ -117,7 +116,7 @@ export const ExcursionsProvider = ({ children }) => {
       .then((response) => {
         return (
           setAllExcursions(response.data),
-          setData(response.data),
+          // setData(response.data),
           setExcursionFiltered(response.data)
         );
       })
@@ -133,32 +132,32 @@ export const ExcursionsProvider = ({ children }) => {
     e.preventDefault();
 
     if (e.target.value === "low") {
-      return setData((prevState) =>
+      return setAllExcursions((prevState) =>
         excursionFiltered?.slice().sort((a, b) => {
           return a.price - b.price;
         })
       );
     }
     if (e.target.value === "top") {
-      return setData((prevState) =>
+      return setAllExcursions((prevState) =>
         excursionFiltered?.slice().sort((a, b) => {
           return b.price - a.price;
         })
       );
     }
 
-    return setData((prevState) => setData(() => excursionFiltered));
+    return setAllExcursions((prevState) => setAllExcursions(() => excursionFiltered));
   }
   //
 
   return (
     <ExcurcionsContext.Provider
       value={{
-        data,
+        // data,
         allExcursions,
         excursionByid,
         setExcursionByid,
-        setData,
+        // setData,
         getExcursions,
         handleFilter,
         getExcursionById,

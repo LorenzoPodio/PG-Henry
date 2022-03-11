@@ -21,6 +21,7 @@ const addCart = require("./cart/addCart");
 const substractCart = require("./cart/substractCart");
 const getCartUserId = require("./cart/getCartUserId");
 const putStatusOrder = require("./cart/putStatusOrder");
+const mp = require('./mercadopago')
 
 
 router.use("/cart/canceledorder", putStatusOrder);
@@ -43,6 +44,7 @@ router.use("/setmail", setMail)
 router.use("/recoverPass", recoverPass)
 router.use("/deleteaccount", deleteUser)
 router.use("/getusers", getUsers);
+router.use("/mercadopago", mp)
 
 
 module.exports = router;

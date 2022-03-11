@@ -6,30 +6,34 @@ putStatusOrder.put("/:id", async (req, res, next) => {
     try {
         const { status } = req.body;
         const { id } = req.params;
-        if(status === "processingPay" || status === "completed"){
-            const cancelOrder =await User.findByPk(id, {
-                include: [
-                  {
-                    model: Order,
-                    include: [
-                      {
-                        model: Product,
-                        attributes: ["name", "date"],
-                      },
-                    ],
-                  },
-                ], attributes: ["email", "name", "lastName"]
-              });
-              let email = cancelOrder.email
-              let name = cancelOrder.name
-              let lastName = cancelOrder.lastName
-              let stateOrder = cancelOrder.orders[0].status
-              let products = cancelOrder.orders[0].products.map(or => {
-                    console.log(or.order_detail.dataValues.productId,'AHORAAAAAAAAA')
-              })
-              console.log(email, name, lastName,products,stateOrder,'a ver que onda con estooo')
-              console.log(cancelOrder, 'a ver que me trajoooo')
-            return res.status(200).send({cancelOrder})
+        if(status === "completed"){
+            // const cancelOrder =await User.findByPk(id, {
+            //     include: [
+            //       {
+            //         model: Order,
+            //         include: [
+            //           {
+            //             model: Product,
+            //             attributes: ["name", "date"],
+            //           },
+            //         ],
+            //       },
+            //     ], attributes: ["email", "name", "lastName"]
+            //   });
+            //   let email = cancelOrder.email
+            //   let name = cancelOrder.name
+            //   let lastName = cancelOrder.lastName
+            //   let stateOrder = cancelOrder.orders[0].status
+            //   let products = cancelOrder.orders[0].products.map(or => {
+            //         console.log(or.order_detail.dataValues.productId,'AHORAAAAAAAAA')
+            //   })
+            //   console.log(email, name, lastName,products,stateOrder,'a ver que onda con estooo')
+            //   console.log(cancelOrder, 'a ver que me trajoooo')
+            // return res.status(200).send({cancelOrder})
+            const orderId = await Order.findByPk(id,{
+
+            })
+
         }else{
                 
         }
