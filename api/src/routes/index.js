@@ -9,6 +9,7 @@ const putDataAdmin = require('./putDataAdmin');
 const getAllUserAdmins = require('./getAllUserAdmins')
 const setMail = require('./setMail')
 const recoverPass = require('./recoverPass')
+const mp = require('./mercadopago')
 
 router.use("/putDataAdmin", putDataAdmin)
 router.use("/changeexcursion", putExcursion)
@@ -19,5 +20,7 @@ router.use("/addadmin", addAdmin)
 router.use("/getAllUserAdmins", getAllUserAdmins)
 router.use("/setMail", setMail)
 router.use("/recoverPass", recoverPass)
+router.use("/mercadopago", mp)
+
 
 module.exports = router;
