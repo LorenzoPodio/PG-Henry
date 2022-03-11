@@ -9,7 +9,7 @@ import Login from './components/Login/Login';
 import Register from './components/Registro/Register'
 import { Prices } from './components/Prices/Prices';
 import { ExcursionDetail } from "./components/ExcursionDetail/ExcursionDetail.jsx";
-import { AdminPanel } from './components/AdminPanel/AdminPanel'
+import { AdminPanelTabs } from './components/AdminPanelTabs/AdminPanelTabs.jsx';
 import { Footer } from "./components/Footer/Footer";
 import { NavBar2 } from './components/NavBar/NavBar2'
 import { Landing } from "./components/Landing/Landing";
@@ -30,7 +30,7 @@ function App() {
         <Route path="/compras" element={<Purchases />} />
         <Route path="/nosotros" element={<About />} />
         <Route path='/excursion/detalle/:id' element={<ExcursionDetail/>}/>
-        <Route path='/panelAdmin' element={<AdminPanel/>}/>
+        <Route path='/panelAdmin' element={<AdminPanelTabs/>}/>
       </Routes>
       <Footer/>
     </div>
