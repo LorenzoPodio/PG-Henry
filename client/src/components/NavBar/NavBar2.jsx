@@ -1,23 +1,24 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState, useEffect} from 'react'
+import { Fragment, useState} from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { ShoppingCartIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 
-export function NavBar2() {
+const NavBar2 = () => {
 
   const [navigation, setNavigation] = useState([
     { name: 'Excursiones', href: '/excursiones', current: false },
     { name: 'Tarifas', href: '/tarifas', current: false },
     { name: 'Sobre Nosotros', href: '/nosotros', current: false },
-    { name: 'Panel Admin', href: '/panelAdmin', current: false },
-    { name: 'Registrarse', href: '/registro', current: false },
-    { name: 'Login', href: '/login', current: false }
+    { name: 'Panel Admin', href: '/panelAdmin', current: false }
+    //{ name: 'Registrarse', href: '/registro', current: false },
   ])
   
 
-  
+  const {loginWithRedirect, logout, user, isLoading} = useAuth0();
+
   function handleClick(e){
     navigation.map((item) => {
       if(item.name === e.target.value){
@@ -32,6 +33,10 @@ export function NavBar2() {
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
+
+  console.log(user)
+  console.log(isLoading)
+  
 
   return (
     <Disclosure as="nav" className="bg-sky-600">
@@ -95,6 +100,20 @@ export function NavBar2() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+              {!user && !isLoading ? 
+
+                <>
+                <button className='text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium' onClick={async () => await loginWithRedirect()}>Log in</button>
+                <Link to="/registro">
+                <button className='text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Registrarse</button>
+                </Link>
+                </>
+
+                : 
+                
+                <>
+                
                 <Link to="/compras">
                 <button
                   type="button"
@@ -103,7 +122,8 @@ export function NavBar2() {
                   <span className="sr-only">Carrito</span>
                   <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
-                </Link>        
+                </Link> 
+
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
                   <div>
@@ -111,7 +131,7 @@ export function NavBar2() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={user?.picture}
                         alt=""
                       />
                     </Menu.Button>
@@ -129,7 +149,7 @@ export function NavBar2() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/miPerfil"
                             className={classNames(active ? 'bg-sky-500' : '', 'block px-4 py-2 text-sm text-white')}
                           >
                             Your Profile
@@ -139,16 +159,19 @@ export function NavBar2() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            onClick={() => logout()}
                             className={classNames(active ? 'bg-sky-500' : '', 'block px-4 py-2 text-sm text-white')}
                           >
-                            Sign out
+                            Log out
                           </a>
                         )}
                       </Menu.Item>
                     </Menu.Items>
                   </Transition>
                 </Menu>
+                </>
+                }
+    
               </div>
             </div>
           </div>
@@ -180,3 +203,5 @@ export function NavBar2() {
     </Disclosure>
   )
 }
+
+export default NavBar2
