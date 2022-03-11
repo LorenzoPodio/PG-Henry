@@ -54,7 +54,7 @@ export const DetailDatePicker = ({ excursionDays }) => {
   
   return (
     <div>
-      <DatePicker className='shadow-md text-center rounded-md h-9 w-72S'
+      <DatePicker className='shadow-md text-center rounded-md h-9 w-48'
         dateFormat={'dd/MM/yyyy'}
         placeholderText={'seleccione una fecha'}
         selected={startDate}
