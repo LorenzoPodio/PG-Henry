@@ -30,7 +30,7 @@ const daysCases = (array) => {
 export const DetailDatePicker = ({ excursionDays }) => {
 
   const days = excursionDays? daysCases(excursionDays) : null;
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
 
   const isWeekday = (date) => {
     const day = date.getDay();
@@ -56,10 +56,13 @@ export const DetailDatePicker = ({ excursionDays }) => {
     <div>
       <DatePicker className='shadow-md text-center rounded-md h-9 w-72S'
         dateFormat={'dd/MM/yyyy'}
+        placeholderText={'seleccione una fecha'}
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         locale='es'
         filterDate={isWeekday}
+        minDate={new Date()}
+        maxDate={new Date().setMonth(new Date().getMonth()+2)}
       />
     </div>
   )
