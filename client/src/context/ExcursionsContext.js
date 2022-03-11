@@ -10,7 +10,7 @@ export const useExcursionsContext = () => useContext(ExcurcionsContext);
 export const ExcursionsProvider = ({ children }) => {
   const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
-  // const [data, setData] = useState(); //Excursiones que se van a renderizar,
+  const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
@@ -19,7 +19,7 @@ export const ExcursionsProvider = ({ children }) => {
     getExcursions().then((r) => {
       return (
         setAllExcursions(r),
-        // setData(r),
+        setData(r),
         setExcursionFiltered(r)
       );
     });
@@ -41,13 +41,13 @@ export const ExcursionsProvider = ({ children }) => {
     axios(URL)
       .then((response) => {
         return (
-          setAllExcursions((prevState) => response.data),
+          setData((prevState) => response.data),
           setExcursionFiltered((prevState) => response.data)
         );
       })
       .catch((e) => {
         setExcursionFiltered("Excursiones no encontradas");
-        setAllExcursions("Excursiones no encontradas");
+        setData("Excursiones no encontradas");
       });
   }, [URL]);
 
@@ -98,7 +98,7 @@ export const ExcursionsProvider = ({ children }) => {
       .delete(`http://localhost:3001/deleteexcursion?id=${id}`)
       .then((response) => {
         return (
-          setAllExcursions(response.data),
+          setData(response.data),
           // setData(response.data),
           setExcursionFiltered(response.data)
         );
@@ -116,7 +116,7 @@ export const ExcursionsProvider = ({ children }) => {
       .then((response) => {
         return (
           setAllExcursions(response.data),
-          // setData(response.data),
+          setData(response.data),
           setExcursionFiltered(response.data)
         );
       })
@@ -132,32 +132,32 @@ export const ExcursionsProvider = ({ children }) => {
     e.preventDefault();
 
     if (e.target.value === "low") {
-      return setAllExcursions((prevState) =>
+      return setData((prevState) =>
         excursionFiltered?.slice().sort((a, b) => {
           return a.price - b.price;
         })
       );
     }
     if (e.target.value === "top") {
-      return setAllExcursions((prevState) =>
+      return setData((prevState) =>
         excursionFiltered?.slice().sort((a, b) => {
           return b.price - a.price;
         })
       );
     }
 
-    return setAllExcursions((prevState) => setAllExcursions(() => excursionFiltered));
+    return setData((prevState) => setData(() => excursionFiltered));
   }
   //
 
   return (
     <ExcurcionsContext.Provider
       value={{
-        // data,
+        data,
         allExcursions,
         excursionByid,
         setExcursionByid,
-        // setData,
+        setData,
         getExcursions,
         handleFilter,
         getExcursionById,
