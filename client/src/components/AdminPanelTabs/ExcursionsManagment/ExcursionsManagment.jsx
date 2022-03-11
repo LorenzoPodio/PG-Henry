@@ -4,7 +4,7 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Checkout from "../MercadoPago/Checkout";
+import Checkout from "../../MercadoPago/Checkout";
 
 export const ExcursionsManagment = () => {
   const [data, setData] = useState(""); //Estado para setear la respuesta de mercado pago
@@ -54,13 +54,13 @@ export const ExcursionsManagment = () => {
     <div className="grid place-content-center bg-emerald-700" id="top">
       <h1 className="grid place-content-center mt-0">PANEL DE CONTROL</h1>
       {/* Implementacion de mercado pago, descomentar cuando se utilice */}
-      {/* <div>
+      <div>
         {!data ? (
           <p>Aguarde un momento....</p>
         ) : (
           <Checkout products={products} data={data} />
         )}
-      </div> */}
+      </div>
       {/* ////////////////////////////////////////////////////////////// */}
       <div className="flex flex-col w-fit mb-10">
         <span className="hidden content-end sm:block mb-10 mt-5">

@@ -1,0 +1,47 @@
+[[ Vendedor]] >> sacar el token de este usuario para declararlo como vendedor del e-commerce en el código de la app.
+El access token de pone en el .env de /api
+
+app > ExcursionPG-Henry
+<pubicKey: ‘TEST-4953851a-e353-40fe-b5ab-c24a801f145c’ >
+< token-vendedor: ‘TEST-5919072404673194-030821-f3180fd391d21f8aa61f48abfaf2624d-1086472471’ >
+
+1) { "id”:1086472471,
+"nickname":"TESTSMYAHN6Q",
+"password":"qatest9471",
+"site_status":"active",
+"email":"test_user_13713249@testuser.com"
+}
+
+2)
+{
+"id”:1086479762,
+"nickname":"TETE2951564",
+"password":"qatest3960",
+"site_status":"active",
+"email":"test_user_30825236@testuser.com"
+}
+
+3)
+{
+"id":1086480838,
+"nickname":"TETE6454516",
+"password":"qatest8869",
+"site_status":"active",
+"email":"test_user_70748279@testuser.com"
+}
+
+Modelo de orden:
+status: {
+	created, processing, cancelled, completed,
+},
+payment_id: { INTEGER},
+payment_status: { STRING },
+merchant_order_id: { BIGINT },
+
+
+--------------------------------------------TARJETASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS------------------------------------------------
+* Tarjetas de Pruebas: Podes testear la integración con las tarjetas que provee Mercado Pago en su documentación. 
+Tarjeta	Numero	Código CVC	Fecha vto.
+Mastercard	5031 7557 3453 0604	123	11/25
+Visa	4509 9535 6623 3704	123	11/25
+American Express	3711 803032 57522	1234	11/25
