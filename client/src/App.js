@@ -16,7 +16,7 @@ import { Landing } from "./components/Landing/Landing";
 import { EditExcursion } from "./components/EditExcursion/EditExcursion";
 import Auth0ProviderWithHistory from "./Auth0Provider/auth0Provider";
 import { Profile } from "./components/Profile/Profile";
-
+{}
 
 function App() {
   return (
