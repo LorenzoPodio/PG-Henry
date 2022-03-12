@@ -3,6 +3,11 @@ const addCart = Router();
 const { Op } = require("sequelize")
 const { Order, Order_detail, Product } = require("../../db")
 
+//ruta que requiere los mismos datos del producto cargado en la ruta selectProduct
+//para hacer la carga del mismo en el carrito en la db con el id del usuario
+//correspondiente
+//retorna el numero de productos que hay dentro del carrito, el precio y la cantidad 
+
 addCart.post("/", async (req, res, next) =>{
     try {
         const { name, date, time, quantity, price ,id } = req.body;

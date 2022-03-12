@@ -3,6 +3,9 @@ const getAllOrders = Router();
 const { Order, Order_detail , User } = require("../../db");
 
 //getallorders
+//obtiene todos los carritos de la db incluyendo sus estados, (buying, completed, cancelled)
+//y el detalle de la orden con el nombte del usuario que lo adquirio
+
 getAllOrders.get("/", async (req, res, next) => {
   try {
     const orders = await Order.findAll({

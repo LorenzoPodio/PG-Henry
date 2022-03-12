@@ -4,9 +4,12 @@ const { User , Order, Order_detail , Product } = require("../../db");
 const transporter = require ("../../mailer/mailer");
 
 
-//ruta para insertar luego de realizada la compra exitosa / rechazada
+//ruta para enviar mail en caso de compra rechazada o exitosa
 
 buyCompleted.post("/", async (req, res, next) => {
+ const success = false;
+ const failure = true
+
     try {
         const { id } = req.body;
         const stateOrder = await Order.findByPk(id,{
@@ -17,7 +20,7 @@ buyCompleted.post("/", async (req, res, next) => {
         let email = stateOrder.dataValues.user.email;
         let name = stateOrder.dataValues.user.name;
         let lastName = stateOrder.dataValues.user.lastName;
-        
+         if (success){
         const details = await Order_detail.findAll({
             where: {
                 orderId: stateOrder.dataValues.id
@@ -51,7 +54,7 @@ buyCompleted.post("/", async (req, res, next) => {
                 var a = ""
             for (var i = 0; i < array1.length; i++) 
                 {
-                a = a+ "Su excursion es: "+ array1[i].name+ " para el dia"+  array1[i].date +" y el valor de la excursion es de $"+(array2[i].price * array2[i].quantity)+ " , para " + array2[i].quantity + " personas.<br/> <br/>"
+                a = a+ "Su excursion es: "+ array1[i].name+ " para el dia "+  array1[i].date +" y el valor de la excursion es de $"+(array2[i].price * array2[i].quantity)+ " , para " + array2[i].quantity + " personas.<br/> <br/>"
                 }
               }
               return a
@@ -87,7 +90,32 @@ buyCompleted.post("/", async (req, res, next) => {
           res.status(200).jsonp(req.body);
         }
       })
-        return res.status(200).send(details)
+        return res.status(200).send(details)}
+        else if (failure) {
+            var mailOptions = {
+                from: "excursionappmail@gmail.com",
+                to:  email,
+                subject: "Compra rechazada - ExcursionApp",
+                html: `<img src= "https://img.icons8.com/color/48/000000/around-the-globe.png" />
+                <h3>ExcursionApp</h3><hr/>
+                <br/>
+                <br/>
+                <h3>Hola ${name} ${lastName} su compra fue rechazada, por favor pongase en contacto con el administrador de pagos e intente nuevamente. <br/>
+                
+                             <br/>
+                                 <br/>            
+                Por favor califique su experiencia en la aplicacion. </h1> `
+            }
+    
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              return res.status(500).send(error.message);
+            } else {
+              console.log("email enviado")
+              res.status(200).jsonp(req.body);
+            }
+          })
+        }
     } catch (error) {
         next(error)   
     }

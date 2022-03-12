@@ -2,6 +2,10 @@ const { Router } = require("express");
 const addExcursion = Router();
 const { Excursion } = require("../db");
 
+//ruta para añadir excursion nueva a la db como admin
+//requiere name, description, location, date y time
+//como parametros obligatorios
+
 addExcursion.post("/", async (req, res, next) => {
   try {
     let {

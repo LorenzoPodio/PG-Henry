@@ -4,6 +4,8 @@ const { Order } = require ("../../db")
 
 
 //postorderid
+//
+
 postOrderId.post("/:idUser", async (req, res, next) => {
     try {
       const { name, day, date, time, amount, price } = req.body;
@@ -22,7 +24,7 @@ postOrderId.post("/:idUser", async (req, res, next) => {
             ],
           },
         });
-        console.log(stateCart)
+        // console.log(stateCart)
         res.status(200).send(stateCart)
       }
   

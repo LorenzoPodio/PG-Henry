@@ -3,6 +3,10 @@ const substractCart = Router();
 const { Op } = require("sequelize")
 const { Order, Order_detail, Product } = require("../../db")
 
+//ruta que requiere los mismos datos del producto agregado en el carrito
+//para poder eliminarlo y retorna la cantidad de productos que hay en el carrito
+//actualmente
+
 substractCart.put("/", async (req, res, next) => {
     try {
         const { name, date, time, quantity, price, id } = req.body;

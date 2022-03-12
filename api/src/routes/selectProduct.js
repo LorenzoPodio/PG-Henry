@@ -2,7 +2,9 @@ const { Router } = require("express");
 const selectProduct = Router();
 const { Product } = require("../db.js");
 
-// Esta ruta se ejecuta cuando se selecciona una excursione en el front para ver si tiene stock  
+// Esta ruta se ejecuta cuando se selecciona una excursione en el 
+//front para ver si tiene stock y retorna el stock actual de la excursion en esa fecha y dia
+//y agrega el producto a una lista de productos
 
 selectProduct.post("/", async (req, res, next) => {
     try {
