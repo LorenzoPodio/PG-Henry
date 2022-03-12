@@ -20,7 +20,7 @@ import { Profile } from "./components/Profile/Profile";
 function App() {
   return (
     <Auth0ProviderWithHistory>
-    <div>
+    <div className="App">
       <NavBar2/>
       <Routes>
         <Route exact path='/' element={<Landing/>}/>
