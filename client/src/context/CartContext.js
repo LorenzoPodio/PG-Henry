@@ -11,7 +11,7 @@ export const CartProvider = ({ children }) => {
   const addItemToCart = (item) => {
     axios
       .post("http://localhost:3001/cart/addcart", item)
-      .then((resp) => setCartItems((prevState) => [...prevState, resp]));
+      .then((resp) => setCartItems((prevState) => [...prevState, resp.data]));
   };
 
   return (
