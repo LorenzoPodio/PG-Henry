@@ -23,6 +23,7 @@ export const ExcursionDetail = () => {
         return {};
       });
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //useEffect para llamar a la ruta del back selectProduct + setear el stock disponible.
@@ -41,9 +42,10 @@ export const ExcursionDetail = () => {
         })
         .then((resp) => setStock(resp.data - item.quantity), setDisabled(false))
         .catch((e) => {
-          return setStock(0), setDisabled(true);
+          return (setStock(0), setDisabled(true));
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
   //Handles que construyen el item que se enviara a la ruta del back addCart
