@@ -3,12 +3,11 @@ import { useExcursionsContext } from "../../../context/ExcursionsContext";
 import { XCircleIcon, CheckCircleIcon, BanIcon, PlusCircleIcon } from "@heroicons/react/solid";
 import swal from "sweetalert";
 // import { useNavigate } from "react-router-dom";
+// import { useEffect } from 'react';
 
 export const UsersManagment = () => {
-  const { userAdmins } = useExcursionsContext();
+  const { userAdmins, banUser, UnbanUser } = useExcursionsContext();
   // const navigate = useNavigate();
-
-
   // function handleEdit(e) {
   //   navigate(`/editarExcursion?id=${e.target.value}&name=${e.target.name}`)
   // }
@@ -25,8 +24,25 @@ export const UsersManagment = () => {
         swal(`Usuario ${e.target.name} bloqueado con exito`, {
           icon: "success",
         });
-        // deleteExcursion(e.target.value);
-      } else swal(`La excursion ${e.target.name} no ha sido eliminada!`);
+        banUser(e.target.value);
+      } else swal(`El usuario ${e.target.name} no ha sido bloqueado!`);
+    });
+  }
+
+  function handleUnban(e) {
+    swal({
+      title: "Desbloquear Usuario!",
+      text: "Esta Seguro que quiere desbloquear al usuario " + e.target.name,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((value) => {
+      if (value === true) {
+        swal(`Usuario ${e.target.name} desbloqueado con exito`, {
+          icon: "success",
+        });
+        UnbanUser(e.target.value);
+      } else swal(`El usuario ${e.target.name} no ha sido desbloqueado!`);
     });
   }
 
@@ -86,7 +102,7 @@ export const UsersManagment = () => {
                             <div className="flex items-center">
                               <div className="ml-4">
                                 <div className="text-sm font-medium text-gray-900">
-                                  {e.name + ' ' + e.lastname}
+                                  {e.name + ' ' + e.lastName}
                                 </div>
                               </div>
                             </div>
@@ -114,19 +130,34 @@ export const UsersManagment = () => {
                               <XCircleIcon className='h-10 w-10 text-red-400' />
                             }
                           </td>
+                          {e.isBanned ?
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <span className="hidden sm:block">
-                              <button onClick={(e) => handleBan(e)}
+                              <button onClick={(e) => handleUnban(e)}
                                 type="button"
                                 value={e.id}
                                 name={e.name}
-                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                               >
-                                <BanIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
-                                Bloquear
+                                <CheckCircleIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
+                                Desbloquear
                               </button>
                             </span>
-                          </td>
+                          </td> :
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <span className="hidden sm:block">
+                            <button onClick={(e) => handleBan(e)}
+                              type="button"
+                              value={e.id}
+                              name={e.name}
+                              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                            >
+                              <BanIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
+                              Bloquear
+                            </button>
+                          </span>
+                        </td>
+                          }
                         </tr>
                       );
                     })}
