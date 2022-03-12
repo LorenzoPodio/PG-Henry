@@ -177,7 +177,7 @@ export const ExcursionDetail = () => {
               ...item,
               name: excursionByid.name,
               price: excursionByid.price,
-              id: excursionByid.id,
+              id: 1, //Aca en realidad iría el id del usuario
             })
           }
         >
