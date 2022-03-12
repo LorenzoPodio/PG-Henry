@@ -30,17 +30,16 @@ export const ExcursionDetail = () => {
   useEffect(() => {
     if (
       item.hasOwnProperty("time") &&
-      item.hasOwnProperty("date") &&
-      item.hasOwnProperty("quantity")
+      item.hasOwnProperty("date") 
     ) {
       return axios
         .post("http://localhost:3001/selectProduct", {
-          ...item,
+          ...item, //{date, time}
           name: excursionByid.name,
           price: excursionByid.price,
           id: excursionByid.id,
         })
-        .then((resp) => setStock(resp.data - item.quantity), setDisabled(false))
+        .then((resp) => setStock(resp.data), setDisabled(false))
         .catch((e) => {
           return (setStock(0), setDisabled(true));
         });

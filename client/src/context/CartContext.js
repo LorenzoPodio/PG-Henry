@@ -9,6 +9,18 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const addItemToCart = (item) => {
+    // const itemIndex = cartItems.findIndex( //logica para no repetir excursiones en el carrito
+    //   (item) => item.props.id === items.props.id //hay que acceder al id dentro del item, reemplezar props por lo que corresponda
+    // );
+    // if (itemIndex > -1) {
+    //   alert("Ya tienes la excursion en el carrito!")
+    //   }
+    //   else {
+    //     alert (`La cantidad seleccionada supera el stock disponible del producto`)
+    //   }
+    // } else {
+    //   setCartList([...cartList, items]);
+    // }
     axios
       .post("http://localhost:3001/cart/addcart", item)
       .then((resp) => setCartItems((prevState) => [...prevState, resp.data]));
