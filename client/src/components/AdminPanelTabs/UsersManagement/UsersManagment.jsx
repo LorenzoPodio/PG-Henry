@@ -102,7 +102,7 @@ export const UsersManagment = () => {
                             <div className="flex items-center">
                               <div className="ml-4">
                                 <div className="text-sm font-medium text-gray-900">
-                                  {e.name + ' ' + e.lastname}
+                                  {e.name + ' ' + e.lastName}
                                 </div>
                               </div>
                             </div>
