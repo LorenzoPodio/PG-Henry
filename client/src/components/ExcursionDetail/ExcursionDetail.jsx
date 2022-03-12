@@ -51,14 +51,18 @@ export const ExcursionDetail = () => {
           </h1>
         </div>
         <div className='inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start'>
-          <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/2">
+          <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/3">
             <p className="text-base leading-4 text-gray-800">Dia:</p>
             {/* {excursionByid?.date && <InputSelect options={excursionByid?.date}/>} */}
             <DetailDatePicker excursionDays={excursionByid?.date}/>
           </div>
-          <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/2">
+          <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
             <p className="text-base leading-4 text-gray-800">Hora:</p>
             {excursionByid?.time && <InputSelect options={excursionByid?.time}/>}
+          </div>
+          <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
+            <p className="text-base leading-4 text-gray-800">cantidad:</p>
+            <input type="number" name="cantidad" min={0} max={6} className='shadow-md text-center rounded-md h-9 w-1/3' />
           </div>
         </div>
         <div>
