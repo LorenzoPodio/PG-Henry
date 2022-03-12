@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useExcursionsContext } from "../../context/ExcursionsContext";
+import {useCartContext} from "../../context/CartContext";
 import { useParams } from "react-router-dom";
 import InputSelect from '../InputSelect/InputSelect';
 import { ShoppingCartIcon } from '@heroicons/react/solid'
@@ -12,9 +13,15 @@ export const ExcursionDetail = () => {
     getExcursionById
   } = useExcursionsContext();
 
+  const {
+    addItemToCart
+  } = useCartContext();
+
+
   useEffect(() => {
     getExcursionById(id)
   }, [])
+
   // const {Images, createdInDb, date, description, excursionType, extra, location, name, price, time} = excursionByid;
   return (
     <div className="md:flex items-start justify-center py-2 px-2">
