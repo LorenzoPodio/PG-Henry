@@ -8,7 +8,7 @@ export const ExcurcionsContext = createContext();
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
 
 export const ExcursionsProvider = ({ children }) => {
-  const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
+  const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user. CAMBIAR NOMBRE DE FUNCIONES
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
@@ -28,11 +28,10 @@ export const ExcursionsProvider = ({ children }) => {
     });
   }, []);
 
-  const getExcursionById = (id) => {
+  const getExcursionById = async (id) => {
     try {
-      axios(`http://localhost:3001/getexcursion?id=${id}`).then((resp) => {
-        return setExcursionByid(resp.data);
-      });
+      const {data} = await axios(`http://localhost:3001/getexcursion?id=${id}`);
+      return setExcursionByid(data);
     } catch (error) {
       console.log("error", error);
     }
@@ -73,7 +72,7 @@ export const ExcursionsProvider = ({ children }) => {
   //postAdmin
   const addAdmin = (user) => {
     return axios
-      .post("http://localhost:3001/addadmin", user)
+      .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
       .catch((err) => {
         console.log(err);
@@ -99,9 +98,39 @@ export const ExcursionsProvider = ({ children }) => {
       .delete(`http://localhost:3001/deleteexcursion?id=${id}`)
       .then((response) => {
         return (
-          setAllExcursions(response.data),
           setData(response.data),
+          // setData(response.data),
           setExcursionFiltered(response.data)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  //
+
+  //banUser
+  const banUser = (id) => {
+    return axios
+      .put(`http://localhost:3001/banuser/${id}`)
+      .then((response) => {
+        return (
+          setUserAdmins(response.data)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  //
+
+  //UnbanUser
+  const UnbanUser = (id) => {
+    return axios
+      .put(`http://localhost:3001/unbanuser/${id}`)
+      .then((response) => {
+        return (
+          setUserAdmins(response.data)
         );
       })
       .catch((err) => {
@@ -170,6 +199,8 @@ export const ExcursionsProvider = ({ children }) => {
         addExcursion,
         deleteExcursion,
         editExcursion,
+        banUser,
+        UnbanUser,
       }}
     >
       {children}

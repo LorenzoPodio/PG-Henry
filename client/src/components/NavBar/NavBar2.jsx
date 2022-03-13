@@ -1,19 +1,21 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "../Cart/Cart";
 
-export function NavBar2() {
+const NavBar2 = () => {
   const [navigation, setNavigation] = useState([
     { name: "Excursiones", href: "/excursiones", current: false },
     { name: "Tarifas", href: "/tarifas", current: false },
     { name: "Sobre Nosotros", href: "/nosotros", current: false },
     { name: "Panel Admin", href: "/panelAdmin", current: false },
-    { name: "Registrarse", href: "/registro", current: false },
-    { name: "Login", href: "/login", current: false },
+    //{ name: 'Registrarse', href: '/registro', current: false },
   ]);
+
+  const { loginWithRedirect, logout, user, isLoading } = useAuth0();
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -29,6 +31,9 @@ export function NavBar2() {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
+  console.log(user);
+  console.log(isLoading);
 
   return (
     <Disclosure as="nav" className="bg-sky-600">
@@ -119,57 +124,76 @@ export function NavBar2() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-                {/* Profile dropdown */}
-                <Menu as="div" className="ml-3 relative">
-                  <div>
-                    <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-sky-500" : "",
-                              "block px-4 py-2 text-sm text-white"
+
+                {!user && !isLoading ? (
+                  <>
+                    <button
+                      className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      onClick={async () => await loginWithRedirect()}
+                    >
+                      Log in
+                    </button>
+                    <Link to="/registro">
+                      <button className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        Registrarse
+                      </button>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    {/* Profile dropdown */}
+                    <Menu as="div" className="ml-3 relative">
+                      <div>
+                        <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                          <span className="sr-only">Open user menu</span>
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src={user?.picture}
+                            alt=""
+                          />
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="/miPerfil"
+                                className={classNames(
+                                  active ? "bg-sky-500" : "",
+                                  "block px-4 py-2 text-sm text-white"
+                                )}
+                              >
+                                Your Profile
+                              </a>
                             )}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-sky-500" : "",
-                              "block px-4 py-2 text-sm text-white"
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                onClick={() => logout()}
+                                className={classNames(
+                                  active ? "bg-sky-500" : "",
+                                  "block px-4 py-2 text-sm text-white"
+                                )}
+                              >
+                                Log out
+                              </a>
                             )}
-                          >
-                            Sign out
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
+                          </Menu.Item>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -202,4 +226,5 @@ export function NavBar2() {
       )}
     </Disclosure>
   );
-}
+};
+export default NavBar2;

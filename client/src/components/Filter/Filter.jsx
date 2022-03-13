@@ -10,7 +10,7 @@ export default function Filter({
   // items: Opciones para filtrar
   //fitlerType: String --> date, excursionType o location
 
-  const days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"];
+  const days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
 
   let options = []; //["bariloche"] ["trecking"]
   items?.map((item) => {
