@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import { useCartContext } from "../../context/CartContext";
 import { useParams } from "react-router-dom";
 import InputSelect from "../InputSelect/InputSelect";
 import { ShoppingCartIcon } from "@heroicons/react/solid";
+import { CartContext } from "../../context/CartContext";
 import { DetailDatePicker } from "./DetailDatePicker/DetailDatePicker";
 import axios from "axios";
 
@@ -11,6 +12,7 @@ export const ExcursionDetail = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
   const [stock, setStock] = useState("0");
   const { id } = useParams();
+
   const [disabled, setDisabled] = useState(true);
   const { excursionByid, getExcursionById } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
@@ -23,15 +25,12 @@ export const ExcursionDetail = () => {
         return {};
       });
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //useEffect para llamar a la ruta del back selectProduct + setear el stock disponible.
   useEffect(() => {
-    if (
-      item.hasOwnProperty("time") &&
-      item.hasOwnProperty("date") 
-    ) {
+    if (item.hasOwnProperty("time") && item.hasOwnProperty("date")) {
       return axios
         .post("http://localhost:3001/selectProduct", {
           ...item, //{date, time}
@@ -41,7 +40,7 @@ export const ExcursionDetail = () => {
         })
         .then((resp) => setStock(resp.data), setDisabled(false))
         .catch((e) => {
-          return (setStock(0), setDisabled(true));
+          return setStock(0), setDisabled(true);
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,8 +62,12 @@ export const ExcursionDetail = () => {
       return { ...prevState, date };
     });
   };
-
   // const {Images, createdInDb, date, description, excursionType, extra, location, name, price, time} = excursionByid;
+  const [vars, setVars] = useState({
+    date: [],
+    time: [],
+  });
+
   return (
     <div className="md:flex items-start justify-center py-2 px-2">
       <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
@@ -98,13 +101,13 @@ export const ExcursionDetail = () => {
           </p>
           <h1
             className="
-							lg:text-2xl
-							text-xl
-							font-semibold
-							lg:leading-6
-							leading-7
-							text-gray-800
-							mt-2
+            lg:text-2xl
+            text-xl
+            font-semibold
+            lg:leading-6
+            leading-7
+            text-gray-800
+            mt-2
 						"
           >
             {excursionByid?.name}
@@ -159,17 +162,17 @@ export const ExcursionDetail = () => {
         </div>
         <button
           className="
-						focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
-						text-base
-						flex
-						items-center
-						justify-center
-						leading-none
-						text-white
-						bg-gray-800
-						w-full
-						py-4
-						hover:bg-gray-700
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
+          text-base
+          flex
+          items-center
+          justify-center
+          leading-none
+          text-white
+          bg-gray-800
+          w-full
+          py-4
+          hover:bg-gray-700
 					"
           //Disabled, deshabilita el botón cuando el stock es 0.
           disabled={disabled}

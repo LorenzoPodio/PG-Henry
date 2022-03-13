@@ -5,6 +5,7 @@ import App from "./App";
 import "./input.css";
 import { ExcursionsProvider } from "./context/ExcursionsContext";
 import { BrowserRouter as Router } from "react-router-dom";
+
 import { CartProvider } from "./context/CartContext";
 
 ReactDOM.render(
