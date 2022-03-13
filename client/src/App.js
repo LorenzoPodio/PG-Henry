@@ -14,6 +14,7 @@ import { Footer } from "./components/Footer/Footer";
 import { NavBar2 } from './components/NavBar/NavBar2'
 import { Landing } from "./components/Landing/Landing";
 import { EditExcursion } from "./components/EditExcursion/EditExcursion";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/nosotros" element={<About />} />
         <Route path='/excursion/detalle/:id' element={<ExcursionDetail/>}/>
         <Route path='/panelAdmin' element={<AdminPanel/>}/>
+        <Route path='/carrito' element={<Cart/>}/>
       </Routes>
       <Footer/>
     </div>
