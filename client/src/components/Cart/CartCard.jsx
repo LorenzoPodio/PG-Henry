@@ -12,6 +12,7 @@ export const CartCard = ({
 }) => {
   return (
     <div
+      className="px-4"
       style={{
         display: "flex",
         backgroundColor: "rgb(229 231 235 / var(--tw-bg-opacity))",

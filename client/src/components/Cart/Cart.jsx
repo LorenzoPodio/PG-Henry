@@ -17,6 +17,7 @@ function Cart() {
           {cartItems && typeof data !== "string" ? (
             cartItems?.map((e) => (
               <div>
+                <br />
                 <CartCard
                   key={e.id}
                   id={e.id}
