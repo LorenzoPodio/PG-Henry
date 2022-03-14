@@ -1,10 +1,11 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "../Cart/Cart";
+import { useExcursionsContext } from '../../context/ExcursionsContext'
+import swal from "sweetalert";
 
 const NavBar2 = () => {
   const [navigation, setNavigation] = useState([
@@ -15,7 +16,19 @@ const NavBar2 = () => {
     //{ name: 'Registrarse', href: '/registro', current: false },
   ]);
 
-  const { loginWithRedirect, logout, user, isLoading } = useAuth0();
+
+  const {loginWithRedirect, logout, user, isLoading} = useAuth0();
+  
+  const  [usuario, setUsuario] = useState({
+    email: "0",
+    name: "0",
+    lastName: "0"
+  })
+
+  const {
+    users, addUser
+  } = useExcursionsContext();
+
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -32,8 +45,75 @@ const NavBar2 = () => {
     return classes.filter(Boolean).join(" ");
   }
 
-  console.log(user);
-  console.log(isLoading);
+
+  
+
+  
+  
+  if (user && usuario.email === '0'){
+
+    setUsuario((prevState) => {
+      return {
+        ...prevState,
+        email: user.email,
+      };
+    });
+
+    if((user.sub.search("google")) === -1){
+      
+      swal("Complete su nombre aqui:", {
+        content: "input",
+      })
+      .then((value) => {
+
+        setUsuario((prevState) => {
+          return {
+            ...prevState,
+            name: value,
+          };
+        });
+        swal(`Su nombre es: ${value}`);
+      
+
+      swal("Complete su apellido aqui:", {
+        content: "input",
+      })
+      .then((value) => {
+        setUsuario((prevState) => {
+          return {
+            ...prevState,
+            lastName: value,
+          };
+        });
+        swal(`Sus datos fueron completados con exito!`);
+      });});
+    }
+    else{
+      setUsuario((prevState) => {
+        return {
+          ...prevState,
+          name: user.given_name,
+        };
+      });
+      setUsuario((prevState) => {
+        return {
+          ...prevState,
+          lastName: user.family_name,
+        };
+      });
+      
+    }
+
+    
+  }
+
+
+  if(!(users?.find((u) => u.email === usuario.email))){
+    console.log("hola")
+    addUser(usuario)
+  }
+  
+
 
   return (
     <Disclosure as="nav" className="bg-sky-600">

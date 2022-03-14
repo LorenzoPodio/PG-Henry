@@ -6,9 +6,9 @@ const transporter = require("../mailer/mailer")
 addUsers.post("/", async (req, res, next) => {
   try {
     let { email, password, name, lastName, dni, adress} = req.body;
-    if (!name || !email || !password || !lastName ||!dni || !adress) {
-      return res.status(500).send("Necessary parameters not found");
-    }
+    // if (!name || !email || !password || !lastName ||!dni || !adress) {
+    //   return res.status(500).send("Necessary parameters not found");
+    // }
     const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
     const lastNameUpper = lastName.charAt(0).toUpperCase() + lastName.slice(1);
     const newUser = await User.create({

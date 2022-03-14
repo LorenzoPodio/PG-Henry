@@ -6,7 +6,9 @@ import swal from "sweetalert";
 // import { useEffect } from 'react';
 
 export const UsersManagment = () => {
-  const { userAdmins, banUser, UnbanUser } = useExcursionsContext();
+
+  const { users, banUser, UnbanUser } = useExcursionsContext();
+
   // const navigate = useNavigate();
   // function handleEdit(e) {
   //   navigate(`/editarExcursion?id=${e.target.value}&name=${e.target.name}`)
@@ -94,8 +96,8 @@ export const UsersManagment = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {userAdmins &&
-                    userAdmins.map((e) => {
+                  {users &&
+                    users.map((e) => {
                       return (
                         <tr key={e.id}>
                           <td className="px-6 py-4 whitespace-nowrap">
