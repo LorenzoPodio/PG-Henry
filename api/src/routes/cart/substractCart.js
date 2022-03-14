@@ -2,7 +2,7 @@ const { Router } = require("express");
 const substractCart = Router();
 const { Op } = require("sequelize")
 const { Order, Order_detail, Product } = require("../../db")
-
+//ruta para sacar items del carrito 
 substractCart.put("/", async (req, res, next) => {
     try {
         const { name, date, time, quantity, price, id } = req.body;

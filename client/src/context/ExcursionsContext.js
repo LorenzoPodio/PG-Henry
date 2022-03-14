@@ -8,7 +8,11 @@ export const ExcurcionsContext = createContext();
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
 
 export const ExcursionsProvider = ({ children }) => {
+
   const [users, setUsers] = useState(); //constante que contiene todos los users
+
+  const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user. CAMBIAR NOMBRE DE FUNCIONES
+
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
@@ -109,6 +113,36 @@ export const ExcursionsProvider = ({ children }) => {
   };
   //
 
+  //banUser
+  const banUser = (id) => {
+    return axios
+      .put(`http://localhost:3001/banuser/${id}`)
+      .then((response) => {
+        return (
+          setUserAdmins(response.data)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  //
+
+  //UnbanUser
+  const UnbanUser = (id) => {
+    return axios
+      .put(`http://localhost:3001/unbanuser/${id}`)
+      .then((response) => {
+        return (
+          setUserAdmins(response.data)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  //
+
   //editExcursion
   const editExcursion = (excursion, id) => {
     return axios
@@ -169,6 +203,8 @@ export const ExcursionsProvider = ({ children }) => {
         addExcursion,
         deleteExcursion,
         editExcursion,
+        banUser,
+        UnbanUser,
       }}
     >
       {children}
