@@ -52,7 +52,7 @@ export const UsersManagment = () => {
 
     <div className="grid place-content-center bg-emerald-700" id="top">
       <div className="flex flex-col w-fit m-10">
-        <span className="hidden sm:block my-10">
+        {/* <span className="hidden sm:block my-10">
           <a href="/crearExcursion#">
             <button
               type="button"
@@ -65,7 +65,7 @@ export const UsersManagment = () => {
               Agregar Usuario
             </button>
           </a>
-        </span>
+        </span> */}
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">

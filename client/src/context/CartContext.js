@@ -91,9 +91,12 @@ export const CartProvider = ({ children }) => {
     axios.post("http://localhost:3001/cart/orderpost", {
       email: "djdjhdjhn@hotmail.com",
     }); //Podriamos modificar la ruta del back para que este post devuelva todo el carrito del usuario.
-    axios.get(`http://localhost:3001/cart/getorderid/1`).then((resp) => {
-      return setCartItems(() => resp.data.products); //[{name, date, order_detail:{price, quantity}}]
-    }); //Harcodeamos el id del carrito
+    axios
+      .get(`http://localhost:3001/cart/getorderid/1`)
+      .then((resp) => {
+        return setCartItems(() => resp.data.products); //[{name, date, order_detail:{price, quantity}}]
+      })
+      .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
   }, []);
 
   const addItemToCart = (item) => {
