@@ -45,11 +45,15 @@ export default function OrderReview({ handleClick }) {
                     >
                       Cantidad
                     </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
+
+                    <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+
+                   
+
                       Total
+                    </th>
+                    <th scope="col" className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      
                     </th>
                   </tr>
                 </thead>
@@ -93,23 +97,25 @@ export default function OrderReview({ handleClick }) {
         </div>
       </div>
       <div>
-        <div className="shadow overflow-hidden " id="top">
-          <div className="flex flex-col w-fit m-1">
-            <h1 className="grid place-content-center mt-0 mb-0 font-bold text-xl text-neutral-700">
-              TOTAL DE LA COMPRA
-            </h1>
-            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"></div>
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <h1 className="grid place-content-center mt-0 mb-0 font-bold  text-grey-900">
-                        {totalbuy}
-                      </h1>
-                    </tr>
-                  </thead>
-                </table>
+
+      <div className="shadow overflow-hidden " id="top">
+      <div className="flex flex-col w-fit m-1">
+      <h1 className="grid place-content-center mt-0 mb-0 font-bold text-xl text-neutral-700">TOTAL DE LA COMPRA</h1>
+        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"></div>
+      <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <h1 className="grid place-content-center mt-0 mb-0 font-bold  text-grey-900">
+                     $ {totalbuy}
+                    </h1>
+                  </tr>
+                </thead>
+              </table>
+
+      
+
               </div>
             </div>
           </div>

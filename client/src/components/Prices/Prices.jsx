@@ -37,6 +37,12 @@ export const Prices = () => {
                           >
                             precio
                           </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                          >
+                           
+                          </th>
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200">
@@ -57,6 +63,18 @@ export const Prices = () => {
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.excursionType}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.price}</td>
+                          <td className="px-6 py-4 " >
+                          <span >
+          <a  href={`/excursion/detalle/${e.id}`}>
+            <button
+              type="button"
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Comprar
+            </button>
+          </a>
+        </span>
+                          </td>
                           </tr>
                       )})}
                       </tbody>
