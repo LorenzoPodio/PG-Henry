@@ -108,6 +108,7 @@ const NavBar2 = () => {
   }
 
 
+  console.log(users)
   if(!(users?.find((u) => u.email === usuario.email))){
     console.log("hola")
     addUser(usuario)
