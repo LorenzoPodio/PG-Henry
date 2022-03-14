@@ -9,49 +9,44 @@ const { Order, Order_detail, Product } = require("../../db")
 
 substractCart.put("/", async (req, res, next) => {
     try {
-        const { name, date, time, quantity, price, id } = req.body;
-        if (!name || !date || !time || !quantity || !price) {
+        const { detailId, orderId } = req.body;
+        if (!detailId || !orderId ) {
             return res.status(500).send("Necessary parameters not found");
         } else {
-            const stateCart = await Order.findOne({
-                where: {
-                   userId: id,
-                   status: "buying"
-                }, attributes: ["status", "id"],
-            });
+           
             
-            const product = await Product.findOne({
+            const order = await Order_detail.findAll({
                 where: {
-                    name: name,
-                    date: date,
-                    time: time,
-                    price: price
-                }, attributes: ["id"]
-            })
-            // console.log(product, 'queoondaaaa')
-            // console.log(stateCart, 'ESTEE STATE CARTTTTTE')
-            const destroy = await Order_detail.destroy({
-                where: {
-                    productId: product.dataValues.id,
-                    orderId: stateCart.dataValues.id
-                },
-            });
-            const detailState = await Order_detail.findAll({
-                where: {
-                    orderId: stateCart.dataValues.id
+                    orderId: orderId
+    
                 }
             })
-            // console.log(detailState,'esteeeeeeeeeeee')
-            if (detailState.length === 0) {
+          
+            const destroy = await Order_detail.destroy({
+                where: {
+                   
+                    detailId: detailId
+                },
+            });
+           
+            const cartAmount = await Order_detail.findAll({
+                where: {
+                    orderId: orderId
+    
+                }, include: [{ model: Product }]                
+           })
+            
+            if (cartAmount.length === 0) {
                 await Order.update({
                     status: "empty"
                 }, {
                     where: {
-                        userId: id
+                        userId: order[0].userId
                     }
                 })
             }
-            res.status(200).send(`${detailState.length}`)
+       
+            res.status(200).send(cartAmount)
         }
     } catch (error) {
         next(error);
