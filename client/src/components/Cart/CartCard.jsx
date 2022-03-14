@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const CartCard = ({
   // id,
@@ -28,19 +28,19 @@ export const CartCard = ({
         // to={`/excursion/detalle/${id}`}
         className="group w-1/5 h-50"
       > */}
-        <div
-          style={{
-            alignContent: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            // src={images[0]}
-            alt={`imagen representativa excursión: ${name}`}
-            className="w-20 h-20 object-center object-cover group-hover:opacity-75"
-            style={{ borderRadius: "0.5rem" }}
-          />
-        </div>
+      <div
+        style={{
+          alignContent: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          // src={images[0]}
+          alt={`imagen representativa excursión: ${name}`}
+          className="w-20 h-20 object-center object-cover group-hover:opacity-75"
+          style={{ borderRadius: "0.5rem" }}
+        />
+      </div>
       {/* </NavLink> */}
       <div
         className="w-3/5 h-max"
@@ -50,9 +50,9 @@ export const CartCard = ({
       >
         <div>
           {/* <NavLink key={id} to={`/excursion/detalle/${id}`} className="group"> */}
-            <h3 className="mt-4 text-lg text-center font-bold text-gray-700">
-              {name}
-            </h3>
+          <h3 className="mt-4 text-lg text-center font-bold text-gray-700">
+            {name}
+          </h3>
           {/* </NavLink> */}
         </div>
         {/* <h4 className="mt-3 text-sm text-gray-700">{location}</h4>
@@ -87,6 +87,9 @@ export const CartCard = ({
         </button>
       </div>
       <br />
+      <Link to="/checkout">
+        <button>Terminar compra</button>
+      </Link>
     </div>
   );
 };
