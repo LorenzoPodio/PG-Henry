@@ -2,13 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export const CartCard = ({
-  id,
+  // id,
   name,
-  images,
-  location,
+  // images,
+  // location,
   date,
   price,
-  excursionType,
+  quantity,
+  // excursionType,
 }) => {
   return (
     <div
@@ -22,11 +23,11 @@ export const CartCard = ({
         borderRadius: "0.5rem",
       }}
     >
-      <NavLink
-        key={id}
-        to={`/excursion/detalle/${id}`}
+      {/* <NavLink
+        // key={id}
+        // to={`/excursion/detalle/${id}`}
         className="group w-1/5 h-50"
-      >
+      > */}
         <div
           style={{
             alignContent: "center",
@@ -34,13 +35,13 @@ export const CartCard = ({
           }}
         >
           <img
-            src={images[0]}
+            // src={images[0]}
             alt={`imagen representativa excursión: ${name}`}
             className="w-20 h-20 object-center object-cover group-hover:opacity-75"
             style={{ borderRadius: "0.5rem" }}
           />
         </div>
-      </NavLink>
+      {/* </NavLink> */}
       <div
         className="w-3/5 h-max"
         style={{
@@ -48,22 +49,22 @@ export const CartCard = ({
         }}
       >
         <div>
-          <NavLink key={id} to={`/excursion/detalle/${id}`} className="group">
+          {/* <NavLink key={id} to={`/excursion/detalle/${id}`} className="group"> */}
             <h3 className="mt-4 text-lg text-center font-bold text-gray-700">
               {name}
             </h3>
-          </NavLink>
+          {/* </NavLink> */}
         </div>
-        <h4 className="mt-3 text-sm text-gray-700">{location}</h4>
-        <h4 className="mt-3 text-sm text-gray-700">{excursionType}</h4>
-        <h4 className="mt-3 text-sm text-gray-700">{date.join(", ")}</h4>
+        {/* <h4 className="mt-3 text-sm text-gray-700">{location}</h4>
+        <h4 className="mt-3 text-sm text-gray-700">{excursionType}</h4> */}
+        <h4 className="mt-3 text-sm text-gray-700">{date}</h4>
       </div>
       <div className="w-1/5 h-50">
-        <input
+        {/* <input
           type="number"
           placeholder="Cupos"
           style={{ display: "flex", width: "4rem" }}
-        />
+        /> */}
         <p className="mt-1 text-sm font-medium text-gray-900">
           {"Total a pagar $" + price}
         </p>
