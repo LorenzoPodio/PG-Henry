@@ -33,7 +33,9 @@ const purchases = [
 
 export const PurchasesManagment = () => {
 
- const { users, deleteExcursion, cancelledOrder } = useExcursionsContext();
+
+  const { users, deleteExcursion, cancelledOrder } = useExcursionsContext();
+
 
   function handleCancelled(e) {
     swal({
