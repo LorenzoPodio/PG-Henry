@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
+        Images: {
+          type: DataTypes.ARRAY(DataTypes.TEXT),
+         allowNull: true,
+        },
         stock: {
             type: DataTypes.INTEGER,
             allowNull: true,

@@ -1,7 +1,7 @@
 const { Router } = require ("express");
 const addCart = Router();
 const { Op } = require("sequelize")
-const { Order, Order_detail, Product } = require("../../db")
+const { Order, Order_detail, Product, Excursion } = require("../../db")
 
 //ruta que requiere los mismos datos del producto cargado en la ruta selectProduct
 //para hacer la carga del mismo en el carrito en la db con el id del usuario
@@ -26,7 +26,7 @@ addCart.post("/", async (req, res, next) =>{
               ],
             },
           });
-            // console.log(stateCart,'esto rompee')
+            
             if (stateCart.dataValues.status === "empty"){
               stateCart.dataValues.status = "buying";
             }
@@ -37,36 +37,37 @@ addCart.post("/", async (req, res, next) =>{
                 userId: stateCart.dataValues.userId
             }
         })
-            // console.log(hola,'queondddddaa')
+        
         const product = await Product.findOne({
             where: {
                 name: name,
                 date: date,
                 time: time,
                 price: price
-            }
+            } 
         })
-
+        const excursion = await Excursion.findOne({
+          
+          where:{name :{[Op.iLike]: product.name.id}} ,
+      })
         const productInCart = await Order_detail.create({
            price: price,
            quantity: quantity,
            productId: product.dataValues.id,
-           orderId: stateCart.dataValues.id
+           orderId: stateCart.dataValues.id,
+           totalPrice: price * quantity
         })
-        //   console.log(productInCart,'prrroodod')
-        //   let state = "buying";
-        //   console.log( stateCart.dataValues.status,'cambiado?')
-
-        //   const orderDetail = await Order_detail.findOrCreate({
-            
-        //   })
+        
         const cartAmount = await Order_detail.findAll({
             where: {
                 orderId: stateCart.dataValues.id
-            }
-            
+
+            }, include: [{ model: Product }] 
+           ,
+           
        })
-          res.status(200).send([`${cartAmount.length}`,productInCart ])
+       
+          res.status(200).send(cartAmount )
         }
     
         
