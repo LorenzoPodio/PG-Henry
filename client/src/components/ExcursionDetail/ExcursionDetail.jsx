@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import { useCartContext } from "../../context/CartContext";
 import { useParams } from "react-router-dom";
 import InputSelect from "../InputSelect/InputSelect";
 import { ShoppingCartIcon } from "@heroicons/react/solid";
-import { CartContext } from "../../context/CartContext";
 import { DetailDatePicker } from "./DetailDatePicker/DetailDatePicker";
 import axios from "axios";
 
@@ -63,10 +62,15 @@ export const ExcursionDetail = () => {
     });
   };
   // const {Images, createdInDb, date, description, excursionType, extra, location, name, price, time} = excursionByid;
-  const [vars, setVars] = useState({
-    date: [],
-    time: [],
-  });
+
+  const handleClick = () => {
+    addItemToCart({
+      ...item,
+      name: excursionByid.name,
+      price: excursionByid.price,
+      id: 1, //Aca en realidad iría el id del usuario
+    });
+  };
 
   return (
     <div className="md:flex items-start justify-center py-2 px-2">
@@ -176,14 +180,7 @@ export const ExcursionDetail = () => {
 					"
           //Disabled, deshabilita el botón cuando el stock es 0.
           disabled={disabled}
-          onClick={() =>
-            addItemToCart({
-              ...item,
-              name: excursionByid.name,
-              price: excursionByid.price,
-              id: 1, //Aca en realidad iría el id del usuario
-            })
-          }
+          onClick={() => handleClick()}
         >
           Agregar al Carrito
           <ShoppingCartIcon className="w-5 h-5 ml-1" />
