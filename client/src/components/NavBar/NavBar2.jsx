@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "../Cart/Cart";
 import { useExcursionsContext } from '../../context/ExcursionsContext'
 import swal from "sweetalert";
+import { useCartContext } from "../../context/CartContext";
 
 const NavBar2 = () => {
   const [navigation, setNavigation] = useState([
@@ -33,6 +34,8 @@ const NavBar2 = () => {
   const {
     users, addUser
   } = useExcursionsContext();
+
+const {cartItems} = useCartContext();
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -195,6 +198,7 @@ const NavBar2 = () => {
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
+                      <span>{cartItems.length}</span>
                     </Menu.Button>
                   </div>
                   <Transition

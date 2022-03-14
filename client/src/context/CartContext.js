@@ -1,5 +1,6 @@
 import { useState, useContext, createContext, useEffect } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 export const CartContext = createContext();
 
@@ -108,15 +109,26 @@ export const CartProvider = ({ children }) => {
     // } else {
     //   setCartList([...cartList, items]);
     // }
-    axios.post("http://localhost:3001/cart/addcart", item).then((resp) => {
-      return setCartItems((prevState) => [
-        ...prevState,
-        {
-          ...item,
-          order_detail: { price: item.price, quantity: item.quantity },
-        },
-      ]);
-    });
+    axios
+      .post("http://localhost:3001/cart/addcart", item)
+      .then((resp) => {
+        swal("Excursion agregada al carrito", {
+          icon: "success",
+        });
+        return setCartItems((prevState) => [
+          ...prevState,
+          {
+            ...item,
+            order_detail: { price: item.price, quantity: item.quantity },
+          },
+        ]);
+      })
+      .catch((e) => {
+        swal("Error, porfavor vuelva a intentarlo", {
+          icon: "error",
+        });
+        return console.log(e);
+      });
   };
 
   return (
