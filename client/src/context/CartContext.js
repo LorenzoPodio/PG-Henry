@@ -91,7 +91,7 @@ export const CartProvider = ({ children }) => {
       email: "djdjhdjhn@hotmail.com",
     }); //Podriamos modificar la ruta del back para que este post devuelva todo el carrito del usuario.
     axios.get(`http://localhost:3001/cart/getorderid/1`).then((resp) => {
-      return setCartItems(() => resp.data.products);
+      return setCartItems(() => resp.data.products); //[{name, date, order_detail:{price, quantity}}]
     }); //Harcodeamos el id del carrito
   }, []);
 
