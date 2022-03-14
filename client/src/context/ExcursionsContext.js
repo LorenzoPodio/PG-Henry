@@ -99,7 +99,7 @@ export const ExcursionsProvider = ({ children }) => {
       .then((response) => {
         return (
           setData(response.data),
-          // setData(response.data),
+          setAllExcursions(response.data),
           setExcursionFiltered(response.data)
         );
       })
