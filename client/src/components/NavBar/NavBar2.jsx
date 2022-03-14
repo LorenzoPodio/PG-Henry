@@ -198,7 +198,7 @@ const {cartItems} = useCartContext();
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
-                      <span>{cartItems.length}</span>
+                      <span>{cartItems?.length}</span>
                     </Menu.Button>
                   </div>
                   <Transition
