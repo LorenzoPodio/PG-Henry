@@ -2,6 +2,7 @@
 
 import { useCartContext } from "../../context/CartContext";
 import { CartCard } from "./CartCard";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const { cartItems } = useCartContext();
@@ -64,6 +65,11 @@ function Cart() {
           )}
         </div>
       </div>
+      <Link to="/checkout">
+        <button className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+          Terminar compra
+        </button>
+      </Link>
     </div>
   );
 }

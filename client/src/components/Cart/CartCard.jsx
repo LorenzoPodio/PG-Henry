@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export const CartCard = ({
   // id,
@@ -36,7 +35,7 @@ export const CartCard = ({
       >
         <img
           // src={images[0]}
-          alt={`imagen representativa excursión: ${name}`}
+          alt={`Fotografía`}
           className="w-20 h-20 object-center object-cover group-hover:opacity-75"
           style={{ borderRadius: "0.5rem" }}
         />
@@ -87,9 +86,6 @@ export const CartCard = ({
         </button>
       </div>
       <br />
-      <Link to="/checkout">
-        <button>Terminar compra</button>
-      </Link>
     </div>
   );
 };
