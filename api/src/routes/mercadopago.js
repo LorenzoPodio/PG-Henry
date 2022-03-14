@@ -3,6 +3,8 @@ const mp = Router();
 const mercadopago = require("mercadopago");
 // Agrega credenciales
 
+//ruta mercadopago
+
 mercadopago.configure({
   access_token:
   "TEST-5919072404673194-030821-f3180fd391d21f8aa61f48abfaf2624d-1086472471",

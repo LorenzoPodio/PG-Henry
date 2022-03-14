@@ -3,6 +3,11 @@ const { Excursion } = require("../db");
 const getExcursion = Router();
 const { Sequelize, Op } = require("sequelize");
 
+//ruta que no trae todas las excursiones
+//por query requerira id, name, location, date o excursionType
+//desde esta ruta tambien se realiza un filtrado solapado
+//dependiendo como se obtiene la consulta desde el query
+
 getExcursion.get("/", async (req, res, next) => {
   try {
 
@@ -96,6 +101,7 @@ getExcursion.get("/", async (req, res, next) => {
     next(error)
   }
 });
+
 
 
 module.exports = getExcursion;

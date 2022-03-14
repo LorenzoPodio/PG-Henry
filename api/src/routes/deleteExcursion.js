@@ -2,6 +2,10 @@ const { Router } = require("express");
 const deleteExcursion = Router();
 const { Excursion } = require("../db");
 
+
+//ruta para eliminar una excursion cargada en la db
+//requiere id de excursion creada
+
 deleteExcursion.delete("/", async (req, res, next) => {
   try {
     let { id } = req.query;

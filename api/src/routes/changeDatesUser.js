@@ -2,6 +2,11 @@ const { Router } = require("express");
 const changeDatesUser = Router();
 const { User } = require("../db");
 
+//ruta para modificar mis datos de usuario en la db 
+//requiere datos de usuario por params => id
+//la ruta requiere por body datos para cambiar, al momento de hacer 
+//la actualizacion verifica que me hayan llegado dichos datos, sino deja almacenado el mismo que ya habia en db
+
 changeDatesUser.put("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;

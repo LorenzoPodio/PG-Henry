@@ -71,6 +71,7 @@ export const ExcursionsProvider = ({ children }) => {
       const regex = new RegExp(`${name}[^&]*&`);
       setURL((prevState) => prevState.replace(regex, ``));
     }
+    console.log(data,'que ondddda')
   };
 
   //postUser antes era addAdmin
@@ -184,6 +185,54 @@ export const ExcursionsProvider = ({ children }) => {
   }
   //
 
+  //cancelled order 
+  const cancelledOrder = (id) => {
+    return axios
+      .put(`http://localhost:3001/cart/canceledorder/${id}`)
+      .then((response) => {
+        return (
+          setAllExcursions(response.data)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <ExcurcionsContext.Provider
       value={{
@@ -203,6 +252,7 @@ export const ExcursionsProvider = ({ children }) => {
         addExcursion,
         deleteExcursion,
         editExcursion,
+        cancelledOrder,
         banUser,
         UnbanUser,
       }}

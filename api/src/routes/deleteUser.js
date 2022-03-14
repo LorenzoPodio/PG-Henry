@@ -2,6 +2,9 @@ const { Router } = require("express");
 const deleteUser = Router();
 const { User } = require("../db");
 
+//ruta para eliminar un usuario de la db
+//requiere ir de usuario
+
 deleteUser.delete("/:id", async (req, res, next) => {
     try {
       const { id } = req.params;

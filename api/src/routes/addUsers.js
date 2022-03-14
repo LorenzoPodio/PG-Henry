@@ -3,6 +3,12 @@ const addUsers = Router();
 const { User } = require("../db.js");
 const transporter = require("../mailer/mailer")
 
+//ruta para añadir un suario nuevo a la db 
+//Datos requeridos para hacer post:
+//name, email, password, lastname, dni, adress
+//al hacer la carga en la db correctamente se envia un email al mismo registrado
+//dandole la bienvenida
+
 addUsers.post("/", async (req, res, next) => {
   try {
     let { email, password, name, lastName, dni, adress} = req.body;

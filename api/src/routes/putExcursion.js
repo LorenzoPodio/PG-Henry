@@ -2,6 +2,12 @@ const { Router } = require("express");
 const putExcursion = Router();
 const { Excursion } = require("../db");
 
+
+//ruta para modificar datos de las excursiones cargadas en la db
+//obtenemos la ruta por id y en caso de que algun dato
+//que estaba cargado previamente no lo pasen nuevamente
+//deja el mismo dato que estaba anteriormente
+
 putExcursion.put("/:id", async (req, res, next) => {
   try {
     const excursionId = req.params.id;

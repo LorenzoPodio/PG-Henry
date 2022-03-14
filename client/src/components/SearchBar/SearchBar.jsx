@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import axios from "axios";
+import swal from 'sweetalert';
 
 export default function SearchBar(props){
     const [query, setQuery] = useState('');
+    // console.log(query, 'eesteeee')
     
     const { 
             data, setData, setExcursionFiltered,
@@ -11,10 +13,24 @@ export default function SearchBar(props){
         
 // Feature Search by Query:
   const handleQuerySearched = () => {
-        axios(`http://localhost:3001/getexcursion?name=${query}`).then(resp => {
-            return (setData(resp.data), setExcursionFiltered(resp.data));
-      }).catch((e)=>alert("El nombre no coincide con una Excursión disponible!"))
-    
+    axios(`http://localhost:3001/getexcursion?name=${query}`)
+    .then(resp => {
+            return (setData(resp.data), setExcursionFiltered(resp.data), console.log(resp.data));      
+      })
+      .catch((e)=>
+      { console.log(e,'esteeeee')
+        axios(`http://localhost:3001/getexcursion?location=${query}`)
+        .then(resp => {
+                return (setData(resp.data), setExcursionFiltered(resp.data), console.log(resp.data));      
+          }).catch((e) => 
+          {swal({text:"No se encontraron datos con su busqueda",
+                 icon: "error"
+            });
+            ;
+            setData()})
+      }
+      )
+   
   };
 
     const searchQueryHandler = () => {
@@ -29,9 +45,12 @@ export default function SearchBar(props){
     function handleSubmit(e) {
         e.preventDefault();
         if(!query?.length ){
-            alert("Nombre no encontrado...");
+            swal(
+               { icon: "warning",
+                text: "Ingrese un valor para realizar una busqueda"})
         } else {
             handleQuerySearched(query);
+             e.target.reset()
         }
     };
 

@@ -32,22 +32,23 @@ const purchases = [
 ]
 
 export const PurchasesManagment = () => {
-  // const { users, deleteExcursion } = useExcursionsContext();
 
-  function handleBan(e) {
+  // const { users, deleteExcursion, cancelledOrde } = useExcursionsContext();
+
+  function handleCancelled(e) {
     swal({
-      title: "Bloquear Usuario!",
-      text: "Esta Seguro que quiere bloquear al usuario " + e.target.name,
+      title: "Cancelar carrito",
+      text: "Esta Seguro que quiere cancelar este carrito? " + e.target.name,
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((value) => {
       if (value === true) {
-        swal(`Usuario ${e.target.name} bloqueado con exito`, {
+        swal(`Orden eliminada, se envió un email con el detalle de la cancelacion`, {
           icon: "success",
         });
-        // deleteExcursion(e.target.value);
-      } else swal(`La excursion ${e.target.name} no ha sido eliminada!`);
+        cancelledOrder(e.target.value);
+      } else swal(`La orden no ha sido eliminada!`);
     });
   }
 
@@ -105,7 +106,7 @@ export const PurchasesManagment = () => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <span className="hidden sm:block">
-                              <button onClick={(e) => handleBan(e)}
+                              <button onClick={(e) => handleCancelled(e)}
                                 type="button"
                                 value={e.id}
                                 name={e.name}
