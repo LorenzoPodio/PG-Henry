@@ -31,8 +31,11 @@ return (
                     <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Cantidad
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Total
+                    </th>
+                    <th scope="col" className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      
                     </th>
                   </tr>
                 </thead>
@@ -87,7 +90,7 @@ return (
                 <thead className="bg-gray-50">
                   <tr>
                     <h1 className="grid place-content-center mt-0 mb-0 font-bold  text-grey-900">
-                     {totalbuy}
+                     $ {totalbuy}
                     </h1>
                   </tr>
                 </thead>

@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import validate from "./validate";
 
-export default function Register() {
+export default function Register({handleClick}) {
   const { addUser, users } = useExcursionsContext();
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
@@ -13,7 +13,6 @@ export default function Register() {
     lastName: "",
     dni: "",
     email: "",
-    password: "",
     adress: "",
   });
 
@@ -41,10 +40,7 @@ export default function Register() {
         "El mail o Dni ya corresponde a un usuario registrado",
         "warning"
       );
-    } else {
-      setInput((prevState) => {
-        return { ...prevState, password: pass.pass1 };
-      });
+ 
 
       if (Object.values(validate(input, pass)).length === 0) {
         addUser(input);
@@ -94,12 +90,8 @@ export default function Register() {
   }
 
   useEffect(() => {
-    if (pass.pass1 !== "" && pass.pass2 !== "") {
-      if (pass.pass1 === pass.pass2) {
-        setInput({ ...input, passowrd: pass.pass1 });
-      }
-    }
-  }, [pass]);
+    
+  }, );
 
   return (
     <div>
@@ -109,7 +101,7 @@ export default function Register() {
           <img src={"/"} alt="nf" />
         </div>} */}
           <div className="bienvenidos">
-            <h2 className="h2-reg">Bienvenido</h2>
+            <h2 className="h2-reg">Complete los datos para su compra </h2>
           </div>
           <form className="formR" onSubmit={(e) => handleSubmit(e)}>
             <div>
@@ -126,7 +118,7 @@ export default function Register() {
             </div>
             {errors.name && <p className="errorMsg">{errors.name}</p>}
 
-            <div>
+            <div >
 
               <input
                 id="inpt_reg_new2"
@@ -138,7 +130,7 @@ export default function Register() {
               />
             </div>
             {errors.lastName && <p className="errorMsg">{errors.lastName}</p>}
-            <div>
+            <div className=" py-2">
 
               <input
                 id="inpt_reg_new3"
@@ -150,7 +142,7 @@ export default function Register() {
               />
             </div>
             {errors.dni && <p className="errorMsg">{errors.dni}</p>}
-            <div>
+            <div className=" py-2">
 
               <input
                 id="inpt_reg_new4"
@@ -162,31 +154,10 @@ export default function Register() {
               />
             </div>
             {errors.email && <p className="errorMsg">{errors.email}</p>}
-            <div>
-              <div>
-                <input
-                  onChange={(e) => handleChango(e)}
-                  type="password"
-                  placeholder="Contraseña"
-                  name="pass1"
-                  value={pass.pass1}
-                />
-              </div>
-            </div>
-            {errors.pass1 && <p className="errorMsg">{errors.pass1}</p>}
-            <div>
-              <div>
-                <input
-                  onChange={(e) => handleChango(e)}
-                  type="password"
-                  placeholder="Confirme la contraseña"
-                  name="pass2"
-                  value={pass.pass2}
-                />
-              </div>
-            </div>
-            {errors.pass && <p className="errorMsg">{errors.pass}</p>}
-            <div>
+          
+        
+            
+            <div className=" py-2">
 
               <input
                 id="inpt_reg_new5"
@@ -198,13 +169,25 @@ export default function Register() {
               />
             </div>
             {errors.adress && <p className="errorMsg">{errors.adress}</p>}
-            <div className="botonesReg">
-              <button className="botonRegistrar" value="Submit" type="submit">
-                Registrarse
-              </button>
-              <button className="botonInicio">
-                <Link to={"/"}>Volver a inicio</Link>
-              </button>
+            <div className="botonesReg py-4">
+            <div className="flex flex-row w-fit m-1">
+      <span className=" px-6  hidden content-end sm:block mb-10 mt-5">
+            <button onClick={()=>handleClick("OrderReview")}
+              type="button"
+              className="inline-flex items-center px-7 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Volver 
+            </button>
+        </span>
+      <span className="hidden content-end sm:block mb-10 mt-5">
+            <button value="Submit" type="submit" onClick={()=>handleClick("Payment")}
+              
+              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Continuar
+            </button>
+        </span>
+        </div>    
             </div>
           </form>
         </div>
