@@ -1,13 +1,9 @@
 // comp Cart.jsx
 
-import React, { useEffect, useState, useContext } from "react";
 import { useCartContext } from "../../context/CartContext";
 import { CartCard } from "./CartCard";
-import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 function Cart() {
-  const { excursionByid, getExcursionById } = useExcursionsContext();
-
   const { cartItems } = useCartContext();
 
   return (
@@ -15,22 +11,21 @@ function Cart() {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div>
           {cartItems && typeof data !== "string" ? (
-            cartItems?.map((e) => (
-              <div>
-                <br />
+            cartItems?.map((e, i) => {
+              return (
                 <CartCard
-                  key={e.id}
-                  id={e.id}
+                  // id={e.id}
+                  key={i}
                   name={e.name}
-                  images={e.Images}
-                  location={e.location}
+                  // images={e.Images}
+                  // location={e.location}
                   date={e.date}
-                  price={e.price}
-                  excursionType={e.excursionType}
+                  price={e.order_detail.price}
+                  quantity={e.quantity}
+                  // excursionType={e.excursionType}
                 />
-                <br />
-              </div>
-            ))
+              );
+            })
           ) : (
             <div>
               <div className="w-full lg:w-1/2">

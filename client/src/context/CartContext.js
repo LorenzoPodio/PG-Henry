@@ -1,5 +1,4 @@
-
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useEffect } from "react";
 import axios from "axios";
 
 export const CartContext = createContext();
@@ -7,7 +6,6 @@ export const CartContext = createContext();
 export const useCartContext = () => useContext(CartContext);
 
 // export const CartProvider = ({children}) => {
-
 
 //     const [cartItems, setCartItems] = useState(() => {
 //         try {
@@ -38,7 +36,7 @@ export const useCartContext = () => useContext(CartContext);
 //                         console.log("soy CartItems",cartItems)
 //                         return {...inCart, amount: inCart.amount + 1};
 //                     } else {
-//                         return productInCart;   
+//                         return productInCart;
 //                     }
 //                 })
 //             );
@@ -56,7 +54,7 @@ export const useCartContext = () => useContext(CartContext);
 //         const inCart = cartItems.find(
 //             (productInCart) => productInCart.id === product.id
 //         );
-        
+
 //         if(inCart.amount === 1) {
 //             setCartItems(
 //                 cartItems.filter((productInCart) => productInCart.id !== product.id)
@@ -73,7 +71,7 @@ export const useCartContext = () => useContext(CartContext);
 //     };
 
 //     return(
-//         <CartContext.Provider 
+//         <CartContext.Provider
 //             value={{
 //                     cartItems,
 //                     addItemToCart,
@@ -88,6 +86,15 @@ export const useCartContext = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
+  useEffect(() => {
+    axios.post("http://localhost:3001/cart/orderpost", {
+      email: "djdjhdjhn@hotmail.com",
+    }); //Podriamos modificar la ruta del back para que este post devuelva todo el carrito del usuario.
+    axios.get(`http://localhost:3001/cart/getorderid/1`).then((resp) => {
+      return setCartItems(() => resp.data.products);
+    }); //Harcodeamos el id del carrito
+  }, []);
+
   const addItemToCart = (item) => {
     // const itemIndex = cartItems.findIndex( //logica para no repetir excursiones en el carrito
     //   (item) => item.props.id === items.props.id //hay que acceder al id dentro del item, reemplezar props por lo que corresponda
@@ -101,9 +108,15 @@ export const CartProvider = ({ children }) => {
     // } else {
     //   setCartList([...cartList, items]);
     // }
-    axios
-      .post("http://localhost:3001/cart/addcart", item)
-      .then((resp) => setCartItems((prevState) => [...prevState, resp.data]));
+    axios.post("http://localhost:3001/cart/addcart", item).then((resp) => {
+      return setCartItems((prevState) => [
+        ...prevState,
+        {
+          ...item,
+          order_detail: { price: item.price, quantity: item.quantity },
+        },
+      ]);
+    });
   };
 
   return (
