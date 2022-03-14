@@ -5,7 +5,7 @@ import swal from "sweetalert";
 // import { useNavigate } from "react-router-dom";
 
 export const UsersManagment = () => {
-  const { userAdmins } = useExcursionsContext();
+  const { users } = useExcursionsContext();
   // const navigate = useNavigate();
 
 
@@ -78,8 +78,8 @@ export const UsersManagment = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {userAdmins &&
-                    userAdmins.map((e) => {
+                  {users &&
+                    users.map((e) => {
                       return (
                         <tr key={e.id}>
                           <td className="px-6 py-4 whitespace-nowrap">

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
-import { getAllUserAdmins } from "./util/getAllUserAdmins";
+import { getAllUsers } from "./util/getAllUsers";
 import axios from "axios";
 
 export const ExcurcionsContext = createContext();
@@ -8,7 +8,7 @@ export const ExcurcionsContext = createContext();
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
 
 export const ExcursionsProvider = ({ children }) => {
-  const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
+  const [users, setUsers] = useState(); //constante que contiene todos los users
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
@@ -23,8 +23,8 @@ export const ExcursionsProvider = ({ children }) => {
         setExcursionFiltered(r)
       );
     });
-    getAllUserAdmins().then((r) => {
-      return setUserAdmins(r);
+    getAllUsers().then((r) => {
+      return setUsers(r);
     });
   }, []);
 
@@ -69,8 +69,8 @@ export const ExcursionsProvider = ({ children }) => {
     }
   };
 
-  //postAdmin
-  const addAdmin = (user) => {
+  //postUser antes era addAdmin
+  const addUser = (user) => {
     return axios
       .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
@@ -162,8 +162,8 @@ export const ExcursionsProvider = ({ children }) => {
         handleFilter,
         getExcursionById,
         handlePriceOrder,
-        addAdmin,
-        userAdmins,
+        addUser,
+        users,
         setAllExcursions,
         setExcursionFiltered,
         addExcursion,

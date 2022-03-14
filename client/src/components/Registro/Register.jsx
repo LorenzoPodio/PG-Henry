@@ -6,7 +6,7 @@ import { useExcursionsContext } from "../../context/ExcursionsContext";
 import validate from "./validate";
 
 export default function Register() {
-  const { addAdmin, userAdmins } = useExcursionsContext();
+  const { addUser, users } = useExcursionsContext();
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
@@ -22,7 +22,7 @@ export default function Register() {
     pass2: "",
   });
 
-  const admins = userAdmins; //traerme userAdmins
+  const admins = users; //traerme users
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -47,7 +47,7 @@ export default function Register() {
       });
 
       if (Object.values(validate(input, pass)).length === 0) {
-        addAdmin(input);
+        addUser(input);
         swal(
           "Usuario Creado con exito",
           "En instantes seras redirigido para iniciar sesion",

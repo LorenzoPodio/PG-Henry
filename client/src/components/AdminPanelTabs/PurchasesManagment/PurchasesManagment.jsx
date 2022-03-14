@@ -32,7 +32,7 @@ const purchases = [
 ]
 
 export const PurchasesManagment = () => {
-  // const { userAdmins, deleteExcursion } = useExcursionsContext();
+  // const { users, deleteExcursion } = useExcursionsContext();
 
   function handleBan(e) {
     swal({
