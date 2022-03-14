@@ -13,9 +13,14 @@ const NavBar2 = () => {
     { name: "Tarifas", href: "/tarifas", current: false },
     { name: "Sobre Nosotros", href: "/nosotros", current: false },
     { name: "Panel Admin", href: "/panelAdmin", current: false },
-    //{ name: 'Registrarse', href: '/registro', current: false },
   ]);
 
+  const [navigationAdmin, setNavigationAdmin] = useState([
+    { name: "Excursiones", href: "/excursiones", current: false },
+    { name: "Tarifas", href: "/tarifas", current: false },
+    { name: "Sobre Nosotros", href: "/nosotros", current: false },
+    { name: "Panel Admin", href: "/panelAdmin", current: false },
+  ]);
 
   const {loginWithRedirect, logout, user, isLoading} = useAuth0();
   
@@ -28,7 +33,6 @@ const NavBar2 = () => {
   const {
     users, addUser
   } = useExcursionsContext();
-
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -45,11 +49,6 @@ const NavBar2 = () => {
     return classes.filter(Boolean).join(" ");
   }
 
-
-  
-
-  
-  
   if (user && usuario.email === '0'){
 
     setUsuario((prevState) => {
@@ -101,21 +100,13 @@ const NavBar2 = () => {
           lastName: user.family_name,
         };
       });
-      
     }
-
-    
   }
 
-
-  console.log(users)
   if(!(users?.find((u) => u.email === usuario.email))){
-    console.log("hola")
     addUser(usuario)
   }
   
-
-
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
@@ -178,6 +169,24 @@ const NavBar2 = () => {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+               
+                {!user && !isLoading ? (
+                  <>
+                    <button
+                      className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      onClick={async () => await loginWithRedirect()}
+                    >
+                      Log in
+                    </button>
+                    <Link to="/registro">
+                      <button className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        Registrarse
+                      </button>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+
                 <Menu as="div" className="ml-3 relative">
                   <div style={{ margin: "1rem" }}>
                     <Menu.Button className="bg-sky-600 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
@@ -205,23 +214,6 @@ const NavBar2 = () => {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-
-                {!user && !isLoading ? (
-                  <>
-                    <button
-                      className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                      onClick={async () => await loginWithRedirect()}
-                    >
-                      Log in
-                    </button>
-                    <Link to="/registro">
-                      <button className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                        Registrarse
-                      </button>
-                    </Link>
-                  </>
-                ) : (
-                  <>
                     {/* Profile dropdown */}
                     <Menu as="div" className="ml-3 relative">
                       <div>
