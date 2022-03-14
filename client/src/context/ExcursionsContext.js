@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
-import { getAllUserAdmins } from "./util/getAllUserAdmins";
+import { getAllUsers } from "./util/getAllUsers";
 import axios from "axios";
 
 export const ExcurcionsContext = createContext();
@@ -8,7 +8,11 @@ export const ExcurcionsContext = createContext();
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
 
 export const ExcursionsProvider = ({ children }) => {
-  const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user admins
+
+  const [users, setUsers] = useState(); //constante que contiene todos los users
+
+  const [userAdmins, setUserAdmins] = useState(); //constante que contiene todos los user. CAMBIAR NOMBRE DE FUNCIONES
+
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
@@ -23,8 +27,8 @@ export const ExcursionsProvider = ({ children }) => {
         setExcursionFiltered(r)
       );
     });
-    getAllUserAdmins().then((r) => {
-      return setUserAdmins(r);
+    getAllUsers().then((r) => {
+      return setUsers(r);
     });
   }, []);
 
@@ -70,8 +74,8 @@ export const ExcursionsProvider = ({ children }) => {
     console.log(data,'que ondddda')
   };
 
-  //postAdmin
-  const addAdmin = (user) => {
+  //postUser antes era addAdmin
+  const addUser = (user) => {
     return axios
       .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
@@ -102,6 +106,36 @@ export const ExcursionsProvider = ({ children }) => {
           setData(response.data),
           // setData(response.data),
           setExcursionFiltered(response.data)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  //
+
+  //banUser
+  const banUser = (id) => {
+    return axios
+      .put(`http://localhost:3001/banuser/${id}`)
+      .then((response) => {
+        return (
+          setUserAdmins(response.data)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  //
+
+  //UnbanUser
+  const UnbanUser = (id) => {
+    return axios
+      .put(`http://localhost:3001/unbanuser/${id}`)
+      .then((response) => {
+        return (
+          setUserAdmins(response.data)
         );
       })
       .catch((err) => {
@@ -211,14 +245,16 @@ export const ExcursionsProvider = ({ children }) => {
         handleFilter,
         getExcursionById,
         handlePriceOrder,
-        addAdmin,
-        userAdmins,
+        addUser,
+        users,
         setAllExcursions,
         setExcursionFiltered,
         addExcursion,
         deleteExcursion,
         editExcursion,
         cancelledOrder,
+        banUser,
+        UnbanUser,
       }}
     >
       {children}

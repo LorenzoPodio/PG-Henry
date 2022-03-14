@@ -43,7 +43,7 @@ export const AdminPanelTabs = () => {
             <PurchasesManagment/>
           </div>
           <div className={toggleState === 3 ? "content  active-content" : "content"}>
-            <UsersManagment/>
+            <UsersManagment toggleTab={toggleTab}/>
           </div>
         </div>
       </div>

@@ -1,9 +1,14 @@
-import { Fragment, useState } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { Fragment, useEffect, useState } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
-export default function InputSelect(options) {
-  const [selected, setSelected] = useState(options.options[0])
+export default function InputSelect(props) {
+  const [selected, setSelected] = useState(props.options[0]);
+  const { handleTime } = props;
+
+  useEffect(() => {
+    handleTime(selected);
+  }, [selected]);
 
   return (
     <div className="w-72">
@@ -25,11 +30,12 @@ export default function InputSelect(options) {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {options.options.map((o, i) => (
+              {props.options.map((o, i) => (
                 <Listbox.Option
                   key={i}
                   className={({ active }) =>
-                    `cursor-default select-none relative py-2 pl-10 pr-4 ${active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'
+                    `cursor-default select-none relative py-2 pl-10 pr-4 ${
+                      active ? "text-amber-900 bg-amber-100" : "text-gray-900"
                     }`
                   }
                   value={o}
@@ -37,8 +43,9 @@ export default function InputSelect(options) {
                   {({ selected }) => (
                     <>
                       <span
-                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'
-                          }`}
+                        className={`block truncate ${
+                          selected ? "font-medium" : "font-normal"
+                        }`}
                       >
                         {o}
                       </span>
@@ -56,5 +63,5 @@ export default function InputSelect(options) {
         </div>
       </Listbox>
     </div>
-  )
+  );
 }
