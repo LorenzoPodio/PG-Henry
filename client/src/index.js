@@ -5,17 +5,20 @@ import App from "./App";
 import "./input.css";
 import { ExcursionsProvider } from "./context/ExcursionsContext";
 import { BrowserRouter as Router } from "react-router-dom";
+import Auth0ProviderWithHistory from "./Auth0Provider/auth0Provider";
 
 import { CartProvider } from "./context/CartContext";
 
 ReactDOM.render(
-  <CartProvider>
-    <ExcursionsProvider>
-      <Router>
-        <App />
-      </Router>
-    </ExcursionsProvider>
-  </CartProvider>,
+  <Router>
+    <Auth0ProviderWithHistory>
+      <CartProvider>
+        <ExcursionsProvider>
+          <App />
+        </ExcursionsProvider>
+      </CartProvider>
+    </Auth0ProviderWithHistory>
+  </Router>,
 
   document.getElementById("root")
 );
