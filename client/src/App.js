@@ -19,6 +19,7 @@ import Cart from "./components/Cart/Cart";
 
 import Auth0ProviderWithHistory from "./Auth0Provider/auth0Provider";
 import { Profile } from "./components/Profile/Profile";
+import { AdminMailer } from "./components/AdminMailer/AdminMailer";
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
           <Route exact path="/checkout" element={<Stepper />} />
           <Route path="/panelAdmin" element={<AdminPanelTabs />} />
           <Route path="/miPerfil" element={<Profile />} />
-
+          <Route path="/adminMailer" element={<AdminMailer />} />
       </Routes>
       <Footer/>
     </div>
