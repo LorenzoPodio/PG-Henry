@@ -17,7 +17,7 @@ deleteBuy.delete("/", async (req, res, next) => {
                 orderId: orderId
             },
             include: [{
-                model: Product, attributes: ["name", "date", "id" ],
+                model: Product, attributes: ["name", "date", "id", "stock" ],
 
             }],
                 
@@ -30,7 +30,9 @@ deleteBuy.delete("/", async (req, res, next) => {
         let nameProd = mapProd?.map(name => {
             return {
                 name: name.dataValues.name,
-                date: name.dataValues.date
+                date: name.dataValues.date,
+                id : name.dataValues.id,
+                stock:name.dataValues.stock,
             }
         })
 
@@ -74,11 +76,27 @@ deleteBuy.delete("/", async (req, res, next) => {
             { status: "cancelled" },
             { where: { id: orderId } }
         );
+
+        function arrayHand(array1, array2) {
+            if (array1.length === array2.length) {
+                
+                for (var i = 0; i < array1.length; i++) {
+                    
+                Product.update(
+                    { stock: array1[i].stock + array2[i].quantity },
+                    { where: { id: array1[i].id } }
+                )
+                
+                }
+            }
+        }
+         arrayHand(nameProd, mapPrice)
+
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 return res.status(500).send(error.message);
             } else {
-      res.status(200).jsonp("no devuelve nada porque no necesita");
+      res.status(200).jsonp("newStock");
             }   
         })
         
