@@ -41,7 +41,7 @@ substractCart.put("/", async (req, res, next) => {
                     status: "empty"
                 }, {
                     where: {
-                        userId: order[0].userId
+                       id: order[0].orderId
                     }
                 })
             }

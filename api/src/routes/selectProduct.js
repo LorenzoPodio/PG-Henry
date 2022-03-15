@@ -37,7 +37,6 @@ selectProduct.post("/", async (req, res, next) => {
         });
 
        
-        console.log(images, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
             if (quantity) return res.status(200).json(newProduct[0].stock - quantity);
             
             return res.status(200).json(newProduct[0].stock)

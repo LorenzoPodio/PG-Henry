@@ -115,13 +115,7 @@ export const CartProvider = ({ children }) => {
         swal("Excursion agregada al carrito", {
           icon: "success",
         });
-        return setCartItems((prevState) => [
-          ...prevState,
-          {
-            ...item,
-            order_detail: { price: item.price, quantity: item.quantity },
-          },
-        ]);
+        return setCartItems(() => resp.data);
       })
       .catch((e) => {
         swal("Error, porfavor vuelva a intentarlo", {

@@ -1,19 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./OrderReview.module.css";
+import { useCartContext } from "../../context/CartContext";
 
 export default function OrderReview({ handleClick }) {
   // Debería traerme de mi estado carrito la información para poner el detalle.
   // Estado cart de cartContext.
-
+  const { cartItems } = useCartContext();
+  
   //se Hardcodea info en variable compras
-  const buy = [
-    { name: "Navegacion calafate", price: "12500", quantity: "2" },
-    { name: "Nueva excursion", price: "1500", quantity: "5" },
-  ];
-  const total = buy.map((e) => e.price * e.quantity);
+  // const buy = [
+  //   { name: "Navegacion calafate", price: "12500", quantity: "2" },
+  //   { name: "Nueva excursion", price: "1500", quantity: "5" },
+  // ];
+  
+  // const total = buy.map((e) => e.price * e.quantity);
+  // const reduc = (accumulator, curr) => accumulator + curr;
+  // const totalbuy = total.reduce(reduc);
+
+  const total = cartItems.map((e) => e.totalPrice);
   const reduc = (accumulator, curr) => accumulator + curr;
-  const totalbuy = total.reduce(reduc);
+  const totalbuy = total.reduce(reduc, 0)
+  // console.log(total,'acaaaa')
+
+  // console.log(total,'a ver que ondaaaa')
   return (
     <div className={style.orderReviewContainer}>
       <div className="shadow overflow-hidden " id="top">
@@ -58,15 +68,15 @@ export default function OrderReview({ handleClick }) {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {buy &&
-                    buy.map((e) => {
+                  {cartItems &&
+                    cartItems.map((e) => {
                       return (
-                        <tr key={e.name}>
+                        <tr key={e.product.name}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-left">
                               <div>
                                 <div className="text-sm font-medium text-gray-900">
-                                  {e.name}
+                                  {e.product.name}
                                 </div>
                               </div>
                             </div>
