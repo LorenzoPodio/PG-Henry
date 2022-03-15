@@ -26,7 +26,7 @@ addCart.post("/", async (req, res, next) =>{
               ],
             },
           });
-            
+            console.log(stateCart, 'esteeeee')
             if (stateCart.dataValues.status === "empty"){
               stateCart.dataValues.status = "buying";
             }

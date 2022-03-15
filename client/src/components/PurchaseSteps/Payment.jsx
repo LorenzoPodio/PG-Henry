@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "../MercadoPago/Checkout";
+import { useCartContext } from "../../context/CartContext";
 
 export default function Payment({ handleClick }) {
   const [data, setData] = useState(""); //Estado para setear la respuesta de mercado pago
+  const { cartItems } = useCartContext();
 
+console.log(cartItems,'estosssssss')
   //   //  IMPLEMENTACION DE MP
   useEffect(() => {
     axios
-      .post("http://localhost:3001/mercadopago")
+      .post("http://localhost:3001/mercadopago", cartItems)
       .then((data) => {
         setData(data.data);
         console.info("Contenido de data:", data);
@@ -44,7 +47,7 @@ export default function Payment({ handleClick }) {
       {!data ? (
         <p>Aguarde un momento....</p>
       ) : (
-        <Checkout products={products} data={data} />
+        <Checkout products={cartItems} data={data} />
       )}
     </div>
   );

@@ -26,13 +26,13 @@ export default function Checkout({ products, data }) {
       <form id="form1">
         <h4>Checkout</h4>
         <div>
-          {products?.map((producto, i) => {
+          {products && products.map((producto, i) => {
             return (
               <div>
                 <ul>
-                  <li>{producto.title}</li>
-                  <li>{"$" + producto.price}</li>
-                  <li>{producto.quantity}</li>
+                  <li>{producto.name}</li>
+                  <li>{"$" + producto.order_detail.price}</li>
+                  <li>{producto.order_detail.quantity}</li>
                 </ul>
               </div>
             );

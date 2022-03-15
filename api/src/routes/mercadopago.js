@@ -12,13 +12,14 @@ mercadopago.configure({
 
 mp.post("/", function (req, res) {
   let preference = {
-    items: [
-      {
-        title: "ItemPrueba",
-        unit_price: 100,
-        quantity: 1,
-      },
-    ],
+    // items: [
+    //   {
+    //     title: "ItemPrueba",
+    //     unit_price: 100,
+    //     quantity: 1,
+    //   },
+    // ],
+    items: req.body.map(e => e),
     external_reference : "1",
     payment_methods: {
       excluded_payment_types: [
@@ -35,6 +36,7 @@ mp.post("/", function (req, res) {
     },
     auto_return: "approved",
   };
+  console.log(preference.items,' quellego acaaaa')
 
   mercadopago.preferences
     .create(preference)
@@ -48,11 +50,15 @@ mp.post("/", function (req, res) {
 });
 
 mp.get("/feedback", function (req, res) {
-  res.json({
-    Payment: req.query.payment_id,
-    Status: req.query.status,
-    MerchantOrder: req.query.merchant_order_id,
-  });
+  // res.json({
+  //   Payment: req.query.payment_id,
+  //   Status: req.query.status,
+  //   MerchantOrder: req.query.merchant_order_id,
+  // });
+  const status = req.query.status
+  console.log(status,'esteee')
+  const allDates = req.query
+  console.log(allDates, 'este otroooo')
 });
 
 module.exports = mp;

@@ -21,7 +21,7 @@ function Cart() {
                   // images={e.Images}
                   // location={e.location}
                   date={e.date}
-                  price={e.order_detail.price}
+                  price={e.order_detail.price + `*` + e.order_detail.quantity + ` = ` +e.order_detail.price * e.order_detail.quantity}
                   quantity={e.quantity}
                   // excursionType={e.excursionType}
                 />

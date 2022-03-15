@@ -1,19 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import style from "./OrderReview.module.css";
+import { useCartContext } from "../../context/CartContext";
 
 export default function OrderReview({ handleClick }) {
   // Debería traerme de mi estado carrito la información para poner el detalle.
   // Estado cart de cartContext.
-
+  const { cartItems } = useCartContext();
+  
   //se Hardcodea info en variable compras
-  const buy = [
-    { name: "Navegacion calafate", price: "12500", quantity: "2" },
-    { name: "Nueva excursion", price: "1500", quantity: "5" },
-  ];
-  const total = buy.map((e) => e.price * e.quantity);
+  // const buy = [
+  //   { name: "Navegacion calafate", price: "12500", quantity: "2" },
+  //   { name: "Nueva excursion", price: "1500", quantity: "5" },
+  // ];
+  
+  // const total = buy.map((e) => e.price * e.quantity);
+  // const reduc = (accumulator, curr) => accumulator + curr;
+  // const totalbuy = total.reduce(reduc);
+
+  const total = cartItems.map((e) => e.order_detail.totalPrice);
   const reduc = (accumulator, curr) => accumulator + curr;
-  const totalbuy = total.reduce(reduc);
+  const totalbuy = total.reduce(reduc)
+  // console.log(total,'acaaaa')
+
+  // console.log(total,'a ver que ondaaaa')
   return (
     <div className={style.orderReviewContainer}>
       <div className="shadow overflow-hidden " id="top">
@@ -58,8 +68,8 @@ export default function OrderReview({ handleClick }) {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {buy &&
-                    buy.map((e) => {
+                  {cartItems &&
+                    cartItems.map((e) => {
                       return (
                         <tr key={e.name}>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -73,17 +83,17 @@ export default function OrderReview({ handleClick }) {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="text-sm text-gray-900">
-                              $ {e.price}
+                              $ {e.order_detail.price}
                             </div>
                           </td>
                           <td className="px-14 py-4 whitespace-nowrap">
                             <div className="text-sm text-gray-900">
-                              {e.quantity}
+                              {e.order_detail.quantity}
                             </div>
                           </td>
                           <td className="px-6 py- whitespace-nowrap">
                             <div className="text-sm font-bold text-gray-900">
-                              $ {e.quantity * e.price}
+                              $ {e.order_detail.quantity * e.order_detail.price}
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
