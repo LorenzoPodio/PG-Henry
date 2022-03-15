@@ -26,22 +26,22 @@ const NavBar2 = () => {
 
   const { loginWithRedirect, logout, user, isLoading } = useAuth0();
 
+
   const [usuario, setUsuario] = useState({
     email: "0",
     name: "0",
     lastName: "0",
-    picture: ""
+    picture: "",
   });
 
   const { users, addUser } = useExcursionsContext();
 
-  const { createCart, cartItems, getUserCart } = useCartContext();
+  const { createCart, cartItems } = useCartContext();
 
   users?.map((u) => {
     if (u.email === usuario?.email) {
       check = false;
     }
-    
   });
 
   function handleClick(e) {
@@ -114,10 +114,6 @@ const NavBar2 = () => {
       });
     }
   }
-
-  useEffect(() => {
-    getUserCart(usuario.email);
-  }, []);
 
   if (user && usuario.lastName !== "0" && check) {
     addUser(usuario);
@@ -197,35 +193,34 @@ const NavBar2 = () => {
                   </>
                 ) : (
                   <>
-
-                <Menu as="div" className="ml-3 relative">
-                  <div style={{ margin: "1rem" }}>
-                    <Menu.Button className="bg-sky-600 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                      <span className="sr-only">Carrito</span>
-                      <ShoppingCartIcon
-                        className="h-6 w-6"
-                        aria-hidden="true"
-                      />
-                      <span>{cartItems?.length}</span>
-                    </Menu.Button>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items
-                      className="origin-top-right absolute right-0 mt-0 w-max rounded-md shadow-lg  pt-4 px-2 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none"
-                      style={{ zIndex: "1" }}
-                    >
-                      <Menu.Item>{({ active }) => <Cart></Cart>}</Menu.Item>
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
+                    <Menu as="div" className="ml-3 relative">
+                      <div style={{ margin: "1rem" }}>
+                        <Menu.Button className="bg-sky-600 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                          <span className="sr-only">Carrito</span>
+                          <ShoppingCartIcon
+                            className="h-6 w-6"
+                            aria-hidden="true"
+                          />
+                          <span>{cartItems?.length}</span>
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items
+                          className="origin-top-right absolute right-0 mt-0 w-max rounded-md shadow-lg  pt-4 px-2 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                          style={{ zIndex: "1" }}
+                        >
+                          <Menu.Item>{({ active }) => <Cart></Cart>}</Menu.Item>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
                     {/* Profile dropdown */}
                     <Menu as="div" className="ml-3 relative">
                       <div>

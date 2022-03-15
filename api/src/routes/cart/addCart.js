@@ -22,7 +22,7 @@ addCart.post("/", async (req, res, next) => {
       const stateCart = await Order.findOne({
         where: {
           [Op.and]: [
-            { userId: getUserId.dataValues.id },
+            { userId: getUserId?.dataValues.id },
             {
               status: {
                 [Op.or]: ["empty", "buying"],
@@ -41,7 +41,7 @@ addCart.post("/", async (req, res, next) => {
         },
         {
           where: {
-            userId: stateCart.dataValues.userId,
+            userId: stateCart?.dataValues.userId,
           },
         }
       );
