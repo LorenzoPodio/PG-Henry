@@ -87,17 +87,14 @@ export const useCartContext = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    axios.post("http://localhost:3001/cart/orderpost", {
-      email: "djdjhdjhn@hotmail.com",
-    }); //Podriamos modificar la ruta del back para que este post devuelva todo el carrito del usuario.
+  const getUserCart = (email) =>{
     axios
-      .get(`http://localhost:3001/cart/getorderid/djdjhdjhn@hotmail.com`)
+      .get(`http://localhost:3001/cart/getorderid/${email}`)
       .then((resp) => {
-        return setCartItems(() => resp.data); //[{name, date, order_detail:{price, quantity}}]
+        return setCartItems(() => resp.data.products); 
       })
       .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
-  }, []);
+  }
 
   const addItemToCart = (item) => {
     // const itemIndex = cartItems.findIndex( //logica para no repetir excursiones en el carrito
@@ -128,11 +125,25 @@ export const CartProvider = ({ children }) => {
       });
   };
 
+  const createCart = (email) => {
+    let mail = {}
+    mail.email = email
+    console.log(mail)
+    return axios
+      .post("http://localhost:3001/cart/orderpost", mail)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
         addItemToCart,
+        createCart,
+        getUserCart,
         // deleteItemToCart,
       }}
     >

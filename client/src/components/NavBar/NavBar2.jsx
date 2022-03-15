@@ -1,14 +1,15 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "../Cart/Cart";
-import { useExcursionsContext } from '../../context/ExcursionsContext'
+import { useExcursionsContext } from "../../context/ExcursionsContext";
 import swal from "sweetalert";
 import { useCartContext } from "../../context/CartContext";
 
 const NavBar2 = () => {
+  let check = true;
   const [navigation, setNavigation] = useState([
     { name: "Excursiones", href: "/excursiones", current: false },
     { name: "Tarifas", href: "/tarifas", current: false },
@@ -23,19 +24,25 @@ const NavBar2 = () => {
     { name: "Panel Admin", href: "/panelAdmin", current: false },
   ]);
 
-  const {loginWithRedirect, logout, user, isLoading} = useAuth0();
-  
-  const  [usuario, setUsuario] = useState({
+  const { loginWithRedirect, logout, user, isLoading } = useAuth0();
+
+  const [usuario, setUsuario] = useState({
     email: "0",
     name: "0",
-    lastName: "0"
-  })
+    lastName: "0",
+    picture: ""
+  });
 
-  const {
-    users, addUser
-  } = useExcursionsContext();
+  const { users, addUser } = useExcursionsContext();
 
-const {cartItems} = useCartContext();
+  const { createCart, cartItems, getUserCart } = useCartContext();
+
+  users?.map((u) => {
+    if (u.email === usuario?.email) {
+      check = false;
+    }
+    console.log(check);
+  });
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -52,8 +59,7 @@ const {cartItems} = useCartContext();
     return classes.filter(Boolean).join(" ");
   }
 
-  if (user && usuario.email === '0'){
-
+  if (user && usuario.email === "0") {
     setUsuario((prevState) => {
       return {
         ...prevState,
@@ -61,13 +67,17 @@ const {cartItems} = useCartContext();
       };
     });
 
-    if((user.sub.search("google")) === -1){
-      
+    setUsuario((prevState) => {
+      return {
+        ...prevState,
+        picture: user.picture,
+      };
+    });
+
+    if (user.sub.search("google") === -1 && check) {
       swal("Complete su nombre aqui:", {
         content: "input",
-      })
-      .then((value) => {
-
+      }).then((value) => {
         setUsuario((prevState) => {
           return {
             ...prevState,
@@ -75,22 +85,21 @@ const {cartItems} = useCartContext();
           };
         });
         swal(`Su nombre es: ${value}`);
-      
 
-      swal("Complete su apellido aqui:", {
-        content: "input",
-      })
-      .then((value) => {
-        setUsuario((prevState) => {
-          return {
-            ...prevState,
-            lastName: value,
-          };
+        swal("Complete su apellido aqui:", {
+          content: "input",
+        }).then((value) => {
+          setUsuario((prevState) => {
+            return {
+              ...prevState,
+              lastName: value,
+            };
+          });
+
+          swal(`Sus datos fueron completados con exito!`);
         });
-        swal(`Sus datos fueron completados con exito!`);
-      });});
-    }
-    else{
+      });
+    } else {
       setUsuario((prevState) => {
         return {
           ...prevState,
@@ -106,10 +115,15 @@ const {cartItems} = useCartContext();
     }
   }
 
-  if(!(users?.find((u) => u.email === usuario.email))){
-    addUser(usuario)
+  useEffect(() => {
+    getUserCart(usuario.email);
+  }, []);
+
+  if (user && usuario.lastName !== "0" && check) {
+    addUser(usuario);
+    createCart(usuario.email);
   }
-  
+
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
@@ -172,7 +186,6 @@ const {cartItems} = useCartContext();
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-               
                 {!user && !isLoading ? (
                   <>
                     <button
@@ -181,11 +194,6 @@ const {cartItems} = useCartContext();
                     >
                       Log in
                     </button>
-                    {/* <Link to="/registro">
-                      <button className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                        Registrarse
-                      </button>
-                    </Link> */}
                   </>
                 ) : (
                   <>
@@ -225,7 +233,7 @@ const {cartItems} = useCartContext();
                           <span className="sr-only">Open user menu</span>
                           <img
                             className="h-8 w-8 rounded-full"
-                            src={user?.picture}
+                            src={usuario?.picture}
                             alt=""
                           />
                         </Menu.Button>

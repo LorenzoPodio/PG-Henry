@@ -1,16 +1,10 @@
 import { useExcursionsContext } from "../../../context/ExcursionsContext";
 import { PencilIcon, TrashIcon, PlusCircleIcon } from "@heroicons/react/solid";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export const ExcursionsManagment = () => {
   const { allExcursions, deleteExcursion } = useExcursionsContext();
-  const navigate = useNavigate();
-
-  function handleEdit(e) {
-    navigate(`/editarExcursion?id=${e.target.value}&name=${e.target.name}`);
-  }
 
   function handleDelete(e) {
     swal({
