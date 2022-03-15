@@ -7,14 +7,25 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
 
     sequelize.define('order_detail', {
+        detailId: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false
+          },
         price: { //precio
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         quantity: { //cantidad
             type: DataTypes.INTEGER,
             allowNull: false,
-        }
+        },
+        totalPrice: { //precio
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            
+        },
     },
     { timestamps: false });
 }; 

@@ -1,5 +1,6 @@
 import { useState, useContext, createContext, useEffect } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 export const CartContext = createContext();
 
@@ -90,9 +91,12 @@ export const CartProvider = ({ children }) => {
     axios.post("http://localhost:3001/cart/orderpost", {
       email: "djdjhdjhn@hotmail.com",
     }); //Podriamos modificar la ruta del back para que este post devuelva todo el carrito del usuario.
-    axios.get(`http://localhost:3001/cart/getorderid/1`).then((resp) => {
-      return setCartItems(() => resp.data.products);
-    }); //Harcodeamos el id del carrito
+    axios
+      .get(`http://localhost:3001/cart/getorderid/1`)
+      .then((resp) => {
+        return setCartItems(() => resp.data.products); //[{name, date, order_detail:{price, quantity}}]
+      })
+      .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
   }, []);
 
   const addItemToCart = (item) => {
@@ -108,15 +112,26 @@ export const CartProvider = ({ children }) => {
     // } else {
     //   setCartList([...cartList, items]);
     // }
-    axios.post("http://localhost:3001/cart/addcart", item).then((resp) => {
-      return setCartItems((prevState) => [
-        ...prevState,
-        {
-          ...item,
-          order_detail: { price: item.price, quantity: item.quantity },
-        },
-      ]);
-    });
+    axios
+      .post("http://localhost:3001/cart/addcart", item)
+      .then((resp) => {
+        swal("Excursion agregada al carrito", {
+          icon: "success",
+        });
+        return setCartItems((prevState) => [
+          ...prevState,
+          {
+            ...item,
+            order_detail: { price: item.price, quantity: item.quantity },
+          },
+        ]);
+      })
+      .catch((e) => {
+        swal("Error, porfavor vuelva a intentarlo", {
+          icon: "error",
+        });
+        return console.log(e);
+      });
   };
 
   const createCart = (email) => {

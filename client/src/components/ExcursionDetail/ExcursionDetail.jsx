@@ -57,8 +57,9 @@ export const ExcursionDetail = () => {
     });
   };
   const handleDate = (date) => {
+    let dateJson = JSON.stringify(date);
     setItem((prevState) => {
-      return { ...prevState, date };
+      return { ...prevState, date: dateJson };
     });
   };
   // const {Images, createdInDb, date, description, excursionType, extra, location, name, price, time} = excursionByid;

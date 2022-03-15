@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const selectProduct = Router();
-const { Product } = require("../db.js");
+const { Product, Excursion } = require("../db.js");
 
 // Esta ruta se ejecuta cuando se selecciona una excursione en el 
 //front para ver si tiene stock y retorna el stock actual de la excursion en esa fecha y dia
@@ -14,37 +14,32 @@ selectProduct.post("/", async (req, res, next) => {
         }
         const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
 
+        const images = await Excursion.findOne({
+            where: {
+            name: nameUpper,
+           
+        }, attributes: ["Images"]
+
+
+        })
+
+
         const newProduct = await Product.findOrCreate({
             where: {
                 name: nameUpper,
                 date: date,
                 time: time,
-                price: price
+                price: price,
+                Images:images.dataValues.Images,
+               
+                
             }
         });
 
-        // if (newProduct[0].stock - quantity >= 0) {
-
-
-            // await Product.update(
-            //     {
-            //         stock: newProduct[0].stock - amount,
-            //         name: newProduct[0].name,
-            //         day: newProduct[0].day,
-            //         date: newProduct[0].date,
-            //         time: newProduct[0].time,
-            //         price: newProduct[0].price,
-            //     },
-            //     {
-            //         where: {
-            //             id: newProduct[0].id,
-            //         },
-            //     }
-            // );
-
-
+       
+        console.log(images, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
             if (quantity) return res.status(200).json(newProduct[0].stock - quantity);
-
+            
             return res.status(200).json(newProduct[0].stock)
             
 
