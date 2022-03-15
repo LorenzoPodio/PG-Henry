@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const addCart = Router();
 const { Op } = require("sequelize");
-const { Order, Order_detail, Product, Excursion } = require("../../db");
+const { Order, Order_detail, Product, Excursion, User } = require("../../db");
 
 //ruta que requiere los mismos datos del producto cargado en la ruta selectProduct
 //para hacer la carga del mismo en el carrito en la db con el id del usuario
@@ -14,10 +14,15 @@ addCart.post("/", async (req, res, next) => {
     if (!name || !date || !time || !quantity || !price) {
       return res.status(500).send("Necessary parameters not found");
     } else {
+      const getUserId = await User.findOne({
+        where: {
+         email: email
+        }, attributes: ["id"],
+      });
       const stateCart = await Order.findOne({
         where: {
           [Op.and]: [
-            { userId: id },
+            { userId: getUserId.dataValues.id },
             {
               status: {
                 [Op.or]: ["empty", "buying"],
