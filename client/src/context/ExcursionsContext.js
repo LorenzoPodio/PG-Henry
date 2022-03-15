@@ -3,6 +3,7 @@ import { getExcursions } from "./util/getExcursions";
 import { getAllUsers } from "./util/getAllUsers";
 import axios from "axios";
 
+
 export const ExcurcionsContext = createContext();
 
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
@@ -10,8 +11,7 @@ export const useExcursionsContext = () => useContext(ExcurcionsContext);
 export const ExcursionsProvider = ({ children }) => {
 
   const [users, setUsers] = useState(); //constante que contiene todos los users
-
-
+  
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
@@ -19,6 +19,7 @@ export const ExcursionsProvider = ({ children }) => {
   const [excursionByid, setExcursionByid] = useState();
 
   useEffect(() => {
+    
     getExcursions().then((r) => {
       return (
         setAllExcursions(r),
@@ -197,40 +198,6 @@ export const ExcursionsProvider = ({ children }) => {
         console.log(err);
       });
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   return (
     <ExcurcionsContext.Provider
