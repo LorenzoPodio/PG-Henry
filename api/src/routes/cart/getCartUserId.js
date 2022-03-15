@@ -5,7 +5,7 @@ const { Order, Product, User, Order_detail } = require("../../db");
 
 //ruta que pide por params el id del usuario para retornar su carrito
 //con los productos dentro del mismo con el nombre y la fecha del mismo
-
+//ACTUALMENTE NO SE USA PARA NADA JEJE
 getCartUserId.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
