@@ -18,9 +18,9 @@ export default function OrderReview({ handleClick }) {
   // const reduc = (accumulator, curr) => accumulator + curr;
   // const totalbuy = total.reduce(reduc);
 
-  const total = cartItems.map((e) => e.order_detail.totalPrice);
+  const total = cartItems.map((e) => e.totalPrice);
   const reduc = (accumulator, curr) => accumulator + curr;
-  const totalbuy = total.reduce(reduc)
+  const totalbuy = total.reduce(reduc, 0)
   // console.log(total,'acaaaa')
 
   // console.log(total,'a ver que ondaaaa')
@@ -71,29 +71,29 @@ export default function OrderReview({ handleClick }) {
                   {cartItems &&
                     cartItems.map((e) => {
                       return (
-                        <tr key={e.name}>
+                        <tr key={e.product.name}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-left">
                               <div>
                                 <div className="text-sm font-medium text-gray-900">
-                                  {e.name}
+                                  {e.product.name}
                                 </div>
                               </div>
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="text-sm text-gray-900">
-                              $ {e.order_detail.price}
+                              $ {e.price}
                             </div>
                           </td>
                           <td className="px-14 py-4 whitespace-nowrap">
                             <div className="text-sm text-gray-900">
-                              {e.order_detail.quantity}
+                              {e.quantity}
                             </div>
                           </td>
                           <td className="px-6 py- whitespace-nowrap">
                             <div className="text-sm font-bold text-gray-900">
-                              $ {e.order_detail.quantity * e.order_detail.price}
+                              $ {e.quantity * e.price}
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>

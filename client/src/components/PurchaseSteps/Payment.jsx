@@ -19,11 +19,11 @@ console.log(cartItems,'estosssssss')
       .catch((err) => console.error(err));
   }, []);
   //Products ---> Serian los productos que estan en la tabla Order relacionadas al usuario.
-  const products = [
-    { title: "Producto 1", quantity: 5, price: 10.52 },
-    { title: "Producto 2", quantity: 15, price: 100.52 },
-    { title: "Producto 3", quantity: 6, price: 200 },
-  ];
+  // const products = [
+  //   { title: "Producto 1", quantity: 5, price: 10.52 },
+  //   { title: "Producto 2", quantity: 15, price: 100.52 },
+  //   { title: "Producto 3", quantity: 6, price: 200 },
+  // ];
   //   ////////////////////
 
   return (
@@ -39,9 +39,9 @@ console.log(cartItems,'estosssssss')
         </span>
         Pequeño Cart con excursion su cantidad y precio, y el precio total +
         boton de volver al step 1
-        <button onClick={() => handleClick("PersonalDetails")}>
+        <button onClick={() => handleClick("PersonalDetails")} type="button">
           Modificar datos personales
-        </button>
+        </button >
       </div>
       Checkout para pagar, aca va mercado pago!
       {!data ? (

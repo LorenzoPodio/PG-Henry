@@ -92,9 +92,9 @@ export const CartProvider = ({ children }) => {
       email: "djdjhdjhn@hotmail.com",
     }); //Podriamos modificar la ruta del back para que este post devuelva todo el carrito del usuario.
     axios
-      .get(`http://localhost:3001/cart/getorderid/1`)
+      .get(`http://localhost:3001/cart/getorderid/djdjhdjhn@hotmail.com`)
       .then((resp) => {
-        return setCartItems(() => resp.data.products); //[{name, date, order_detail:{price, quantity}}]
+        return setCartItems(() => resp.data); //[{name, date, order_detail:{price, quantity}}]
       })
       .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
   }, []);
@@ -118,8 +118,7 @@ export const CartProvider = ({ children }) => {
         swal("Excursion agregada al carrito", {
           icon: "success",
         });
-        console.log(resp.data);
-        return setCartItems((prevState) => resp.data?.map((e) => e.product));
+        return setCartItems(() => resp.data);
       })
       .catch((e) => {
         swal("Error, porfavor vuelva a intentarlo", {

@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 function Cart() {
   const { cartItems } = useCartContext();
-
   return (
     <div>
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -17,11 +16,11 @@ function Cart() {
                 <CartCard
                   // id={e.id}
                   key={i}
-                  name={e.name}
+                  name={e.product.name}
                   // images={e.Images}
                   // location={e.location}
                   date={e.date}
-                  price={e.order_detail.price + `*` + e.order_detail.quantity + ` = ` +e.order_detail.price * e.order_detail.quantity}
+                  price={e.price + `*` + e.quantity + ` = ` +e.price * e.quantity}
                   quantity={e.quantity}
                   // excursionType={e.excursionType}
                 />
