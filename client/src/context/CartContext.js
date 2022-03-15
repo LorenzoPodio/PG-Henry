@@ -119,11 +119,24 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const createCart = (email) => {
+    let mail = {}
+    mail.email = email
+    console.log(mail)
+    return axios
+      .post("http://localhost:3001/cart/orderpost", mail)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
         addItemToCart,
+        createCart
         // deleteItemToCart,
       }}
     >

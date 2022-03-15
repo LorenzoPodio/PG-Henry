@@ -6,8 +6,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "../Cart/Cart";
 import { useExcursionsContext } from '../../context/ExcursionsContext'
 import swal from "sweetalert";
+import {useCartContext} from '../../context/CartContext'
 
 const NavBar2 = () => {
+  let check = true
   const [navigation, setNavigation] = useState([
     { name: "Excursiones", href: "/excursiones", current: false },
     { name: "Tarifas", href: "/tarifas", current: false },
@@ -31,8 +33,19 @@ const NavBar2 = () => {
   })
 
   const {
-    users, addUser
+    users, addUser, 
   } = useExcursionsContext();
+
+  const {
+    createCart
+  } = useCartContext();
+
+  users?.map((u) => {
+    if (u.email === usuario?.email){
+      check = false
+    }
+    console.log(check)
+  })
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -58,7 +71,8 @@ const NavBar2 = () => {
       };
     });
 
-    if((user.sub.search("google")) === -1){
+    if((user.sub.search("google")) === -1 && check){
+      
       
       swal("Complete su nombre aqui:", {
         content: "input",
@@ -83,7 +97,8 @@ const NavBar2 = () => {
             ...prevState,
             lastName: value,
           };
-        });
+        })
+        
         swal(`Sus datos fueron completados con exito!`);
       });});
     }
@@ -100,12 +115,16 @@ const NavBar2 = () => {
           lastName: user.family_name,
         };
       });
-    }
+    }}
+  
+
+  if (user && usuario.lastName !== '0' && check){
+  addUser(usuario);
+  createCart(usuario.email)
+  
   }
 
-  if(!(users?.find((u) => u.email === usuario.email))){
-    addUser(usuario)
-  }
+
   
   return (
     <Disclosure as="nav" className="bg-sky-600">
@@ -178,11 +197,6 @@ const NavBar2 = () => {
                     >
                       Log in
                     </button>
-                    <Link to="/registro">
-                      <button className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                        Registrarse
-                      </button>
-                    </Link>
                   </>
                 ) : (
                   <>
