@@ -6,12 +6,15 @@ import InputSelect from "../InputSelect/InputSelect";
 import { ShoppingCartIcon } from "@heroicons/react/solid";
 import { DetailDatePicker } from "./DetailDatePicker/DetailDatePicker";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const ExcursionDetail = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
   const [stock, setStock] = useState("0");
   const { id } = useParams();
 
+  const {user} = useAuth0();
+  
   const [disabled, setDisabled] = useState(true);
   const { excursionByid, getExcursionById } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
@@ -69,7 +72,7 @@ export const ExcursionDetail = () => {
       ...item,
       name: excursionByid.name,
       price: excursionByid.price,
-      id: 1, //Aca en realidad iría el id del usuario
+      email: user?.email, //Aca en realidad iría el id del usuario
     });
   };
 
