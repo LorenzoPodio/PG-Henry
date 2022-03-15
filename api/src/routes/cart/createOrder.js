@@ -18,26 +18,25 @@ createOrder.post("/", async (req, res, next) => {
        email: email
       }, attributes: ["id"],
     });
-    // console.log(getUserId.dataValues.id,'getuseridd')
+    
     const OrderStatusCreated = await Order.findOne({
       where: {
         userId: getUserId.dataValues.id,
         status: "buying",
       },
     });
-
+    if (!OrderStatusCreated) {
     const OrderStatusCart = await Order.findOrCreate({
       where: {
         userId: getUserId.dataValues.id,
         status: "empty",
       },
     });
-    
-    if (!OrderStatusCreated) {
-      return res.status(200).send(OrderStatusCart);
-    } else {
-      return res.status(201).send(OrderStatusCreated);
-    }
+    return res.status(200).send(OrderStatusCart)
+  }
+   
+    return res.status(201).send(OrderStatusCreated);
+ 
   } catch (error) {
     next(error);
   }
