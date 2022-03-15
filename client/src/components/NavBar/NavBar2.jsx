@@ -181,11 +181,11 @@ const {cartItems} = useCartContext();
                     >
                       Log in
                     </button>
-                    <Link to="/registro">
+                    {/* <Link to="/registro">
                       <button className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                         Registrarse
                       </button>
-                    </Link>
+                    </Link> */}
                   </>
                 ) : (
                   <>
@@ -198,7 +198,7 @@ const {cartItems} = useCartContext();
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
-                      <span>{cartItems.length}</span>
+                      <span>{cartItems?.length}</span>
                     </Menu.Button>
                   </div>
                   <Transition
