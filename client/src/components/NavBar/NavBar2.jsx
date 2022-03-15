@@ -30,6 +30,7 @@ const NavBar2 = () => {
     email: "0",
     name: "0",
     lastName: "0",
+    picture: ""
   });
 
   const { users, addUser } = useExcursionsContext();
@@ -63,6 +64,13 @@ const NavBar2 = () => {
       return {
         ...prevState,
         email: user.email,
+      };
+    });
+
+    setUsuario((prevState) => {
+      return {
+        ...prevState,
+        picture: user.picture,
       };
     });
 
@@ -108,12 +116,13 @@ const NavBar2 = () => {
   }
 
   useEffect(() => {
-    if (user && usuario.lastName !== "0" && check) {
-      addUser(usuario);
-      createCart(usuario.email);
-      getUserCart(usuario.email);
-    }
+    getUserCart(usuario.email);
   }, []);
+
+  if (user && usuario.lastName !== "0" && check) {
+    addUser(usuario);
+    createCart(usuario.email);
+  }
 
   return (
     <Disclosure as="nav" className="bg-sky-600">
@@ -223,7 +232,7 @@ const NavBar2 = () => {
                           <span className="sr-only">Open user menu</span>
                           <img
                             className="h-8 w-8 rounded-full"
-                            src={user?.picture}
+                            src={usuario?.picture}
                             alt=""
                           />
                         </Menu.Button>
