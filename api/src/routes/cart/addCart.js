@@ -10,7 +10,7 @@ const { Order, Order_detail, Product, Excursion } = require("../../db");
 
 addCart.post("/", async (req, res, next) => {
   try {
-    const { name, date, time, quantity, price, id } = req.body;
+    const { name, date, time, quantity, price, email } = req.body;
     if (!name || !date || !time || !quantity || !price) {
       return res.status(500).send("Necessary parameters not found");
     } else {

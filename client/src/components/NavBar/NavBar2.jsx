@@ -41,7 +41,7 @@ const NavBar2 = () => {
     if (u.email === usuario?.email) {
       check = false;
     }
-    console.log(check);
+    
   });
 
   function handleClick(e) {
