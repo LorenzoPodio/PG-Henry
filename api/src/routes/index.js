@@ -22,8 +22,8 @@ const getCartUserId = require("./cart/getCartUserId");
 const putStatusOrder = require("./cart/putStatusOrder");
 const mp = require('./mercadopago');
 const buyCompleted = require("./cart/buyCompleted");
-const unbanUser = require("./unbanUser")
-
+const unbanUser = require("./unbanUser");
+// const deleteBuy = require("./cart/deleteBuy");
 
 
 
@@ -51,6 +51,6 @@ router.use("/recoverPass", recoverPass)
 router.use("/deleteaccount", deleteUser)
 router.use("/getusers", getUsers);
 router.use("/mercadopago", mp)
-
+// router.use("/deleteBuy", deleteBuy)
 
 module.exports = router;
