@@ -2,10 +2,10 @@ const { Router } = require("express");
 const transporter = require("../mailer/mailer")
 const setMail = Router();
 const { Product, Order_detail, order, user } = require("../db");
-const { User } = require("@auth0/auth0-react");
+
 
 setMail.post("/", async (req, res, next) => {
-  let {name, date, time, text} = req.body;
+  let {name, date, time, content, subject} = req.body;
 
   const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
   const newProduct = await Product.findAll({
@@ -19,7 +19,6 @@ setMail.post("/", async (req, res, next) => {
       where: {
           productId: newProduct[0].id
       },
-    
  })
 
 

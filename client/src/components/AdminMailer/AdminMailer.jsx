@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import { useParams } from "react-router-dom";
 import InputSelect from "../InputSelect/InputSelect";
-import { ShoppingCartIcon } from "@heroicons/react/solid";
 import { DetailDatePicker } from "../ExcursionDetail/DetailDatePicker/DetailDatePicker";
 import axios from "axios";
 
 export const AdminMailer = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
   const [stock, setStock] = useState("0");
-  const { id } = useParams();
-
+  
   const [disabled, setDisabled] = useState(true);
   const { excursionByid, getExcursionById } = useExcursionsContext();
 
@@ -61,25 +59,29 @@ export const AdminMailer = () => {
    
    
   };
-
+  const time = ["9", "10","11","12", "13"];
   return (
-    <div className="md:flex items-start justify-center py-2 px-2">
-      
-      <div className="md:hidden">
-        
-      </div>
+    <div className="md:flex items-start justify-center py-20 px-2">
       <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6">
-       
         <div className="inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start">
-          <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/2">
-            <p className="text-base leading-4 text-gray-800">Dia:</p>
+        <div className="py-2 px-20 border-r border-gray-200 flex items-center justify-around w-1/3">
+            <p className="text-base leading-4 text-gray-800">Excursión:</p>
+            {excursionByid?.time && (
+              <InputSelect
+                handleTime={handleTime}
+                options={excursionByid?.time}
+              />
+            )}
+          </div>
+          <div className="py-2 px-2 border-r border-l border-gray-200 flex items-center justify-around w-1/3">
+            <p className="text-base px-2 leading-4 text-gray-800">Dia:</p>
             {/* {excursionByid?.date && <InputSelect options={excursionByid?.date}/>} */}
             <DetailDatePicker
               handleDate={handleDate}
-              excursionDays={excursionByid?.date}
+              excursionDays={["Lunes","Martes","Miercoles","Jueves","Viernes","Sabado","Domingo"]}
             />
           </div>
-          <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/2">
+          <div className="py-2 px-20 border-r border-gray-200 flex items-center justify-around w-1/3">
             <p className="text-base leading-4 text-gray-800">Hora:</p>
             {excursionByid?.time && (
               <InputSelect
@@ -90,19 +92,19 @@ export const AdminMailer = () => {
           </div>
           
         </div>
-        <p className="text-base leading-4 text-gray-800">Asunto:</p>
-        <div className="py-2   border-gray-200 flex items-center justify-around ">
+        <p className=" py-4 text-gray-800">Asunto:</p>
+        <div className="   border-gray-200 flex items-center justify-around ">
             
             <input
               onChange={(e) => handleChange(e)}
               type="text"
               name="content"
               
-              className="shadow-md px-80 text-center rounded-md h-10 w-70 "
+              className="shadow-md px-80  rounded-md h-10 w-90 "
             />
           </div>
-        <p className="text-base leading-4 text-gray-800">Contenido del Mensaje:</p>
-        <div className="py-10   border-gray-200 flex items-center justify-around ">
+        <p className="text-base py-14 leading-4 text-gray-800">Contenido del Mensaje:</p>
+        <div className="   border-gray-200 flex items-center justify-around ">
             
             <input
               onChange={(e) => handleChange(e)}
