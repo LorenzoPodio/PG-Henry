@@ -22,12 +22,12 @@ getOrderId.get("/:email", async (req, res, next) => {
 
     const userCart = await Order.findOne({
       where: {
-        userId: getUserId.dataValues.id,
+        userId: getUserId?.dataValues.id,
       },
     });
     const userCartWithItems = await Order_detail.findAll({
       where: {
-        orderId: userCart.dataValues.id,
+        orderId: userCart?.dataValues.id,
       },
       include: [{ model: Product }],
     });

@@ -26,7 +26,8 @@ addCart.post("/", async (req, res, next) => {
           ],
         },
       });
-      if (stateCart.dataValues.status === "empty") {
+
+      if (stateCart?.dataValues.status === "empty") {
         stateCart.dataValues.status = "buying";
       }
       await Order.update(

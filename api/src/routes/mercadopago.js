@@ -11,15 +11,26 @@ mercadopago.configure({
 });
 
 mp.post("/", function (req, res) {
+  const allTotalsPrices = req.body.map(e => e.totalPrice);
+  const namesExcursions = req.body.map(e => e.product.name);
+  const reduc = (accumulator, curr) => accumulator + curr;
+  const priceToPay = allTotalsPrices.reduce(reduc, 0);
+
+
+  // console.log(priceToPay,namesExcursions,' quellego acaaaa')
   let preference = {
-    // items: [
-    //   {
-    //     title: "ItemPrueba",
-    //     unit_price: 100,
-    //     quantity: 1,
-    //   },
-    // ],
-    items: req.body.map(e => e),
+    items: [
+      {
+        title: "Excursiones adquiridas " + namesExcursions,
+        unit_price: priceToPay,
+        quantity: 1,
+          // title: req.body.product,
+          // unit_price: req.body.price,
+          // quantity: req.body.quantity,
+      },
+    ],
+   
+
     external_reference : "1",
     payment_methods: {
       excluded_payment_types: [
@@ -34,9 +45,9 @@ mp.post("/", function (req, res) {
       failure: "http://localhost:3001/mercadopago/feedback",
       pending: "http://localhost:3001/mercadopago/feedback",
     },
-    auto_return: "approved",
+    // auto_return: "approved",
   };
-  console.log(preference.items,' quellego acaaaa')
+  
 
   mercadopago.preferences
     .create(preference)
@@ -54,11 +65,18 @@ mp.get("/feedback", function (req, res) {
   //   Payment: req.query.payment_id,
   //   Status: req.query.status,
   //   MerchantOrder: req.query.merchant_order_id,
-  // });
+  // }); 
   const status = req.query.status
-  console.log(status,'esteee')
-  const allDates = req.query
-  console.log(allDates, 'este otroooo')
+
+  try {
+    if (status === "approved") {
+      
+        }
+    
+  } catch (error) {
+    
+  }
+
 });
 
 module.exports = mp;
