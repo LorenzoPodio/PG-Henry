@@ -3,6 +3,7 @@ import "./AdminPanelTabs.css";
 import { ExcursionsManagment } from "./ExcursionsManagment/ExcursionsManagment";
 import { PurchasesManagment } from "./PurchasesManagment/PurchasesManagment";
 import { UsersManagment } from "./UsersManagement/UsersManagment";
+import { AdminMailer } from "./AdminMailer/AdminMailer";
 
 export const AdminPanelTabs = () => {
   const [toggleState, setToggleState] = useState(1);
@@ -13,7 +14,7 @@ export const AdminPanelTabs = () => {
 
   return (
     <div>
-      <h1 className="grid place-content-center mt-0 mb-0 font-bold text-xl text-neutral-700">PANEL DE CONTROL</h1>
+      <h1 className="grid py-8 place-content-center mt-0 mb-0 font-bold text-xl text-neutral-700">PANEL DE CONTROL</h1>
       <div className={"flex flex-col relative w-auto h-auto mt-2 mb-4 mx-3 break-all div-container"}>
         <div className="flex">
           <button className={toggleState === 1 ? 
@@ -34,6 +35,12 @@ export const AdminPanelTabs = () => {
             } onClick={() => toggleTab(3)}>
             Usuarios
           </button>
+          <button className={toggleState === 4 ? 
+            "tabs active-tabs bg-emerald-700 font-bold text-base text-neutral-50" : 
+            "tabs bg-emerald-800 bg-opacity-70 font-bold text-base text-neutral-700"
+            } onClick={() => toggleTab(4)}>
+            Contacto clientes
+          </button>
         </div>
         <div className="content-tabs">
           <div className={toggleState === 1 ? "content  active-content" : "content"}>
@@ -44,6 +51,9 @@ export const AdminPanelTabs = () => {
           </div>
           <div className={toggleState === 3 ? "content  active-content" : "content"}>
             <UsersManagment toggleTab={toggleTab}/>
+          </div>
+          <div className={toggleState === 4 ? "content  active-content" : "content"}>
+            <AdminMailer toggleTab={toggleTab}/>
           </div>
         </div>
       </div>

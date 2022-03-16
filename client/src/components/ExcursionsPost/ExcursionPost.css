@@ -1,0 +1,4 @@
+.photopost{
+    display: flex;
+    flex-direction: row;
+}

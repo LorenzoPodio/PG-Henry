@@ -41,6 +41,18 @@ export const CartProvider = ({ children }) => {
       });
   };
 
+  const removeItemFromCart = async item => {
+    try {
+      const { data } = await axios.put('http://localhost:3001/cart/substractcart', item);
+      return setCartItems(() => data);
+    } catch (error) {
+      swal("Algo salió mal", error , {
+        icon: "error",
+      });
+      return console.log('ERROR:', error);
+    }
+  }
+
   const createCart = (email) => {
     let mail = {};
     mail.email = email;
@@ -59,7 +71,12 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addItemToCart,
         createCart,
+
+        user,
         // deleteItemToCart,
+
+        removeItemFromCart
+
       }}
     >
       {children}

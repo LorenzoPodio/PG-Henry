@@ -34,7 +34,7 @@ const NavBar2 = () => {
     picture: "",
   });
 
-  const { users, addUser } = useExcursionsContext();
+  const { users, addUser} = useExcursionsContext();
 
   const { createCart, cartItems } = useCartContext();
 
@@ -58,6 +58,7 @@ const NavBar2 = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
 
   if (user && usuario.email === "0") {
     setUsuario((prevState) => {
@@ -114,6 +115,7 @@ const NavBar2 = () => {
       });
     }
   }
+
 
   if (user && usuario.lastName !== "0" && check) {
     addUser(usuario);
