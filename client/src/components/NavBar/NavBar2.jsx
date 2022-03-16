@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ import swal from "sweetalert";
 import { useCartContext } from "../../context/CartContext";
 
 const NavBar2 = () => {
+  let check = true;
   const [navigation, setNavigation] = useState([
     { name: "Excursiones", href: "/excursiones", current: false },
     { name: "Tarifas", href: "/tarifas", current: false },
@@ -29,11 +30,19 @@ const NavBar2 = () => {
     email: "0",
     name: "0",
     lastName: "0",
+
+    picture: "",
   });
 
   const { users, addUser } = useExcursionsContext();
 
-  const { cartItems } = useCartContext();
+  const { createCart, cartItems } = useCartContext();
+
+  users?.map((u) => {
+    if (u.email === usuario?.email) {
+      check = false;
+    }
+  });
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -58,7 +67,14 @@ const NavBar2 = () => {
       };
     });
 
-    if (user.sub.search("google") === -1) {
+    setUsuario((prevState) => {
+      return {
+        ...prevState,
+        picture: user.picture,
+      };
+    });
+
+    if (user.sub.search("google") === -1 && check) {
       swal("Complete su nombre aqui:", {
         content: "input",
       }).then((value) => {
@@ -79,6 +95,7 @@ const NavBar2 = () => {
               lastName: value,
             };
           });
+
           swal(`Sus datos fueron completados con exito!`);
         });
       });
@@ -98,8 +115,9 @@ const NavBar2 = () => {
     }
   }
 
-  if (!users?.find((u) => u.email === usuario.email)) {
+  if (user && usuario.lastName !== "0" && check) {
     addUser(usuario);
+    createCart(usuario.email);
   }
 
   return (
@@ -172,11 +190,6 @@ const NavBar2 = () => {
                     >
                       Log in
                     </button>
-                    <Link to="/registro">
-                      <button className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                        Registrarse
-                      </button>
-                    </Link>
                   </>
                 ) : (
                   <>
@@ -188,6 +201,7 @@ const NavBar2 = () => {
                             className="h-6 w-6"
                             aria-hidden="true"
                           />
+
                           <span>{cartItems.length}</span>
                         </Menu.Button>
                       </div>
@@ -215,7 +229,7 @@ const NavBar2 = () => {
                           <span className="sr-only">Open user menu</span>
                           <img
                             className="h-8 w-8 rounded-full"
-                            src={user?.picture}
+                            src={usuario?.picture}
                             alt=""
                           />
                         </Menu.Button>

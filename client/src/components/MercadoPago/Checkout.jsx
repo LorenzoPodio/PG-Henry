@@ -12,7 +12,7 @@ export default function Checkout({ products, data }) {
       "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
     script.setAttributeNode(attr_data_preference);
 
-    console.log(data);
+  
 
     //Agrega el script como nodo hijo del elemento form
     document.getElementById("form1").appendChild(script);
@@ -21,6 +21,9 @@ export default function Checkout({ products, data }) {
       document.getElementById("form1").removeChild(script);
     };
   }, [data]);
+  const total = products.map((e) => e.totalPrice);
+  const reduc = (accumulator, curr) => accumulator + curr;
+  const totalbuy = total.reduce(reduc, 0)
   return (
     <div>
       <form id="form1">
@@ -28,15 +31,16 @@ export default function Checkout({ products, data }) {
         <div>
           {products?.map((producto, i) => {
             return (
-              <div>
+              <div key={i}>
                 <ul>
-                  <li>{producto.title}</li>
+                  <li>{producto.product.name}</li>
                   <li>{"$" + producto.price}</li>
                   <li>{producto.quantity}</li>
                 </ul>
               </div>
             );
           })}
+          <p>{"Precio a abonar total: $" + totalbuy}</p>
         </div>
       </form>
     </div>

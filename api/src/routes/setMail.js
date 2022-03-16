@@ -2,7 +2,7 @@ const { Router } = require("express");
 const transporter = require("../mailer/mailer")
 const setMail = Router();
 const { Product, Order_detail, order, user } = require("../db");
-const { User } = require("@auth0/auth0-react");
+
 
 setMail.post("/", async (req, res, next) => {
   let {name, date, time, text} = req.body;
