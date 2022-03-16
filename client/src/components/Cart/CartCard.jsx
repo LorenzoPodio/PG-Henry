@@ -1,88 +1,68 @@
+import { TrashIcon } from "@heroicons/react/solid";
 import React from "react";
+import { useCartContext } from "../../context/CartContext";
 
-export const CartCard = ({
-  // id,
-  name,
-  // images,
-  // location,
-  date,
-  price,
-  quantity,
-  // excursionType,
-}) => {
+export const CartCard = ({ detailId, name, images, date, time, price, quantity, orderId}) => {
+  const { removeItemFromCart } = useCartContext();
+  const handelRemove = () => {
+    removeItemFromCart({
+      detailId: detailId,
+      orderId: orderId
+    })
+  }
+
   return (
-    <div
-      className="px-4"
-      style={{
-        display: "flex",
-        backgroundColor: "rgb(229 231 235 / var(--tw-bg-opacity))",
-        alignContent: "center",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        borderRadius: "0.5rem",
-      }}
-    >
+    <div className="flex px-2 py-1 content-center justify-evenly border border-black bg-slate-200 sm:grid-rows-3">
       {/* <NavLink
         // key={id}
         // to={`/excursion/detalle/${id}`}
         className="group w-1/5 h-50"
       > */}
-      <div
-        style={{
-          alignContent: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className="content-center justify-center">
         <img
-          // src={images[0]}
+          src={images[0]}
           alt={`Fotografía`}
-          className="w-20 h-20 object-center object-cover group-hover:opacity-75"
-          style={{ borderRadius: "0.5rem" }}
+          className="w-24 h-24 object-center object-cover group-hover:opacity-75 rounded-lg"
         />
       </div>
       {/* </NavLink> */}
-      <div
-        className="w-3/5 h-max"
-        style={{
-          textAlign: "center",
-        }}
-      >
+      <div className="w-3/5 h-max text-center">
         <div>
           {/* <NavLink key={id} to={`/excursion/detalle/${id}`} className="group"> */}
-          <h3 className="mt-4 text-lg text-center font-bold text-gray-700">
+          <h3 className="text-md text-center underline decoration-solid decoration-black font-bold text-black">
             {name}
           </h3>
           {/* </NavLink> */}
         </div>
-        {/* <h4 className="mt-3 text-sm text-gray-700">{location}</h4>
-        <h4 className="mt-3 text-sm text-gray-700">{excursionType}</h4> */}
-        <h4 className="mt-3 text-sm text-gray-700">{date}</h4>
+        <div className="flex content-around w-full">
+          <div className="w-1/4 px-1 mx-1">
+            <h4 className="mt-3 text-xs font-bold text-black">Fecha:</h4>
+            <h4 className="mt-3 text-xs text-black">{date.slice(1, 11).split('-').reverse().join('/')}</h4>
+          </div>
+          <div className="w-1/4 px-1 ml-1 border-l border-slate-400">
+            <h4 className="mt-3 text-xs font-bold text-black">Hora:</h4>
+            <h4 className="mt-3 text-xs text-black">{time}hs</h4>
+          </div>
+          <div className="w-1/4 px-1 mr-1 border-x border-slate-400">
+            <h4 className="mt-3 text-xs font-bold text-black">Precio:</h4>
+            <h4 className="mt-3 text-xs text-black">${price}</h4>
+          </div>
+          <div className="w-1/4 px-1 mx-1">
+            <h4 className="mt-3 text-xs font-bold text-black">Personas:</h4>
+            <h4 className="mt-3 text-xs text-black">{quantity}</h4>
+          </div>
+        </div>
       </div>
-      <div className="w-1/5 h-50">
-        {/* <input
-          type="number"
-          placeholder="Cupos"
-          style={{ display: "flex", width: "4rem" }}
-        /> */}
-        <p className="mt-1 text-sm font-medium text-gray-900">
-          {"Total a pagar $" + price}
+      <div className="w-2/12 h-50 text-center">
+        <p className="mt-1 text-sm font-medium text-black">
+          {"Subtotal: $" + (price * quantity)}
         </p>
 
-        <button class="inline-flex items-center px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-md">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 mr-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-            />
-          </svg>
+        <button
+          onClick={handelRemove}
+          className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md"
+        >
+          <TrashIcon className="h-5 w-5 text-white-500" aria-hidden="true" />
         </button>
       </div>
       <br />
