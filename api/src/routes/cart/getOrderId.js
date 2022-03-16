@@ -23,6 +23,7 @@ getOrderId.get("/:email", async (req, res, next) => {
     const userCart = await Order.findOne({
       where: {
         userId: getUserId?.dataValues.id,
+        status: ["buying", "empty", "processingPay"]
       },
     });
     const userCartWithItems = await Order_detail.findAll({

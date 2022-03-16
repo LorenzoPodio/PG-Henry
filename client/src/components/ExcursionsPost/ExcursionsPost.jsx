@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import '../ExcursionsPost/ExcursionPost.css'
+import React, { useEffect, useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import { useNavigate, Link} from "react-router-dom";
 import swal from "sweetalert";
+import axios from "axios";
+import {Image} from 'cloudinary-react'
 
 export const ExcursionsPost = () => {
 
   const { addExcursion, allExcursions } = useExcursionsContext();
-
+  const [imagesUrls, setImagesUrls] = useState([])
   const nameExcursions = allExcursions && allExcursions.map((e) => {
     return e.name
   }); 
@@ -83,11 +86,30 @@ export const ExcursionsPost = () => {
     }
 
   ///HANDLE DE IMAGENES
-  function handleArray(e) {
-    setInput({
-      ...input,
-      Images: input.Images.includes(e.target.value) ? [...input.Images] : [...input.Images, e.target.value]
-  })
+  function handleImage(files) {
+    
+    const formData = new FormData()
+    formData.append("file", files[0])
+    formData.append("upload_preset", "excursion")
+
+    axios.post("https://api.cloudinary.com/v1_1/excursionesapp/image/upload", formData)
+    .then((response) => {
+     
+      setImagesUrls((prevState) => {
+        return [
+        ...prevState, response.data.secure_url
+        ]})
+     
+    })
+  }
+  
+  function deleteImage(e){
+    setImagesUrls((prevState) => {
+      return [
+      ...prevState.filter(img => img !== e.target.value)
+      ]})
+
+      console.log(imagesUrls)
   }
 
   ///HANDLE DE LOCATION
@@ -108,7 +130,7 @@ export const ExcursionsPost = () => {
 
   ///SUBMIT
   const handleSubmit = (e) => {
-     
+     console.log(input)
       if (nameExcursions && nameExcursions.includes(input.name)) {
         e.preventDefault();
         swal({
@@ -116,7 +138,7 @@ export const ExcursionsPost = () => {
           icon: "error",
           text: "Ya existe una excursion con este nombre, intente con otro"
         }) 
-      } else if(input.Images.length <= 0 || 
+      } else if(
         input.date.length <= 0 ||
         input.time.length <= 0 ||
         !input.description ||
@@ -133,6 +155,12 @@ export const ExcursionsPost = () => {
         }
        else {
     e.preventDefault()
+
+        if(input.Images.length === 0){
+          input.Images = imagesUrls
+        }
+
+    console.log(input)
     addExcursion(input)
     swal("Excursión creada exitosamente");
     setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
@@ -226,36 +254,29 @@ export const ExcursionsPost = () => {
                   <div>
                     <div className="mt-1">
                       <div>
-                        
-                          <input
-                            onChange={(e) => handleArray(e)}
-                            type="text"
-                            id="Images"
-                            name="Images"
-                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            placeholder="https://imagenDeMuestra1.jpg"
-                          />
 
-                          <input
-                            onChange={(e) => handleArray(e)}
-                            type="text"
-                            id="Images"
-                            name="Images"
-                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            placeholder="https://imagenDeMuestra2.jpg"
-                          />
+                        <input type="file" onChange={(e) => handleImage(e.target.files)}></input>
 
-                          <input
-                            onChange={(e) => handleArray(e)}
-                            type="text"
-                            id="Images"
-                            name="Images"
-                            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                            placeholder="https://imagenDeMuestra3.jpg"
-                          />
-                        
                       </div>
                     </div>
+                  </div>
+                  <div className="photopost">
+                 
+                    {
+                     
+
+                      imagesUrls?.map((images) => (
+                      
+                        <div>
+                        <Image
+                        style={{width: 200, margin: 10}}
+                        cloudName="excursion" 
+                        publicId={images}/>
+                        <button type="button" value={images} onClick={(e) => deleteImage(e)}>X</button>
+                        </div>
+                      ))
+                    }
+                    
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
                     Agrega imagenes que sean del lugar donde vas a realizar la
