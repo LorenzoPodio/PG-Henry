@@ -10,9 +10,9 @@ getAllOrders.get("/", async (req, res, next) => {
   try {
     const orders = await Order.findAll({
         where: {
-            status: ["completed", "cancelled"]
+            status: ["completed", "cancelled", "buying"]
         },
-      include: [{ model: User, attributes: ["name"] }, { model: Order_detail}],
+      include: [{ model: User, attributes: ["name", "email"] }, { model: Order_detail}],
     });
     // console.log(orders)
     const orderId = orders.order;

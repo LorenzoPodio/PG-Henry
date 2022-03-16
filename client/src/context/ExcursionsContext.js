@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
 import { getAllUsers } from "./util/getAllUsers";
+import { getAllOrders } from './util/getAllOrders'
 import axios from "axios";
+
 
 
 export const ExcurcionsContext = createContext();
@@ -17,9 +19,9 @@ export const ExcursionsProvider = ({ children }) => {
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
+  const [allOrders, setAllOrders] = useState()
 
   useEffect(() => {
-    
     getExcursions().then((r) => {
       return (
         setAllExcursions(r),
@@ -31,15 +33,6 @@ export const ExcursionsProvider = ({ children }) => {
       return setUsers(r);
     });
   }, []);
-
-  const getExcursionById = async (id) => {
-    try {
-      const {data} = await axios(`http://localhost:3001/getexcursion?id=${id}`);
-      return setExcursionByid(data);
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
 
   useEffect(() => {
     axios(URL)
@@ -54,6 +47,25 @@ export const ExcursionsProvider = ({ children }) => {
         setData("Excursiones no encontradas");
       });
   }, [URL]);
+
+
+  useEffect(() => {
+    getAllOrders().then((r) => {
+      setAllOrders(r)
+    })
+  }, []);
+  
+  console.log(allOrders)
+  
+  const getExcursionById = async (id) => {
+    try {
+      const {data} = await axios(`http://localhost:3001/getexcursion?id=${id}`);
+      return setExcursionByid(data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
 
   //feature_filter-implemented
   const handleFilter = (name, value) => {
@@ -94,7 +106,6 @@ export const ExcursionsProvider = ({ children }) => {
         console.log(err);
       });
   };
-
   //
 
   //deleteExcursion
@@ -221,6 +232,7 @@ export const ExcursionsProvider = ({ children }) => {
         cancelledOrder,
         banUser,
         UnbanUser,
+        allOrders
       }}
     >
       {children}
