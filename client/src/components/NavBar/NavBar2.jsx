@@ -121,7 +121,6 @@ const NavBar2 = () => {
     addUser(usuario);
     createCart(usuario.email);
   }
-
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
@@ -228,11 +227,18 @@ const NavBar2 = () => {
                       <div>
                         <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Open user menu</span>
-                          <img
+                          {usuario.picture.length > 0  ? <img
                             className="h-8 w-8 rounded-full"
                             src={usuario?.picture}
-                            alt=""
+                            alt="User profile"
+                          /> :
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                            alt="User profile"
                           />
+                          }
+                          
                         </Menu.Button>
                       </div>
                       <Transition
