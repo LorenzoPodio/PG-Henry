@@ -1,11 +1,12 @@
 const { Router } = require("express");
 const transporter = require("../mailer/mailer")
 const setMail = Router();
-const { Product, Order_detail, order, user } = require("../db");
+const { Product, Order_detail, Order, User } = require("../db");
 
-
+// RUTA PARA EL ENVIO DE MAILS A TRAVES DEL COMPONENTE AdminMailer
+//Busca todas las excursiones compradas con los datos pasados y envia mail
 setMail.post("/", async (req, res, next) => {
-  let {name, date, time, text} = req.body;
+  let {name, date, time, content, subject} = req.body;
 
   const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
   const newProduct = await Product.findAll({
@@ -19,42 +20,54 @@ setMail.post("/", async (req, res, next) => {
       where: {
           productId: newProduct[0].id
       },
-    
  })
 
 
       const orders = ordersDetail.map(e => e.orderId)
-
-     
+       
+     const arrUser =[]
+     for (let i = 0; i < orders.length; i++) {
+      var users = await Order.findOne({
+        where: {
+          id: orders[i],
+          status: "completed"   //CAMBIAR ESTADO A "buying" PARA PROBAR RUTA
+         }, attributes: ["userId"],
+      })
+      arrUser.push(users.userId)
+       
+     }
         
-        
+     const arrEmail =[]
+     for (let i = 0; i < arrUser.length; i++) {
+      var emails = await User.findOne({
+        where: {
+          id: arrUser[i]
+         }, attributes: ["email"],
+      })
+      arrEmail.push(emails.email)
+       
+     }
 
-  // var mailOptions = {
-  //   from,
-  //   to,
-  //   subject,
-  //   text,
-  //   html,
-  // }
+    // const arreee = ["damian_yerien@hotmail.com", "damianyerien83@gmail.com"]
 
-  // transporter.sendMail(mailOptions, (error, info) => {
-  //   if (error) {
-  //     return res.status(500).send(error.message);
-  //   } else {
-  //     console.log("email enviado")
-      res.status(200).jsonp(orders);
-  //   }
-  // })
+
+  var mailOptions = {
+    from: "excursionappmail@gmail.com",
+    to: arrEmail.toString(),
+    subject: subject,
+    html:content,
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).send(error.message);
+    } else {
+      console.log("email enviado")
+      res.status(200).jsonp(arrEmail);
+    }
+   })
 });
 
 module.exports = setMail;
 
 
-// DEJO ACA EL JSON QUE DEBERIA VENIR EN EL BODY
-// {
-//   "from": "excursionappmail@gmail.com",
-//     "to": "SARAZA@hotmail.com",
-//     "subject": "prueba",
-//     "text": "hola mundo",
-//     "html": "<h1>otra prueba</h1>"
-// }
