@@ -7,8 +7,8 @@ const transporter = require ("../../mailer/mailer");
 //ruta para enviar mail en caso de compra rechazada o exitosa
 
 buyCompleted.post("/", async (req, res, next) => {
- const success = false;
- const failure = true
+ const success = true;
+ const failure = false
 
     try {
         const { id } = req.body;
@@ -24,7 +24,7 @@ buyCompleted.post("/", async (req, res, next) => {
         const details = await Order_detail.findAll({
             where: {
                 orderId: stateOrder.dataValues.id
-            },
+            },attributes: ["status"],
             include: [{
                 model: Product, attributes: ["name", "date"],
 
@@ -89,6 +89,14 @@ buyCompleted.post("/", async (req, res, next) => {
           console.log("email enviado")
           res.status(200).jsonp(req.body);
         }
+      })
+
+      await Order_detail.update({
+        status: "completed",
+      },{
+          where: {
+              id: id
+          }
       })
         return res.status(200).send(details)}
         else if (failure) {
