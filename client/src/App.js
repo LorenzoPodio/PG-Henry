@@ -14,6 +14,7 @@ import { Footer } from "./components/Footer/Footer";
 import NavBar2 from "./components/NavBar/NavBar2";
 import { Landing } from "./components/Landing/Landing";
 import { EditExcursion } from "./components/EditExcursion/EditExcursion";
+import Mapa from "./components/MapBoxGL/MapBox.jsx";
 
 import Cart from "./components/Cart/Cart";
 
@@ -37,6 +38,7 @@ function App() {
         <Route exact path="/checkout" element={<Stepper />} />
         <Route path="/panelAdmin" element={<AdminPanelTabs />} />
         <Route path="/miPerfil" element={<Profile />} />
+        <Route path="/mapa" element={<Mapa />} />
       </Routes>
       <Footer />
     </div>
