@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import { useCartContext } from "../../context/CartContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import InputSelect from "../InputSelect/InputSelect";
 import { ShoppingCartIcon } from "@heroicons/react/solid";
 import { DetailDatePicker } from "./DetailDatePicker/DetailDatePicker";
@@ -12,12 +12,11 @@ export const ExcursionDetail = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
   const [stock, setStock] = useState("0");
   const { id } = useParams();
-
   const {user} = useAuth0();
-  
   const [disabled, setDisabled] = useState(true);
   const { excursionByid, getExcursionById } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getExcursionById(id);
@@ -74,6 +73,7 @@ export const ExcursionDetail = () => {
       price: excursionByid.price,
       email: user?.email, //Aca en realidad iría el id del usuario
     });
+    navigate('/excursiones');
   };
 
   return (
@@ -107,48 +107,25 @@ export const ExcursionDetail = () => {
           <p className="text-sm leading-none text-gray-600">
             {excursionByid?.location}
           </p>
-          <h1
-            className="
-            lg:text-2xl
-            text-xl
-            font-semibold
-            lg:leading-6
-            leading-7
-            text-gray-800
-            mt-2
-						"
-          >
+          <h1 className=" lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 mt-2">
             {excursionByid?.name}
           </h1>
         </div>
         <div className="inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start">
           <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/3">
             <p className="text-base leading-4 text-gray-800">Dia:</p>
-            {/* {excursionByid?.date && <InputSelect options={excursionByid?.date}/>} */}
-            <DetailDatePicker
-              handleDate={handleDate}
-              excursionDays={excursionByid?.date}
-            />
+            <DetailDatePicker handleDate={handleDate} excursionDays={excursionByid?.date}/>
           </div>
           <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
             <p className="text-base leading-4 text-gray-800">Hora:</p>
             {excursionByid?.time && (
-              <InputSelect
-                handleTime={handleTime}
-                options={excursionByid?.time}
-              />
+              <InputSelect handleTime={handleTime} options={excursionByid?.time}/>
             )}
           </div>
           <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
-            <p className="text-base leading-4 text-gray-800">cantidad:</p>
-            <input
-              onChange={(e) => handleChange(e)}
-              type="number"
-              name="quantity"
-              min={0}
-              max={6}
-              className="shadow-md text-center rounded-md h-9 w-1/3"
-            />
+            <p className="text-base leading-4 text-gray-800">Personas:</p>
+            <input onChange={(e) => handleChange(e)} type="number" name="quantity" min={0} max={6} 
+              className="shadow-md text-center rounded-md h-9 w-1/3"/>
           </div>
         </div>
         <div>
@@ -171,17 +148,8 @@ export const ExcursionDetail = () => {
         <button
           className="
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
-          text-base
-          flex
-          items-center
-          justify-center
-          leading-none
-          text-white
-          bg-gray-800
-          w-full
-          py-4
-          hover:bg-gray-700
-					"
+          text-base flex items-center justify-center leading-none text-white
+          bg-gray-800 w-full py-4 hover:bg-gray-700"
           //Disabled, deshabilita el botón cuando el stock es 0.
           disabled={disabled}
           onClick={() => handleClick()}
