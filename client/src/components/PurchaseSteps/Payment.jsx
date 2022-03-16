@@ -5,13 +5,14 @@ import { useCartContext } from "../../context/CartContext";
 
 export default function Payment({ handleClick }) {
   const [data, setData] = useState(""); //Estado para setear la respuesta de mercado pago
-  const { cartItems } = useCartContext();
+  const { cartItems, user } = useCartContext();
+   
 
-console.log(cartItems,'estosssssss')
+console.log(user,'estosssssss')
   //   //  IMPLEMENTACION DE MP
   useEffect(() => {
     axios
-      .post("http://localhost:3001/mercadopago", cartItems)
+      .post("http://localhost:3001/mercadopago", {email: user.email, cartItems: cartItems})
       .then((data) => {
         setData(data.data);
         console.info("Contenido de data:", data);

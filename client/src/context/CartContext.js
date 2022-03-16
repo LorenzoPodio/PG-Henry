@@ -59,6 +59,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addItemToCart,
         createCart,
+        user,
         // deleteItemToCart,
       }}
     >
