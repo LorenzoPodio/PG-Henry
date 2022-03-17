@@ -86,7 +86,7 @@ export const ExcursionsProvider = ({ children }) => {
       .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
       .catch((err) => {
-        console.log(err);
+       
       });
   };
   //
@@ -97,7 +97,7 @@ export const ExcursionsProvider = ({ children }) => {
     .put("http://localhost:3001/changedatesUser", dates)
     .then((res) => res.data)
     .catch((err) => {
-      console.log(err)
+      
     })
   }
 
@@ -107,7 +107,7 @@ export const ExcursionsProvider = ({ children }) => {
       .post("http://localhost:3001/addexcursion", excursion)
       .then((response) => response.data)
       .catch((err) => {
-        console.log(err);
+      
       });
   };
   //
@@ -124,7 +124,7 @@ export const ExcursionsProvider = ({ children }) => {
         );
       })
       .catch((err) => {
-        console.log(err);
+        
       });
   };
   //
@@ -137,7 +137,7 @@ export const ExcursionsProvider = ({ children }) => {
         return setUsers(response.data);
       })
       .catch((err) => {
-        console.log(err);
+      
       });
   };
   //
@@ -150,7 +150,7 @@ export const ExcursionsProvider = ({ children }) => {
         return setUsers(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        
       });
   };
   //
@@ -167,7 +167,7 @@ export const ExcursionsProvider = ({ children }) => {
         );
       })
       .catch((err) => {
-        console.log(err);
+        
       });
   };
 
@@ -204,7 +204,7 @@ export const ExcursionsProvider = ({ children }) => {
         return setAllExcursions(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        
       });
   };
 

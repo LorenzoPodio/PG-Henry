@@ -14,7 +14,6 @@ getAllOrders.get("/", async (req, res, next) => {
         },
       include: [{ model: User, attributes: ["name", "email"] }, { model: Order_detail}, {model: Product}],
     });
-    // console.log(orders)
     const orderId = orders.order;
     // const status = orders.order.dataValues.status;
     // const userName = orders.order.dataValues.user[0].name;

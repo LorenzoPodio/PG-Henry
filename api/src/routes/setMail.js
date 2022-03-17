@@ -62,7 +62,6 @@ setMail.post("/", async (req, res, next) => {
     if (error) {
       return res.status(500).send(error.message);
     } else {
-      console.log("email enviado")
       res.status(200).jsonp(arrEmail);
     }
    })

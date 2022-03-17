@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
@@ -17,12 +17,12 @@ const NavBar2 = () => {
     { name: "Panel Admin", href: "/panelAdmin", current: false },
   ]);
 
-  const [navigationAdmin, setNavigationAdmin] = useState([
-    { name: "Excursiones", href: "/excursiones", current: false },
-    { name: "Tarifas", href: "/tarifas", current: false },
-    { name: "Sobre Nosotros", href: "/nosotros", current: false },
-    { name: "Panel Admin", href: "/panelAdmin", current: false },
-  ]);
+  // const [navigationAdmin, setNavigationAdmin] = useState([
+  //   { name: "Excursiones", href: "/excursiones", current: false },
+  //   { name: "Tarifas", href: "/tarifas", current: false },
+  //   { name: "Sobre Nosotros", href: "/nosotros", current: false },
+  //   { name: "Panel Admin", href: "/panelAdmin", current: false },
+  // ]);
 
   const { loginWithRedirect, logout, user, isLoading } = useAuth0();
 
@@ -43,14 +43,12 @@ const NavBar2 = () => {
     }
   });
 
-  console.log(check)
-
   function handleClick(e) {
-    navigation.map((item) => {
+    navigation?.map((item) => {
       if (item.name === e.target.value) {
-        item.current = true;
+        return item.current = true;
       } else {
-        item.current = false;
+        return item.current = false;
       }
     });
     setNavigation(navigation);
@@ -117,7 +115,7 @@ const NavBar2 = () => {
     }
   }
 
-
+console.log(check);
   if (user && usuario.lastName !== "0" && check) {
     addUser(usuario);
     createCart(usuario.email);
@@ -256,23 +254,20 @@ const NavBar2 = () => {
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
-                              <Link to="/miPerfil">
-                              <a
-                                
-                                className={classNames(
-                                  active ? "bg-sky-500" : "",
-                                  "block px-4 py-2 text-sm text-white"
-                                )}
-                              >
-                                
+                              <Link to="/miPerfil" className={classNames(
+                                active ? "bg-sky-500" : "",
+                                "block px-4 py-2 text-sm text-white"
+                              )}>
+                          
                                 Mi Perfil
-                              </a>
+                            
                               </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <a
+                              <Link 
+                              to="/excursiones"
                                 onClick={() => logout()}
                                 className={classNames(
                                   active ? "bg-sky-500" : "",
@@ -280,7 +275,7 @@ const NavBar2 = () => {
                                 )}
                               >
                                 Log out
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                         </Menu.Items>

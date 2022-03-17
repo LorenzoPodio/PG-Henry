@@ -15,9 +15,9 @@ export default function Payment({ handleClick }) {
       .post("http://localhost:3001/mercadopago", {email: user.email, cartItems: cartItems})
       .then((data) => {
         setData(data.data);
-        console.info("Contenido de data:", data);
       })
       .catch((err) => console.error(err));
+      // eslint-disable-next-line
   }, []);
 
   return (

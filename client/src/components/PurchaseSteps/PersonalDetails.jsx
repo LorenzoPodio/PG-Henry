@@ -11,11 +11,11 @@ export default function PersonalDetails({ handleClick }) {
   let usuario = {}
   usuario = users?.find((u) => u.email === user?.email)
   const [input, setInput] = useState({
-    name: usuario.name,
-    lastName: usuario.lastName,
-    dni: usuario.dni? usuario.dni : "",
-    email: usuario.email,
-    adress: usuario.adress? usuario.adress : ""
+    name: usuario?.name,
+    lastName: usuario?.lastName,
+    dni: usuario?.dni? usuario?.dni : "",
+    email: usuario?.email,
+    adress: usuario?.adress? usuario.adress : ""
   });
 
   function handleChange(e) {
@@ -43,7 +43,6 @@ export default function PersonalDetails({ handleClick }) {
         handleClick("Payment")
       }
   }
-  console.log(input.dni,'que ondaaaaa')
 
   return (
     <div>

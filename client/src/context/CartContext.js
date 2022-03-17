@@ -17,7 +17,6 @@ export const CartProvider = ({ children }) => {
       axios
         .get(`http://localhost:3001/cart/getorderid/${user.email}`)
         .then((resp) => {
-          console.log(resp, "resp del lamado al back")
           return setCartItems(() => resp.data);
         })
         .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
@@ -57,12 +56,11 @@ export const CartProvider = ({ children }) => {
   const createCart = (email) => {
     let mail = {};
     mail.email = email;
-    console.log(mail);
     return axios
       .post("http://localhost:3001/cart/orderpost", mail)
       .then((response) => response.data)
       .catch((err) => {
-        console.log(err);
+        
       });
   };
 

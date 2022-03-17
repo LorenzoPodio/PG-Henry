@@ -14,18 +14,15 @@ export default function SearchBar(props) {
       .then((resp) => {
         return (
           setData(resp.data),
-          setExcursionFiltered(resp.data),
-          console.log(resp.data)
+          setExcursionFiltered(resp.data)
         );
       })
       .catch((e) => {
-        console.log(e, "esteeeee");
         axios(`http://localhost:3001/getexcursion?location=${query}`)
           .then((resp) => {
             return (
               setData(resp.data),
-              setExcursionFiltered(resp.data),
-              console.log(resp.data)
+              setExcursionFiltered(resp.data)
             );
           })
           .catch((e) => {

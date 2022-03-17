@@ -17,7 +17,6 @@ console.log(long)
 
   });
   const [selected, setSelected] = useState(null);
-  // console.log('Soy selected: >>> ', selected);
 
   console.log(viewport)
   useEffect(() => {
