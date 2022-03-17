@@ -4,11 +4,11 @@ import { Carousel } from "react-responsive-carousel";
 
 const CarouselComponent = ({ Images }) => {
   return (
-    <div class="carousel-wrapper">
+    <div className="carousel-wrapper">
       <Carousel useKeyboardArrows infiniteLoop>
-        {Images?.map((e) => {
+        {Images?.map((e, i) => {
           return (
-            <div>
+            <div key={i}>
               <img
                 src={e}
                 alt="Not found"

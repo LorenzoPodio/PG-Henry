@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
@@ -17,12 +17,13 @@ const NavBar2 = () => {
     { name: "Panel Admin", href: "/panelAdmin", current: false },
   ]);
 
-  const [navigationAdmin, setNavigationAdmin] = useState([
-    { name: "Excursiones", href: "/excursiones", current: false },
-    { name: "Tarifas", href: "/tarifas", current: false },
-    { name: "Sobre Nosotros", href: "/nosotros", current: false },
-    { name: "Panel Admin", href: "/panelAdmin", current: false },
-  ]);
+
+  // const [navigationAdmin, setNavigationAdmin] = useState([
+  //   { name: "Excursiones", href: "/excursiones", current: false },
+  //   { name: "Tarifas", href: "/tarifas", current: false },
+  //   { name: "Sobre Nosotros", href: "/nosotros", current: false },
+  //   { name: "Panel Admin", href: "/panelAdmin", current: false },
+  // ]);
 
   const { loginWithRedirect, logout, user, isLoading } = useAuth0();
 
@@ -38,18 +39,19 @@ const NavBar2 = () => {
 
   const { createCart, cartItems } = useCartContext();
 
+  // eslint-disable-next-line
   users?.map((u) => {
     if (u.email === usuario?.email) {
-      check = false;
+      return check = false;
     }
   });
 
   function handleClick(e) {
     navigation.map((item) => {
       if (item.name === e.target.value) {
-        item.current = true;
+        return item.current = true;
       } else {
-        item.current = false;
+        return item.current = false;
       }
     });
     setNavigation(navigation);
@@ -254,20 +256,20 @@ const NavBar2 = () => {
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
-                              <a
-                                href="/miPerfil"
+                              <Link
+                                to="/miPerfil"
                                 className={classNames(
                                   active ? "bg-sky-500" : "",
                                   "block px-4 py-2 text-sm text-white"
                                 )}
                               >
                                 Your Profile
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <a
+                              <div
                                 onClick={() => logout()}
                                 className={classNames(
                                   active ? "bg-sky-500" : "",
@@ -275,7 +277,7 @@ const NavBar2 = () => {
                                 )}
                               >
                                 Log out
-                              </a>
+                              </div>
                             )}
                           </Menu.Item>
                         </Menu.Items>
@@ -289,9 +291,9 @@ const NavBar2 = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Disclosure.Button>
-                  <Link key={item.href} to={item.href}>
+              {navigation.map((item, i) => (
+                <Disclosure.Button key={i}>
+                  <Link to={item.href}>
                     <button
                       key={item.name}
                       value={item.name}
