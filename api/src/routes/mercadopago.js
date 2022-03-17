@@ -40,7 +40,7 @@ mp.post("/", function (req, res) {
       installments: 3, //Cantidad máximo de cuotas
     },
     back_urls: {
-      success: "http://localhost:3000/excursiones",
+      success: "http://localhost:3001/mercadopago/feedback",
       failure: "http://localhost:3001/mercadopago/feedback",
       pending: "http://localhost:3001/mercadopago/feedback",
     },
@@ -250,7 +250,7 @@ mp.get("/feedback", async function (req, res, next) {
       });
     }
 
-    res.status(200).send(status);
+    res.status(200).redirect("http://localhost:3000/excursiones");
   } catch (error) {
     next(error);
   }
