@@ -40,7 +40,7 @@ mp.post("/", function (req, res) {
       installments: 3, //Cantidad máximo de cuotas
     },
     back_urls: {
-      success: "http://localhost:3001/mercadopago/feedback",
+      success: "http://localhost:3000/excursiones",
       failure: "http://localhost:3001/mercadopago/feedback",
       pending: "http://localhost:3001/mercadopago/feedback",
     },
