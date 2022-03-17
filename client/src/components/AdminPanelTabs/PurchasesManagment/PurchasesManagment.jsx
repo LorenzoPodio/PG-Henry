@@ -6,7 +6,6 @@ import swal from "sweetalert";
 
 export const PurchasesManagment = () => {
   const { cancelledOrder, allOrders, getAllOrders} = useExcursionsContext();
-  console.log('ALLORDERS :>> ', allOrders);
   let totalPurchase = 0;
   let productNames = [];
 

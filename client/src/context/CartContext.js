@@ -60,7 +60,7 @@ export const CartProvider = ({ children }) => {
       .post("http://localhost:3001/cart/orderpost", mail)
       .then((response) => response.data)
       .catch((err) => {
-        console.log(err);
+        
       });
   };
 

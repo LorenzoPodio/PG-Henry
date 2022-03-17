@@ -17,7 +17,6 @@ const NavBar2 = () => {
     { name: "Panel Admin", href: "/panelAdmin", current: false },
   ]);
 
-
   // const [navigationAdmin, setNavigationAdmin] = useState([
   //   { name: "Excursiones", href: "/excursiones", current: false },
   //   { name: "Tarifas", href: "/tarifas", current: false },
@@ -35,21 +34,18 @@ const NavBar2 = () => {
     picture: "",
   });
 
-  const { users, addUser, getAllOrders} = useExcursionsContext();
+  const { users, addUser} = useExcursionsContext();
 
   const { createCart, cartItems } = useCartContext();
 
-  // eslint-disable-next-line
   users?.map((u) => {
-    if (u.email === usuario?.email) {
-      return check = false;
+    if (u?.email === usuario?.email) {
+      check = false;
     }
   });
 
-  console.log(check)
-
   function handleClick(e) {
-    navigation.map((item) => {
+    navigation?.map((item) => {
       if (item.name === e.target.value) {
         return item.current = true;
       } else {
@@ -120,12 +116,12 @@ const NavBar2 = () => {
     }
   }
 
-
+console.log(check);
   if (user && usuario.lastName !== "0" && check) {
     addUser(usuario);
     createCart(usuario.email);
-    getAllOrders();
   }
+  
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
@@ -259,20 +255,19 @@ const NavBar2 = () => {
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
-                              <Link
-                                to="/miPerfil"
-                                className={classNames(
-                                  active ? "bg-sky-500" : "",
-                                  "block px-4 py-2 text-sm text-white"
-                                )}
-                              >
+                              <Link to="/miPerfil" className={classNames(
+                                active ? "bg-sky-500" : "",
+                                "block px-4 py-2 text-sm text-white"
+                              )}>
+                          
                                 Mi Perfil
+                            
                               </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <div
+                              <Link
                                 onClick={() => logout()}
                                 className={classNames(
                                   active ? "bg-sky-500" : "",
@@ -280,7 +275,7 @@ const NavBar2 = () => {
                                 )}
                               >
                                 Log out
-                              </div>
+                              </Link>
                             )}
                           </Menu.Item>
                         </Menu.Items>
@@ -294,9 +289,9 @@ const NavBar2 = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item, i) => (
-                <Disclosure.Button key={i}>
-                  <Link to={item.href}>
+              {navigation.map((item) => (
+                <Disclosure.Button>
+                  <Link key={item.href} to={item.href}>
                     <button
                       key={item.name}
                       value={item.name}
