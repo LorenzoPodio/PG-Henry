@@ -14,10 +14,10 @@ function Cart() {
   });
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <div>
         {cartItems && typeof data !== "string" ? (
-          <div className="max-h-96 overflow-y-auto">
+          <div className="max-h-96  overflow-y-auto">
             {cartItems?.map(e => {
               return (
                 <CartCard
@@ -59,14 +59,14 @@ function Cart() {
           </div>
         )}
       </div>
-      <div className="mt-2 text-center text-lg font-bold rounded-md bg-slate-900 text-white">
-        <p>TOTAL DEL CARRITO: ${cartTotalPrice}</p>
+      <div className="mt-2 py-4 mb-4 mx-8 text-center text-lg font-bold rounded-md  text-white">
+        {cartTotalPrice=== 0?<p>Su carrito esta vacio</p>:<p>TOTAL DEL CARRITO: ${cartTotalPrice}</p>}
       </div>
-      <Link to="/checkout" className="text-center">
+      {cartTotalPrice>0?<Link to="/checkout" className="text-center">
         <button className="px-4 py-2 my-2 rounded-md shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600">
           Terminar compra
         </button>
-      </Link>
+      </Link>:""}
     </div>
   );
 }

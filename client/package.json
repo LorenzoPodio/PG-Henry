@@ -19,9 +19,11 @@
     "react-map-gl": "^4.1.2",
     "react-map-gl-geocoder": "^2.2.0",
     "react-mapbox-gl": "^5.1.1",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-social-icons": "^5.11.0",
+    "styled-components": "^5.3.3",
     "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },

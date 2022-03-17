@@ -18,7 +18,7 @@ selectProduct.post("/", async (req, res, next) => {
             where: {
             name: nameUpper,
            
-        }, attributes: ["Images"]
+        }, attributes: ["Images", "stock"]
 
 
         })
@@ -31,8 +31,8 @@ selectProduct.post("/", async (req, res, next) => {
                 time: time,
                 price: price,
                 Images:images.dataValues.Images,
-               
-                
+                stock: images.dataValues.stock
+            
             }
         });
 
