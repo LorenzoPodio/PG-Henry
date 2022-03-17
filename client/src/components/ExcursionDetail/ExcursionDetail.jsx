@@ -44,14 +44,14 @@ export const ExcursionDetail = () => {
           id: excursionByid.id,
         })
         .then((resp) => {
-          if (resp.data > 0 ) {
+          if (resp.data > 0) {
             return setStock(resp.data);
           } else {
             return setStock(0);
           }
         })
         .catch((e) => {
-          return (setStock(0), setDisabled(true));
+          return setStock(0), setDisabled(true);
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -141,6 +141,7 @@ export const ExcursionDetail = () => {
               min={0}
               max={6}
               className="shadow-md text-center rounded-md h-9 w-1/3"
+              onKeyDown={(e) => e.preventDefault()}
             />
           </div>
         </div>
