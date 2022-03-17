@@ -8,8 +8,8 @@
   .navigation {
     display: inline-block;
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 0;
+    right: 0;
     margin: 30px;
     color: #ffffffa8;
     z-index: 1 !important;
@@ -22,8 +22,16 @@
     background-image: url('./assets/mapbox-icon.png');
     /* background-image: url('./assets/marker-editor.svg'); */
     background-size: cover;
-    width: 22px;
-    height: 20px;
+    width: 32px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
+  }
+  .geocoder{
+    border: black solid 1.5px;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 30px; 
   }

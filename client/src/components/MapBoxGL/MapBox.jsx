@@ -45,6 +45,10 @@ const Mapa = () => {
     });
   };
 
+  function handleCoordinates(e) {
+    console.log(e.lngLat);
+}
+
   return (
     <div>
       <ReactMapGL
@@ -56,6 +60,7 @@ const Mapa = () => {
           setViewport({...newViewport});
         }}
         ref={mapRef}
+        onClick={handleCoordinates}
       >
 
         {/*   MARKERS   */}
@@ -98,18 +103,19 @@ const Mapa = () => {
       </div>
 
       {/*  GET GEO-LOCATIONS  >> busca por nombre, hacer que lea el cursor las coordenadas para guardarlas y crear nuevos markers, no se como... */}
-      <Geocoder
-          mapRef={mapRef}
-          mapboxApiAccessToken="pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA"
-          onSelected={handleResult}
-          onViewportChange={newViewport => {
-            setViewport({...newViewport});
-          }}
-          countries="argentina"
-          position="top-right"
-          placeholder="Buscar..."
-        />
-
+      <div className="geocoder">
+        <Geocoder
+            mapRef={mapRef}
+            mapboxApiAccessToken="pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA"
+            onSelected={handleResult}
+            onViewportChange={newViewport => {
+              setViewport({...newViewport});
+            }}
+            // countries="ar"
+            position="top-right"
+            placeholder="Buscar..."
+          />
+        </div>
       </ReactMapGL>
     </div>
   );
