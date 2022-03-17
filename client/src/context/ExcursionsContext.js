@@ -241,13 +241,9 @@ export const ExcursionsProvider = ({ children }) => {
         banUser,
         UnbanUser,
         allOrders,
-
-
-        submitDates
-
-
-
+        submitDates,
         getAllOrders
+    
 
       }}
     >
