@@ -26,11 +26,11 @@ const NavBar2 = () => {
 
   const { loginWithRedirect, logout, user, isLoading } = useAuth0();
 
-
   const [usuario, setUsuario] = useState({
     email: "0",
     name: "0",
     lastName: "0",
+
     picture: "",
   });
 
@@ -195,14 +195,15 @@ const NavBar2 = () => {
                 ) : (
                   <>
                     <Menu as="div" className="ml-3 relative">
-                      <div style={{ margin: "1rem" }}>
+                      <div style={{ display: "flex", margin: "1rem" }}>
                         <Menu.Button className="bg-sky-600 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Carrito</span>
                           <ShoppingCartIcon
                             className="h-6 w-6"
                             aria-hidden="true"
                           />
-                          <span>{cartItems?.length}</span>
+
+                          <span>{cartItems.length}</span>
                         </Menu.Button>
                       </div>
                       <Transition
