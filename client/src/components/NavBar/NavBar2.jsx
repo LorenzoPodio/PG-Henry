@@ -39,10 +39,12 @@ const NavBar2 = () => {
   const { createCart, cartItems } = useCartContext();
 
   users?.map((u) => {
-    if (u.email === usuario?.email) {
+    if (u?.email === usuario?.email) {
       check = false;
     }
   });
+
+  console.log(check)
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -255,15 +257,18 @@ const NavBar2 = () => {
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
+                              <Link to="/miPerfil">
                               <a
-                                href="/miPerfil"
+                                
                                 className={classNames(
                                   active ? "bg-sky-500" : "",
                                   "block px-4 py-2 text-sm text-white"
                                 )}
                               >
-                                Your Profile
+                                
+                                Mi Perfil
                               </a>
+                              </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>
