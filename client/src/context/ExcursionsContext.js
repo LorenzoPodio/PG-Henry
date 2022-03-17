@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
 import { getAllUsers } from "./util/getAllUsers";
-import { getAllOrders } from "./util/getAllOrders";
 import axios from "axios";
+import swal from "sweetalert";
 import { useCartContext } from "./CartContext";
 
 export const ExcurcionsContext = createContext();
@@ -50,18 +50,12 @@ export const ExcursionsProvider = ({ children }) => {
   }, [URL]);
 
   useEffect(() => {
-    getAllOrders().then((r) => {
-      setAllOrders(r);
-    });
+    getAllOrders();
   }, []);
-
-  console.log(allOrders);
 
   const getExcursionById = async (id) => {
     try {
-      const { data } = await axios(
-        `http://localhost:3001/getexcursion?id=${id}`
-      );
+      const { data } = await axios(`http://localhost:3001/getexcursion?id=${id}`);
       return setExcursionByid(data);
     } catch (error) {
       console.log("error", error);
@@ -84,7 +78,6 @@ export const ExcursionsProvider = ({ children }) => {
       const regex = new RegExp(`${name}[^&]*&`);
       setURL((prevState) => prevState.replace(regex, ``));
     }
-    console.log(data, "que ondddda");
   };
 
   //postUser antes era addAdmin
@@ -205,6 +198,16 @@ export const ExcursionsProvider = ({ children }) => {
       });
   };
 
+  const getAllOrders = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/cart/getallorders");
+      return setAllOrders(() => data); 
+    } catch (error) {
+      swal('Algo salió mal!', error , {icon: 'error'});
+      return console.log('ERROR: ', error);
+    }
+  };
+
   return (
     <ExcurcionsContext.Provider
       value={{
@@ -228,6 +231,7 @@ export const ExcursionsProvider = ({ children }) => {
         banUser,
         UnbanUser,
         allOrders,
+        getAllOrders
       }}
     >
       {children}
