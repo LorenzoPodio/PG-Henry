@@ -267,7 +267,8 @@ console.log(check);
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <Link
+                              <Link 
+                              to="/excursiones"
                                 onClick={() => logout()}
                                 className={classNames(
                                   active ? "bg-sky-500" : "",
