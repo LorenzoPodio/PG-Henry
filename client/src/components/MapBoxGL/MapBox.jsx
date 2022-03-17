@@ -14,7 +14,6 @@ const Mapa = () => {
 
   });
   const [selected, setSelected] = useState(null);
-  // console.log('Soy selected: >>> ', selected);
 
   useEffect(() => {
     const listener = e => {

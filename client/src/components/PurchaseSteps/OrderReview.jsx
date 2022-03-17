@@ -21,9 +21,6 @@ export default function OrderReview({ handleClick }) {
   const total = cartItems.map((e) => e.totalPrice);
   const reduc = (accumulator, curr) => accumulator + curr;
   const totalbuy = total.reduce(reduc, 0)
-  // console.log(total,'acaaaa')
-
-  // console.log(total,'a ver que ondaaaa')
   return (
     <div className={style.orderReviewContainer}>
       <div className="shadow overflow-hidden " id="top">
@@ -69,9 +66,9 @@ export default function OrderReview({ handleClick }) {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {cartItems &&
-                    cartItems.map((e) => {
+                    cartItems.map((e, i) => {
                       return (
-                        <tr key={e.product.name}>
+                        <tr key={i}>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-left">
                               <div>
@@ -110,16 +107,16 @@ export default function OrderReview({ handleClick }) {
 
       <div className="shadow overflow-hidden " id="top">
       <div className="flex flex-col w-fit m-1">
-      <h1 className="grid place-content-center mt-0 mb-0 font-bold text-xl text-neutral-700">TOTAL DE LA COMPRA</h1>
+      <h2 className="grid place-content-center mt-0 mb-0 font-bold text-xl text-neutral-700">TOTAL DE LA COMPRA</h2>
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"></div>
       <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <h1 className="grid place-content-center mt-0 mb-0 font-bold  text-grey-900">
+                    <td className="grid place-content-center mt-0 mb-0 font-bold  text-grey-900">
                      $ {totalbuy}
-                    </h1>
+                    </td>
                   </tr>
                 </thead>
               </table>

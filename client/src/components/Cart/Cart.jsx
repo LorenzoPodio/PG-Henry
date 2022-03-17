@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 function Cart() {
   const { cartItems } = useCartContext();
-  console.log('CARTITEMS :>> ', cartItems);
   let cartTotalPrice = 0;
 
   cartItems?.forEach(e => {

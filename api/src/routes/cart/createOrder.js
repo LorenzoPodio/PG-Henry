@@ -21,14 +21,14 @@ createOrder.post("/", async (req, res, next) => {
     
     const OrderStatusCreated = await Order.findOne({
       where: {
-        userId: getUserId.dataValues.id,
+        userId: getUserId?.dataValues.id,
         status: "buying",
       },
     });
     if (!OrderStatusCreated) {
     const OrderStatusCart = await Order.findOrCreate({
       where: {
-        userId: getUserId.dataValues.id,
+        userId: getUserId?.dataValues.id,
         status: "empty",
         date: new Date().toLocaleDateString()
       },

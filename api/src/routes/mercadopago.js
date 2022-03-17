@@ -12,14 +12,12 @@ mercadopago.configure({
 });
 
 mp.post("/", function (req, res) {
-  // console.log(req.body,'esteeeee que onda')
   const allTotalsPrices = req.body.cartItems.map((e) => e.totalPrice);
   const namesExcursions = req.body.cartItems.map((e) => e.product.name);
   const reduc = (accumulator, curr) => accumulator + curr;
   const priceToPay = allTotalsPrices.reduce(reduc, 0);
   const email = req.body.email;
 
-  // console.log(priceToPay,namesExcursions,' quellego acaaaa')
   let preference = {
     items: [
       {
@@ -65,8 +63,8 @@ mp.get("/feedback", async function (req, res, next) {
     const status = req.query.status;
     const email = req.query.external_reference;
 
-    if(!status || !email) {
-      return res.status(500).send("Ocurrio un error")
+    if (!status || !email) {
+      return res.status(500).send("Ocurrio un error");
     }
     const userDetails = await User.findOne({
       where: {
@@ -81,10 +79,10 @@ mp.get("/feedback", async function (req, res, next) {
       ],
     });
 
-    const orderId = userDetails.dataValues.orders[0].dataValues.id;
-    const name = userDetails.dataValues.name;
-    const lastName = userDetails.dataValues.lastName;
-    const idUser = userDetails.dataValues.id
+    const orderId = userDetails?.dataValues.orders[0].dataValues.id;
+    const name = userDetails?.dataValues.name;
+    const lastName = userDetails?.dataValues.lastName;
+    const idUser = userDetails?.dataValues.id;
 
     const details = await Order_detail.findAll({
       where: {
@@ -98,21 +96,21 @@ mp.get("/feedback", async function (req, res, next) {
       ],
     });
     let mapProd = details?.map((order) => {
-      return order.dataValues.product;
+      return order?.dataValues.product;
     });
     let nameProd = mapProd?.map((name) => {
       return {
-        name: name.dataValues.name,
-        date: name.dataValues.date,
-        id: name.dataValues.id,
-        stock: name.dataValues.stock,
+        name: name?.dataValues.name,
+        date: name?.dataValues.date,
+        id: name?.dataValues.id,
+        stock: name?.dataValues.stock,
       };
     });
 
     let mapPrice = details?.map((order) => {
       return {
-        price: order.dataValues.price,
-        quantity: order.dataValues.quantity,
+        price: order?.dataValues.price,
+        quantity: order?.dataValues.quantity,
       };
     });
 
@@ -156,7 +154,10 @@ mp.get("/feedback", async function (req, res, next) {
   Por favor califique su experiencia en la aplicacion. </h1> `,
       };
 
-      await Order.update({ status: "completed", date: new Date().toLocaleDateString()}, { where: { id: orderId } });
+      await Order.update(
+        { status: "completed", date: new Date().toLocaleDateString() },
+        { where: { id: orderId } }
+      );
 
       function arrayHand(array1, array2) {
         if (array1.length === array2.length) {
@@ -172,6 +173,7 @@ mp.get("/feedback", async function (req, res, next) {
         where: {
           userId: idUser,
           status: "empty",
+          date: new Date().toLocaleDateString(),
         },
       });
       arrayHand(nameProd, mapPrice);
@@ -183,8 +185,7 @@ mp.get("/feedback", async function (req, res, next) {
           res.status(200).jsonp("email enviado");
         }
       });
-    }
-    else if (status === "pending"){
+    } else if (status === "pending") {
       var mailOptions = {
         from: "excursionappmail@gmail.com",
         to: email,
@@ -203,7 +204,10 @@ mp.get("/feedback", async function (req, res, next) {
   <br/>            
   Por favor califique su experiencia en la aplicacion. </h1> `,
       };
-      await Order.update({ status: "processingPay" }, { where: { id: orderId } });
+      await Order.update(
+        { status: "processingPay" },
+        { where: { id: orderId } }
+      );
 
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -212,9 +216,7 @@ mp.get("/feedback", async function (req, res, next) {
           res.status(200).jsonp("email enviado");
         }
       });
-
-    }
-    else {
+    } else {
       var mailOptions = {
         from: "excursionappmail@gmail.com",
         to: email,
@@ -234,8 +236,10 @@ mp.get("/feedback", async function (req, res, next) {
   Por favor califique su experiencia en la aplicacion. </h1> `,
       };
 
-      await Order.update({ status: "processingPay" }, { where: { id: orderId } });
-
+      await Order.update(
+        { status: "processingPay" },
+        { where: { id: orderId } }
+      );
 
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -244,7 +248,6 @@ mp.get("/feedback", async function (req, res, next) {
           res.status(200).jsonp("email enviado");
         }
       });
-
     }
 
     res.status(200).send(status);
