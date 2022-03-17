@@ -42,14 +42,14 @@ export default function Stepper() {
             </li>
           )}
           {step === "Payment" ? (
-            <li className={style.active}>
-              <button onClick={() => handleClick("Payment")}>
+            <li >
+              <button >
                 Método de pago{" "}
               </button>
             </li>
           ) : (
             <li>
-              <button onClick={() => handleClick("Payment")}>
+              <button >
                 Método de pago
               </button>
             </li>

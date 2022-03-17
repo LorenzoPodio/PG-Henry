@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import { Excursions } from "./components/Excursions/Excursions";
 import { ExcursionsPost } from "./components/ExcursionsPost/ExcursionsPost";
 import Login from "./components/Login/Login";
-import Register from "./components/Registro/Register";
 import { Prices } from "./components/Prices/Prices";
 import { ExcursionDetail } from "./components/ExcursionDetail/ExcursionDetail.jsx";
 import Stepper from "./components/PurchaseSteps/Container/Stepper";
@@ -30,7 +29,6 @@ function App() {
         <Route exact path="/editarExcursion" element={<EditExcursion />} />
         <Route exact path="/excursiones" element={<Excursions />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/registro" element={<Register />} />
         <Route path="/tarifas" element={<Prices />} />
         <Route path="/compras" element={<Purchases />} />
         <Route path="/nosotros" element={<About />} />

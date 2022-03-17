@@ -72,7 +72,7 @@ mp.get("/feedback", async function (req, res, next) {
       where: {
         email: email,
       },
-      attributes: ["name", "lastName", "email"],
+      attributes: ["name", "lastName", "email", "id"],
       include: [
         {
           model: Order,
@@ -84,6 +84,7 @@ mp.get("/feedback", async function (req, res, next) {
     const orderId = userDetails.dataValues.orders[0].dataValues.id;
     const name = userDetails.dataValues.name;
     const lastName = userDetails.dataValues.lastName;
+    const idUser = userDetails.dataValues.id
 
     const details = await Order_detail.findAll({
       where: {
@@ -167,6 +168,12 @@ mp.get("/feedback", async function (req, res, next) {
           }
         }
       }
+      await Order.findOrCreate({
+        where: {
+          userId: idUser,
+          status: "empty",
+        },
+      });
       arrayHand(nameProd, mapPrice);
 
       transporter.sendMail(mailOptions, (error, info) => {

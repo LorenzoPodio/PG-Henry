@@ -91,6 +91,16 @@ export const ExcursionsProvider = ({ children }) => {
   };
   //
 
+  //agregar dni y direccion a los datos de usuario para confirmar compra
+  const submitDates = (dates) => {
+    return axios
+    .put("http://localhost:3001/changedatesUser", dates)
+    .then((res) => res.data)
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   //postExcursion
   const addExcursion = (excursion) => {
     return axios
@@ -231,7 +241,14 @@ export const ExcursionsProvider = ({ children }) => {
         banUser,
         UnbanUser,
         allOrders,
+
+
+        submitDates
+
+
+
         getAllOrders
+
       }}
     >
       {children}
