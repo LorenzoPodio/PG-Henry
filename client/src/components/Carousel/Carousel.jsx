@@ -2,7 +2,7 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 
-Carousel = ({ Images }) => {
+const CarouselComponent = ({ Images }) => {
   return (
     <div class="carousel-wrapper">
       <Carousel useKeyboardArrows infiniteLoop>
@@ -26,4 +26,4 @@ Carousel = ({ Images }) => {
   );
 };
 
-export default Carousel;
+export default CarouselComponent;
