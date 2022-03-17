@@ -9,6 +9,8 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Carousel from "../Carousel/Carousel";
 import swal from "sweetalert";
+import  {Mapa}  from "../MapBoxGL/MapBox"
+
 
 export const ExcursionDetail = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
@@ -175,6 +177,10 @@ export const ExcursionDetail = () => {
           <ShoppingCartIcon className="w-5 h-5 ml-1" />
         </button>
       </div>
+      {/* <Mapa
+       lat={-41.1345}
+       long= {-71.3021}
+      /> */}
     </div>
   );
 };

@@ -30,11 +30,10 @@ const NavBar2 = () => {
     email: "0",
     name: "0",
     lastName: "0",
-
     picture: "",
   });
 
-  const { users, addUser, getAllOrders} = useExcursionsContext();
+  const { users, addUser} = useExcursionsContext();
 
   const { createCart, cartItems } = useCartContext();
 
@@ -73,7 +72,7 @@ const NavBar2 = () => {
     setUsuario((prevState) => {
       return {
         ...prevState,
-        picture: user.picture,
+        picture: user?.picture,
       };
     });
 
@@ -122,8 +121,8 @@ const NavBar2 = () => {
   if (user && usuario.lastName !== "0" && check) {
     addUser(usuario);
     createCart(usuario.email);
-    getAllOrders();
   }
+  
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
@@ -231,7 +230,7 @@ const NavBar2 = () => {
                       <div>
                         <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Open user menu</span>
-                          {usuario.picture.length > 0  ? <img
+                          {usuario?.picture.length > 0  ? <img
                             className="h-8 w-8 rounded-full"
                             src={usuario?.picture}
                             alt="User profile"

@@ -1,31 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactMapGL, {NavigationControl , Marker, Popup } from "react-map-gl";
+import ReactMapGL,{ Marker } from "react-map-gl";
 import Geocoder from 'react-map-gl-geocoder';
-import geoJson from './coordinates.json';
 import './Map.css';
 
-export const Mapa = ({lat, long}) => {
-console.log(lat)
-console.log(long)
-
+export default function MapaSearch(){
+    
   const [viewport, setViewport] = useState({
-    latitude: lat,
-    longitude: long,
+    latitude: -40.4211,
+    longitude: -50.6903,
     width: "100vw",
     height: "80vh",
     zoom: 3.1,
 
   });
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState({
+        latitude: 0,
+        longitude: 0
+    })
   // console.log('Soy selected: >>> ', selected);
 
-  console.log(viewport)
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
         setSelected(null);
       }
     };
+    
     window.addEventListener("keydown", listener);
     // CleanUp function >>> unmount comp
     return () => {
@@ -33,9 +33,13 @@ console.log(long)
     };
   }, []);
 
-  const markerClicked = (title) => {
-    window.alert(title);
-  };
+
+  useEffect(() => {
+    setSelected({
+        latitude: selected.longitude,
+        longitude: selected.latitude,
+    })
+  }, []);
 
 
   const mapRef = useRef()
@@ -49,8 +53,16 @@ console.log(long)
     });
   };
 
+  
   function handleCoordinates(e) {
-    console.log(e.lngLat);
+     console.log(e.lngLat)
+    setSelected({
+        latitude: e.lngLat[1] -0.0005,
+        longitude: e.lngLat[0]
+    })
+    console.log(selected.longitude)
+    console.log(selected.latitude)
+
 }
 
   return (
@@ -68,22 +80,33 @@ console.log(long)
       >
 
         {/*   MARKERS   */}
-        
+       
           <Marker
-            key={"33"}
-            latitude={lat}
-            longitude={long}
-            onClick={markerClicked}  feature={""} 
+            key={"marker"}
+            latitude={selected.latitude}
+            longitude={selected.longitude}
+           
           >
             <button
               className="marker"
-              onClick={e => {
-                e.preventDefault();
-                setSelected("");
-              }}
             ></button>
           </Marker>
-     
+        
+
+      {/*  GET GEO-LOCATIONS  >> busca por nombre, hacer que lea el cursor las coordenadas para guardarlas y crear nuevos markers, no se como... */}
+      <div className="geocoder">
+        <Geocoder
+            mapRef={mapRef}
+            mapboxApiAccessToken="pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA"
+            onSelected={handleResult}
+            onViewportChange={newViewport => {
+              setViewport({...newViewport});
+            }}
+            // countries="ar"
+            position="top-right"
+            placeholder="Buscar..."
+          />
+        </div>
       </ReactMapGL>
     </div>
   );
