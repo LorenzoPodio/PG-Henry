@@ -8,6 +8,8 @@ import { DetailDatePicker } from "./DetailDatePicker/DetailDatePicker";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Carousel from "../Carousel/Carousel";
+import swal from "sweetalert";
+
 
 export const ExcursionDetail = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
@@ -70,13 +72,22 @@ export const ExcursionDetail = () => {
   // const {Images, createdInDb, date, description, excursionType, extra, location, name, price, time} = excursionByid;
 
   const handleClick = () => {
+    if (!user){
+      swal({
+        title: "Inicie Sesión",
+        text: "Por favor inicie sesión para poder comprar" ,
+        icon: "warning",
+      })
+      
+       
+    }else{
     addItemToCart({
       ...item,
       name: excursionByid.name,
       price: excursionByid.price,
       email: user?.email, //Aca en realidad iría el id del usuario
     });
-    navigate('/excursiones');
+    navigate('/excursiones');}
   };
 
   return (
