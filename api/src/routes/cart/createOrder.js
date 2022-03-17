@@ -30,6 +30,7 @@ createOrder.post("/", async (req, res, next) => {
       where: {
         userId: getUserId.dataValues.id,
         status: "empty",
+        date: new Date().toLocaleDateString()
       },
     });
     return res.status(200).send(OrderStatusCart)

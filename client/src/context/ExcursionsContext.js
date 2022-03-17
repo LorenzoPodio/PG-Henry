@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
 import { getAllUsers } from "./util/getAllUsers";
-import { getAllOrders } from './util/getAllOrders'
 import axios from "axios";
+import swal from "sweetalert";
 
 
 
@@ -13,7 +13,7 @@ export const useExcursionsContext = () => useContext(ExcurcionsContext);
 export const ExcursionsProvider = ({ children }) => {
 
   const [users, setUsers] = useState(); //constante que contiene todos los users
-  
+
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
@@ -50,16 +50,12 @@ export const ExcursionsProvider = ({ children }) => {
 
 
   useEffect(() => {
-    getAllOrders().then((r) => {
-      setAllOrders(r)
-    })
+    getAllOrders();
   }, []);
-  
-  console.log(allOrders)
-  
+
   const getExcursionById = async (id) => {
     try {
-      const {data} = await axios(`http://localhost:3001/getexcursion?id=${id}`);
+      const { data } = await axios(`http://localhost:3001/getexcursion?id=${id}`);
       return setExcursionByid(data);
     } catch (error) {
       console.log("error", error);
@@ -83,7 +79,7 @@ export const ExcursionsProvider = ({ children }) => {
       const regex = new RegExp(`${name}[^&]*&`);
       setURL((prevState) => prevState.replace(regex, ``));
     }
-    console.log(data,'que ondddda')
+    console.log(data, 'que ondddda')
   };
 
   //postUser antes era addAdmin
@@ -210,6 +206,16 @@ export const ExcursionsProvider = ({ children }) => {
       });
   };
 
+  const getAllOrders = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/cart/getallorders");
+      return setAllOrders(() => data); 
+    } catch (error) {
+      swal('Algo salió mal!', error , {icon: 'error'});
+      return console.log('ERROR: ', error);
+    }
+  };
+
   return (
     <ExcurcionsContext.Provider
       value={{
@@ -232,7 +238,8 @@ export const ExcursionsProvider = ({ children }) => {
         cancelledOrder,
         banUser,
         UnbanUser,
-        allOrders
+        allOrders,
+        getAllOrders
       }}
     >
       {children}

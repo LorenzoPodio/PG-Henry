@@ -14,7 +14,7 @@ export const ExcursionDetail = () => {
   const { id } = useParams();
   const {user} = useAuth0();
   const [disabled, setDisabled] = useState(true);
-  const { excursionByid, getExcursionById } = useExcursionsContext();
+  const { excursionByid, getExcursionById, getAllOrders } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
 
@@ -73,6 +73,7 @@ export const ExcursionDetail = () => {
       price: excursionByid.price,
       email: user?.email, //Aca en realidad iría el id del usuario
     });
+    getAllOrders();
     navigate('/excursiones');
   };
 
