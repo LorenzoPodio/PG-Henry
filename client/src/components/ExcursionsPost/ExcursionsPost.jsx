@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import swal from "sweetalert";
 import axios from "axios";
-import {Image} from 'cloudinary-react'
+import {Image} from 'cloudinary-react';
+import { useNavigate } from "react-router-dom";
 
 export const ExcursionsPost = () => {
 
   const { addExcursion, allExcursions } = useExcursionsContext();
   const [imagesUrls, setImagesUrls] = useState([])
+  const navigate = useNavigate();
+
   const nameExcursions = allExcursions && allExcursions.map((e) => {
     return e.name
   }); 
@@ -162,7 +165,7 @@ export const ExcursionsPost = () => {
     console.log(input)
     addExcursion(input)
     swal("Excursión creada exitosamente");
-    setTimeout(() => (window.location.href = "/panelAdmin"), 3000);
+    setTimeout(() => (navigate("/panelAdmin")), 3000);
     setInput({
       name: "",
       Images: [],

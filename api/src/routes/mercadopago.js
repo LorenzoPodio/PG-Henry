@@ -156,7 +156,7 @@ mp.get("/feedback", async function (req, res, next) {
   Por favor califique su experiencia en la aplicacion. </h1> `,
       };
 
-      await Order.update({ status: "completed" }, { where: { id: orderId } });
+      await Order.update({ status: "completed", date: new Date().toLocaleDateString()}, { where: { id: orderId } });
 
       function arrayHand(array1, array2) {
         if (array1.length === array2.length) {
