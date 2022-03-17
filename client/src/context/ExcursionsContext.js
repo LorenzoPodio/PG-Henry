@@ -3,15 +3,13 @@ import { getExcursions } from "./util/getExcursions";
 import { getAllUsers } from "./util/getAllUsers";
 import axios from "axios";
 import swal from "sweetalert";
-
-
+import { useCartContext } from "./CartContext";
 
 export const ExcurcionsContext = createContext();
 
 export const useExcursionsContext = () => useContext(ExcurcionsContext);
 
 export const ExcursionsProvider = ({ children }) => {
-
   const [users, setUsers] = useState(); //constante que contiene todos los users
 
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
@@ -19,14 +17,17 @@ export const ExcursionsProvider = ({ children }) => {
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
-  const [allOrders, setAllOrders] = useState()
+  const [allOrders, setAllOrders] = useState();
+
+  const { setLoading } = useCartContext();
 
   useEffect(() => {
     getExcursions().then((r) => {
       return (
         setAllExcursions(r),
         setData(r),
-        setExcursionFiltered(r)
+        setExcursionFiltered(r),
+        setLoading(false)
       );
     });
     getAllUsers().then((r) => {
@@ -48,7 +49,6 @@ export const ExcursionsProvider = ({ children }) => {
       });
   }, [URL]);
 
-
   useEffect(() => {
     getAllOrders();
   }, []);
@@ -61,7 +61,6 @@ export const ExcursionsProvider = ({ children }) => {
       console.log("error", error);
     }
   };
-
 
   //feature_filter-implemented
   const handleFilter = (name, value) => {
@@ -79,7 +78,6 @@ export const ExcursionsProvider = ({ children }) => {
       const regex = new RegExp(`${name}[^&]*&`);
       setURL((prevState) => prevState.replace(regex, ``));
     }
-    console.log(data, 'que ondddda')
   };
 
   //postUser antes era addAdmin
@@ -126,9 +124,7 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .put(`http://localhost:3001/banuser/${id}`)
       .then((response) => {
-        return (
-          setUsers(response.data)
-        );
+        return setUsers(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -141,9 +137,7 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .put(`http://localhost:3001/unbanuser/${id}`)
       .then((response) => {
-        return (
-          setUsers(response.data)
-        );
+        return setUsers(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -192,14 +186,12 @@ export const ExcursionsProvider = ({ children }) => {
   }
   //
 
-  //cancelled order 
+  //cancelled order
   const cancelledOrder = (id) => {
     return axios
       .put(`http://localhost:3001/cart/canceledorder/${id}`)
       .then((response) => {
-        return (
-          setAllExcursions(response.data)
-        );
+        return setAllExcursions(response.data);
       })
       .catch((err) => {
         console.log(err);

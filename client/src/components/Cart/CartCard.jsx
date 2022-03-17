@@ -12,7 +12,7 @@ export const CartCard = ({ detailId, name, images, date, time, price, quantity, 
   }
 
   return (
-    <div className="flex px-2 py-1 content-center justify-evenly border border-black bg-slate-200 sm:grid-rows-3">
+    <div className="flex px-2 py-1 mb-2 content-center justify-evenly rounded-md  bg-white sm:grid-rows-3">
       {/* <NavLink
         // key={id}
         // to={`/excursion/detalle/${id}`}

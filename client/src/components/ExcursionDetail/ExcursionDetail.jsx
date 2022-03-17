@@ -7,12 +7,16 @@ import { ShoppingCartIcon } from "@heroicons/react/solid";
 import { DetailDatePicker } from "./DetailDatePicker/DetailDatePicker";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import Carousel from "../Carousel/Carousel";
+import swal from "sweetalert";
 
 export const ExcursionDetail = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
   const [stock, setStock] = useState("0");
   const { id } = useParams();
-  const {user} = useAuth0();
+
+  const { user } = useAuth0();
+
   const [disabled, setDisabled] = useState(true);
   const { excursionByid, getExcursionById, getAllOrders } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
@@ -39,7 +43,13 @@ export const ExcursionDetail = () => {
           price: excursionByid.price,
           id: excursionByid.id,
         })
-        .then((resp) => setStock(resp.data), setDisabled(false))
+        .then((resp) => {
+          if (resp.data > 0) {
+            return setStock(resp.data);
+          } else {
+            return setStock(0);
+          }
+        })
         .catch((e) => {
           return setStock(0), setDisabled(true);
         });
@@ -48,8 +58,11 @@ export const ExcursionDetail = () => {
   }, [item]);
 
   //Handles que construyen el item que se enviara a la ruta del back addCart
-  const handleChange = (e) => {
+  const handleQuantity = (e) => {
     setItem((prevState) => {
+      if (e.target.value <= stock && e.target.value > 0) {
+        setDisabled(false);
+      }
       return { ...prevState, [e.target.name]: e.target.value };
     });
   };
@@ -67,42 +80,32 @@ export const ExcursionDetail = () => {
   // const {Images, createdInDb, date, description, excursionType, extra, location, name, price, time} = excursionByid;
 
   const handleClick = () => {
-    addItemToCart({
-      ...item,
-      name: excursionByid.name,
-      price: excursionByid.price,
-      email: user?.email, //Aca en realidad iría el id del usuario
-    });
-    getAllOrders();
-    navigate('/excursiones');
+    if (!user) {
+      swal({
+        title: "Inicie Sesión",
+        text: "Por favor inicie sesión para poder comprar",
+        icon: "warning",
+      });
+    } else {
+      addItemToCart({
+        ...item,
+        name: excursionByid.name,
+        price: excursionByid.price,
+        email: user?.email, //Aca en realidad iría el id del usuario
+      });
+      navigate("/excursiones");
+    }
   };
 
   return (
     <div className="md:flex items-start justify-center py-2 px-2">
-      <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-        <img
-          className="w-11/12"
-          alt="img excursion"
-          src={excursionByid?.Images[0]}
-        />
-        <img
-          className="mt-2 w-11/12"
-          alt="img excursion"
-          src={excursionByid?.Images[1]}
-        />
+      <div
+        className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden"
+        style={{ display: "flex" }}
+      >
+        {excursionByid && <Carousel Images={excursionByid.Images} />}
       </div>
-      <div className="md:hidden">
-        <img
-          className="w-full"
-          alt="img excursion"
-          src={excursionByid?.Images[0]}
-        />
-        <img
-          className="mt-6 w-full"
-          alt="img excursion"
-          src={excursionByid?.Images[1]}
-        />
-      </div>
+
       <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6">
         <div className="border-b border-gray-200 pb-3">
           <p className="text-sm leading-none text-gray-600">
@@ -115,18 +118,31 @@ export const ExcursionDetail = () => {
         <div className="inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start">
           <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/3">
             <p className="text-base leading-4 text-gray-800">Dia:</p>
-            <DetailDatePicker handleDate={handleDate} excursionDays={excursionByid?.date}/>
+            <DetailDatePicker
+              handleDate={handleDate}
+              excursionDays={excursionByid?.date}
+            />
           </div>
           <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
             <p className="text-base leading-4 text-gray-800">Hora:</p>
             {excursionByid?.time && (
-              <InputSelect handleTime={handleTime} options={excursionByid?.time}/>
+              <InputSelect
+                handleTime={handleTime}
+                options={excursionByid?.time}
+              />
             )}
           </div>
           <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
             <p className="text-base leading-4 text-gray-800">Personas:</p>
-            <input onChange={(e) => handleChange(e)} type="number" name="quantity" min={0} max={6} 
-              className="shadow-md text-center rounded-md h-9 w-1/3"/>
+            <input
+              onChange={(e) => handleQuantity(e)}
+              type="number"
+              name="quantity"
+              min={0}
+              max={6}
+              className="shadow-md text-center rounded-md h-9 w-1/3"
+              onKeyDown={(e) => e.preventDefault()}
+            />
           </div>
         </div>
         <div>

@@ -9,6 +9,7 @@ export const useCartContext = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
 
   useEffect(() => {
@@ -71,12 +72,10 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addItemToCart,
         createCart,
-
+        setLoading,
+        loading,
         user,
-        // deleteItemToCart,
-
         removeItemFromCart
-
       }}
     >
       {children}
