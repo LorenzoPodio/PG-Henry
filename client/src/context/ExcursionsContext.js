@@ -55,8 +55,6 @@ export const ExcursionsProvider = ({ children }) => {
     });
   }, []);
 
-  console.log(allOrders);
-
   const getExcursionById = async (id) => {
     try {
       const { data } = await axios(
@@ -84,7 +82,6 @@ export const ExcursionsProvider = ({ children }) => {
       const regex = new RegExp(`${name}[^&]*&`);
       setURL((prevState) => prevState.replace(regex, ``));
     }
-    console.log(data, "que ondddda");
   };
 
   //postUser antes era addAdmin

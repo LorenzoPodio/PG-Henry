@@ -108,7 +108,6 @@ export const ExcursionsPost = () => {
       ...prevState.filter(img => img !== e.target.value)
       ]})
 
-      console.log(imagesUrls)
   }
 
   ///HANDLE DE LOCATION
@@ -129,7 +128,6 @@ export const ExcursionsPost = () => {
 
   ///SUBMIT
   const handleSubmit = (e) => {
-     console.log(input)
       if (nameExcursions && nameExcursions.includes(input.name)) {
         e.preventDefault();
         swal({
@@ -159,7 +157,6 @@ export const ExcursionsPost = () => {
           input.Images = imagesUrls
         }
 
-    console.log(input)
     addExcursion(input)
     swal("Excursión creada exitosamente");
     setTimeout(() => (window.location.href = "/panelAdmin"), 3000);

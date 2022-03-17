@@ -8,7 +8,6 @@ export default function Payment({ handleClick }) {
   const { cartItems, user } = useCartContext();
    
 
-console.log(user,'estosssssss')
   //   //  IMPLEMENTACION DE MP
   useEffect(() => {
     axios

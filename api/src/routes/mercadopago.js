@@ -12,14 +12,12 @@ mercadopago.configure({
 });
 
 mp.post("/", function (req, res) {
-  // console.log(req.body,'esteeeee que onda')
   const allTotalsPrices = req.body.cartItems.map((e) => e.totalPrice);
   const namesExcursions = req.body.cartItems.map((e) => e.product.name);
   const reduc = (accumulator, curr) => accumulator + curr;
   const priceToPay = allTotalsPrices.reduce(reduc, 0);
   const email = req.body.email;
 
-  // console.log(priceToPay,namesExcursions,' quellego acaaaa')
   let preference = {
     items: [
       {

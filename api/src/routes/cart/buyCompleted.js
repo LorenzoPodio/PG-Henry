@@ -63,7 +63,6 @@ buyCompleted.post("/", async (req, res, next) => {
         const datesMail = arrayHandler(nameProd, mapPrice)
     
 
-        // console.log(concat, 'que haya caaaaaaaaaaaa')
 
         var mailOptions = {
             from: "excursionappmail@gmail.com",
@@ -86,7 +85,6 @@ buyCompleted.post("/", async (req, res, next) => {
         if (error) {
           return res.status(500).send(error.message);
         } else {
-          console.log("email enviado")
           res.status(200).jsonp(req.body);
         }
       })
@@ -119,7 +117,6 @@ buyCompleted.post("/", async (req, res, next) => {
             if (error) {
               return res.status(500).send(error.message);
             } else {
-              console.log("email enviado")
               res.status(200).jsonp(req.body);
             }
           })

@@ -27,7 +27,6 @@ getCartUserId.get("/:id", async (req, res, next) => {
         .status(500)
         .send(`A cart associated with id (${id}) was not found`);
     } else {
-      //   console.log(orderId)
       res.status(200).send(orderId);
     }
   } catch (error) {

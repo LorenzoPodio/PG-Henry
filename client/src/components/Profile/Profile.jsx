@@ -25,11 +25,6 @@ export function Profile() {
     }
   });
 
-  console.log(cancelled);
-  console.log(completed);
-
-  console.log(currentOrders);
-
   return (
     <div className="grid place-content-center">
       <div className="bg-white shadow overflow-hidden sm:rounded-lg">

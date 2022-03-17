@@ -1,14 +1,8 @@
 import React from "react";
-import { ReactDOM } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import { useExcursionsContext } from "../../context/ExcursionsContext";
 
-export default ({ Images }) => {
-  const { excursionByid } = useExcursionsContext();
-  console.log("excursionByid", excursionByid.Images);
-  var algo = excursionByid.Images;
-  console.log("algo", algo);
+Carousel = ({ Images }) => {
   return (
     <div class="carousel-wrapper">
       <Carousel useKeyboardArrows infiniteLoop>
@@ -17,7 +11,7 @@ export default ({ Images }) => {
             <div>
               <img
                 src={e}
-                alt="Image not found"
+                alt="Not found"
                 style={{
                   width: "full",
                   heigth: "auto",
@@ -31,3 +25,5 @@ export default ({ Images }) => {
     </div>
   );
 };
+
+export default Carousel;

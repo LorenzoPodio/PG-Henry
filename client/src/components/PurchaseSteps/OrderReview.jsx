@@ -21,9 +21,6 @@ export default function OrderReview({ handleClick }) {
   const total = cartItems.map((e) => e.totalPrice);
   const reduc = (accumulator, curr) => accumulator + curr;
   const totalbuy = total.reduce(reduc, 0)
-  // console.log(total,'acaaaa')
-
-  // console.log(total,'a ver que ondaaaa')
   return (
     <div className={style.orderReviewContainer}>
       <div className="shadow overflow-hidden " id="top">
