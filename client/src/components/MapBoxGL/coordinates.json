@@ -1,0 +1,346 @@
+{
+    "type": "FeatureCollection",
+
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 1,
+                "cluster": false,
+                "title": "Lincoln Park",
+                "description": "A northside park that is home to the Lincoln Park Zoo"
+            },
+            "geometry": {
+                "coordinates": [
+                    -87.637596,
+                    41.940403
+                ],
+                "type": "Point"
+            }
+        }
+    ],
+    
+
+    "locations": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 1,
+                "cluster": false,
+                "title": "San Carlos de Bariloche",
+                "description": "Río Negro, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -41.134542888839334,
+                    -71.3021238845947
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 2,
+                "cluster": false,
+                "title": "Canal - Tierra del Fuego",
+                "description": "Ushuaia, Tierra del Fuego, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -54.81075225986759,
+                    -68.29540910046386
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 3,
+                "cluster": false,
+                "title": "Salina Grande",
+                "description": "Jujuy, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -23.61858158718339,
+                    -65.85432786289064
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 4,
+                "cluster": false,
+                "title": "Laguna Esmeralda",
+                "description": "Ushuaia, Tierra del Fuego, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -54.6919054289594,
+                    -68.1284670126892
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id":5,
+                "cluster": false,
+                "title": "Aconcagua",
+                "description": "Mendoza, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -32.82139849815518,
+                    -69.92023029296875
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 6,
+                "cluster": false,
+                "title": "Glaciar Perito Moreno",
+                "description": "Santa Cruz, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -50.49820384491212,
+                    -73.13697455449217
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 7,
+                "cluster": false,
+                "title": "Río Manso",
+                "description": "San Carlos de Bariloche, Río Negro, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -41.092224090385784,
+                    -71.45759884609373
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 8,
+                "cluster": false,
+                "title": "Glaciar Vinciguerra",
+                "description": "Tierra del Fuego, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -54.726349934869894,
+                    -68.33632079325407
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 9,
+                "cluster": false,
+                "title": "Ushuaia",
+                "description": "Tierra del Fuego, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -54.691138466218774,
+                    -68.58310246718752
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 10,
+                "cluster": false,
+                "title": "Valle de Calingasta",
+                "description": "San Juan, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -31.34486489349144,
+                    -69.4285536206543
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 11,
+                "cluster": false,
+                "title": "Circuito Chico",
+                "description": " San Carlos De Bariloche, Río Negro, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -41.071790745133846,
+                    -71.52227299933622
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 12,
+                "cluster": false,
+                "title": "Quebrada de Humahuaca",
+                "description": "Jujuy, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -23.090131023484805,
+                    -65.33504991376952
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 13,
+                "cluster": false,
+                "title": "Los Viñedos",
+                "description": "Godoy Cruz, Mendoza, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -32.93544885558437,
+                    -68.8192428359375
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 14,
+                "cluster": false,
+                "title": "Parque Provincial Ischigualasto",
+                "description": "San Juan, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -30.163703383422167,
+                    -67.84247790674591
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 15,
+                "cluster": false,
+                "title": "El Bolsón",
+                "description": "San Carlos de Bariloche, Río Negro, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -41.15268068556185,
+                    -71.31819395449217
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 16,
+                "cluster": false,
+                "title": "El Chalten",
+                "description": "Santa Cruz, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -49.331427677999535,
+                    -72.8851716501236
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 17,
+                "cluster": false,
+                "title": "Dique Punta Negra",
+                "description": "San Juan, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -31.520770595570493,
+                    -68.81825400859833
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 18,
+                "cluster": false,
+                "title": "Nahuel Huapi",
+                "description": "Río Negro, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -41.05353423614336,
+                    -71.15140912963867
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 19,
+                "cluster": false,
+                "title": "Iruya",
+                "description": "Salta, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -22.790651707826655,
+                    -65.21533228518066
+                ],
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": 20,
+                "cluster": false,
+                "title": "Potrerillos",
+                "description": "Mendoza, Argentina"
+            },
+            "geometry": {
+                "coordinates": [
+                    -32.94607713363563,
+                    -69.20262332590333
+                ],
+                "type": "Point"
+            }
+        }
+    ]
+}
