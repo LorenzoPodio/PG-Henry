@@ -10,6 +10,7 @@ export function Profile() {
   const cancelled = [];
   const completed = [];
 
+
   allOrders?.map((o) => {
     if (o?.user?.email === user?.email) {
       currentOrders.push(o);
