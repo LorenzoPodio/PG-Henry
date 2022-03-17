@@ -1,7 +1,6 @@
 import '../ExcursionsPost/ExcursionPost.css'
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import { useNavigate, Link} from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
 import {Image} from 'cloudinary-react'
@@ -15,7 +14,6 @@ export const ExcursionsPost = () => {
   }); 
 
   
-  const navigate = useNavigate();
   const [input, setInput] = useState({
     name: "",
     Images: [],
@@ -26,6 +24,7 @@ export const ExcursionsPost = () => {
     price: 0,
     extra: "",
     excursionType: "",
+    stock:""
   });
 
   const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
@@ -138,7 +137,7 @@ export const ExcursionsPost = () => {
           icon: "error",
           text: "Ya existe una excursion con este nombre, intente con otro"
         }) 
-      } else if(
+      } else if(input.stock <= 0 ||
         input.date.length <= 0 ||
         input.time.length <= 0 ||
         !input.description ||
@@ -174,6 +173,7 @@ export const ExcursionsPost = () => {
       price: 0,
       extra: "",
       excursionType: "",
+      stock: ""
     })
   }};
 
@@ -700,6 +700,50 @@ export const ExcursionsPost = () => {
                             <option key={t} name='location' value={t}>{t}</option>
                         )}
                     </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+        {/* Excursion stock */}
+        <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Cantidad de lugares disponibles
+              </h3>
+            </div>
+          </div>
+          <div className="mt-5 md:mt-0 md:col-span-2">
+        
+              <div className="shadow sm:rounded-md sm:overflow-hidden">
+                <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                  <div>
+                    <label
+                      htmlFor="about"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Agrega la cantidad de pasajeros que pueden participar de esta excursion.
+                    </label>
+                    <div className="mt-1">
+                    <textarea
+                        id="stock"
+                        name="stock"
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        placeholder="Ejemplo de nombre"
+                        defaultValue={""}
+                        onChange={(e) => handleChange(e)}
+                      />
                     </div>
                   </div>
                 </div>

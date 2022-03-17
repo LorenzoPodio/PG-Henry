@@ -50,6 +50,10 @@ module.exports = (sequelize) => {
     excursionType: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     }
   },
     { timestamps: false }
