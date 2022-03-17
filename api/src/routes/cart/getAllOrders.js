@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const getAllOrders = Router();
-const { Order, Order_detail , User } = require("../../db");
+const { Order, Order_detail , Product, User } = require("../../db");
 
 //getallorders
 //obtiene todos los carritos de la db incluyendo sus estados, (buying, completed, cancelled)
@@ -10,9 +10,9 @@ getAllOrders.get("/", async (req, res, next) => {
   try {
     const orders = await Order.findAll({
         where: {
-            status: ["completed", "cancelled", "buying"]
+            status: ["completed", "cancelled"]
         },
-      include: [{ model: User, attributes: ["name", "email"] }, { model: Order_detail}],
+      include: [{ model: User, attributes: ["name", "email"] }, { model: Order_detail}, {model: Product}],
     });
     const orderId = orders.order;
     // const status = orders.order.dataValues.status;

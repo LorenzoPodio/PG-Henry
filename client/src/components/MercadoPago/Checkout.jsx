@@ -25,8 +25,8 @@ export default function Checkout({ products, data }) {
   const reduc = (accumulator, curr) => accumulator + curr;
   const totalbuy = total.reduce(reduc, 0)
   return (
-    <div>
-      <form id="form1">
+    <div className="flex justify-around">
+      <form id="form1" className="border border-black">
         <h4>Checkout</h4>
         <div>
           {products?.map((producto, i) => {

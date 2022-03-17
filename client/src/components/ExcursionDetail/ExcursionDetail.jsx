@@ -18,7 +18,7 @@ export const ExcursionDetail = () => {
   const { user } = useAuth0();
 
   const [disabled, setDisabled] = useState(true);
-  const { excursionByid, getExcursionById } = useExcursionsContext();
+  const { excursionByid, getExcursionById, getAllOrders } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
 

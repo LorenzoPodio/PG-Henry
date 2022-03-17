@@ -35,7 +35,7 @@ const NavBar2 = () => {
     picture: "",
   });
 
-  const { users, addUser} = useExcursionsContext();
+  const { users, addUser, getAllOrders} = useExcursionsContext();
 
   const { createCart, cartItems } = useCartContext();
 
@@ -45,6 +45,8 @@ const NavBar2 = () => {
       return check = false;
     }
   });
+
+  console.log(check)
 
   function handleClick(e) {
     navigation.map((item) => {
@@ -122,6 +124,7 @@ const NavBar2 = () => {
   if (user && usuario.lastName !== "0" && check) {
     addUser(usuario);
     createCart(usuario.email);
+    getAllOrders();
   }
   return (
     <Disclosure as="nav" className="bg-sky-600">
@@ -263,7 +266,7 @@ const NavBar2 = () => {
                                   "block px-4 py-2 text-sm text-white"
                                 )}
                               >
-                                Your Profile
+                                Mi Perfil
                               </Link>
                             )}
                           </Menu.Item>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Checkout from "../MercadoPago/Checkout";
 import { useCartContext } from "../../context/CartContext";
+import style from "./Payment.module.css"
 
 export default function Payment({ handleClick }) {
   const [data, setData] = useState(""); //Estado para setear la respuesta de mercado pago
@@ -18,37 +19,35 @@ export default function Payment({ handleClick }) {
       })
       .catch((err) => console.error(err));
   }, []);
-  //Products ---> Serian los productos que estan en la tabla Order relacionadas al usuario.
-  // const products = [
-  //   { title: "Producto 1", quantity: 5, price: 10.52 },
-  //   { title: "Producto 2", quantity: 15, price: 100.52 },
-  //   { title: "Producto 3", quantity: 6, price: 200 },
-  // ];
-  //   ////////////////////
 
   return (
     <div>
-      <div>
+      <div className={style.payment}>
       <span className=" px-6  hidden content-end sm:block mb-10 mt-5">
             <button onClick={()=>handleClick("OrderReview")}
               type="button"
               className="inline-flex items-center px-7 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-            >
-              Volver 
+              >
+              Volver a revisar orden
             </button>
         </span>
-        Pequeño Cart con excursion su cantidad y precio, y el precio total +
-        boton de volver al step 1
-        <button onClick={() => handleClick("PersonalDetails")} type="button">
-          Modificar datos personales
-        </button >
-      </div>
-      Checkout para pagar, aca va mercado pago!
+
+        <span className=" px-6  hidden content-end sm:block mb-10 mt-5">
+            <button onClick={()=>handleClick("PersonalDetails")}
+              type="button"
+              className="inline-flex items-center px-7 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              >
+              Modificar datos personales
+            </button>
+        </span>
+          </div>
+
       {!data ? (
         <p>Aguarde un momento....</p>
-      ) : (
-        <Checkout products={cartItems} data={data} />
-      )}
+        ) : (
+          <Checkout products={cartItems} data={data} />
+          )}
+      
     </div>
   );
 }

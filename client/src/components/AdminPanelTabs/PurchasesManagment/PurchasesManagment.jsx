@@ -1,41 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useExcursionsContext } from "../../../context/ExcursionsContext";
-import { ExclamationIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { ExclamationIcon } from "@heroicons/react/solid";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
 
-const purchases = [
-  {
-    id: 1,
-    detail: 'detalle 1',
-    totalPrice: 1500,
-    date: '10/03/2022',
-  },
-  {
-    id: 2,
-    detail: 'detalle 2',
-    totalPrice: 2000,
-    date: '10/03/2022',
-  },
-  {
-    id: 3,
-    detail: 'detalle 3',
-    totalPrice: 2500,
-    date: '10/03/2022',
-  },
-  {
-    id: 4,
-    detail: 'detalle 4',
-    totalPrice: 3000,
-    date: '10/03/2022',
-  }
-]
 
 export const PurchasesManagment = () => {
+  const { cancelledOrder, allOrders, getAllOrders} = useExcursionsContext();
+  console.log('ALLORDERS :>> ', allOrders);
+  let totalPurchase = 0;
+  let productNames = [];
 
-
-  const { users, deleteExcursion, cancelledOrder } = useExcursionsContext();
-
+  useEffect(() => {
+    getAllOrders();
+  }, [])
+  
 
   function handleCancelled(e) {
     swal({
@@ -54,6 +32,19 @@ export const PurchasesManagment = () => {
     });
   }
 
+  const conditionalStyle = (purchaseStatus) => {
+    switch (purchaseStatus) {
+      case 'buying':
+        return 'text-sky-500';
+      case 'completed':
+        return 'text-green-500';
+      case 'cancelled':
+        return 'text-red-500';
+      default:
+        return 'text-amber-400';
+    }
+  }
+
   return (
 
     <div className="grid place-content-center bg-emerald-700" id="top">
@@ -68,7 +59,7 @@ export const PurchasesManagment = () => {
                       ID
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Fecha
+                      Fecha Compra
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Detalle
@@ -77,13 +68,19 @@ export const PurchasesManagment = () => {
                       Precio Total
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Estatus
+                    </th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Cliente
+                    </th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Acciones
                     </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {purchases &&
-                    purchases.map((e) => {
+                  {allOrders &&
+                    allOrders.map((e) => {
                       return (
                         <tr key={e.id}>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -101,18 +98,25 @@ export const PurchasesManagment = () => {
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {e.detail}
+                            Excursiones: {e.products.forEach(p => productNames.push(p.name))}{productNames.join(', ')}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            ${e.totalPrice}
+                            ${e.order_details.forEach(od => totalPurchase += od.totalPrice)}{totalPurchase}
+                          </td>
+                          <td className={`px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-500 ${conditionalStyle(e.status)}`}>
+                            {e.status.toUpperCase()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {e.user.name} - {e.user.email}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <span className="hidden sm:block">
                               <button onClick={(e) => handleCancelled(e)}
+                                disabled={e.status.toUpperCase()==='COMPLETED'? false : true}
                                 type="button"
                                 value={e.id}
                                 name={e.name}
-                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                className="inline-flex px-4 py-2 border rounded-md text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                               >
                                 <ExclamationIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
                                 Cancelar
