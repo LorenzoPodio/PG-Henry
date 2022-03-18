@@ -20,7 +20,7 @@ export const Excursions = () => {
 
   useEffect(() => {
     getExcursions().then((r) => {
-      return setAllExcursions(r), setData(r), setExcursionFiltered(r);
+      return (setAllExcursions(r), setData(r), setExcursionFiltered(r));
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

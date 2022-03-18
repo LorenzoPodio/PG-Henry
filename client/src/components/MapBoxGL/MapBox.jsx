@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+// eslint-disable-next-line
 import ReactMapGL, {NavigationControl , Marker, Popup } from "react-map-gl";
+// eslint-disable-next-line
 import Geocoder from 'react-map-gl-geocoder';
+// eslint-disable-next-line
 import geoJson from './coordinates.json';
 import './Map.css';
 
@@ -16,6 +19,7 @@ console.log(long)
     zoom: 3.1,
 
   });
+  // eslint-disable-next-line
   const [selected, setSelected] = useState(null);
 
   console.log(viewport)
@@ -39,7 +43,7 @@ console.log(long)
 
   const mapRef = useRef()
 
-
+// eslint-disable-next-line
   function handleResult(result) {
     setViewport({
      name:result.place_name,

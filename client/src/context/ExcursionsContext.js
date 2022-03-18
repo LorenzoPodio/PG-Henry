@@ -33,6 +33,7 @@ export const ExcursionsProvider = ({ children }) => {
     getAllUsers().then((r) => {
       return setUsers(r);
     });
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

@@ -15,7 +15,7 @@ import { Landing } from "./components/Landing/Landing";
 import { EditExcursion } from "./components/EditExcursion/EditExcursion";
 import MapaSearch from './components/MapBoxGL/MapBoxSearch'
 
-import Cart from "./components/Cart/Cart";
+
 
 import { Profile } from "./components/Profile/Profile";
 

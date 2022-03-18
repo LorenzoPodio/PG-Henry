@@ -6,11 +6,10 @@ import swal from "sweetalert";
 
 export const PurchasesManagment = () => {
   const { cancelledOrder, allOrders, getAllOrders} = useExcursionsContext();
-  let totalPurchase = 0;
-  let productNames = [];
-
+  
   useEffect(() => {
     getAllOrders();
+    // eslint-disable-next-line
   }, [])
   
 

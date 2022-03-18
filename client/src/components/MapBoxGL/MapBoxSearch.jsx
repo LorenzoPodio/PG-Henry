@@ -39,6 +39,7 @@ export default function MapaSearch(){
         latitude: selected.longitude,
         longitude: selected.latitude,
     })
+    // eslint-disable-next-line
   }, []);
 
 

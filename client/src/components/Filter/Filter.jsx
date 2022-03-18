@@ -13,6 +13,7 @@ export default function Filter({
   const days = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
 
   let options = []; //["bariloche"] ["trecking"]
+  // eslint-disable-next-line
   items?.map((item) => {
     if (!options.includes(item[filterType])) {
       return options.push(item[filterType]);
