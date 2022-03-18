@@ -44,6 +44,22 @@ export const PurchasesManagment = () => {
     }
   }
 
+  const sumSubTotals = (array) => {
+    let total = 0;
+    for (let i = 0; i < array.length; i++) {
+      total += array[i].totalPrice
+    }
+    return total;
+  }
+
+  const concatNames = (array) => {
+    let names = [];
+    for (let i = 0; i < array.length; i++) {
+      names.push(array[i].name);
+    }
+    return names.join(', ');
+  }
+
   return (
 
     <div className="grid place-content-center bg-emerald-700" id="top">
@@ -97,10 +113,10 @@ export const PurchasesManagment = () => {
                             </div>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Excursiones: {e.products.forEach(p => productNames.push(p.name))}{productNames.join(', ')}
+                            Excursiones: {concatNames(e.products)}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            ${e.order_details.forEach(od => totalPurchase += od.totalPrice)}{totalPurchase}
+                            ${sumSubTotals(e.order_details)}
                           </td>
                           <td className={`px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-500 ${conditionalStyle(e.status)}`}>
                             {e.status.toUpperCase()}
