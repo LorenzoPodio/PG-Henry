@@ -56,13 +56,13 @@ export const About = () => {
                   </div>
                 </div>
                 <div className="px-6 mt-16">
-                  <div className="font-bold text-3xl text-center pb-1">
+                  <div className="font-bold text-3xl text-center  pb-1">
                     Brian Bedendo
                   </div>
-                  <p className="text-gray-500 text-lg text-center font-normal pb-3">
+                  <p className="text-gray-500 text-lg text-center  font-normal pb-3">
                     Full-Stack Developer
                   </p>
-                  <div className="w-full flex justify-center pt-5 pb-5">
+                  <div className="w-full flex justify-center pt-5  pb-5">
                       <div>
                       <SocialIcon url="https://www.linkedin.com/in/brian-ezequiel-bedendo/" />
                       </div>
