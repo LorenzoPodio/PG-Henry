@@ -250,7 +250,7 @@ mp.get("/feedback", async function (req, res, next) {
       });
     }
 
-    res.status(200).send(status);
+    res.status(200).redirect("http://localhost:3000/excursiones");
   } catch (error) {
     next(error);
   }
