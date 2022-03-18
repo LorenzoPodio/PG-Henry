@@ -9,10 +9,10 @@ import Auth0ProviderWithHistory from "./Auth0Provider/auth0Provider";
 import { CartProvider } from "./context/CartContext";
 import axios from "axios";
 
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "";
+axios.defaults.baseURL = "https://excursionapp-pg.herokuapp.com" || "http://localhost:3001";
 
 
 ReactDOM.render(
