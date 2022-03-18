@@ -123,7 +123,7 @@ mp.get("/feedback", async function (req, res, next) {
             "Su excursion: " +
             array1[i].name +
             " para el dia " +
-            array1[i].date +
+            array1[i].date.substring(1,11) +
             " , para " +
             array2[i].quantity +
             " personas , <br/>";
