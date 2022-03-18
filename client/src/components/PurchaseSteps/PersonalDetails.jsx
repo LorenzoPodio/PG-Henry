@@ -18,6 +18,16 @@ export default function PersonalDetails({ handleClick }) {
     adress: usuario?.adress? usuario.adress : ""
   });
 
+  function isObjEmpty(obj) {
+    for (var prop in obj) {
+      if (obj.hasOwnProperty(prop)) return false;
+    }
+  
+    return true;
+  }
+  
+  let check = isObjEmpty(usuario)
+
   function handleChange(e) {
     e.preventDefault();
     setInput({
@@ -34,16 +44,30 @@ export default function PersonalDetails({ handleClick }) {
       ){
         e.preventDefault();
         swal(
-          "Error"
+          {
+            icon: "error",
+            text: "Complete todos los campos para continuar"
+          }
         )
       }else{
         e.preventDefault();
-        submitDates(input);
-        swal("Datos añadidos a su perfil")
+        submitDates(input);        
         handleClick("Payment")
       }
   }
-
+  if(check){
+    isObjEmpty(usuario)
+    return (
+      <div>
+        <img
+          src="https://images-ext-2.discordapp.net/external/S7R7Qin6kKgo0g7H0nWwPt_d14InMHmmfDpGpMnh27M/https/res.cloudinary.com/dkdioyppw/image/upload/v1647458886/trekking-adventure-himachal_vp0rka.gif"
+          alt="loading"
+        />
+      </div>
+    );
+    
+  }
+  else {
   return (
     <div>
       <div className="container1">
@@ -56,30 +80,34 @@ export default function PersonalDetails({ handleClick }) {
           </div>
           <form className="formR" onSubmit={(e) => handleSubmit(e)}>
             <div>
+              
               <div>
                 <input
                   id="inpt_reg_new"
                   type="text"
                   placeholder="Nombre"
                   value={input.name}
-                  name="name"
-                  readOnly
+                  name="name"                  
+                  className="bg-gray-100 border border-gray-100 text-blackk-100 text-blackounded-lg focus:ring-gray-100 focus:border-gray-100 block w-full p-2.5 cursor-not-allowed dark:bg-gray-100 dark:border-gray-100 dark:placeholder-gray-100 dark:text-black-100 dark:focus:ring-gray-100 dark:focus:border-gray-100"
+                  disabled
                 />
               </div>
               <input
+              className="bg-gray-100 border border-gray-100 text-blackk-100 text-blackounded-lg focus:ring-gray-100 focus:border-gray-100 block w-full p-2.5 cursor-not-allowed dark:bg-gray-100 dark:border-gray-100 dark:placeholder-gray-100 dark:text-black-100 dark:focus:ring-gray-100 dark:focus:border-gray-100"
                 id="inpt_reg_new2"
                 type="text"
                 placeholder="Apellido"
                 value={input.lastName}
-                name="lastName"
-                readOnly
+                name="lastName"                
+                disabled
               />
             </div>
             <div className=" py-2">
               <input
+              className="bg-gray-100 border border-gray-100 text-blackk-100 focus:ring-gray-100 focus:border-gray-100 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-100 dark:placeholder-gray-100 dark:text-black-100 dark:focus:ring-gray-100 dark:focus:border-gray-100"
                 id="inpt_reg_new3"
                 type="text"
-                placeholder="DNI  (Solo Numeros)"
+                placeholder="DNI (Solo Numeros)"
                 value={input.dni}
                 name="dni"
                 onChange={(e) => handleChange(e)}
@@ -94,6 +122,8 @@ export default function PersonalDetails({ handleClick }) {
                 value={input.email}
                 name="email"
                 readOnly
+                className="bg-gray-100 border border-gray-100 text-blackk-100 text-blackounded-lg focus:ring-gray-100 focus:border-gray-100 block w-full p-2.5 cursor-not-allowed dark:bg-gray-100 dark:border-gray-100 dark:placeholder-gray-100 dark:text-black-100 dark:focus:ring-gray-100 dark:focus:border-gray-100"
+                  disabled
               />
             </div>
 
@@ -105,6 +135,7 @@ export default function PersonalDetails({ handleClick }) {
                 value={input.adress}
                 name="adress"
                 onChange={(e) => handleChange(e)}
+                className="bg-gray-100 border border-gray-100 text-blackk-100 focus:ring-gray-100 focus:border-gray-100 block w-full p-2.5 dark:bg-gray-100 dark:border-gray-100 dark:placeholder-gray-100 dark:text-black-100 dark:focus:ring-gray-100 dark:focus:border-gray-100"
               />
             </div>
             {errors.adress && <p className="errorMsg">{errors.adress}</p>}
@@ -135,4 +166,5 @@ export default function PersonalDetails({ handleClick }) {
       </div>
     </div>
   );
+}
 }
