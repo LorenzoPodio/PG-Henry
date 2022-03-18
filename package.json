@@ -1,1 +1,1 @@
-{"scripts":{"start":"nodemon -L"},"dependencies":{"universal-cookie":"^4.0.4"},"devDependencies":{"nodemon":"^2.0.15"}}
+{"dependencies":{"universal-cookie":"^4.0.4"}}
