@@ -10,7 +10,7 @@ export default function SearchBar(props) {
 
   // Feature Search by Query:
   const handleQuerySearched = () => {
-    axios(`http://localhost:3001/getexcursion?name=${query}`)
+    axios(`/getexcursion?name=${query}`)
       .then((resp) => {
         return (
           setData(resp.data),
@@ -18,7 +18,7 @@ export default function SearchBar(props) {
         );
       })
       .catch((e) => {
-        axios(`http://localhost:3001/getexcursion?location=${query}`)
+        axios(`/getexcursion?location=${query}`)
           .then((resp) => {
             return (
               setData(resp.data),

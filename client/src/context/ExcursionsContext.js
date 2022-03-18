@@ -15,7 +15,7 @@ export const ExcursionsProvider = ({ children }) => {
   const [allExcursions, setAllExcursions] = useState(); //Constante que va a contener a todas las excursiones
   const [data, setData] = useState(); //Excursiones que se van a renderizar,
   const [excursionFiltered, setExcursionFiltered] = useState(); //Excursiones filtradas para utilizar en los ordenamientos
-  const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
+  const [URL, setURL] = useState(`/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
   const [allOrders, setAllOrders] = useState();
 
@@ -56,7 +56,7 @@ export const ExcursionsProvider = ({ children }) => {
 
   const getExcursionById = async (id) => {
     try {
-      const { data } = await axios(`http://localhost:3001/getexcursion?id=${id}`);
+      const { data } = await axios(`/getexcursion?id=${id}`);
       return setExcursionByid(data);
     } catch (error) {
       console.log("error", error);
@@ -84,7 +84,7 @@ export const ExcursionsProvider = ({ children }) => {
   //postUser antes era addAdmin
   const addUser = (user) => {
     return axios
-      .post("http://localhost:3001/addUsers", user)
+      .post("/addUsers", user)
       .then((response) => response.data)
       .catch((err) => {
        
@@ -95,7 +95,7 @@ export const ExcursionsProvider = ({ children }) => {
   //agregar dni y direccion a los datos de usuario para confirmar compra
   const submitDates = (dates) => {
     return axios
-    .put("http://localhost:3001/changedatesUser", dates)
+    .put("/changedatesUser", dates)
     .then((res) => res.data)
     .catch((err) => {
       
@@ -105,7 +105,7 @@ export const ExcursionsProvider = ({ children }) => {
   //postExcursion
   const addExcursion = (excursion) => {
     return axios
-      .post("http://localhost:3001/addexcursion", excursion)
+      .post("/addexcursion", excursion)
       .then((response) => response.data)
       .catch((err) => {
       
@@ -116,7 +116,7 @@ export const ExcursionsProvider = ({ children }) => {
   //deleteExcursion
   const deleteExcursion = (id) => {
     return axios
-      .delete(`http://localhost:3001/deleteexcursion?id=${id}`)
+      .delete(`/deleteexcursion?id=${id}`)
       .then((response) => {
         return (
           setData(response.data),
@@ -133,7 +133,7 @@ export const ExcursionsProvider = ({ children }) => {
   //banUser
   const banUser = (id) => {
     return axios
-      .put(`http://localhost:3001/banuser/${id}`)
+      .put(`/banuser/${id}`)
       .then((response) => {
         return setUsers(response.data);
       })
@@ -146,7 +146,7 @@ export const ExcursionsProvider = ({ children }) => {
   //UnbanUser
   const UnbanUser = (id) => {
     return axios
-      .put(`http://localhost:3001/unbanuser/${id}`)
+      .put(`/unbanuser/${id}`)
       .then((response) => {
         return setUsers(response.data);
       })
@@ -159,7 +159,7 @@ export const ExcursionsProvider = ({ children }) => {
   //editExcursion
   const editExcursion = (excursion, id) => {
     return axios
-      .put(`http://localhost:3001/changeexcursion/${id}`, excursion)
+      .put(`/changeexcursion/${id}`, excursion)
       .then((response) => {
         return (
           setAllExcursions(response.data),
@@ -200,7 +200,7 @@ export const ExcursionsProvider = ({ children }) => {
   //cancelled order
   const cancelledOrder = (id) => {
     return axios
-      .put(`http://localhost:3001/cart/canceledorder/${id}`)
+      .put(`/cart/canceledorder/${id}`)
       .then((response) => {
         return setAllExcursions(response.data);
       })
@@ -211,7 +211,7 @@ export const ExcursionsProvider = ({ children }) => {
 
   const getAllOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3001/cart/getallorders");
+      const { data } = await axios.get("/cart/getallorders");
       return setAllOrders(() => data); 
     } catch (error) {
       swal('Algo salió mal!', error , {icon: 'error'});

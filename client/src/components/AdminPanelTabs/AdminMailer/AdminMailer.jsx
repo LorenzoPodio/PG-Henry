@@ -21,7 +21,7 @@ export const AdminMailer = () => {
   useEffect(() => {
     if (item.hasOwnProperty("time") && item.hasOwnProperty("date")) {
       return axios
-        .post("http://localhost:3001/selectProduct", {
+        .post("/selectProduct", {
           ...item, //{date, time}
           name: excursionByid.name,
           price: excursionByid.price,
