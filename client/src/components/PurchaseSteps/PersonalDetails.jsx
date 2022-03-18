@@ -7,6 +7,7 @@ import swal from "sweetalert";
 export default function PersonalDetails({ handleClick }) {
   const { user } = useAuth0();
   const { submitDates, users} = useExcursionsContext();
+  // eslint-disable-next-line
   const [errors, setErrors] = useState({});
   let usuario = {}
   usuario = users?.find((u) => u.email === user?.email)

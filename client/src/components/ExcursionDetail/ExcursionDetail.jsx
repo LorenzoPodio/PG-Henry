@@ -9,6 +9,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Carousel from "../Carousel/Carousel";
 import swal from "sweetalert";
+// eslint-disable-next-line
 import  {Mapa}  from "../MapBoxGL/MapBox"
 
 
@@ -20,6 +21,7 @@ export const ExcursionDetail = () => {
   const { user } = useAuth0();
 
   const [disabled, setDisabled] = useState(true);
+  // eslint-disable-next-line
   const { excursionByid, getExcursionById, getAllOrders } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
@@ -53,7 +55,7 @@ export const ExcursionDetail = () => {
           }
         })
         .catch((e) => {
-          return setStock(0), setDisabled(true);
+          return (setStock(0), setDisabled(true))
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
