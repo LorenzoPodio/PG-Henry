@@ -1,0 +1,67 @@
+export const hardExcursions = [
+  {
+    id: 1,
+    name: "Rio manso",
+    primaryImage: "imagen primaria",
+    secondaryImage: "imagen secundaria",
+    description: "Rafting por el rio",
+    location: "Esquel",
+    date: "02/09/2022",
+    time: "13.30",
+    price: 9500.00,
+    extra: "extra",
+    excursionType: "trekking"
+  },
+  {
+    id: 2,
+    name: "Cerro Fitz Roy",
+    primaryImage: "imagen primaria",
+    secondaryImage: "imagen secundaria",
+    description: "Subir la montaña y acampar !",
+    location: "Aconcagua",
+    date: "22/12/2022",
+    time: "23.30",
+    price: 8500.00,
+    extra: "extra",
+    excursionType: "lacustre"
+  },
+  {
+    id: 3,
+    name: "Rio Bravo",
+    primaryImage: "imagen primaria",
+    secondaryImage: "imagen secundaria",
+    description: "Kayak por el rio Bravo",
+    location: "Rio Bravo",
+    date: "31/05/2022",
+    time: "13.30",
+    price: 7300.00,
+    extra: "extra",
+    excursionType: "cabalgata"
+  },
+  {
+    id: 4,
+    name: "Usuhaia",
+    primaryImage: "imagen primaria",
+    secondaryImage: "imagen secundaria",
+    description: "Tour por la ciudad del fin del mundo",
+    location: "Tierra del fuego",
+    date: "01/03/2022",
+    time: "13.30",
+    price: 12500.00,
+    extra: "extra",
+    excursionType: "ciclismo"
+  },
+  {
+    id: 5,
+    name: "Córdoba",
+    primaryImage: "imagen primaria",
+    secondaryImage: "imagen secundaria",
+    description: "raft por el rio",
+    location: "Córdoba - Villa Carlos Paz",
+    date: "19/09/2022",
+    time: "13.30",
+    price: 6300.00,
+    extra: "extra",
+    excursionType: "trekking"
+  },
+]

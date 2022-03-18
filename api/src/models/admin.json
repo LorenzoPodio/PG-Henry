@@ -1,0 +1,20 @@
+[
+    {
+          "email": "djdjhdjhn@hotmail.com",
+          "password": "12345",
+          "name": "Pepito",
+          "lastName": "Fulano",
+          "dni": "39222444",
+          "adress": "la plata 123",
+          "isAdmin": true
+    },
+    {
+        "email": "dami@hotmail.com",
+        "password": "12345",
+        "name": "juan",
+        "lastName": "pedro",
+        "dni": "12345678",
+        "adress": "calle falsa 123",
+        "isAdmin": true
+  }
+]

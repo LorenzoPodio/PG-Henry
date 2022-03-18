@@ -1,36 +1,61 @@
-//van los modelos de BD
+const { DataTypes, NOW } = require('sequelize');
 
-const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  // defino el modelo
+  
   sequelize.define('excursion', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+       allowNull: false,
+      autoIncrement: true,
+    },
+    Images: {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+     allowNull: true,
     },
     description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    location: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    image: {
+    date: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+    },
+    time: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
+    extra: {
       type: DataTypes.STRING,
       allowNull: true,
-      
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
+    },
+    excursionType: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     }
   },
-  { timestamps: false }
+    { timestamps: false }
   );
 };
