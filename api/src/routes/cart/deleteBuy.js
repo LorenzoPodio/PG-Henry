@@ -9,7 +9,7 @@ deleteBuy.delete("/", async (req, res, next) => {
     try {
         const { email, orderId } = req.body;
         if (!orderId || !email) {
-            return res.status(500).send("Necessary parameters not found");
+            return res.status(202).send("Necessary parameters not found");
         }
 
         const details = await Order_detail.findAll({

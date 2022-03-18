@@ -12,7 +12,7 @@ addCart.post("/", async (req, res, next) => {
   try {
     const { name, date, time, quantity, price, email } = req.body;
     if (!name || !date || !time || !quantity || !price) {
-      return res.status(500).send("Necessary parameters not found");
+      return res.status(202).send("Necessary parameters not found");
     } else {
       const getUserId = await User.findOne({
         where: {
