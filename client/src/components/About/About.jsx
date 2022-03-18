@@ -29,10 +29,10 @@ export const About = () => {
                   <div className="font-bold text-3xl text-center pb-1">
                     Lorenzo Podio
                   </div>
-                  <p className="text-gray-500 text-lg text-center font-normal pb-3">
+                  <p className="text-gray-500   text-lg text-center font-normal pb-3">
                     Full-Stack Developer
                   </p>
-                  <div className="w-full flex justify-center pt-5 pb-5">
+                  <div className="w-full flex   justify-center pt-5 pb-5">
                       <div>
                       <SocialIcon url="https://www.linkedin.com/in/lorenzo-podio-4a19428b" />
                       </div>
@@ -44,14 +44,14 @@ export const About = () => {
                 </div>
               </div>
             </div>
-            <div className="xl:w-1/3 sm:w-3/4 md:w-2/5 relative mt-16 mb-32 sm:mb-24 xl:max-w-sm lg:w-2/5">
-              <div className="rounded overflow-hidden shadow-md bg-white">
+            <div className="xl:w-1/3 sm:w-3/4  md:w-2/5  relative  mt-16 mb-32  sm:mb-24 xl:max-w-sm lg:w-2/5">
+              <div className="rounded overflow-hidden  shadow-md bg-white">
                 <div className="absolute -mt-20 w-full flex justify-center">
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646597933/profilepicbracha_xp5esx.jpg"
                       alt="logo-image"
-                      className="rounded-full object-cover h-full w-full shadow-md"
+                      className="rounded-full object-cover  h-full w-full shadow-md"
                     />
                   </div>
                 </div>
