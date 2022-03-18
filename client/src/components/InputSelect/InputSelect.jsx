@@ -8,6 +8,7 @@ export default function InputSelect(props) {
 
   useEffect(() => {
     handleTime(selected);
+    // eslint-disable-next-line
   }, [selected]);
 
   return (
