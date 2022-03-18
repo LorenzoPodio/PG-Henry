@@ -33,16 +33,16 @@ const NavBar2 = () => {
     picture: "",
   });
 
-  const { users, addUser } = useExcursionsContext();
+  const { addUser } = useExcursionsContext();
 
   const { createCart, cartItems } = useCartContext();
 
   useEffect(() => {
-    console.log("hola useEffect");
     setCheck(() => false);
     addUser(usuario);
     createCart(usuario.email);
-  }, [users]);
+    // eslint-disable-next-line
+  }, [user]);
 
   function handleClick(e) {
     navigation?.map((item) => {
