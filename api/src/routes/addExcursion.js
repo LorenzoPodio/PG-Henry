@@ -21,7 +21,7 @@ addExcursion.post("/", async (req, res, next) => {
       stock
     } = req.body;
     if (!name || !description || !location || !date || !time) {
-      return res.status(500).send("Necessary parameters not found");
+      return res.status(202).send("Necessary parameters not found");
     }
     const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
     const newExcursion = await Excursion.create({

@@ -10,7 +10,7 @@ deleteExcursion.delete("/", async (req, res, next) => {
   try {
     let { id } = req.query;
     if (!id) {
-      return res.status(500).send("Necessary parameters not found");
+      return res.status(202).send("Necessary parameters not found");
     }
     await Excursion.destroy({
       where: {

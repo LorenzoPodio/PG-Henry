@@ -11,7 +11,7 @@ createOrder.post("/", async (req, res, next) => {
   try {
     const { email } = req.body;
     if (!email) {
-      res.status(400).send("Email required");
+      res.status(202).send("Email required");
     }
     const getUserId = await User.findOne({
       where: {
