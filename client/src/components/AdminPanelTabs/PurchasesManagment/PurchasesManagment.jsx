@@ -5,13 +5,8 @@ import swal from "sweetalert";
 
 
 export const PurchasesManagment = () => {
-  const { cancelledOrder, allOrders, getAllOrders} = useExcursionsContext();
-  
-  useEffect(() => {
-    getAllOrders();
-    // eslint-disable-next-line
-  }, [])
-  
+  const { cancelledOrder, allOrders} = useExcursionsContext();
+
 
   function handleCancelled(e) {
     swal({

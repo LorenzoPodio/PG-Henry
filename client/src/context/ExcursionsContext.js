@@ -18,7 +18,6 @@ export const ExcursionsProvider = ({ children }) => {
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
   const [allOrders, setAllOrders] = useState();
-
   const { setLoading } = useCartContext();
 
   useEffect(() => {
@@ -33,6 +32,7 @@ export const ExcursionsProvider = ({ children }) => {
     getAllUsers().then((r) => {
       return setUsers(r);
     });
+    getAllOrders();
     // eslint-disable-next-line
   }, []);
 
@@ -49,10 +49,6 @@ export const ExcursionsProvider = ({ children }) => {
         setData("Excursiones no encontradas");
       });
   }, [URL]);
-
-  useEffect(() => {
-    getAllOrders();
-  }, []);
 
   const getExcursionById = async (id) => {
     try {
@@ -202,7 +198,8 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .put(`http://localhost:3001/cart/canceledorder/${id}`)
       .then((response) => {
-        return setAllExcursions(response.data);
+        console.log(response.data, " respuesta de cancelOrder")
+        setAllOrders(response.data)
       })
       .catch((err) => {
         
