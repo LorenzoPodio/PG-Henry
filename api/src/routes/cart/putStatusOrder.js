@@ -64,7 +64,7 @@ putStatusOrder.put("/:id", async (req, res, next) => {
                     var a = ""
                 for (var i = 0; i < array1.length; i++) 
                     {
-                    a = a+ "Se cancela "+ array1[i].name+ " para el dia "+  array1[i].date + "<br/> <br/>"
+                    a = a+ "Detalle de cancelacion: "+ array1[i].name+ " para el dia "+  array1[i].date.substring(1,11) + "<br/> <br/>"
                     }
                   }
                   return a

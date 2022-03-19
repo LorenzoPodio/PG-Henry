@@ -151,7 +151,7 @@ mp.get("/feedback", async function (req, res, next) {
   Ante cualquier anomalía el administrador de la excursión se pondra en contacto con usted
   <br/>
   <br/>            
-  Por favor califique su experiencia en la aplicacion. </h1> `,
+  Por favor califique su experiencia en la aplicacion. `,
       };
 
       await Order.update(

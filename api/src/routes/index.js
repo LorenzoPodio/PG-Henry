@@ -24,11 +24,12 @@ const mp = require('./mercadopago');
 const buyCompleted = require("./cart/buyCompleted");
 const unbanUser = require("./unbanUser");
 const deleteBuy = require("./cart/deleteBuy");
+const contactMail = require("./contactMail");
 
 
 
 
-
+router.use("/contactmail", contactMail)
 router.use("/unbanuser", unbanUser)
 router.use("/sendstatus", buyCompleted);
 router.use("/cart/canceledorder", putStatusOrder);
