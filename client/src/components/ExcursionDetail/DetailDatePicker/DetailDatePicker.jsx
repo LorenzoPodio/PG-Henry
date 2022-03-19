@@ -33,6 +33,7 @@ export const DetailDatePicker = ({ excursionDays, handleDate }) => {
 
   useEffect(() => {
     handleDate(startDate); //  //Definida en ExcursionDetail para construir el item que sera agregado al cart
+    // eslint-disable-next-line
   }, [startDate]);
 
   const isWeekday = (date) => {

@@ -34,6 +34,7 @@ export const EditExcursion = () => {
 
   useEffect(() => {
     getExcursionById(id);
+    // eslint-disable-next-line
   }, []);
 
   /// HANDLE CHECKBOX
