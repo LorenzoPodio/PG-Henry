@@ -6,6 +6,7 @@
     background-color: rgb(0, 0, 0, 0.1);    
     color: grey;
     height: 4rem;
+    position: fixed;
   }
   body{
     display: flex;

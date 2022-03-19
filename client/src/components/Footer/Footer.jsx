@@ -1,4 +1,4 @@
-import { React, Fragment, useEffect, useState } from "react";
+import { React } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { SocialIcon } from "react-social-icons";
 import "./Footer.css";
@@ -6,7 +6,7 @@ import ContactUs from "../ContactUs/ContactUs";
 
 export const Footer = () => {
   return (
-    <div className="footer-container bg-gray-500 relative bottom-0 w-full">
+    <div className="footer-container bg-gray-500 bottom-0 w-full">
       <div className="social-container">
         <p className="text">
           Realizado por Henry´s Students. Todos los derechos reservados

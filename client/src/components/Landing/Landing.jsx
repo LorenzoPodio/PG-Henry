@@ -8,7 +8,7 @@ export const Landing = () => {
     <div className="containerLanding h-full">
       <img
         className="fondoLanding h-screen w-full"
-        alt="image not found"
+        alt="not found"
         src={fondo}
       />
       <Link to="/excursiones">
