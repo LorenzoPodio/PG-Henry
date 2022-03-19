@@ -1,8 +1,9 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useExcursionsContext } from "../../../context/ExcursionsContext";
 import InputSelect from "../../InputSelect/InputSelect";
 import { DetailDatePicker } from "../../ExcursionDetail/DetailDatePicker/DetailDatePicker";
 import axios from "axios";
+import swal from "sweetalert";
 
 export const AdminMailer = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
@@ -38,16 +39,34 @@ export const AdminMailer = () => {
   };
 
   const handleClick = () => {
-    axios.post("http://localhost:3001/setmail", item)
+    swal({
+      title: "Enviar email",
+      text: "¿Esta seguro que desea enviarle un email a todos los usuarios que compraron la excursión?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((value) => {
+      if (value === true) {
+        swal(`El email fue enviado`, {
+          icon: "success",
+        });
+        axios.post("http://localhost:3001/setmail", item);
+      } else swal(`El email no ha sido enviado!`);
+    });
   };
-  // const time = ["9", "10","11","12", "13"];
+
   return (
     <div className="md:flex items-start justify-center py-20 px-2">
       <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6">
         <div className="inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start">
           <div className="py-2 px-2 border-r border-gray-200 flex items-center flex-col w-full">
             <p className="text-base leading-4 text-gray-800">Excursión:</p>
-            {excursionsNames && <InputSelect options={excursionsNames} handleTime={handleChange} />}
+            {excursionsNames && (
+              <InputSelect
+                options={excursionsNames}
+                handleTime={handleChange}
+              />
+            )}
           </div>
           <div className="py-2 px-4 border-r  border-l border-gray-200 flex flex-col items-center justify-around w-full">
             <p className="text-base px-2 leading-4 text-gray-800">Dia:</p>
@@ -55,7 +74,7 @@ export const AdminMailer = () => {
             <DetailDatePicker
               handleDate={handleDate}
               excursionDays={[
-                "Lunes",  
+                "Lunes",
                 "Martes",
                 "Miercoles",
                 "Jueves",
