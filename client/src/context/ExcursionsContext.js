@@ -198,7 +198,6 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .put(`http://localhost:3001/cart/canceledorder/${id}`)
       .then((response) => {
-        console.log(response.data, " respuesta de cancelOrder")
         setAllOrders(response.data)
       })
       .catch((err) => {
