@@ -6,7 +6,7 @@ import ContactUs from "../ContactUs/ContactUs";
 
 export const Footer = () => {
   return (
-    <div className="footer-container bg-gray-500 absolute bottom-0 w-full">
+    <div className="footer-container bg-gray-500 relative bottom-0 w-full">
       <div className="social-container">
         <p className="text">
           Realizado por Henry´s Students. Todos los derechos reservados
@@ -51,22 +51,22 @@ export const Footer = () => {
         </div>
       </div>
       <div>
-        <Menu as="div" className="ml-3 relative ">
+        <Menu as="div" className="ml-3 relative">
           <div>
             <Menu.Button className=" flex bg-sky-600 p-1 rounded-md text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
               <span className="sr-only">ContactUs</span>
               <h3>Contactanos</h3>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
