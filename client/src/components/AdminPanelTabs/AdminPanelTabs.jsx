@@ -13,31 +13,35 @@ export const AdminPanelTabs = () => {
   };
 
   return (
-    <div>
-      <h1 className="grid py-8 place-content-center mt-0 mb-0 font-bold text-xl text-neutral-700">PANEL DE CONTROL</h1>
+    <div style={{ backgroundColor: '#D8D2CB' }}>
+      <h1 className="grid py-8 place-content-center mt-0 mb-0 font-bold text-xl text-black">PANEL DE CONTROL</h1>
       <div className={"flex flex-col relative w-auto h-auto mt-2 mb-4 mx-3 break-all div-container"}>
         <div className="flex">
-          <button className={toggleState === 1 ? 
-            "tabs active-tabs bg-emerald-700 font-bold text-base text-neutral-50" : 
-            "tabs bg-emerald-800 bg-opacity-70 font-bold text-base text-neutral-700"
+          <button style={toggleState === 1 ? { backgroundColor: '#EEEEEE' } : { backgroundColor: '#BBBBBB' }}
+            className={toggleState === 1 ? 
+            "tabs active-tabs font-bold text-base text-neutral-700" : 
+            "tabs font-bold text-base text-black"
           } onClick={() => toggleTab(1)}>
             Excursiones
           </button>
-          <button className={toggleState === 2 ? 
-            "tabs active-tabs bg-emerald-700 font-bold text-base text-neutral-50" : 
-            "tabs bg-emerald-800 bg-opacity-70 font-bold text-base text-neutral-700"
+          <button style={toggleState === 2 ? { backgroundColor: '#EEEEEE' } : { backgroundColor: '#BBBBBB' }} 
+            className={toggleState === 2 ? 
+            "tabs active-tabs font-bold text-base text-neutral-700" : 
+            "tabs bg-opacity-70 font-bold text-base text-black"
           } onClick={() => toggleTab(2)}>
             Compras
           </button>
-          <button className={toggleState === 3 ? 
-            "tabs active-tabs bg-emerald-700 font-bold text-base text-neutral-50" : 
-            "tabs bg-emerald-800 bg-opacity-70 font-bold text-base text-neutral-700"
+          <button style={toggleState === 3 ? { backgroundColor: '#EEEEEE' } : { backgroundColor: '#BBBBBB' }} 
+            className={toggleState === 3 ? 
+            "tabs active-tabs font-bold text-base text-neutral-700" : 
+            "tabs bg-opacity-70 font-bold text-base text-black"
             } onClick={() => toggleTab(3)}>
             Usuarios
           </button>
-          <button className={toggleState === 4 ? 
-            "tabs active-tabs bg-emerald-700 font-bold text-base text-neutral-50" : 
-            "tabs bg-emerald-800 bg-opacity-70 font-bold text-base text-neutral-700"
+          <button style={toggleState === 4 ? { backgroundColor: '#EEEEEE' } : { backgroundColor: '#BBBBBB' }} 
+            className={toggleState === 4 ? 
+            "tabs active-tabs font-bold text-base text-neutral-700" : 
+            "tabs bg-opacity-70 font-bold text-base text-black"
             } onClick={() => toggleTab(4)}>
             Contacto clientes
           </button>

@@ -27,7 +27,9 @@ export const Excursions = () => {
 
   if (loading) {
     return (
-      <div>
+      <div className="h-screen inline-flex items-center justify-center"
+        style={{ backgroundColor: '#D8D2CB' }}
+      >
         <img
           src="https://images-ext-2.discordapp.net/external/S7R7Qin6kKgo0g7H0nWwPt_d14InMHmmfDpGpMnh27M/https/res.cloudinary.com/dkdioyppw/image/upload/v1647458886/trekking-adventure-himachal_vp0rka.gif"
           alt="loading"
@@ -36,39 +38,33 @@ export const Excursions = () => {
     );
   } else {
     return (
-      <div>
-        <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 block my-2 inline-flex rounded-md shadow-sm">
-
-          <div className="search-bar ">
-          </div>
-
-          <div className="inline-flex rounded-md shadow-sm">
-            <SearchBar />
-            <Filter
-              items={allExcursions}
-              defaultDescription="Locación"
-              handleFilter={handleFilter}
-              filterType="location"
-            />
-            <Filter
-              items={allExcursions}
-              defaultDescription="Fechas"
-              handleFilter={handleFilter}
-              filterType="date"
-            />
-            <Filter
-              items={allExcursions}
-              defaultDescription="Tipo de excursión"
-              handleFilter={handleFilter}
-              filterType="excursionType"
-            />
-            <SortByPrice />
-          </div>
+      <div style={{ backgroundColor: '#EEEEEE' }}>
+        <div className="z-10 sticky top-0 md:inline-flex lg:inline-flex sm:block items-center text-center justify-between w-full mb-2 py-1 px-10" style={{ backgroundColor: '#D8D2CB' }}>
+          <Filter
+            items={allExcursions}
+            defaultDescription="Locación"
+            handleFilter={handleFilter}
+            filterType="location"
+          />
+          <Filter
+            items={allExcursions}
+            defaultDescription="Fechas"
+            handleFilter={handleFilter}
+            filterType="date"
+          />
+          <Filter
+            items={allExcursions}
+            defaultDescription="Tipo de excursión"
+            handleFilter={handleFilter}
+            filterType="excursionType"
+          />
+          <SortByPrice />
+          <SearchBar />
         </div>
-        <div className="bg-white">
-          <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div style={{ backgroundColor: '#EEEEEE' }}>
+          <div className="lg:mx-32 lg:py-9 lg:px-11 md:mx-32 md:py-8 md:px-9 sm:mx-24 sm:py-8 sm:px-9 mx-10 py-8 px-9">
             <h2 className="sr-only">Products</h2>
-            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-1 md:grid-cols-2 gap-x-6 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8">
               {data && typeof data !== "string" ? (
                 data?.map((e) => (
                   <ExcursionCard
