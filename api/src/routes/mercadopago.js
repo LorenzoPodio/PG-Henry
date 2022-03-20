@@ -40,9 +40,9 @@ mp.post("/", function (req, res) {
       installments: 3, //Cantidad máximo de cuotas
     },
     back_urls: {
-      success: "mercadopago/feedback",
-      failure: "mercadopago/feedback",
-      pending: "mercadopago/feedback",
+      success: "https://excursionapp-pg.herokuapp.com/mercadopago/feedback",
+      failure: "https://excursionapp-pg.herokuapp.com/mercadopago/feedback",
+      pending: "https://excursionapp-pg.herokuapp.com/mercadopago/feedback",
     },
     auto_return: "approved",
   };
