@@ -67,8 +67,8 @@ export const UsersManagment = () => {
           </a>
         </span> */}
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div className="pb-6 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="shadow-lg shadow-gray-500 overflow-hidden border-b border-gray-200 sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-sky-600 text-white">
                   <tr>
@@ -122,14 +122,14 @@ export const UsersManagment = () => {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {e.isAdmin ?
-                              <CheckCircleIcon className='h-10 w-10 text-green-400' /> :
-                              <XCircleIcon className='h-10 w-10 text-red-400' />
+                              <CheckCircleIcon className='h-10 w-10 text-green-600'/> :
+                              <XCircleIcon className='h-10 w-10 text-red-600'/>
                             }
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {e.isBanned ?
-                              <CheckCircleIcon className='h-10 w-10 text-green-400' /> :
-                              <XCircleIcon className='h-10 w-10 text-red-400' />
+                              <CheckCircleIcon className='h-10 w-10 text-green-600'/> :
+                              <XCircleIcon className='h-10 w-10 text-red-600'/>
                             }
                           </td>
                           {e.isBanned ?
@@ -139,7 +139,7 @@ export const UsersManagment = () => {
                                 type="button"
                                 value={e.id}
                                 name={e.name}
-                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                className="inline-flex items-center px-4 py-2 border rounded-md shadow-lg shadow-gray-500 hover:shadow-black text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700"
                               >
                                 <CheckCircleIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
                                 Desbloquear
@@ -152,7 +152,7 @@ export const UsersManagment = () => {
                               type="button"
                               value={e.id}
                               name={e.name}
-                              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-lg shadow-gray-500 hover:shadow-black text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                             >
                               <BanIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
                               Bloquear
