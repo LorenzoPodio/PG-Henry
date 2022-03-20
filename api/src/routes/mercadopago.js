@@ -44,7 +44,7 @@ mp.post("/", function (req, res) {
       failure: "/mercadopago/feedback",
       pending: "/mercadopago/feedback",
     },
-    // auto_return: "approved",
+    auto_return: "approved",
   };
 
   mercadopago.preferences
