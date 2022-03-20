@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactMapGL,{ Marker } from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 import Geocoder from 'react-map-gl-geocoder';
 import './Map.css';
 
@@ -39,6 +39,7 @@ export default function MapaSearch(props){
         latitude: selected.longitude,
         longitude: selected.latitude,
     })
+
     // eslint-disable-next-line
   }, []);
 

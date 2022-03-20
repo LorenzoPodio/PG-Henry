@@ -114,7 +114,6 @@ const NavBar2 = () => {
       });
     }
   }
-  
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (

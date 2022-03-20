@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-// eslint-disable-next-line
-import ReactMapGL, {NavigationControl , Marker, Popup } from "react-map-gl";
-// eslint-disable-next-line
-import Geocoder from 'react-map-gl-geocoder';
-// eslint-disable-next-line
-import geoJson from './coordinates.json';
+
+import ReactMapGL, { Marker } from "react-map-gl";
+
 import './Map.css';
 
 export const Mapa = ({lat, long}) => {
@@ -18,6 +15,8 @@ let longitud = long? long : -60
     height: "40vh",
     zoom: 3.1,
   });
+
+
 
   // eslint-disable-next-line
   const [selected, setSelected] = useState(null);
@@ -39,6 +38,8 @@ let longitud = long? long : -60
   const markerClicked = (title) => {
     window.alert(title);
   };
+
+
 
 // eslint-disable-next-line
   function handleResult(result) {
