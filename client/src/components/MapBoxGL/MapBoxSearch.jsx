@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactMapGL,{ Marker } from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 import Geocoder from 'react-map-gl-geocoder';
 import './Map.css';
 
-export default function MapaSearch(){
+export default function MapaSearch(props){
     
   const [viewport, setViewport] = useState({
     latitude: -40.4211,
     longitude: -50.6903,
-    width: "100vw",
-    height: "80vh",
+    width: "40vw",
+    height: "40vh",
     zoom: 3.1,
 
   });
@@ -39,12 +39,11 @@ export default function MapaSearch(){
         latitude: selected.longitude,
         longitude: selected.latitude,
     })
+
     // eslint-disable-next-line
   }, []);
 
-
   const mapRef = useRef()
-
 
   function handleResult(result) {
     setViewport({
@@ -54,20 +53,22 @@ export default function MapaSearch(){
     });
   };
 
-  
   function handleCoordinates(e) {
      console.log(e.lngLat)
     setSelected({
         latitude: e.lngLat[1] -0.0005,
         longitude: e.lngLat[0]
     })
-    console.log(selected.longitude)
-    console.log(selected.latitude)
-
+    props.changeCoordenadas ({
+      lat: selected.latitude,
+      long: selected.longitude
+      })
 }
 
   return (
     <div>
+      <input type="search" id="site-search" ></input>
+      
       <ReactMapGL
         {...viewport}
         maxZoom={18}
@@ -86,17 +87,22 @@ export default function MapaSearch(){
             key={"marker"}
             latitude={selected.latitude}
             longitude={selected.longitude}
-           
+            onClick={""}
           >
-            <button
-              className="marker"
-            ></button>
-          </Marker>
-        
+            <button disabled className="marker">
 
+            </button>
+          </Marker>
+          
       {/*  GET GEO-LOCATIONS  >> busca por nombre, hacer que lea el cursor las coordenadas para guardarlas y crear nuevos markers, no se como... */}
-      <div className="geocoder">
+      
+      </ReactMapGL>
+
+      <div >
+
         <Geocoder
+          style={{ zIndex: "1" }}
+          className="geocoder"
             mapRef={mapRef}
             mapboxApiAccessToken="pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA"
             onSelected={handleResult}
@@ -104,11 +110,12 @@ export default function MapaSearch(){
               setViewport({...newViewport});
             }}
             // countries="ar"
-            position="top-right"
+            position="bottom-right"
             placeholder="Buscar..."
           />
+
         </div>
-      </ReactMapGL>
+      
     </div>
   );
 };
