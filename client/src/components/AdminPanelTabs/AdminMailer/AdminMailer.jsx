@@ -117,7 +117,7 @@ export const AdminMailer = () => {
           <button
             onClick={() => handleClick("PersonalDetails")}
             type="button"
-            className="px-4 py-2 rounded-md shadow-lg hover:shadow-black shadow-gray-500 text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            className="px-4 py-2 rounded-md shadow-lg hover:shadow-black shadow-gray-500 text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
             Enviar Mensaje
           </button>

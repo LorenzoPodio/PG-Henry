@@ -68,7 +68,7 @@ export default function SearchBar(props) {
             onChange={handleInputChanges}
           />
           <button
-            className="bg-sky-500 text-white shadow-lg shadow-gray-400 hover:shadow-md hover:shadow-black font-bold rounded-md mt-1 px-4 py-1 h-8"
+            className="bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-gray-400 hover:shadow-md hover:shadow-black font-bold rounded-md mt-1 px-4 py-1 h-8"
             type="submit"
           >
             <span>Buscar</span>

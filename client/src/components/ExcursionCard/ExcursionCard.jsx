@@ -22,7 +22,7 @@ export const ExcursionCard = ({ id, name, images, location, date, price, excursi
       <div className='m-2 w-11/12 text-right'>
         <NavLink key={id} to={`/excursion/detalle/${id}`}>
           <button
-            className="bg-sky-500 text-white shadow-lg hover:shadow-md hover:shadow-black font-bold rounded-md px-4 py-1 h-8"
+            className="bg-sky-500 hover:bg-sky-600 text-white shadow-lg hover:shadow-md hover:shadow-black font-bold rounded-md px-4 py-1 h-8"
           >
             Ver más
           </button>
