@@ -50,7 +50,7 @@ export const UsersManagment = () => {
 
   return (
 
-    <div className="grid place-content-center bg-emerald-700" id="top">
+    <div className="grid place-content-center" id="top">
       <div className="flex flex-col w-fit m-10">
         {/* <span className="hidden sm:block my-10">
           <a href="/crearExcursion#">
@@ -70,27 +70,27 @@ export const UsersManagment = () => {
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-sky-600 text-white">
                   <tr>
-                    <th scope="col" className="px-10 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-10 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Nombre
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Email
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Dirección
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Dni
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Es admin?
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Está bloqueado?
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       Acciones
                     </th>
                   </tr>
