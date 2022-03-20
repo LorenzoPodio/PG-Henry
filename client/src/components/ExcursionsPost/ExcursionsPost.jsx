@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import axios from "axios";
 import {Image} from 'cloudinary-react';
 import { useNavigate } from "react-router-dom";
+import MapaSearch from '../MapBoxGL/MapBoxSearch'
 
 export const ExcursionsPost = () => {
 
@@ -16,6 +17,7 @@ export const ExcursionsPost = () => {
     return e.name
   }); 
 
+  const [coordenadas, setCoordenadas] = useState({})
   
   const [input, setInput] = useState({
     name: "",
@@ -27,12 +29,15 @@ export const ExcursionsPost = () => {
     price: 0,
     extra: "",
     excursionType: "",
-    stock:""
+    stock:"",
+    lat: "",
+    long: ""
   });
 
   const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
   const price = [500, 1000, 1500, 2000, 2500]
   const type =["Trekking", "Bus", "Lacustre"]
+  
 
   function handleChange(e) {
     setInput(() => {
@@ -86,6 +91,17 @@ export const ExcursionsPost = () => {
         excursionType: e.target.value
     })
     }
+
+    //HANDLE COORDENADAS
+
+  function handleCoor(coor){
+    setCoordenadas(coor)
+  setInput({
+    ...input,
+    long: coordenadas.long,
+    lat: coordenadas.lat
+})
+  }
 
   ///HANDLE DE IMAGENES
   function handleImage(files) {
@@ -145,7 +161,10 @@ export const ExcursionsPost = () => {
         !input.excursionType ||
         !input.name || 
         !input.price ||
+        !input.lat ||
+        !input.long ||
         !input.location){
+          console.log(input)
           e.preventDefault();
           swal({
             title: "Ooops..",
@@ -159,7 +178,7 @@ export const ExcursionsPost = () => {
         if(input.Images.length === 0){
           input.Images = imagesUrls
         }
-
+    console.log(input)
     addExcursion(input)
     swal("Excursión creada exitosamente");
     setTimeout(() => (navigate("/panelAdmin")), 3000);
@@ -173,7 +192,9 @@ export const ExcursionsPost = () => {
       price: 0,
       extra: "",
       excursionType: "",
-      stock: ""
+      stock: "",
+      lat: "",
+      long: ""
     })
   }};
 
@@ -226,6 +247,50 @@ export const ExcursionsPost = () => {
         </div>
       </div>
 
+      {/* {Mapa} */}
+      
+      <div>
+        <div className="hidden sm:block" aria-hidden="true">
+          <div className="py-5">
+            <div className="border-t border-gray-200" />
+          </div>
+        </div>
+        <div className="md:grid md:grid-cols-3 md:gap-6">
+          <div className="md:col-span-1">
+            <div className="px-4 sm:px-0">
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Locacion en el mapa
+              </h3>
+            </div>
+          </div>
+          <div className="mt-5 md:mt-0 md:col-span-2">
+
+              <div className="shadow sm:rounded-md sm:overflow-hidden">
+                <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                  <div>
+                    <label
+                      htmlFor="about"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Agrega el nombre de la ciudad correctamente
+                    </label>
+                    <div className="mt-1">
+                      <label
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        placeholder="Busca tu ciudad aqui"
+                        defaultValue={""}
+                      >{`latitud: ${coordenadas.lat} longitud: ${coordenadas.long}`}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br/>
+              <MapaSearch
+              changeCoordenadas={(coor) => handleCoor(coor)}/>
+          </div>
+        </div>
+      </div>
       {/* Images */}
       <div>
         <div className="hidden sm:block" aria-hidden="true">

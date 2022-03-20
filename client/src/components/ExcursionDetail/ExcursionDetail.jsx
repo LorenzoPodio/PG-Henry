@@ -98,7 +98,7 @@ export const ExcursionDetail = () => {
       navigate("/excursiones");
     }
   };
-
+  
   return (
     <div className="md:flex items-start justify-center py-2 px-2">
       <div
@@ -177,10 +177,11 @@ export const ExcursionDetail = () => {
           <ShoppingCartIcon className="w-5 h-5 ml-1" />
         </button>
       </div>
-      {/* <Mapa
-       lat={-41.1345}
-       long= {-71.3021}
-      /> */}
+      
+      <Mapa
+       lat={excursionByid?.lat}
+       long= {excursionByid?.long}
+      />
     </div>
   );
 };

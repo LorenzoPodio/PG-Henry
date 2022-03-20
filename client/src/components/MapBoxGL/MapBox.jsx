@@ -1,24 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactMapGL, {NavigationControl , Marker, Popup } from "react-map-gl";
-import Geocoder from 'react-map-gl-geocoder';
-import geoJson from './coordinates.json';
+import ReactMapGL, { Marker } from "react-map-gl";
+
 import './Map.css';
 
 export const Mapa = ({lat, long}) => {
-console.log(lat)
-console.log(long)
+let latitud = lat? lat : -30
+let longitud = long? long : -60
 
   const [viewport, setViewport] = useState({
-    latitude: lat,
-    longitude: long,
-    width: "100vw",
-    height: "80vh",
+    latitude: latitud,
+    longitude: longitud,
+    width: "40vw",
+    height: "40vh",
     zoom: 3.1,
-
   });
-  const [selected, setSelected] = useState(null);
 
-  console.log(viewport)
+  const [selected, setSelected] = useState(null);
+  const mapRef = useRef()
+
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
@@ -36,21 +35,17 @@ console.log(long)
     window.alert(title);
   };
 
-
-  const mapRef = useRef()
-
-
   function handleResult(result) {
     setViewport({
-     name:result.place_name,
-     latitude:result.latitude,
-     longitude:result.longitude,
+     name:result?.place_name,
+     latitude:result?.latitude,
+     longitude:result?.longitude,
     });
   };
 
   function handleCoordinates(e) {
     console.log(e.lngLat);
-}
+  }
 
   return (
     <div>
@@ -65,13 +60,11 @@ console.log(long)
         ref={mapRef}
         onClick={handleCoordinates}
       >
-
         {/*   MARKERS   */}
-        
           <Marker
             key={"33"}
-            latitude={lat}
-            longitude={long}
+            latitude={latitud}
+            longitude={longitud}
             onClick={markerClicked}  feature={""} 
           >
             <button
@@ -82,7 +75,6 @@ console.log(long)
               }}
             ></button>
           </Marker>
-     
       </ReactMapGL>
     </div>
   );

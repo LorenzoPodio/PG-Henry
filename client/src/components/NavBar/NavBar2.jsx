@@ -114,8 +114,7 @@ const NavBar2 = () => {
       });
     }
   }
-
-console.log(check);
+  
   if (user && usuario.lastName !== "0" && check) {
     addUser(usuario);
     createCart(usuario.email);

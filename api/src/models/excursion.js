@@ -54,7 +54,15 @@ module.exports = (sequelize) => {
     stock: {
       type: DataTypes.INTEGER,
       allowNull: true,
-    }
+    },
+    lat: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
+    long: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
   },
     { timestamps: false }
   );
