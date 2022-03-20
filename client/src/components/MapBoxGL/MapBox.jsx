@@ -18,9 +18,8 @@ let longitud = long? long : -60
     height: "40vh",
     zoom: 3.1,
   });
-  // eslint-disable-next-line
-  const [selected, setSelected] = useState(null);
 
+  // eslint-disable-next-line
   const [selected, setSelected] = useState(null);
   const mapRef = useRef()
 
@@ -40,9 +39,6 @@ let longitud = long? long : -60
   const markerClicked = (title) => {
     window.alert(title);
   };
-
-
-  const mapRef = useRef()
 
 // eslint-disable-next-line
   function handleResult(result) {
