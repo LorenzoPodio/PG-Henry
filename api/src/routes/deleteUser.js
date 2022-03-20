@@ -9,7 +9,7 @@ deleteUser.delete("/:id", async (req, res, next) => {
     try {
       const { id } = req.params;
       if (!id) {
-        return res.status(500).send("Necessary parameters not found");
+        return res.status(202).send("Necessary parameters not found");
       }
       await User.destroy({
         where: {

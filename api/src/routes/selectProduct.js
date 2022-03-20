@@ -10,7 +10,7 @@ selectProduct.post("/", async (req, res, next) => {
   try {
     let { name, date, time, price, quantity } = req.body;
     if (!name || !date || !time || !price) {
-      return res.status(500).send("Necessary parameters not found");
+      return res.status(202).send("Necessary parameters not found");
     }
     const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
 

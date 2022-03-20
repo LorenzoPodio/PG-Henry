@@ -1,18 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useExcursionsContext } from "../../../context/ExcursionsContext";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import swal from "sweetalert";
 
 
 export const PurchasesManagment = () => {
-  const { cancelledOrder, allOrders, getAllOrders} = useExcursionsContext();
-  let totalPurchase = 0;
-  let productNames = [];
+  const { cancelledOrder, allOrders} = useExcursionsContext();
 
-  useEffect(() => {
-    getAllOrders();
-  }, [])
-  
 
   function handleCancelled(e) {
     swal({

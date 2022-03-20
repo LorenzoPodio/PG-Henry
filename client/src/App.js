@@ -1,6 +1,5 @@
 import { About } from "./components/About/About";
 import Purchases from "./components/Purchases/Purchases";
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Excursions } from "./components/Excursions/Excursions";
 import { ExcursionsPost } from "./components/ExcursionsPost/ExcursionsPost";
@@ -15,13 +14,13 @@ import { Landing } from "./components/Landing/Landing";
 import { EditExcursion } from "./components/EditExcursion/EditExcursion";
 import MapaSearch from './components/MapBoxGL/MapBoxSearch'
 
-import Cart from "./components/Cart/Cart";
+
 
 import { Profile } from "./components/Profile/Profile";
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex-col h-screen">
       <NavBar2 />
       <Routes>
         <Route exact path="/" element={<Landing />} />

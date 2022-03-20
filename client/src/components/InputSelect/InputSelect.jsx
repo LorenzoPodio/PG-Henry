@@ -5,13 +5,15 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 export default function InputSelect(props) {
   const [selected, setSelected] = useState("");
   const { handleTime } = props;
+  
 
   useEffect(() => {
     handleTime(selected);
+    // eslint-disable-next-line
   }, [selected]);
 
   return (
-    <div className="w-1/3">
+    <div className="w-full">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
@@ -30,7 +32,8 @@ export default function InputSelect(props) {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {props.options.map((o, i) => (
+              {props.options.map((o, i) => {
+                return (
                 <Listbox.Option
                   key={i}
                   className={({ active }) =>
@@ -57,7 +60,7 @@ export default function InputSelect(props) {
                     </>
                   )}
                 </Listbox.Option>
-              ))}
+              )})}
             </Listbox.Options>
           </Transition>
         </div>

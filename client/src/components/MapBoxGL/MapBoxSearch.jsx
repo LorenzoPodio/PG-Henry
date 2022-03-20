@@ -40,6 +40,10 @@ export default function MapaSearch(props){
         longitude: selected.latitude,
     })
 
+    // eslint-disable-next-line
+  }, []);
+
+
    
   }, []);
 

@@ -43,7 +43,14 @@ export default function Payment({ handleClick }) {
           </div>
 
       {!data ? (
-        <p>Aguarde un momento....</p>
+        <div className="flex justify-around">
+             <div>
+        <img
+          src="https://images-ext-2.discordapp.net/external/S7R7Qin6kKgo0g7H0nWwPt_d14InMHmmfDpGpMnh27M/https/res.cloudinary.com/dkdioyppw/image/upload/v1647458886/trekking-adventure-himachal_vp0rka.gif"
+          alt="loading"
+        />
+      </div>
+        </div>
         ) : (
           <Checkout products={cartItems} data={data} />
           )}

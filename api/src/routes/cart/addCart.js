@@ -12,7 +12,7 @@ addCart.post("/", async (req, res, next) => {
   try {
     const { name, date, time, quantity, price, email } = req.body;
     if (!name || !date || !time || !quantity || !price) {
-      return res.status(500).send("Necessary parameters not found");
+      return res.status(202).send("Necessary parameters not found");
     } else {
       const getUserId = await User.findOne({
         where: {
@@ -55,19 +55,19 @@ addCart.post("/", async (req, res, next) => {
         },
       });
       const excursion = await Excursion.findOne({
-        where: { name: { [Op.iLike]: product.name.id } },
+        where: { name: { [Op.iLike]: product?.name.id } },
       });
       const productInCart = await Order_detail.create({
         price: price,
         quantity: quantity,
-        productId: product.dataValues.id,
-        orderId: stateCart.dataValues.id,
+        productId: product?.dataValues.id,
+        orderId: stateCart?.dataValues.id,
         totalPrice: price * quantity,
       });
 
       const cartAmount = await Order_detail.findAll({
         where: {
-          orderId: stateCart.dataValues.id,
+          orderId: stateCart?.dataValues.id,
         },
         include: [{ model: Product }],
       });

@@ -19,7 +19,7 @@ getExcursion.get("/", async (req, res, next) => {
         }
       });
       excursionName.length ? res.status(200).send(excursionName)
-        : res.status(500).send("Excursion not found");
+        : res.status(202).send("Excursion not found");
     } else if (id) {
       const excursionId = await Excursion.findByPk(id);
       excursionId ? res.status(200).send(excursionId) : res.status(500).send("Excursion not found");
@@ -34,7 +34,7 @@ getExcursion.get("/", async (req, res, next) => {
       });
       exDateTypeLoc.length
         ? res.status(200).send(exDateTypeLoc)
-        : res.status(500).send("Excursion not found");
+        : res.status(202).send("Excursion not found");
     } else if (date && excursionType) {
       let day = date.charAt(0).toUpperCase() + date.slice(1);
       const exDateType = await Excursion.findAll({
@@ -45,7 +45,7 @@ getExcursion.get("/", async (req, res, next) => {
       });
       exDateType.length
         ? res.status(200).send(exDateType)
-        : res.status(500).send("Excursion not found");
+        : res.status(202).send("Excursion not found");
     } else if (date && location) {
       let day = date.charAt(0).toUpperCase() + date.slice(1);
       const exDateLoc = await Excursion.findAll({
@@ -56,7 +56,7 @@ getExcursion.get("/", async (req, res, next) => {
       });
       exDateLoc.length
         ? res.status(200).send(exDateLoc)
-        : res.status(500).send("Excursion not found");
+        : res.status(202).send("Excursion not found");
     } else if (location && excursionType) {
       const exLocType = await Excursion.findAll({
         where: {
@@ -66,7 +66,7 @@ getExcursion.get("/", async (req, res, next) => {
       });
       exLocType.length
         ? res.status(200).send(exLocType)
-        : res.status(500).send("Excursion not found");
+        : res.status(202).send("Excursion not found");
     } else if (location) {
       const excursionLocation = await Excursion.findAll({
         where: {
@@ -74,7 +74,7 @@ getExcursion.get("/", async (req, res, next) => {
         }
       });
       excursionLocation.length ? res.status(200).send(excursionLocation)
-        : res.status(500).send("Excursion not found");
+        : res.status(202).send("Excursion not found");
     } else if (date) {
       let day = date.charAt(0).toUpperCase() + date.slice(1);
       const excursionDate = await Excursion.findAll({
@@ -83,7 +83,7 @@ getExcursion.get("/", async (req, res, next) => {
         }
       });
       excursionDate.length ? res.status(200).send(excursionDate)
-        : res.status(500).send("Excursion not found");
+        : res.status(202).send("Excursion not found");
     } else if (excursionType) {
       const exType = await Excursion.findAll({
         where: {
@@ -91,7 +91,7 @@ getExcursion.get("/", async (req, res, next) => {
         }
       });
       exType.length ? res.status(200).send(exType)
-        : res.status(500).send("Excursion not found");
+        : res.status(202).send("Excursion not found");
     } else {
       const excursion = await Excursion.findAll()
       return res.status(200).send(excursion)

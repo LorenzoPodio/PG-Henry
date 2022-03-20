@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import swal from "sweetalert";
 import { useCartContext } from "../../context/CartContext";
 
 const NavBar2 = () => {
-  let check = true;
+  const [check, setCheck] = useState(true);
   const [navigation, setNavigation] = useState([
     { name: "Excursiones", href: "/excursiones", current: false },
     { name: "Tarifas", href: "/tarifas", current: false },
@@ -33,22 +33,23 @@ const NavBar2 = () => {
     picture: "",
   });
 
-  const { users, addUser} = useExcursionsContext();
+  const { addUser } = useExcursionsContext();
 
   const { createCart, cartItems } = useCartContext();
 
-  users?.map((u) => {
-    if (u?.email === usuario?.email) {
-      check = false;
-    }
-  });
+  useEffect(() => {
+    setCheck(() => false);
+    addUser(usuario);
+    createCart(usuario.email);
+    // eslint-disable-next-line
+  }, [user]);
 
   function handleClick(e) {
     navigation?.map((item) => {
       if (item.name === e.target.value) {
-        return item.current = true;
+        return (item.current = true);
       } else {
-        return item.current = false;
+        return (item.current = false);
       }
     });
     setNavigation(navigation);
@@ -57,7 +58,6 @@ const NavBar2 = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
-
 
   if (user && usuario.email === "0") {
     setUsuario((prevState) => {
@@ -114,12 +114,7 @@ const NavBar2 = () => {
       });
     }
   }
-  
-  if (user && usuario.lastName !== "0" && check) {
-    addUser(usuario);
-    createCart(usuario.email);
-  }
-  
+
   return (
     <Disclosure as="nav" className="bg-sky-600">
       {({ open }) => (
@@ -227,18 +222,19 @@ const NavBar2 = () => {
                       <div>
                         <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Open user menu</span>
-                          {usuario?.picture.length > 0  ? <img
-                            className="h-8 w-8 rounded-full"
-                            src={usuario?.picture}
-                            alt="User profile"
-                          /> :
-                          <img
-                            className="h-8 w-8 rounded-full"
-                            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                            alt="User profile"
-                          />
-                          }
-                          
+                          {usuario?.picture.length > 0 ? (
+                            <img
+                              className="h-8 w-8 rounded-full"
+                              src={usuario?.picture}
+                              alt="User profile"
+                            />
+                          ) : (
+                            <img
+                              className="h-8 w-8 rounded-full"
+                              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                              alt="User profile"
+                            />
+                          )}
                         </Menu.Button>
                       </div>
                       <Transition
@@ -253,20 +249,21 @@ const NavBar2 = () => {
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
-                              <Link to="/miPerfil" className={classNames(
-                                active ? "bg-sky-500" : "",
-                                "block px-4 py-2 text-sm text-white"
-                              )}>
-                          
+                              <Link
+                                to="/miPerfil"
+                                className={classNames(
+                                  active ? "bg-sky-500" : "",
+                                  "block px-4 py-2 text-sm text-white"
+                                )}
+                              >
                                 Mi Perfil
-                            
                               </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <Link 
-                              to="/excursiones"
+                              <Link
+                                to="/excursiones"
                                 onClick={() => logout()}
                                 className={classNames(
                                   active ? "bg-sky-500" : "",
@@ -288,9 +285,9 @@ const NavBar2 = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Disclosure.Button>
-                  <Link key={item.href} to={item.href}>
+              {navigation.map((item, i) => (
+                <Disclosure.Button key={i}>
+                  <Link to={item.href}>
                     <button
                       key={item.name}
                       value={item.name}

@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
+
 import ReactMapGL, { Marker } from "react-map-gl";
+
+
+// eslint-disable-next-line
+import ReactMapGL, {NavigationControl , Marker, Popup } from "react-map-gl";
+// eslint-disable-next-line
+import Geocoder from 'react-map-gl-geocoder';
+// eslint-disable-next-line
+import geoJson from './coordinates.json';
 
 import './Map.css';
 
@@ -15,6 +24,9 @@ let longitud = long? long : -60
     zoom: 3.1,
   });
 
+
+
+  // eslint-disable-next-line
   const [selected, setSelected] = useState(null);
   const mapRef = useRef()
 
@@ -35,6 +47,11 @@ let longitud = long? long : -60
     window.alert(title);
   };
 
+
+
+  const mapRef = useRef()
+
+// eslint-disable-next-line
   function handleResult(result) {
     setViewport({
      name:result?.place_name,
