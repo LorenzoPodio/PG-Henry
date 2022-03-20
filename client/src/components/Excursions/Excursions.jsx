@@ -27,7 +27,7 @@ export const Excursions = () => {
 
   if (loading) {
     return (
-      <div>
+      <div className="flex justify-around py-12">
         <img
           src="https://images-ext-2.discordapp.net/external/S7R7Qin6kKgo0g7H0nWwPt_d14InMHmmfDpGpMnh27M/https/res.cloudinary.com/dkdioyppw/image/upload/v1647458886/trekking-adventure-himachal_vp0rka.gif"
           alt="loading"

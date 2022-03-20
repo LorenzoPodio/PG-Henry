@@ -91,7 +91,7 @@ mp.get("/feedback", async function (req, res, next) {
       include: [
         {
           model: Product,
-          attributes: ["name", "date", "id", "stock"],
+          attributes: ["name", "date", "id", "stock","time"],
         },
       ],
     });
@@ -104,6 +104,7 @@ mp.get("/feedback", async function (req, res, next) {
         date: name?.dataValues.date,
         id: name?.dataValues.id,
         stock: name?.dataValues.stock,
+        time: name?.dataValues.time
       };
     });
 
@@ -120,13 +121,13 @@ mp.get("/feedback", async function (req, res, next) {
         for (var i = 0; i < array1.length; i++) {
           a =
             a +
-            "Su excursion: " +
+            "Excursion: " +
             array1[i].name +
             " para el dia " +
             array1[i].date.substring(1,11) +
-            " , para " +
+            " a las " + array1[i].time + "hs para " +
             array2[i].quantity +
-            " personas , <br/>";
+            " personas  por un valor unitario de $"+ array2[i].price +". <br/>";
         }
       }
       return a;
@@ -138,20 +139,77 @@ mp.get("/feedback", async function (req, res, next) {
       var mailOptions = {
         from: "excursionappmail@gmail.com",
         to: email,
-        subject: `Hola ${name} ${lastName}, su pago ha sido aprobado - ExcursionApp`,
-        html: `<img src= "https://img.icons8.com/color/48/000000/around-the-globe.png" />
-  <h3>ExcursionApp</h3><hr/>
-  <br/>
-  <br/>
-  <h3>Le acercamos información sobre su compra.</h3> <br/>
-  El detalle es: <br/>
-  <br/>
-  ${datesMail} fue aprobado, que lo disfrute!
-  <br/>
-  Ante cualquier anomalía el administrador de la excursión se pondra en contacto con usted
-  <br/>
-  <br/>            
-  Por favor califique su experiencia en la aplicacion. `,
+        subject: `Hola ${name} ${lastName}, su pago ha sido aprobado ! - excursionApp`,
+        html: `
+  <style>
+        table, td, div, h1, p {font-family: Arial, sans-serif;}
+      </style>
+    </head>
+    <body style="margin:0;padding:0;">
+      <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
+        <tr>
+          <td align="center" style="padding:0;">
+            <table role="presentation" style="width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;">
+              <tr>
+                <td align="center" style="padding:40px 0 30px 0;background:#D8D2CB;">
+                <a href="https://excursionapp.vercel.app" style="color:#ffffff;text-decoration:underline;"/>
+                  <img src="https://res.cloudinary.com/excursionesapp/image/upload/v1647736554/Sin_t%C3%ADtulo_200_100_px_200_50_px_400_200_px_vbg9mk.png" alt="" width="300" style="height:auto;display:block;" />
+                </td>
+                
+              </tr>
+              <tr>
+                <td style="padding:36px 30px 42px 30px;">
+                  <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+                    <tr>
+                      <td style="padding:0 0 36px 0;color:#153643;">
+                        <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">${name}, te acercamos información sobre el estado su compra. </h1>
+                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">El pago fue aprobado.</p> 
+                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+                         Adquiriste con éxito los siguientes productos:
+                         <br/>
+                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"> ${datesMail} </p>
+                         <br/>  
+                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">Ante cualquier anomalía el administrador de la excursón se pondrá en contacto, 
+                         sino ante cualquier inconveniente abajo tenes el link a nuestra web y en el pie de nuestra página un formulario de contacto.</p>
+                        </p>
+                        <br/>
+                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+                        ¡ Que disfrutes las excursiones !
+                        </p>
+                      </td>
+                      <td style="padding:0 0 36px 0;color:#153643;">
+                     
+                      </td>
+                    </tr>                
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:30px;background:#0284c7;">
+                  <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
+                    <tr>
+                      <td style="padding:0;width:50%;" align="left">
+                        <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
+                          &reg; Realizado por Henry´s Students. Todos los derechos reservados<br/><a href="https://excursionapp.vercel.app" style="color:#ffffff;text-decoration:underline;">Link a web</a>
+                        </p>
+                      </td>
+                      <td style="padding:0;width:50%;" align="right">
+                        <table role="presentation" style="border-collapse:collapse;border:0;border-spacing:0;">
+                          <tr>                          
+                            <td style="padding:0 0 0 10px;width:38px;">
+                            <a href="https://github.com/LorenzoPodio/PG-Henry/" style="color:#ffffff;"><img src="https://res.cloudinary.com/excursionesapp/image/upload/v1647736928/logo_git_bxvzgp.jpg" alt="github" width="38" style="height:auto;display:block;border:0;" /></a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>  `,
       };
 
       await Order.update(
@@ -189,20 +247,72 @@ mp.get("/feedback", async function (req, res, next) {
       var mailOptions = {
         from: "excursionappmail@gmail.com",
         to: email,
-        subject: `Hola ${name} ${lastName}, su pago esta pendiente - ExcursionApp`,
-        html: `<img src= "https://img.icons8.com/color/48/000000/around-the-globe.png" />
-  <h3>ExcursionApp</h3><hr/>
-  <br/>
-  <br/>
-  <h3>Le acercamos información sobre el estado su compra.</h3> <br/>
-  El detalle es: <br/>
-  <br/>
-  ${datesMail} fue guardada, al momento de acreditarse el pago si hay stock disponible le llegara una notificación confirmandole la operación.
-  <br/>
-  Ante cualquier anomalía el administrador de la excursión se pondra en contacto con usted
-  <br/>
-  <br/>            
-  Por favor califique su experiencia en la aplicacion. </h1> `,
+        subject: `${name} ${lastName}, su pago esta pendiente - excursionApp`,
+        html: `  
+  <style>
+        table, td, div, h1, p {font-family: Arial, sans-serif;}
+      </style>
+    </head>
+    <body style="margin:0;padding:0;">
+      <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
+        <tr>
+          <td align="center" style="padding:0;">
+            <table role="presentation" style="width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;">
+              <tr>
+                <td align="center" style="padding:40px 0 30px 0;background:#D8D2CB;">
+                <a href="https://excursionapp.vercel.app" style="color:#ffffff;text-decoration:underline;"/>
+                  <img src="https://res.cloudinary.com/excursionesapp/image/upload/v1647736554/Sin_t%C3%ADtulo_200_100_px_200_50_px_400_200_px_vbg9mk.png" alt="" width="300" style="height:auto;display:block;" />
+                </td>
+                
+              </tr>
+              <tr>
+                <td style="padding:36px 30px 42px 30px;">
+                  <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+                    <tr>
+                      <td style="padding:0 0 36px 0;color:#153643;">
+                        <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">${name}, te acercamos información sobre el estado su compra. </h1>
+                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">El pago aún no fue procesado.</p> 
+                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+                         En tu carrito quedan guardados los siguientes productos.
+                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"> ${datesMail} </p>
+                         <br/>  
+                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">En caso de elegir otro medio de pago y volver a realizar la compra
+                         recorda verificar que haya disponibilidad para la fecha y el horario elegido anteriormente, no te pierdas las aventuras nuevas que te esperan !</p>
+                        </p>
+                      </td>
+                      <td style="padding:0 0 36px 0;color:#153643;">
+                     
+                      </td>
+                    </tr>                
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:30px;background:#0284c7;">
+                  <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
+                    <tr>
+                      <td style="padding:0;width:50%;" align="left">
+                        <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
+                          &reg; Realizado por Henry´s Students. Todos los derechos reservados<br/><a href="https://excursionapp.vercel.app" style="color:#ffffff;text-decoration:underline;">Link a web</a>
+                        </p>
+                      </td>
+                      <td style="padding:0;width:50%;" align="right">
+                        <table role="presentation" style="border-collapse:collapse;border:0;border-spacing:0;">
+                          <tr>                          
+                            <td style="padding:0 0 0 10px;width:38px;">
+                            <a href="https://github.com/LorenzoPodio/PG-Henry/" style="color:#ffffff;"><img src="https://res.cloudinary.com/excursionesapp/image/upload/v1647736928/logo_git_bxvzgp.jpg" alt="github" width="38" style="height:auto;display:block;border:0;" /></a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table> `,
       };
       await Order.update(
         { status: "processingPay" },
@@ -220,20 +330,72 @@ mp.get("/feedback", async function (req, res, next) {
       var mailOptions = {
         from: "excursionappmail@gmail.com",
         to: email,
-        subject: `Hola ${name} ${lastName}, su pago ha sido rechazado - ExcursionApp`,
-        html: `<img src= "https://img.icons8.com/color/48/000000/around-the-globe.png" />
-  <h3>ExcursionApp</h3><hr/>
-  <br/>
-  <br/>
-  <h3>Le acercamos información sobre el estado su compra.</h3> <br/>
-  El detalle es: <br/>
-  <br/>
-  Lo sentimos, hubo un error al intentar generar el cobro.
-  <br/>
-  Por favor pongase en contacto con el medio que intento realizar el pago e intente nuevamente, recuerde verificar la disponibilidad de las fechas escogidas anteriormente.
-  <br/>
-  <br/>            
-  Por favor califique su experiencia en la aplicacion. </h1> `,
+        subject: `${name} ${lastName}, su pago ha sido rechazado - excursionApp`,
+        html: `  
+  <style>
+        table, td, div, h1, p {font-family: Arial, sans-serif;}
+      </style>
+    </head>
+    <body style="margin:0;padding:0;">
+      <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;background:#ffffff;">
+        <tr>
+          <td align="center" style="padding:0;">
+            <table role="presentation" style="width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;">
+              <tr>
+                <td align="center" style="padding:40px 0 30px 0;background:#D8D2CB;">
+                <a href="https://excursionapp.vercel.app" style="color:#ffffff;text-decoration:underline;"/>
+                  <img src="https://res.cloudinary.com/excursionesapp/image/upload/v1647736554/Sin_t%C3%ADtulo_200_100_px_200_50_px_400_200_px_vbg9mk.png" alt="" width="300" style="height:auto;display:block;" />
+                </td>
+                
+              </tr>
+              <tr>
+                <td style="padding:36px 30px 42px 30px;">
+                  <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
+                    <tr>
+                      <td style="padding:0 0 36px 0;color:#153643;">
+                        <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">${name}, te acercamos información sobre el estado su compra. </h1>
+                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"> Lo sentimos, hubo un error al intentar generar el cobro.</p> 
+                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
+                         En tu carrito quedan guardados los siguientes productos.
+                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"> ${datesMail} </p>
+                         <br/>  
+                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">En caso de elegir otro medio de pago y volver a realizar la compra
+                         recorda verificar que haya disponibilidad para la fecha y el horario elegido anteriormente, no te pierdas las aventuras nuevas que te esperan !</p>
+                        </p>
+                      </td>
+                      <td style="padding:0 0 36px 0;color:#153643;">
+                     
+                      </td>
+                    </tr>                
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:30px;background:#0284c7;">
+                  <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;font-size:9px;font-family:Arial,sans-serif;">
+                    <tr>
+                      <td style="padding:0;width:50%;" align="left">
+                        <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
+                          &reg; Realizado por Henry´s Students. Todos los derechos reservados<br/><a href="https://excursionapp.vercel.app" style="color:#ffffff;text-decoration:underline;">Link a web</a>
+                        </p>
+                      </td>
+                      <td style="padding:0;width:50%;" align="right">
+                        <table role="presentation" style="border-collapse:collapse;border:0;border-spacing:0;">
+                          <tr>                          
+                            <td style="padding:0 0 0 10px;width:38px;">
+                            <a href="https://github.com/LorenzoPodio/PG-Henry/" style="color:#ffffff;"><img src="https://res.cloudinary.com/excursionesapp/image/upload/v1647736928/logo_git_bxvzgp.jpg" alt="github" width="38" style="height:auto;display:block;border:0;" /></a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table> `,
       };
 
       await Order.update(
