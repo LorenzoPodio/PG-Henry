@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 export const ExcursionCard = ({ id, name, images, location, date, price, excursionType }) => {
   return (
-    <div className="group rounded-lg shadow-lg shadow-black hover:shadow-lg min-h-min" style={{ backgroundColor: 'white' }}>
+    <div className="group rounded-lg shadow-lg shadow-gray-500 hover:shadow-black min-h-min" style={{ backgroundColor: 'white' }}>
       <div className="aspect-w-1 aspect-h-1 rounded-t-lg overflow-hidden md:aspect-w-6 md:aspect-h-5 xl:aspect-w-7 xl:aspect-h-5">
         <img
           src={images[0]}
