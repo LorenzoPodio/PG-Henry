@@ -40,9 +40,9 @@ mp.post("/", function (req, res) {
       installments: 3, //Cantidad máximo de cuotas
     },
     back_urls: {
-      success: "/mercadopago/feedback",
-      failure: "/mercadopago/feedback",
-      pending: "/mercadopago/feedback",
+      success: "mercadopago/feedback",
+      failure: "mercadopago/feedback",
+      pending: "mercadopago/feedback",
     },
     auto_return: "approved",
   };
