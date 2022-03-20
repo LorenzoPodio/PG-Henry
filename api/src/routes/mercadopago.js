@@ -250,7 +250,7 @@ mp.get("/feedback", async function (req, res, next) {
       });
     }
 
-    res.status(200).redirect("http://localhost:3000/excursiones");
+    res.status(200).redirect("https://excursionapp.vercel.app/excursiones");
   } catch (error) {
     next(error);
   }
