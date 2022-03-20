@@ -39,8 +39,7 @@ export default function MapaSearch(props){
         latitude: selected.longitude,
         longitude: selected.latitude,
     })
-
-   
+    // eslint-disable-next-line
   }, []);
 
   const mapRef = useRef()

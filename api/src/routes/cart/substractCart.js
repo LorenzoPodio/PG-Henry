@@ -11,7 +11,7 @@ substractCart.put("/", async (req, res, next) => {
     try {
         const { detailId, orderId } = req.body;
         if (!detailId || !orderId ) {
-            return res.status(500).send("Necessary parameters not found");
+            return res.status(202).send("Necessary parameters not found");
         } else {
            
             

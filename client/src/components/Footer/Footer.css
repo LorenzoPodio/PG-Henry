@@ -3,12 +3,10 @@
     flex-direction: row;
     align-items: center;
     justify-content:space-evenly;
-    background-color: rgb(0, 0, 0, 0.1);
-    font-size: 20px;
+    background-color: rgb(0, 0, 0, 0.1);    
     color: grey;
-    height: 90px;;
-    width: 100%;
-    margin-top: auto;
+    height: 4rem;
+    position: fixed;
   }
   body{
     display: flex;
@@ -28,6 +26,6 @@
   }
 
   .text {
-    font-size: 22px;
+    font-size:medium;
     color: white
 }

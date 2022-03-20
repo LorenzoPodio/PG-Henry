@@ -20,7 +20,7 @@ export const About = () => {
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646597863/profile-pic_7_ov2jyf.png"
-                      alt="logo-image"
+                      alt="Logo Profile"
                       className="rounded-full object-cover h-full w-full shadow-md"
                     />
                   </div>
@@ -50,7 +50,7 @@ export const About = () => {
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646597933/profilepicbracha_xp5esx.jpg"
-                      alt="logo-image"
+                      alt="Logo Profile"
                       className="rounded-full object-cover h-full w-full shadow-md"
                     />
                   </div>
@@ -80,7 +80,7 @@ export const About = () => {
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646600605/perfildami_f3h9vo.jpg"
-                      alt="logo-image"
+                      alt="Logo Profile"
                       className="rounded-full object-cover h-full w-full shadow-md"
                     />
                   </div>
@@ -110,7 +110,7 @@ export const About = () => {
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646600842/perfilmanuok_u6yeno.png"
-                      alt="logo-image"
+                      alt="Logo Profile"
                       className="rounded-full object-cover h-full w-full shadow-md"
                     />
                   </div>
@@ -140,7 +140,7 @@ export const About = () => {
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646600709/perfillucho_gru75l.png"
-                      alt="logo-image"
+                      alt="Logo Profile"
                       className="rounded-full object-cover h-full w-full shadow-md"
                     />
                   </div>
@@ -170,7 +170,7 @@ export const About = () => {
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646601587/57687851_doo3lt.jpg"
-                      alt="logo-image"
+                      alt="Logo Profile"
                       className="rounded-full object-cover h-full w-full shadow-md"
                     />
                   </div>
@@ -200,7 +200,7 @@ export const About = () => {
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646600915/perfilnico_xdgf6x.png"
-                      alt="logo-image"
+                      alt="Logo Profile"
                       className="rounded-full object-cover h-full w-full shadow-md"
                     />
                   </div>
@@ -230,7 +230,7 @@ export const About = () => {
                   <div className="h-32 w-32">
                     <img
                       src="https://res.cloudinary.com/dkdioyppw/image/upload/v1646600764/perfilgrego_vb2ygj.png"
-                      alt="logo-image"
+                      alt="Logo Profile"
                       className="rounded-full object-cover h-full w-full shadow-md"
                     />
                   </div>

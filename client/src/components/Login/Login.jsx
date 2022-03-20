@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 //import { useAuth0 } from "@auth0/auth0-react";
 //import { login_validate } from '../../actions'
 //import Cookies from 'universal-cookie';
