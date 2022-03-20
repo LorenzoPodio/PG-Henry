@@ -26,7 +26,7 @@ export const ExcursionsManagment = () => {
   return (
     <div className="grid place-content-center" id="top">
       <div className="flex flex-col mb-10">
-        <span className="hidden content-end sm:block mb-10 mt-5">
+        <div className="hidden content-end sm:block mb-10 mt-5 px-8">
           <Link to="/crearExcursion">
             <button
               type="button"
@@ -39,10 +39,10 @@ export const ExcursionsManagment = () => {
               Agregar Excursion
             </button>
           </Link>
-        </span>
+        </div>
 
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div className="overflow-x-auto">
+          <div className="py-2 align-middle inline-block sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
               <table className="divide-y divide-gray-200">
                 <thead className="bg-sky-600 text-white">
