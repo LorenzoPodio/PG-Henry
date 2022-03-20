@@ -1,6 +1,6 @@
 import React from 'react';
 import { useExcursionsContext } from "../../../context/ExcursionsContext";
-import { XCircleIcon, CheckCircleIcon, BanIcon, PlusCircleIcon } from "@heroicons/react/solid";
+import { XCircleIcon, CheckCircleIcon, BanIcon } from "@heroicons/react/solid";
 import swal from "sweetalert";
 // import { useNavigate } from "react-router-dom";
 // import { useEffect } from 'react';

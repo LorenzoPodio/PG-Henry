@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useExcursionsContext } from "../../../context/ExcursionsContext";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import swal from "sweetalert";
 
 
 export const PurchasesManagment = () => {
-  const { cancelledOrder, allOrders, getAllOrders} = useExcursionsContext();
-  
-  useEffect(() => {
-    getAllOrders();
-    // eslint-disable-next-line
-  }, [])
-  
+  const { cancelledOrder, allOrders} = useExcursionsContext();
+
 
   function handleCancelled(e) {
     swal({

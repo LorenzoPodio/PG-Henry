@@ -1,0 +1,87 @@
+.navBar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start;
+    background-color:#1C658C;
+    font-size: 20px;
+    color: white;
+    height:70px;
+    border: solid rgba(230, 219, 219, 0.678) 1.4px;
+    /* font-family: "Audiowide", sans-serif; */
+    letter-spacing: .85px;
+    width: 100%;
+  }
+
+.landing-link {
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
+  flex-direction: row;
+  margin-left: 1%;
+  
+}
+
+.logotipo{
+  /* border: 0.1px solid rgb(240, 239, 245); */
+  width: 40px;
+  height: 40px;
+  display:flex;
+  align-items: flex-start;
+  flex-direction: row;
+  background-image: url("https://img.icons8.com/color/48/000000/around-the-globe.png");
+  justify-content:flex-start;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  border-radius: 40%;
+  margin-left: 1%;
+}
+
+.links-nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 3%;
+ 
+
+}
+
+.link-home {
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+
+.link-tarifas {
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+
+.link-mis-compras{
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  justify-content: space-between;
+  
+}
+
+.link-about {
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+
+.link-panel-admin {
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  justify-content: space-between;
+  padding-left: 30px;
+}

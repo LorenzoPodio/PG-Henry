@@ -1,6 +1,5 @@
 import { About } from "./components/About/About";
 import Purchases from "./components/Purchases/Purchases";
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Excursions } from "./components/Excursions/Excursions";
 import { ExcursionsPost } from "./components/ExcursionsPost/ExcursionsPost";
@@ -21,7 +20,7 @@ import { Profile } from "./components/Profile/Profile";
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex-col h-screen">
       <NavBar2 />
       <Routes>
         <Route exact path="/" element={<Landing />} />
