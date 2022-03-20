@@ -115,7 +115,7 @@ const NavBar2 = () => {
     }
   }
   return (
-    <Disclosure as="nav" className="bg-sky-600">
+    <Disclosure as="nav" className="sticky -top-16 z-20 bg-sky-600">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
