@@ -48,7 +48,7 @@ export const Excursions = () => {
           />
           <Filter
             items={allExcursions}
-            defaultDescription="Fechas"
+            defaultDescription="Dia"
             handleFilter={handleFilter}
             filterType="date"
           />
