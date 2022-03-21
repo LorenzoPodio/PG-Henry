@@ -215,6 +215,15 @@ export const ExcursionsProvider = ({ children }) => {
     }
   };
 
+  const contactUs = (dates) => {
+    return axios
+      .post("http://localhost:3001/contactmail", dates)
+      .then((response) => response.data)
+      .catch((err) => {
+      
+      });
+  };
+
   return (
     <ExcurcionsContext.Provider
       value={{
@@ -239,7 +248,8 @@ export const ExcursionsProvider = ({ children }) => {
         UnbanUser,
         allOrders,
         submitDates,
-        getAllOrders
+        getAllOrders,
+        contactUs
     
 
       }}

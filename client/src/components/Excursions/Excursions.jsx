@@ -27,9 +27,13 @@ export const Excursions = () => {
 
   if (loading) {
     return (
+
+      
+
       <div className="h-screen inline-flex items-center justify-center"
         style={{ backgroundColor: '#D8D2CB' }}
       >
+
         <img
           src="https://images-ext-2.discordapp.net/external/S7R7Qin6kKgo0g7H0nWwPt_d14InMHmmfDpGpMnh27M/https/res.cloudinary.com/dkdioyppw/image/upload/v1647458886/trekking-adventure-himachal_vp0rka.gif"
           alt="loading"
