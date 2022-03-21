@@ -11,7 +11,7 @@ let longitud = long? long : -60
   const [viewport, setViewport] = useState({
     latitude: latitud,
     longitude: longitud,
-    width: "40vw",
+    width: "37vw",
     height: "40vh",
     zoom: 3.1,
   });
@@ -55,8 +55,8 @@ let longitud = long? long : -60
   }
 
   return (
-    <div>
-      <ReactMapGL
+    <div className="rounded-md">
+      <ReactMapGL className="rounded-md"
         {...viewport}
         maxZoom={18}
         mapboxApiAccessToken="pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA"
