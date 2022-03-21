@@ -7,7 +7,16 @@ const { Sequelize, Op } = require("sequelize");
 
 getUsers.get("/", async (req, res, next) => {
   try {
+    const { email } = req.query;
     const Users = await User.findAll();
+    if (email) {
+      const getUser = await User.findOne({
+        where: {
+          email: email,
+        }
+      });
+      return res.status(200).json(getUser);
+    }
     return res.status(200).send(Users);
   } catch (error) {
     next(error);
