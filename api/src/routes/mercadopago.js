@@ -230,7 +230,7 @@ mp.get("/feedback", async function (req, res, next) {
       await Order.findOrCreate({
         where: {
           userId: idUser,
-          status: "empty",
+          status: "empty", 
           date: new Date().toLocaleDateString(),
         },
       });
