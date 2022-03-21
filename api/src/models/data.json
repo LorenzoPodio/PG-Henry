@@ -20,7 +20,9 @@
             "11"
         ],
         "price": "9000",
-        "extra": "Incluye entrada al parque nacional"
+        "extra": "Incluye entrada al parque nacional",
+        "lat":-49.331427677999535,
+        "long": -72.8851716501236
     },
     {
         "name": "Paseo en yate por el Canal Beagle ",
@@ -44,7 +46,9 @@
             "11"
         ],
         "price": "12500",
-        "extra": "Niños desde 3 años"
+        "extra": "Niños desde 3 años",
+        "lat": -54.81075225986759,
+        "long": -68.29540910046386
     },
     {
         "name": "Excursión al Valle de Calingasta",
@@ -70,7 +74,9 @@
             "16"
         ],
         "price": "4500",
-        "extra": "Traer comida y bebida"
+        "extra": "Traer comida y bebida",
+        "lat": -31.34486489349144,
+        "long": -69.4285536206543
     },
     {
         "name": "Snorkel y paddle surf en el Dique Punta Negra",
@@ -96,7 +102,9 @@
             "16"
         ],
         "price": "4500",
-        "extra": "Incluye equipamiento de snorkel"
+        "extra": "Incluye equipamiento de snorkel",
+        "lat": -31.520770595570493,
+        "long": -68.81825400859833
     },
 
 
@@ -125,7 +133,9 @@
             "17"
         ],
         "price": "500",
-        "extra": "Menores acompañados"
+        "extra": "Menores acompañados",
+        "lat":-41.071790745133846,
+        "long":-71.52227299933622
     },
     {
         "name": "Circuito Grande",
@@ -149,7 +159,9 @@
             "15"
         ],
         "price": "900",
-        "extra": "Menores acompañados"
+        "extra": "Menores acompañados",
+        "lat": -23.61858158718339,
+        "long": -65.85432786289064
     },
     
     {
@@ -172,7 +184,9 @@
             "15"
         ],
         "price": "3200",
-        "extra": "Mejor temporada de buceo: De noviembre a abril. Temperatura del agua: invierno 2° a 4°, primavera y verano entre 8° y 12°."
+        "extra": "Mejor temporada de buceo: De noviembre a abril. Temperatura del agua: invierno 2° a 4°, primavera y verano entre 8° y 12°.",
+        "lat": -41.05353423614336,
+        "long": -41.05353423614336
     },
     {
         "name": "Qubrada de Humahuaca",
@@ -198,7 +212,9 @@
             "11"
         ],
         "price": "4500",
-        "extra": "Pasajeros a partir de los 3 años."
+        "extra": "Pasajeros a partir de los 3 años.",
+        "lat": -23.090131023484805,
+        "long": -65.33504991376952
     },
     {
         "name": "Salinas Grandes",
@@ -224,7 +240,9 @@
             "12"
         ],
         "price": "3400",
-        "extra": "Pasajeros a partir de los 3 años."
+        "extra": "Pasajeros a partir de los 3 años.",
+        "lat": -23.61858158718339,
+        "long": -65.85432786289064
     },
     {
         "name": "Iruya",
@@ -249,7 +267,9 @@
             "10"
         ],
         "price": "5400",
-        "extra": "Pasajeros a partir de los 3 años."
+        "extra": "Pasajeros a partir de los 3 años.",
+        "lat": -23.090131023484805,
+        "long": -65.33504991376952
     },
     {
         "name": "Viñedos",
@@ -274,7 +294,9 @@
             "15"
         ],
         "price": "6500",
-        "extra": "Traslado de ida y vuelta sin complicaciones a su hotel de Mendoza"
+        "extra": "Traslado de ida y vuelta sin complicaciones a su hotel de Mendoza",
+        "lat" :-32.93544885558437,
+        "long": -68.8192428359375
     },
     {
         "name": "Aconcagua y Puente del Inca",
@@ -297,7 +319,9 @@
             "15"
         ],
         "price": "7800",
-        "extra": "Traslado de ida y vuelta sin complicaciones a su hotel de Mendoza"
+        "extra": "Traslado de ida y vuelta sin complicaciones a su hotel de Mendoza", 
+        "lat": -32.82139849815518,
+        "long": -69.92023029296875
     },
     {
         "name": "Rafting Potrerillos",
@@ -319,7 +343,9 @@
             "12"
         ],
         "price": "4600",
-        "extra": "A partir de 12 años."
+        "extra": "A partir de 12 años.",
+        "lat": -32.94607713363563,
+        "long": -69.20262332590333
     },
     {
         "name": "Parque Provincial de Ischigualasto",
@@ -341,7 +367,9 @@
             "11"
         ],
         "price": "8500",
-        "extra": "No incluye la entrada al parque nacional."
+        "extra": "No incluye la entrada al parque nacional.",
+        "lat": -31.34486489349144,
+        "long": -69.4285536206543
     },
     
     
@@ -365,7 +393,9 @@
             "11"
         ],
         "price": "11500",
-        "extra": "Se debe estar puntual en el puerto"
+        "extra": "Se debe estar puntual en el puerto",
+        "lat": -50.49820384491212,
+        "long": -73.13697455449217
     },
     {
         "name": "Trekking laguna Esmeralda",
@@ -388,7 +418,9 @@
             "15"
         ],
         "price": "7500",
-        "extra": "Incluye entradas al parque Nacional"
+        "extra": "Incluye entradas al parque Nacional",
+        "lat": -54.6919054289594,
+        "long": 68.1284670126892
     },
     {
         "name": "GLACIAR VINCIGUERRA",
@@ -410,7 +442,9 @@
             "13"
         ],
         "price": "10500",
-        "extra": "Incluye traslados hasta puntos de encuentros"
+        "extra": "Incluye traslados hasta puntos de encuentros",
+        "lat": -54.6919054289594,
+        "long": 68.1284670126892
     },
     {
         "name": "Expedición 4x4 Off Road ",
@@ -436,7 +470,9 @@
             "15"
         ],
         "price": "13000",
-        "extra": "Incluye traslados hasta puntos de encuentros"
+        "extra": "Incluye traslados hasta puntos de encuentros",
+        "lat": -54.6919054289594,
+        "long": 68.1284670126892
     },
     {
         "name": "Rio manso",
@@ -460,7 +496,9 @@
         ],
         "price": "250",
         "extra": "Llevar malla",
-        "excursionType": "Trekking"
+        "excursionType": "Trekking",
+        "lat":   -41.092224090385784,
+        "long": -71.45759884609373
     },
     {
         "name": "El Bolson",
@@ -482,6 +520,8 @@
             "10"
         ],
         "price": "1200",
-        "extra": "Menores acompañados"
+        "extra": "Menores acompañados",
+        "lat": -41.15268068556185,
+        "long": -71.31819395449217
     }
 ]
