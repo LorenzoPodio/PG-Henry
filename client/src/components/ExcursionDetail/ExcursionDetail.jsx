@@ -100,7 +100,7 @@ export const ExcursionDetail = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#D8D2CB" }}>
+    <div style={{ backgroundColor: '#D8D2CB' }}>
       <div className="flex justify-center text-center mx-auto py-7">
         <div className="w-auto">
           <h1 className="grid rounded-md shadow-lg shadow-gray-500 px-5 py-3 text-white bg-sky-600">
@@ -113,14 +113,16 @@ export const ExcursionDetail = () => {
           </h1>
         </div>
       </div>
-      <div
-        className="md:flex m-8 mt-0 p-4 shadow-lg shadow-gray-500 rounded-lg"
-        style={{ backgroundColor: "#EEEEEE" }}
+      <div className="md:flex m-8 mt-0 p-4 shadow-lg shadow-gray-500 rounded-lg"
+        style={{ backgroundColor: '#EEEEEE' }}
       >
         <div className="flex flex-col justify-between items-center w-2/5">
           {excursionByid && <Carousel Images={excursionByid.Images} />}
-          <div className="flex p-4 justify-center">
-            <Mapa lat={excursionByid?.lat} long={excursionByid?.long} />
+          <div className='flex p-4 justify-center'>
+            <Mapa
+              lat={excursionByid?.lat}
+              long={excursionByid?.long}
+            />
           </div>
         </div>
         <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6">
@@ -154,7 +156,6 @@ export const ExcursionDetail = () => {
               />
             </div>
           </div>
-
           <div>
             <p className="max-h-72 overflow-y-scroll text-sm lg:leading-tight leading-normal text-gray-600 mt-0">
               {excursionByid?.description}
@@ -172,20 +173,18 @@ export const ExcursionDetail = () => {
               Stock: {stock}
             </p>
           </div>
-          {!isBanned && (
-            <button
-              className="
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
-          text-base flex items-center justify-center leading-none text-white
-          bg-gray-800 w-full py-4 hover:bg-gray-700"
-              //Disabled, deshabilita el botón cuando el stock es 0.
-              disabled={disabled}
-              onClick={() => handleClick()}
-            >
-              Agregar al Carrito
-              <ShoppingCartIcon className="w-5 h-5 ml-1" />
-            </button>
-          )}
+          {!isBanned && <button
+            className=" rounded-md shadow-lg shadow-gray-500 hover:shadow-black
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
+            text-base flex items-center justify-center leading-none text-white
+            bg-gray-700 w-full py-4 hover:bg-gray-800 hover:cursor-pointer"
+            //Disabled, deshabilita el botón cuando el stock es 0.
+            disabled={disabled}
+            onClick={() => handleClick()}
+          >
+            Agregar al Carrito
+            <ShoppingCartIcon className="w-5 h-5 ml-1" />
+          </button>}
         </div>
       </div>
     </div>
