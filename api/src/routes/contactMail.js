@@ -1,91 +1,19 @@
 const { Router } = require("express");
-const putStatusOrder = Router();
-const { User, Order, Order_detail, Product } = require("../../db");
-const transporter = require("../../mailer/mailer");
+const transporter = require("../mailer/mailer");
+const contactMail = Router();
 
-//ruta para cancelar una orden al cliente y envia
-//email informativo
-
-putStatusOrder.put("/:id", async (req, res, next) => {
+contactMail.post("/", async (req, res, next) => {
   try {
-    // const { status } = req.body;
-    const { id } = req.params;
-
-    await Order.update(
-      {
-        status: "cancelled",
-      },
-      {
-        where: {
-          id: id,
-        },
-      }
-    );
-
-    const stateOrder = await Order.findByPk(id, {
-      include: [{ model: User, attributes: ["name", "lastName", "email"] }],
-    });
-    let email = stateOrder.dataValues.user.email;
-    let name = stateOrder.dataValues.user.name;
-    let lastName = stateOrder.dataValues.user.lastName;
-
-    const details = await Order_detail.findAll({
-      where: {
-        orderId: stateOrder.dataValues.id,
-      },
-      include: [
-        {
-          model: Product,
-          attributes: ["name", "date", "time"],
-        },
-      ],
-      attributes: ["price", "quantity"],
-    });
-    let mapProd = details.map((order) => {
-      return order.dataValues.product;
-    });
-    let nameProd = mapProd.map((name) => {
-      return {
-        name: name.dataValues.name,
-        date: name.dataValues.date,
-        time: name.dataValues.time
-      };
-    });
-
-    let mapPrice = details.map((order) => {
-      return {
-        price: order.dataValues.price,
-        quantity: order.dataValues.quantity,
-      };
-    });
-
-    function arrayHandler(array1, array2) {
-      if (array1.length === array2.length) {
-        var a = "";
-        for (var i = 0; i < array1.length; i++) {
-          a =
-            a +
-            "Se cancela " +
-            array1[i].name +
-            " para el dia " +
-            array1[i].date.substring(1,11) +
-            " a las " + array1[i].time + "hs para " +
-            array2[i].quantity +
-            " personas  por un valor unitario de $"+ array2[i].price +". <br/>"
-            "<br/> <br/>";
-        }
-      }
-      return a;
-    }
-
-    const datesMail = arrayHandler(nameProd, mapPrice);
+    const { name, emailUs, text } = req.body;
+    const nameUpper = name.charAt(0).toUpperCase() + name.slice(1);
 
     var mailOptions = {
       from: "excursionappmail@gmail.com",
-      to: email,
-      subject: "Detalle de compra cancelada - ExcursionApp",
+      to: emailUs,
+      bcc: "excursionappmail@gmail.com",
+      subject: nameUpper + " recibimos tu consulta con éxito",
       html: `
-                <style>
+        <style>
         table, td, div, h1, p {font-family: Arial, sans-serif;}
       </style>
     </head>
@@ -106,14 +34,12 @@ putStatusOrder.put("/:id", async (req, res, next) => {
                   <table role="presentation" style="width:100%;border-collapse:collapse;border:0;border-spacing:0;">
                     <tr>
                       <td style="padding:0 0 36px 0;color:#153643;">
-                        <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">${name}, su compra fue cancelada</h1>
-                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">.</p> 
+                        <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">¡ ${nameUpper}, ya recibimos tu consulta !</h1>
+                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">Gracias por contactarte con nosotros, te enviamos una copia de la consulta,
+                        vamos a despejar todas las dudas en breve, tranqui...</p> 
                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                         Lamentamos informarle que su compra fue cancelada, el detalle es 
-                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"> ${datesMail} </p>
-                        </p>
-                        <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">
-                        Hubo un inconveniente con tu compra, conserva este email como comprobante para una devolucion o una reprogramacion.
+                         Consulta recibida :   
+                         <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"> ${text} </p>
                         </p>
                       </td>
                       <td style="padding:0 0 36px 0;color:#153643;">
@@ -148,32 +74,20 @@ putStatusOrder.put("/:id", async (req, res, next) => {
             </table>
           </td>
         </tr>
-      </table>  `,
+      </table> 
+        `,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         return res.status(500).send(error.message);
       } else {
-        res.status(200).jsonp(req.body);
+        res.status(200).json("email send ok");
       }
     });
-
-    const actualOrders = await Order.findAll({
-      where: {
-        status: ["completed", "cancelled"],
-      },
-      include: [
-        { model: User, attributes: ["name", "email"] },
-        { model: Order_detail },
-        { model: Product },
-      ],
-    });
-
-    return res.status(200).send(actualOrders);
   } catch (error) {
     next(error);
   }
 });
 
-module.exports = putStatusOrder;
+module.exports = contactMail;

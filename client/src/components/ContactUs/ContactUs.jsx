@@ -1,7 +1,53 @@
+import React, { useState } from "react";
+import swal from "sweetalert";
+import { useExcursionsContext } from "../../context/ExcursionsContext"
+
+
+
 function ContactUs() {
+
+  const { contactUs } = useExcursionsContext();
+  const [input, setInput] = useState({
+    name: "",
+    emailUs: "",
+    text: ""
+  });
+
+  function handleChange(e) {
+    setInput(() => {
+      return {
+        ...input,
+        [e.target.name]: e.target.value,
+      };
+    });
+  }
+
+  function handleSubmit (e) {
+    if(!input.emailUs || !input.text || !input.name){
+      e.preventDefault();
+      swal({
+        title: "Complete todos los campos",
+        icon: "error"
+      })
+    } else{
+      e.preventDefault();
+      contactUs(input)
+      swal({
+        title:"Consulta enviada",
+        icon: "success",
+        text: "Gracias por su consulta, verifique su correo le enviamos una copia de la misma"
+      })
+     setInput({
+      name: "",
+      emailUs: "",
+      text: ""
+     })
+    }
+  }
+
   return (
     <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md w-96 ">
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group mb-6">
           <input
             type="text"
@@ -19,8 +65,10 @@ function ContactUs() {
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            id="exampleInput7"
+            id="name"
+            name="name"
             placeholder="Nombre"
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="form-group mb-6">
@@ -40,8 +88,10 @@ function ContactUs() {
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            id="exampleInput8"
+            id="email"
+            name="emailUs"
             placeholder="Correo"
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div className="form-group mb-6">
@@ -63,14 +113,16 @@ function ContactUs() {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
       "
-            id="exampleFormControlTextarea13"
+            id="text"
+            name="text"
             rows="3"
             placeholder="Mensaje"
-          ></textarea>
+            onChange={(e) => handleChange(e)}
+          />
         </div>
 
         <button
-          type="reset"
+          type="submit"
           className="
       w-full
       px-6
