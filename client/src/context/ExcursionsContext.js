@@ -18,7 +18,9 @@ export const ExcursionsProvider = ({ children }) => {
   const [URL, setURL] = useState(`http://localhost:3001/getexcursion?&`); //URL dinamica para solapar todos los filtros
   const [excursionByid, setExcursionByid] = useState();
   const [allOrders, setAllOrders] = useState();
-  const { setLoading } = useCartContext();
+  const [isBanned, setIsBanned] = useState(true);
+  const { setLoading, user } = useCartContext();
+  
 
   useEffect(() => {
     getExcursions().then((r) => {
@@ -35,6 +37,43 @@ export const ExcursionsProvider = ({ children }) => {
     getAllOrders();
     // eslint-disable-next-line
   }, []);
+
+
+  //banUser
+  const banUser = (id) => {
+    return axios
+      .put(`http://localhost:3001/banuser/${id}`)
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((err) => {
+      
+      });
+  };
+  //
+
+  //UnbanUser
+  const UnbanUser = (id) => {
+    return axios
+      .put(`http://localhost:3001/unbanuser/${id}`)
+      .then((response) => {
+        return setUsers(response.data);
+      })
+      .catch((err) => {
+        
+      });
+  };
+  //
+
+  useEffect(()=> {
+    axios
+    .get(`http://localhost:3001/getusers?email=${user?.email}`)
+    .then((resp)=>{
+        setIsBanned(() => resp.data?.isBanned)
+    })
+    .catch((e) => console.log("error en getusers", e))
+  }, [banUser, UnbanUser])
+
 
   useEffect(() => {
     axios(URL)
@@ -126,32 +165,7 @@ export const ExcursionsProvider = ({ children }) => {
   };
   //
 
-  //banUser
-  const banUser = (id) => {
-    return axios
-      .put(`http://localhost:3001/banuser/${id}`)
-      .then((response) => {
-        return setUsers(response.data);
-      })
-      .catch((err) => {
-      
-      });
-  };
-  //
-
-  //UnbanUser
-  const UnbanUser = (id) => {
-    return axios
-      .put(`http://localhost:3001/unbanuser/${id}`)
-      .then((response) => {
-        return setUsers(response.data);
-      })
-      .catch((err) => {
-        
-      });
-  };
-  //
-
+  
   //editExcursion
   const editExcursion = (excursion, id) => {
     return axios
@@ -249,9 +263,8 @@ export const ExcursionsProvider = ({ children }) => {
         allOrders,
         submitDates,
         getAllOrders,
-        contactUs
-    
-
+        contactUs,
+        isBanned
       }}
     >
       {children}

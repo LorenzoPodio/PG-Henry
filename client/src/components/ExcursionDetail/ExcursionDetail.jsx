@@ -21,8 +21,7 @@ export const ExcursionDetail = () => {
   const { user } = useAuth0();
 
   const [disabled, setDisabled] = useState(true);
-  // eslint-disable-next-line
-  const { excursionByid, getExcursionById, getAllOrders } = useExcursionsContext();
+  const { excursionByid, getExcursionById, isBanned } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
 
@@ -166,7 +165,7 @@ export const ExcursionDetail = () => {
             Stock: {stock}
           </p>
         </div>
-        <button
+       { !isBanned && <button
           className="
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
           text-base flex items-center justify-center leading-none text-white
@@ -177,7 +176,7 @@ export const ExcursionDetail = () => {
         >
           Agregar al Carrito
           <ShoppingCartIcon className="w-5 h-5 ml-1" />
-        </button>
+        </button>}
       </div>
       
       <Mapa
