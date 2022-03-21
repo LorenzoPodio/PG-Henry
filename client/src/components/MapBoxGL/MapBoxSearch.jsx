@@ -6,8 +6,8 @@ import './Map.css';
 export default function MapaSearch(props){
     
   const [viewport, setViewport] = useState({
-    latitude: -40.4211,
-    longitude: -50.6903,
+    latitude: -34.594777103140565,
+    longitude: -58.449974583869974,
     width: "40vw",
     height: "40vh",
     zoom: 3.1,
