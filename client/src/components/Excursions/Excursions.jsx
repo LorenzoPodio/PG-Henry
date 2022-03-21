@@ -28,9 +28,13 @@ export const Excursions = () => {
   if (loading) {
     return (
 
+      <div className="h-screen w-full inline-flex items-center justify-center"
+
+
       
 
-      <div className="h-screen inline-flex items-center justify-center"
+   
+
         style={{ backgroundColor: '#D8D2CB' }}
       >
 

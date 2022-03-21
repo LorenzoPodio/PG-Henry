@@ -30,7 +30,7 @@ export const ExcursionsManagment = () => {
           <Link to="/crearExcursion">
             <button
               type="button"
-              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              className="shadow-lg shadow-gray-500 inline-flex items-center px-4 py-2 rounded-md text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
               <PlusCircleIcon
                 className="-ml-1 mr-2 h-5 w-5 text-white-500"
@@ -42,8 +42,8 @@ export const ExcursionsManagment = () => {
         </div>
 
         <div className="overflow-x-auto">
-          <div className="py-2 align-middle inline-block sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div className="pb-6 align-middle inline-block sm:px-6 lg:px-8">
+            <div className="shadow-lg shadow-gray-500 overflow-hidden border-b border-gray-200 sm:rounded-lg">
               <table className="divide-y divide-gray-200">
                 <thead className="bg-sky-600 text-white">
                   <tr className="">
@@ -92,7 +92,7 @@ export const ExcursionsManagment = () => {
                               >
                                 <button
                                   type="button"
-                                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm lg:text-sm text-xs font-medium text-white bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                                  className="inline-flex items-center px-4 py-2 shadow-lg shadow-gray-500 hover:shadow-black rounded-md lg:text-sm text-xs font-medium text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                                 >
                                   <PencilIcon
                                     className="-ml-1 mr-2 h-5 w-5 text-white-500"
@@ -108,7 +108,7 @@ export const ExcursionsManagment = () => {
                                 type="button"
                                 value={e.id}
                                 name={e.name}
-                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm lg:text-sm text-xs font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                className="inline-flex items-center px-4 py-2 shadow-lg shadow-gray-500 hover:shadow-black rounded-md lg:text-sm text-xs font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                               >
                                 <TrashIcon
                                   className="-ml-1 mr-2 h-5 w-5 text-white-500"

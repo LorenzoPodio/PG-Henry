@@ -59,8 +59,8 @@ export const PurchasesManagment = () => {
     <div className="grid place-content-center" id="top">
       <div className="flex flex-col w-fit m-10">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div className="pb-6 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="shadow-lg shadow-gray-500 overflow-hidden border-b border-gray-200 sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-sky-600 text-white">
                   <tr>
@@ -125,7 +125,7 @@ export const PurchasesManagment = () => {
                                 type="button"
                                 value={e.id}
                                 name={e.name}
-                                className="inline-flex px-4 py-2 border rounded-md text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                className="inline-flex px-4 py-2 shadow-lg shadow-gray-500 hover:shadow-black rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                               >
                                 <ExclamationIcon className="-ml-1 mr-2 h-5 w-5 text-white-500" aria-hidden="true" />
                                 Cancelar

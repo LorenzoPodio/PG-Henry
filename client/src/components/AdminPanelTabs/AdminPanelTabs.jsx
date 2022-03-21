@@ -14,7 +14,9 @@ export const AdminPanelTabs = () => {
 
   return (
     <div style={{ backgroundColor: '#D8D2CB' }}>
-      <h1 className="grid py-8 place-content-center mt-0 mb-0 font-bold text-xl text-black">PANEL DE CONTROL</h1>
+      <div className="flex py-8 text-center justify-center">
+        <h1 className="grid rounded-md shadow-lg shadow-gray-500 w-64 px-2 py-3 text-white bg-sky-600 mt-0 mb-0 font-bold text-xl">PANEL DE CONTROL</h1>
+      </div>
       <div className={"flex flex-col relative w-auto h-auto mt-2 mb-4 mx-3 break-all div-container"}>
         <div className="flex">
           <button style={toggleState === 1 ? { backgroundColor: '#EEEEEE' } : { backgroundColor: '#BBBBBB' }}

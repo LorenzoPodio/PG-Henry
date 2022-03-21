@@ -4,10 +4,10 @@ import { SocialIcon } from 'react-social-icons';
 export const About = () => {
   return (
     <div style={{ backgroundColor: '#D8D2CB' }}>
-      <div className="container flex justify-center mx-auto pt-16">
-        <div>
-          <h1 className="xl:text-4xl text-3xl text-center text-gray-800 font-extrabold pb-6 sm:w-4/6 w-5/6 mx-auto">
-            Equipo de desarrollo de ExcursionApp
+      <div className="flex justify-center text-center mx-auto py-6">
+        <div className="w-72">
+          <h1 className="grid rounded-md shadow-lg shadow-gray-500 px-3 py-3 text-white bg-sky-600 font-bold text-xl">
+            EQUIPO DE DESARROLLO DE EXCURSIONAPP
           </h1>
         </div>
       </div>
