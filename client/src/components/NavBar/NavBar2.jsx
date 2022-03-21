@@ -10,21 +10,26 @@ import { useCartContext } from "../../context/CartContext";
 
 const NavBar2 = () => {
   const [check, setCheck] = useState(true);
-  const [navigation, setNavigation] = useState([
-    { name: "Excursiones", href: "/excursiones", current: false },
-    { name: "Tarifas", href: "/tarifas", current: false },
-    { name: "Sobre Nosotros", href: "/nosotros", current: false },
-    { name: "Panel Admin", href: "/panelAdmin", current: false },
-  ]);
-
-  // const [navigationAdmin, setNavigationAdmin] = useState([
-  //   { name: "Excursiones", href: "/excursiones", current: false },
-  //   { name: "Tarifas", href: "/tarifas", current: false },
-  //   { name: "Sobre Nosotros", href: "/nosotros", current: false },
-  //   { name: "Panel Admin", href: "/panelAdmin", current: false },
-  // ]);
-
+  const { addUser } = useExcursionsContext();
+  const { createCart, cartItems, isAdmin } = useCartContext();
+  const [navigation, setNavigation] = useState();
   const { loginWithRedirect, logout, user, isLoading } = useAuth0();
+  useEffect(() => {
+    if (isAdmin) {
+      setNavigation([
+        { name: "Excursiones", href: "/excursiones", current: false },
+        { name: "Tarifas", href: "/tarifas", current: false },
+        { name: "Sobre Nosotros", href: "/nosotros", current: false },
+        { name: "Panel Admin", href: "/panelAdmin", current: false },
+      ]);
+    } else {
+      setNavigation([
+        { name: "Excursiones", href: "/excursiones", current: false },
+        { name: "Tarifas", href: "/tarifas", current: false },
+        { name: "Sobre Nosotros", href: "/nosotros", current: false },
+      ]);
+    }
+  }, [isAdmin]);
 
   const [usuario, setUsuario] = useState({
     email: "0",
@@ -32,10 +37,6 @@ const NavBar2 = () => {
     lastName: "0",
     picture: "",
   });
-
-  const { addUser } = useExcursionsContext();
-
-  const { createCart, cartItems } = useCartContext();
 
   useEffect(() => {
     setCheck(() => false);
@@ -63,16 +64,11 @@ const NavBar2 = () => {
     setUsuario((prevState) => {
       return {
         ...prevState,
-        email: user.email,
-      };
-    });
-
-    setUsuario((prevState) => {
-      return {
-        ...prevState,
+        email: user?.email,
         picture: user?.picture,
       };
     });
+
 
     if (user.sub.search("google") === -1 && check) {
       swal("Complete su nombre aqui:", {
@@ -104,11 +100,6 @@ const NavBar2 = () => {
         return {
           ...prevState,
           name: user.given_name,
-        };
-      });
-      setUsuario((prevState) => {
-        return {
-          ...prevState,
           lastName: user.family_name,
         };
       });
@@ -154,7 +145,7 @@ const NavBar2 = () => {
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation?.map((item) => (
                       <Link key={item.href} to={item.href}>
                         <button
                           key={item.name}
@@ -284,7 +275,7 @@ const NavBar2 = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item, i) => (
+              {navigation?.map((item, i) => (
                 <Disclosure.Button key={i}>
                   <Link to={item.href}>
                     <button

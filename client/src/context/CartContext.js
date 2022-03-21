@@ -11,6 +11,7 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -20,6 +21,12 @@ export const CartProvider = ({ children }) => {
           return setCartItems(() => resp.data);
         })
         .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
+        axios
+        .get(`http://localhost:3001/getusers?email=${user.email}`)
+        .then((resp)=>{
+          return setIsAdmin(() => resp.data.isAdmin)
+        })
+        .catch((e) => console.log("error en getusers", e))
     }
   }, [user]);
 
@@ -73,7 +80,8 @@ export const CartProvider = ({ children }) => {
         setLoading,
         loading,
         user,
-        removeItemFromCart
+        removeItemFromCart,
+        isAdmin
       }}
     >
       {children}

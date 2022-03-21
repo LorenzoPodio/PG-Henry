@@ -12,13 +12,13 @@ import { Footer } from "./components/Footer/Footer";
 import NavBar2 from "./components/NavBar/NavBar2";
 import { Landing } from "./components/Landing/Landing";
 import { EditExcursion } from "./components/EditExcursion/EditExcursion";
-import MapaSearch from './components/MapBoxGL/MapBoxSearch'
-
-
+import MapaSearch from "./components/MapBoxGL/MapBoxSearch";
 
 import { Profile } from "./components/Profile/Profile";
+import { useCartContext } from "./context/CartContext";
 
 function App() {
+  const { isAdmin } = useCartContext();
   return (
     <div className="flex-col h-screen">
       <NavBar2 />
@@ -33,7 +33,9 @@ function App() {
         <Route path="/nosotros" element={<About />} />
         <Route path="/excursion/detalle/:id" element={<ExcursionDetail />} />
         <Route exact path="/checkout" element={<Stepper />} />
-        <Route path="/panelAdmin" element={<AdminPanelTabs />} />
+        {isAdmin && (
+          <Route path="/panelAdmin" element={<AdminPanelTabs />} />
+        )}
         <Route path="/miPerfil" element={<Profile />} />
         <Route path="/mapa" element={<MapaSearch />} />
       </Routes>
