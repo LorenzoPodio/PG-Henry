@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { getExcursions } from "./util/getExcursions";
 import { getAllUsers } from "./util/getAllUsers";
 import axios from "axios";
@@ -20,7 +25,7 @@ export const ExcursionsProvider = ({ children }) => {
   const [allOrders, setAllOrders] = useState();
   const [isBanned, setIsBanned] = useState(true);
   const { setLoading, user } = useCartContext();
-  
+
 
   useEffect(() => {
     getExcursions().then((r) => {
@@ -38,7 +43,6 @@ export const ExcursionsProvider = ({ children }) => {
     // eslint-disable-next-line
   }, []);
 
-
   //banUser
   const banUser = (id) => {
     return axios
@@ -46,11 +50,8 @@ export const ExcursionsProvider = ({ children }) => {
       .then((response) => {
         setUsers(response.data);
       })
-      .catch((err) => {
-      
-      });
+      .catch((err) => {});
   };
-  //
 
   //UnbanUser
   const UnbanUser = (id) => {
@@ -59,22 +60,23 @@ export const ExcursionsProvider = ({ children }) => {
       .then((response) => {
         return setUsers(response.data);
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
+    // eslint-disable-next-line
   };
   //
 
-  useEffect(()=> {
+  useEffect(() => {
     axios
-    .get(`http://localhost:3001/getusers?email=${user?.email}`)
-    .then((resp)=>{
-        setIsBanned(() => resp.data?.isBanned)
-    })
-    .catch((e) => console.log("error en getusers", e))
+      .get(`http://localhost:3001/getusers?email=${user?.email}`)
+      .then((resp) => {
+        if (typeof resp.data?.isBanned !== "undefined") {
+          setIsBanned(() => resp.data?.isBanned);
+          console.log("hola soy useEffectDeexcursionContext", resp);
+        }
+      })
+      .catch((e) => console.log("error en getusers", e));
     // eslint-disable-next-line
-  }, [banUser, UnbanUser])
-
+  }, [users, user]);
 
   useEffect(() => {
     axios(URL)
@@ -92,7 +94,9 @@ export const ExcursionsProvider = ({ children }) => {
 
   const getExcursionById = async (id) => {
     try {
-      const { data } = await axios(`http://localhost:3001/getexcursion?id=${id}`);
+      const { data } = await axios(
+        `http://localhost:3001/getexcursion?id=${id}`
+      );
       return setExcursionByid(data);
     } catch (error) {
       console.log("error", error);
@@ -122,30 +126,24 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
-      .catch((err) => {
-       
-      });
+      .catch((err) => {});
   };
   //
 
   //agregar dni y direccion a los datos de usuario para confirmar compra
-  const submitDates = (dates) => {
+  const submitData = (data) => {
     return axios
-    .put("http://localhost:3001/changedatesUser", dates)
-    .then((res) => res.data)
-    .catch((err) => {
-      
-    })
-  }
+      .put("http://localhost:3001/changedatesUser", data)
+      .then((res) => res.data)
+      .catch((err) => {});
+  };
 
   //postExcursion
   const addExcursion = (excursion) => {
     return axios
       .post("http://localhost:3001/addexcursion", excursion)
       .then((response) => response.data)
-      .catch((err) => {
-      
-      });
+      .catch((err) => {});
   };
   //
 
@@ -160,13 +158,10 @@ export const ExcursionsProvider = ({ children }) => {
           setExcursionFiltered(response.data)
         );
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
   //
 
-  
   //editExcursion
   const editExcursion = (excursion, id) => {
     return axios
@@ -178,9 +173,7 @@ export const ExcursionsProvider = ({ children }) => {
           setExcursionFiltered(response.data)
         );
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
 
   //
@@ -213,20 +206,20 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .put(`http://localhost:3001/cart/canceledorder/${id}`)
       .then((response) => {
-        setAllOrders(response.data)
+        setAllOrders(response.data);
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
 
   const getAllOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3001/cart/getallorders");
-      return setAllOrders(() => data); 
+      const { data } = await axios.get(
+        "http://localhost:3001/cart/getallorders"
+      );
+      return setAllOrders(() => data);
     } catch (error) {
-      swal('Algo salió mal!', error , {icon: 'error'});
-      return console.log('ERROR: ', error);
+      swal("Algo salió mal!", error, { icon: "error" });
+      return console.log("ERROR: ", error);
     }
   };
 
@@ -234,9 +227,7 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .post("http://localhost:3001/contactmail", dates)
       .then((response) => response.data)
-      .catch((err) => {
-      
-      });
+      .catch((err) => {});
   };
 
   return (
@@ -262,10 +253,10 @@ export const ExcursionsProvider = ({ children }) => {
         banUser,
         UnbanUser,
         allOrders,
-        submitDates,
+        submitData,
         getAllOrders,
         contactUs,
-        isBanned
+        isBanned,
       }}
     >
       {children}
