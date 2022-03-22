@@ -37,7 +37,7 @@ addReview.post("/:id", async (req, res, next) => {
 
     if (buyedExcursion?.includes(excursion?.dataValues?.name)) {
       await Reviews.create({
-        title: title,
+        // title: title,
         description: description,
         rating: rating,
         userId: getUserId.dataValues.id,
