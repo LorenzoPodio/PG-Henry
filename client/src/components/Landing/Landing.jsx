@@ -23,6 +23,7 @@ export const Landing = () => {
       </div>
     <div className="text-box">
     <br></br>
+    <br></br>
       
       <img alt="Workflow2" src="https://www.flatrockmusicfestival.com/wp-content/uploads/2021/06/9ik.jpg"/>
       
@@ -64,7 +65,7 @@ export const Landing = () => {
       </p>
       <br></br>
       <img alt="Workflow4" src="https://st3.depositphotos.com/2931363/12516/i/600/depositphotos_125161482-stock-photo-beautiful-couple-kayaking-on-river.jpg"/>
-      
+      <br></br>
       <p className="ml-60">
         con vos mismo.
       </p>
