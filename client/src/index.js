@@ -6,6 +6,7 @@ import "./input.css";
 import { ExcursionsProvider } from "./context/ExcursionsContext";
 import { BrowserRouter as Router } from "react-router-dom";
 import Auth0ProviderWithHistory from "./Auth0Provider/auth0Provider";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { CartProvider } from "./context/CartContext";
 

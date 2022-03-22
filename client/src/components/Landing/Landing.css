@@ -30,13 +30,7 @@ h2 {
   text-shadow: 1px 1px 5px #000, 1px 1px 5px #000;
   
 }
-h3 {
-  text-align: center;
-  font-size: 32px;
-  color: rgba(255, 255, 255, 1);
-  text-shadow: 1px 1px 3px #000, 1px 1px 3px #000;
-  
-}
+
 img {
   width: 100%;
   height: auto;
