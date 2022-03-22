@@ -1,16 +1,21 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React, { useEffect } from "react";
+import { useCartContext } from "../../context/CartContext";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export function Profile() {
-  const { user } = useAuth0();
-  const { allOrders, allExcursions, users } = useExcursionsContext();
+  const { allOrders, allExcursions } = useExcursionsContext();
+  const { user, dataUser, getDataUser } = useCartContext();
+
+  useEffect(()=> {
+    getDataUser()
+    // eslint-disable-next-line
+  }, [])
+  
 
   const currentOrders = [];
   const cancelled = [];
   const completed = [];
-  let totalPurchase = 0
-  let usuario = {}
+  let totalPurchase = 0;
 
   // eslint-disable-next-line
   allOrders?.map((o) => {
@@ -18,7 +23,7 @@ export function Profile() {
       return currentOrders.push(o);
     }
   });
-// eslint-disable-next-line
+  // eslint-disable-next-line
   currentOrders?.map((o) => {
     if (o.status === "completed") {
       return completed.push(o);
@@ -26,10 +31,6 @@ export function Profile() {
       return cancelled.push(o);
     }
   });
-
-
-  usuario = users?.find((u) => u.email === user?.email)
-
 
   return (
     <div className="grid place-content-center">
@@ -42,9 +43,9 @@ export function Profile() {
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Full name</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {
-                user?.sub?.search("google") === -1 ? (usuario?.name + " " + usuario?.lastName) : user?.name
-                }
+                {user?.sub?.search("google") === -1
+                  ? dataUser?.name + " " + dataUser?.lastName
+                  : user?.name}
               </dd>
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -56,31 +57,26 @@ export function Profile() {
               </dd>
             </div>
 
-            { usuario?.adress && usuario?.dni ? (
+            {dataUser?.adress && dataUser?.dni ? (
               <>
-              <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
-                Direccion
-              </dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {user?.adress}
-              </dd>
-            </div>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
-                DNI
-              </dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {user?.dni}
-              </dd>
-            </div>
-            </>
-            )
-             : 
-             <></>
-
-            }
-
+                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Direccion
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {user?.adress}
+                  </dd>
+                </div>
+                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">DNI</dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {user?.dni}
+                  </dd>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </dl>
         </div>
       </div>
@@ -107,7 +103,7 @@ export function Profile() {
                   </dd>
                 </div>
 
-                {o?.order_details?.map((ods,i) => (
+                {o?.order_details?.map((ods, i) => (
                   <div key={i}>
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                       <dt className="text-sm font-medium text-gray-500">
@@ -147,21 +143,18 @@ export function Profile() {
                   </div>
                 ))}
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Precio total final
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {
-
-                          
-currentOrders?.map((o) => {
-  return o.order_details.forEach(od => totalPurchase += od.totalPrice)
-})
-
-}
-{totalPurchase}
-                      </dd>
-                    </div>
+                  <dt className="text-sm font-medium text-gray-500">
+                    Precio total final
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {currentOrders?.map((o) => {
+                      return o.order_details.forEach(
+                        (od) => (totalPurchase += od.totalPrice)
+                      );
+                    })}
+                    {totalPurchase}
+                  </dd>
+                </div>
               </div>
             ))}
           </dl>
@@ -225,21 +218,18 @@ currentOrders?.map((o) => {
                   </div>
                 ))}
                 <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Precio total final
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {
-
-                          
-currentOrders?.map((o) => {
-  return o.order_details.forEach(od => totalPurchase += od.totalPrice)
-})
-
-}
-{totalPurchase}
-                      </dd>
-                    </div>
+                  <dt className="text-sm font-medium text-gray-500">
+                    Precio total final
+                  </dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {currentOrders?.map((o) => {
+                      return o.order_details.forEach(
+                        (od) => (totalPurchase += od.totalPrice)
+                      );
+                    })}
+                    {totalPurchase}
+                  </dd>
+                </div>
               </div>
             ))}
           </dl>
