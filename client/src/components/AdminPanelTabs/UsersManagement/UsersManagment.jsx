@@ -9,11 +9,6 @@ export const UsersManagment = () => {
 
   const { users, banUser, UnbanUser } = useExcursionsContext();
 
-  // const navigate = useNavigate();
-  // function handleEdit(e) {
-  //   navigate(`/editarExcursion?id=${e.target.value}&name=${e.target.name}`)
-  // }
-
   function handleBan(e) {
     swal({
       title: "Bloquear Usuario!",

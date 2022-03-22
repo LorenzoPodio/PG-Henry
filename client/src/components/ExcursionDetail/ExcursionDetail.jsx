@@ -10,8 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Carousel from "../Carousel/Carousel";
 import swal from "sweetalert";
 // eslint-disable-next-line
-import { Mapa } from "../MapBoxGL/MapBox"
-
+import { Mapa } from "../MapBoxGL/MapBox";
 
 export const ExcursionDetail = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
@@ -21,8 +20,7 @@ export const ExcursionDetail = () => {
   const { user } = useAuth0();
 
   const [disabled, setDisabled] = useState(true);
-  // eslint-disable-next-line
-  const { excursionByid, getExcursionById, getAllOrders } = useExcursionsContext();
+  const { excursionByid, getExcursionById, isBanned } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
 
@@ -55,7 +53,7 @@ export const ExcursionDetail = () => {
           }
         })
         .catch((e) => {
-          return (setStock(0), setDisabled(true))
+          return( setStock(0), setDisabled(true));
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -175,7 +173,7 @@ export const ExcursionDetail = () => {
               Stock: {stock}
             </p>
           </div>
-          <button
+          {!isBanned && <button
             className=" rounded-md shadow-lg shadow-gray-500 hover:shadow-black
             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
             text-base flex items-center justify-center leading-none text-white
@@ -186,7 +184,7 @@ export const ExcursionDetail = () => {
           >
             Agregar al Carrito
             <ShoppingCartIcon className="w-5 h-5 ml-1" />
-          </button>
+          </button>}
         </div>
       </div>
     </div>
