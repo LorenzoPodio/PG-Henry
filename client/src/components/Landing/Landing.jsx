@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const Landing = () => {
   return (
-    <div className="container">
+    <div>
     
     <main>
   <div className="fixed-bg bg-1">

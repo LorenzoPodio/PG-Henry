@@ -129,7 +129,7 @@ const NavBar2 = () => {
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
                   <button value={""} onClick={(e) => handleClick(e)}>
-                    <Link to="/">
+                    <Link to="/excursiones">
                       <img
                         className="block lg:hidden h-8 w-auto"
                         src="https://img.icons8.com/color/48/000000/around-the-globe.png"
@@ -138,7 +138,7 @@ const NavBar2 = () => {
                     </Link>
                   </button>
                   <button value={""} onClick={(e) => handleClick(e)}>
-                    <Link to="/">
+                    <Link to="/excursiones">
                       <img
                         className="hidden lg:block h-8 w-auto"
                         src="https://img.icons8.com/color/48/000000/around-the-globe.png" //desktop logo + nombre
