@@ -47,7 +47,7 @@ img {
 .text-box {
   background: rgba(255, 255, 255, 0.95);
   padding: 20px;
-  margin: 5% 0%;
+  margin: 9% 0%;
   max-width: 500px;
 }
 .fixed-bg h2 {
@@ -68,21 +68,21 @@ img {
 }
 .bg-2 {
   background-image: url("https://images.unsplash.com/photo-1485336535410-af8fe6932a90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTB8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80");
- height: 700px;
+ height: 750px;
  font-size: 40px;
 }
 .bg-2-1 {
   background-image: url("https://planb.mx/wp-content/uploads/2022/02/julentto-photography-CIuakYIjadc-unsplash-1-680x1024.jpg");
-  height: 700px;
+  height: 750px;
 }
 .bg-3 {
   background-image: url("https://www.hotelgranadaarabeluj.com/wp-content/uploads/2018/07/viajes-para-parejas.jpg");
-  height: 700px;
+  height: 750px;
   font-size: 48px;
 }
 .bg-3-1 {
   background-image: url("https://www.wallpaperuse.com/wallp/9-94192_m.jpg");
-  height: 700px;
+  height: 750px;
 }
 .bg-4 {
   background-image: url("https://www.salud.mapfre.es/media/2017/09/excursi%C3%B3n-1280x720.jpg");
@@ -98,6 +98,7 @@ img {
     flex-direction: row; 
     justify-content: space-evenly; 
     align-content:center; 
+    margin-top: 2%;
 }
 .descubrir{
   font-size: 18px;
@@ -105,4 +106,8 @@ img {
 }
 .footer{
   font-size: 90px;
+}
+.p{
+
+font-size: 24px;
 }
