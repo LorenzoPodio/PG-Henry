@@ -108,7 +108,7 @@ export default function PersonalDetails({ handleClick }) {
               className="bg-black-100 border border-black-100 text-blackk-100 focus:ring-black-100 focus:border-black-100 block w-full p-2.5 dark:bg-black-100 dark:border-black-100 dark:placeholder-black-100 dark:text-black-100 dark:focus:ring-black-100 dark:focus:border-black-100"
                 id="inpt_reg_new3"
                 type="text"
-                maxlength="10"
+                maxLength="10"
                 placeholder="DNI (Solo Numeros)"
                 value={input.dni}
                 name="dni"

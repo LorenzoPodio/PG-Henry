@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import ReactMapGL, { Marker } from "react-map-gl";
 
 import "./Map.css";
@@ -11,13 +10,14 @@ export const Mapa = ({ lat, long }) => {
   const [viewport, setViewport] = useState({
     latitude: latitud,
     longitude: longitud,
-    width: "200px",
-    height: "200px",
-    zoom: 3.1,
+    width: "37vw",
+    height: "40vh",
+    zoom: 6,
   });
 
   // eslint-disable-next-line
   const [selected, setSelected] = useState(null);
+
   const mapRef = useRef();
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export const Mapa = ({ lat, long }) => {
   }
 
   return (
-    <div>
+    <div className="rounded-md">
       <ReactMapGL
         className="rounded-md"
         {...viewport}

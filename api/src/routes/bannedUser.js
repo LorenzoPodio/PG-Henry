@@ -3,9 +3,6 @@ const bannedUser = Router();
 const { User } = require("../db");
 
 //ruta para bannear usuarios desde el panel de administrador
-
-
-
 bannedUser.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;

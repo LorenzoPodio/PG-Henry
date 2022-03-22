@@ -10,10 +10,13 @@ const Auth0ProviderWithHistory = ({ children }) => {
   
   const history = useNavigate();
 
-  const onRedirectCallback = (appState) => {
-    history.push(appState?.returnTo || window.location.pathname);
+  const onRedirectCallback = appState => {
+    history.push(
+      appState && appState.targetUrl
+        ? appState.targetUrl
+        : window.location.href= "http://localhost:3000/excursiones"
+    );
   };
-
   return (
     <Auth0Provider
       domain={domain}

@@ -1,5 +1,5 @@
 import { React } from "react";
-import { Menu, Transition } from "@headlessui/react";
+import { Popover, Transition } from "@headlessui/react";
 import { SocialIcon } from "react-social-icons";
 import "./Footer.css";
 import ContactUs from "../ContactUs/ContactUs";
@@ -51,9 +51,9 @@ export const Footer = () => {
         </div>
       </div>
       <div>
-        <Menu as="div" className="ml-3 relative">
+        <Popover as="div" className="ml-3 relative">
           <div>
-            <Menu.Button className=" flex bg-sky-600 p-1 rounded-md text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+            <Popover.Button className=" flex bg-sky-600 p-1 rounded-md text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
               <span className="sr-only">ContactUs</span>
               <h3>Contactanos</h3>
               <svg
@@ -70,7 +70,7 @@ export const Footer = () => {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-            </Menu.Button>
+            </Popover.Button>
           </div>
           <Transition
             enter="transition duration-100 ease-out"
@@ -80,16 +80,16 @@ export const Footer = () => {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items
+            <Popover.Panel
               className=" origin-top-right absolute bottom-10 right-0 mt-0 w-auto rounded-md shadow-lg  bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none justify-center flex"
               style={{ zIndex: "1" }}
             >
-              <Menu.Item>
+              <Popover.Panel>
                 {({ active }) => <ContactUs className="" />}
-              </Menu.Item>
-            </Menu.Items>
+              </Popover.Panel>
+            </Popover.Panel>
           </Transition>
-        </Menu>
+        </Popover>
       </div>
     </div>
   );

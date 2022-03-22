@@ -21,9 +21,9 @@ export const ExcursionDetail = () => {
   const { user } = useAuth0();
 
   const [disabled, setDisabled] = useState(true);
-  // eslint-disable-next-line
-  const { excursionByid, getExcursionById, getAllOrders } =
-    useExcursionsContext();
+
+  const { excursionByid, getExcursionById, isBanned } = useExcursionsContext();
+
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
 
@@ -103,35 +103,40 @@ export const ExcursionDetail = () => {
   };
 
   return (
-    <div className="bg-slate-100">
-      <div className="border-b border-gray-200 pb-3 text-center bg-slate-300">
-        <p className="text-sm leading-none text-gray-600">
-          {excursionByid?.location}
-        </p>
-        <h1 className=" lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 mt-2">
-          {excursionByid?.name}
-        </h1>
+    <div style={{ backgroundColor: "#D8D2CB" }}>
+      <div className="flex justify-center text-center mx-auto py-7">
+        <div className="w-auto">
+          <h1 className="grid rounded-md shadow-lg shadow-gray-500 px-5 py-3 text-white bg-sky-600">
+            <span className="text-sm font-medium tracking-wider">
+              {excursionByid?.location}
+            </span>
+            <span className="text-2xl font-semibold">
+              {excursionByid?.name}
+            </span>
+          </h1>
+        </div>
       </div>
-      <div className="flex justify-center m-10 p-10 rounded-lg border border-gray-200 bg-white shadow-lg shadow-slate-500">
+      <div
+        className="md:flex m-8 mt-0 p-4 shadow-lg shadow-gray-500 rounded-lg"
+        style={{ backgroundColor: "#EEEEEE" }}
+      >
         <div className="flex flex-col justify-between items-center w-2/5">
-          <div className="w-full">
-            {excursionByid && <Carousel Images={excursionByid.Images} />}
-          </div>
-          <div id="prueba" className="flex justify-center w-full h-96">
+          {excursionByid && <Carousel Images={excursionByid.Images} />}
+          <div className="flex p-4 justify-center">
             <Mapa lat={excursionByid?.lat} long={excursionByid?.long} />
           </div>
         </div>
-        <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6 flex-col justify-center">
+        <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6">
           <div className="inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start">
-            <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/3">
-              <p className="text-base leading-4 text-gray-800">Dia:</p>
+            <div className="py-2 pr-2 border-r border-l border-gray-200 flex items-center w-1/3">
+              <p className="text-base leading-4 text-gray-800 m-2">Dia:</p>
               <DetailDatePicker
                 handleDate={handleDate}
                 excursionDays={excursionByid?.date}
               />
             </div>
-            <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
-              <p className="text-base leading-4 text-gray-800">Hora:</p>
+            <div className="py-2 pr-2 border-r border-gray-200 flex items-center w-1/3">
+              <p className="text-base leading-4 text-gray-800 m-2">Hora:</p>
               {excursionByid?.time && (
                 <InputSelect
                   handleTime={handleTime}
@@ -139,15 +144,15 @@ export const ExcursionDetail = () => {
                 />
               )}
             </div>
-            <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
-              <p className="text-base leading-4 text-gray-800">Personas:</p>
+            <div className="py-2 pr-2 border-r border-gray-200 flex items-center w-1/3">
+              <p className="text-base leading-4 text-gray-800 m-2">Personas:</p>
               <input
                 onChange={(e) => handleQuantity(e)}
                 type="number"
                 name="quantity"
                 min={0}
                 max={6}
-                className="shadow-md text-center rounded-md h-9 w-1/3"
+                className="shadow-lg shadow-gray-500 hover:shadow-black text-center rounded-md h-9 w-1/3"
                 onKeyDown={(e) => e.preventDefault()}
               />
             </div>
@@ -169,20 +174,24 @@ export const ExcursionDetail = () => {
               Stock: {stock}
             </p>
           </div>
-          <button
-            className="
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
-          text-base flex items-center justify-center leading-none text-white
-          bg-gray-800 w-full py-4 hover:bg-gray-700 rounded-md"
-            //Disabled, deshabilita el botón cuando el stock es 0.
-            disabled={disabled}
-            onClick={() => handleClick()}
-          >
-            Agregar al Carrito
-            <ShoppingCartIcon className="w-5 h-5 ml-1" />
-          </button>
 
-          <Testimonials />
+          {!isBanned && (
+            <button
+              className=" rounded-md shadow-lg shadow-gray-500 hover:shadow-black
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
+            text-base flex items-center justify-center leading-none text-white
+            bg-gray-700 w-full py-4 hover:bg-gray-800 hover:cursor-pointer"
+              //Disabled, deshabilita el botón cuando el stock es 0.
+              disabled={disabled}
+              onClick={() => handleClick()}
+            >
+              Agregar al Carrito
+              <ShoppingCartIcon className="w-5 h-5 ml-1" />
+            </button>
+          )}
+          <div>
+            <Testimonials />
+          </div>
         </div>
       </div>
     </div>
