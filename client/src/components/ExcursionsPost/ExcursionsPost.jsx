@@ -47,7 +47,7 @@ export const ExcursionsPost = () => {
     });
   }
 
-  console.log("/")
+
   /// HANDLE CHECKBOX DE DATE
   const handleCheckboxDate = (e) => {
     if (e.target.checked) {

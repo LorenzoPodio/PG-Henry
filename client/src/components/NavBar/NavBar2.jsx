@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "../Cart/Cart";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
@@ -13,14 +13,8 @@ const NavBar2 = () => {
   const { addUser } = useExcursionsContext();
   const { createCart, cartItems, isAdmin } = useCartContext();
   const [navigation, setNavigation] = useState();
-  const { loginWithRedirect, logout, user, isLoading, isAuthenticated} = useAuth0();
- 
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const code = urlParams.get("code");
-  const state = urlParams.get("state");
-  
-  console.log(isAuthenticated)
+  const { loginWithRedirect, logout, user, isLoading} = useAuth0();
+
 
   useEffect(() => {
     if (isAdmin) {
