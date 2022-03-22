@@ -105,7 +105,7 @@
 
     
     {
-        "name": "Circuito chico",
+        "name": "Circuito Chico",
         "stock": 25,
         "Images": [
             "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-03.jpg",
@@ -175,7 +175,7 @@
         "extra": "Mejor temporada de buceo: De noviembre a abril. Temperatura del agua: invierno 2° a 4°, primavera y verano entre 8° y 12°."
     },
     {
-        "name": "Qubrada de Humahuaca",
+        "name": "Quebrada de Humahuaca",
         "stock": 25,
         "Images": [
             "https://static1.evcdn.net/images/reduction/1144506_w-850_h-400_q-100_m-crop.jpg",
@@ -391,7 +391,7 @@
         "extra": "Incluye entradas al parque Nacional"
     },
     {
-        "name": "GLACIAR VINCIGUERRA",
+        "name": "Glaciar Vinciguerra",
         "stock": 25,
         "Images": [
             "https://www.brasileirosemushuaia.com.br/media/catalog/product/cache/3/image/940x587/9df78eab33525d08d6e5fb8d27136e95/1/2/12_1_5.jpg",
