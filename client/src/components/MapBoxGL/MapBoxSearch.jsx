@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
-import Geocoder from 'react-map-gl-geocoder';
 import './Map.css';
 
 export default function MapaSearch(props){
     
   const [viewport, setViewport] = useState({
-    latitude: -40.4211,
-    longitude: -50.6903,
+    latitude: -34.594777103140565,
+    longitude: -58.449974583869974,
     width: "40vw",
     height: "40vh",
     zoom: 3.1,
@@ -39,19 +38,10 @@ export default function MapaSearch(props){
         latitude: selected.longitude,
         longitude: selected.latitude,
     })
-
     // eslint-disable-next-line
   }, []);
 
   const mapRef = useRef()
-
-  function handleResult(result) {
-    setViewport({
-     name:result.place_name,
-     latitude:result.latitude,
-     longitude:result.longitude,
-    });
-  };
 
   function handleCoordinates(e) {
      console.log(e.lngLat)
@@ -67,8 +57,6 @@ export default function MapaSearch(props){
 
   return (
     <div>
-      <input type="search" id="site-search" ></input>
-      
       <ReactMapGL
         {...viewport}
         maxZoom={18}
@@ -97,24 +85,6 @@ export default function MapaSearch(props){
       {/*  GET GEO-LOCATIONS  >> busca por nombre, hacer que lea el cursor las coordenadas para guardarlas y crear nuevos markers, no se como... */}
       
       </ReactMapGL>
-
-      <div >
-
-        <Geocoder
-          style={{ zIndex: "1" }}
-          className="geocoder"
-            mapRef={mapRef}
-            mapboxApiAccessToken="pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA"
-            onSelected={handleResult}
-            onViewportChange={newViewport => {
-              setViewport({...newViewport});
-            }}
-            // countries="ar"
-            position="bottom-right"
-            placeholder="Buscar..."
-          />
-
-        </div>
       
     </div>
   );

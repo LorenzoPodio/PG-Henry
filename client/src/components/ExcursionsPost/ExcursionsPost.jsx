@@ -35,7 +35,6 @@ export const ExcursionsPost = () => {
   });
 
   const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
-  const price = [500, 1000, 1500, 2000, 2500]
   const type =["Trekking", "Bus", "Lacustre"]
   
 
@@ -47,6 +46,7 @@ export const ExcursionsPost = () => {
       };
     });
   }
+
 
   /// HANDLE CHECKBOX DE DATE
   const handleCheckboxDate = (e) => {
@@ -157,6 +157,7 @@ export const ExcursionsPost = () => {
       } else if(input.stock <= 0 ||
         input.date.length <= 0 ||
         input.time.length <= 0 ||
+        imagesUrls.length <= 0 ||
         !input.description ||
         !input.excursionType ||
         !input.name || 
@@ -181,7 +182,7 @@ export const ExcursionsPost = () => {
     console.log(input)
     addExcursion(input)
     swal("Excursión creada exitosamente");
-    setTimeout(() => (navigate("/panelAdmin")), 3000);
+    setTimeout(() => (navigate("/excursiones")), 3000);
     setInput({
       name: "",
       Images: [],
@@ -280,7 +281,23 @@ export const ExcursionsPost = () => {
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="Busca tu ciudad aqui"
                         defaultValue={""}
-                      >{`latitud: ${coordenadas.lat} longitud: ${coordenadas.long}`}</label>
+                      >{
+                        coordenadas.lat && coordenadas.long ?
+                      `latitud: ${coordenadas.lat}`
+                      :
+                      `latitud: `
+                      }</label>
+                      <label
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        placeholder="Busca tu ciudad aqui"
+                        defaultValue={""}
+                      >{
+                        coordenadas.lat && coordenadas.long ?
+                      `longitud: ${coordenadas.long}`
+                      :
+                      `longitud: `
+                      }</label>
                     </div>
                   </div>
                 </div>
@@ -473,7 +490,8 @@ export const ExcursionsPost = () => {
                     >
                       Agrega la fecha de salida de tu excursión.
                     </label>
-                    <div className="mt-1">
+                    <div className="mt-1 flex">
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="monday"
@@ -482,7 +500,8 @@ export const ExcursionsPost = () => {
                         onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="monday">Lunes</label>
-                      <br />
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="tuesday"
@@ -491,7 +510,8 @@ export const ExcursionsPost = () => {
                         onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="tuesday">Martes</label>
-                      <br />
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="wednesday"
@@ -500,7 +520,8 @@ export const ExcursionsPost = () => {
                         onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="wednesday">Miercoles</label>
-                      <br />
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="thursday"
@@ -509,7 +530,8 @@ export const ExcursionsPost = () => {
                         onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="thursday">Jueves</label>
-                      <br />
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="friday"
@@ -518,7 +540,8 @@ export const ExcursionsPost = () => {
                         onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="friday">Viernes</label>
-                      <br />
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="saturday"
@@ -527,7 +550,8 @@ export const ExcursionsPost = () => {
                         onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="saturday">Sabado</label>
-                      <br />
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="sunday"
@@ -536,6 +560,7 @@ export const ExcursionsPost = () => {
                         onChange={(e) => handleCheckboxDate(e)}
                       />
                       <label htmlFor="sunday">Domingo</label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -571,7 +596,8 @@ export const ExcursionsPost = () => {
                     >
                       Agrega el horario de salida de tu excursión.
                     </label>
-                    <div className="mt-1">
+                    <div className="mt-1 flex">
+                    <div style={{margin: 10}}>
                     <input
                         type={"checkbox"}
                         id="8"
@@ -579,8 +605,19 @@ export const ExcursionsPost = () => {
                         name="time"
                         onChange={(e) => handleCheckboxTime(e)}
                       />
-                      <label htmlFor="monday">08 hs</label>
-                      <br />
+                      <label >08 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
+                      <input
+                        type={"checkbox"}
+                        id="9"
+                        value={"9"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label >09 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="10"
@@ -588,8 +625,19 @@ export const ExcursionsPost = () => {
                         name="time"
                         onChange={(e) => handleCheckboxTime(e)}
                       />
-                      <label htmlFor="tuesday">10 hs</label>
-                      <br />
+                      <label >10 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
+                      <input
+                        type={"checkbox"}
+                        id="11"
+                        value={"11"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label >11 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="12"
@@ -597,8 +645,19 @@ export const ExcursionsPost = () => {
                         name="time"
                         onChange={(e) => handleCheckboxTime(e)}
                       />
-                      <label htmlFor="wednesday">12 hs</label>
-                      <br />
+                      <label >12 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
+                      <input
+                        type={"checkbox"}
+                        id="13"
+                        value={"13"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label >13 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="14"
@@ -606,8 +665,19 @@ export const ExcursionsPost = () => {
                         name="time"
                         onChange={(e) => handleCheckboxTime(e)}
                       />
-                      <label htmlFor="thursday">14 hs</label>
-                      <br />
+                      <label >14 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
+                      <input
+                        type={"checkbox"}
+                        id="15"
+                        value={"15"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label >15 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="16"
@@ -615,8 +685,19 @@ export const ExcursionsPost = () => {
                         name="time"
                         onChange={(e) => handleCheckboxTime(e)}
                       />
-                      <label htmlFor="friday">16 hs</label>
-                      <br />
+                      <label >16 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
+                      <input
+                        type={"checkbox"}
+                        id="17"
+                        value={"17"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label >17 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="18"
@@ -624,8 +705,19 @@ export const ExcursionsPost = () => {
                         name="time"
                         onChange={(e) => handleCheckboxTime(e)}
                       />
-                      <label htmlFor="saturday">18 hs</label>
-                      <br />
+                      <label >18 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
+                      <input
+                        type={"checkbox"}
+                        id="19"
+                        value={"19"}
+                        name="time"
+                        onChange={(e) => handleCheckboxTime(e)}
+                      />
+                      <label >19 hs</label>
+                      </div>
+                      <div style={{margin: 10}}>
                       <input
                         type={"checkbox"}
                         id="20"
@@ -633,7 +725,8 @@ export const ExcursionsPost = () => {
                         name="time"
                         onChange={(e) => handleCheckboxTime(e)}
                       />
-                      <label htmlFor="sunday">20 hs</label>
+                      <label >20 hs</label>
+                      </div>
                     </div>
                     <p className="mt-2 text-sm text-gray-500">
                       Tener en cuenta un margen de retraso por imprevistos.
@@ -672,13 +765,18 @@ export const ExcursionsPost = () => {
                     >
                       Agrega el costo total de tu excursión.
                     </label>
-                    <div className="mt-1">
-                    <select className="" onClick={(e) => handlePrice(e)}>
-                        <option name='location' value=''>Seleccione Precio</option>
-                        {price?.map(p =>
-                            <option key={p} name='location' value={p}>$ {p}</option>
-                        )}
-                    </select>
+                    <div className="mt-1 flex">
+                    <label>$</label>
+                    <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        placeholder="Ejemplo: 2000"
+                        defaultValue={""}
+                        onChange={(e) => handlePrice(e)}
+                      />
                     </div>
                   </div>
                 </div>
@@ -800,12 +898,13 @@ export const ExcursionsPost = () => {
                       Agrega la cantidad de pasajeros que pueden participar de esta excursion.
                     </label>
                     <div className="mt-1">
-                    <textarea
+                    <input
+                        type="number"
                         id="stock"
                         name="stock"
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="Ejemplo de nombre"
+                        placeholder="Ejemplo: 20"
                         defaultValue={""}
                         onChange={(e) => handleChange(e)}
                       />

@@ -13,7 +13,9 @@ const NavBar2 = () => {
   const { addUser } = useExcursionsContext();
   const { createCart, cartItems, isAdmin } = useCartContext();
   const [navigation, setNavigation] = useState();
-  const { loginWithRedirect, logout, user, isLoading } = useAuth0();
+  const { loginWithRedirect, logout, user, isLoading} = useAuth0();
+
+
   useEffect(() => {
     if (isAdmin) {
       setNavigation([
@@ -29,6 +31,7 @@ const NavBar2 = () => {
         { name: "Sobre Nosotros", href: "/nosotros", current: false },
       ]);
     }
+  
   }, [isAdmin]);
 
   const [usuario, setUsuario] = useState({
@@ -105,6 +108,7 @@ const NavBar2 = () => {
       });
     }
   }
+
   return (
     <Disclosure as="nav" className="sticky -top-16 z-20 bg-sky-600">
       {({ open }) => (
@@ -170,6 +174,7 @@ const NavBar2 = () => {
                 {!user && !isLoading ? (
                   <>
                     <button
+                    type='reset'
                       className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                       onClick={async () => await loginWithRedirect()}
                     >
@@ -212,7 +217,7 @@ const NavBar2 = () => {
                       <div>
                         <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Open user menu</span>
-                          {usuario?.picture.length > 0 ? (
+                          {user?.picture.length > 0 ? (
                             <img
                               className="h-8 w-8 rounded-full"
                               src={usuario?.picture}
