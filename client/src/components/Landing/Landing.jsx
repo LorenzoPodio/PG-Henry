@@ -13,8 +13,7 @@ export const Landing = () => {
     
   </div>
   <div className="fixed-bg bg-1-1">
-    <div className="text-box">
-      <div className="align">
+  <div className="align">
     <img
                         className="logo"
                         src="https://img.icons8.com/color/48/000000/around-the-globe.png"
@@ -22,30 +21,21 @@ export const Landing = () => {
                       />
       <h2>ExcursionApp</h2>
       </div>
-      <br></br>
-      <br></br>
+    <div className="text-box">
       
-      <br></br>
-      <br></br>
-      <img alt="Workflow2" src="https://www.patagoniachic.com/images/uploads/patagoniachic_excursiones1508674394.jpg"/>
+      
+      <img alt="Workflow2" src="https://www.flatrockmusicfestival.com/wp-content/uploads/2021/06/9ik.jpg"/>
       <p>
       <br></br>
       <br></br>
       </p>
-      <p>
-      La aventura comienza 
+      <p >
+      
       </p>
       <br></br>
-      <p>
-        donde acaban los planes
-      </p>
-      <br></br>
-      <p>
-        ...y tu aventura comienza en ExcursionApp.
-      </p>
-      <br></br>
-      <br></br>
-      <p>
+      <p >
+        Donde tu aventura comienza
+     
        
       </p>
       <br></br>
@@ -88,8 +78,8 @@ export const Landing = () => {
   <div className="fixed-bg bg-4">
     
   </div>
-  <div className="fixed-bg flex flex-row h-80 bg-gray-50">
-    <h2 className=" my-30 w-full">Descubri la experiencia perfecta para vos</h2>
+  <div className="fixed-bg flex flex-row py-20 bg-gray-50">
+    <h2 className="  w-full">Descubri la experiencia perfecta para vos</h2>
     <div className="w-full flex w-80 flex-row-reverse  ">
       <Link to="/excursiones">
     <button
@@ -119,7 +109,7 @@ export const Landing = () => {
         </div>
     <br></br>
     <br></br>
-    <br></br>
+    
     
     <br></br>
     <br></br>
