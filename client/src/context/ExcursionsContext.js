@@ -72,6 +72,7 @@ export const ExcursionsProvider = ({ children }) => {
         setIsBanned(() => resp.data?.isBanned)
     })
     .catch((e) => console.log("error en getusers", e))
+    // eslint-disable-next-line
   }, [banUser, UnbanUser])
 
 
