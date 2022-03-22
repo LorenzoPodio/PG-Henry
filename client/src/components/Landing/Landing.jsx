@@ -34,7 +34,7 @@ export const Landing = () => {
       </p>
       <br></br>
       <p >
-        Donde tu aventura comienza
+        Donde tu aventura comienza...
      
        
       </p>
