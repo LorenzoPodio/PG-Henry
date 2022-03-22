@@ -22,23 +22,18 @@ export const Landing = () => {
       <h2>ExcursionApp</h2>
       </div>
     <div className="text-box">
-      
+    <br></br>
       
       <img alt="Workflow2" src="https://www.flatrockmusicfestival.com/wp-content/uploads/2021/06/9ik.jpg"/>
-      <p>
-      <br></br>
-      <br></br>
-      </p>
-      <p >
       
-      </p>
+     
       <br></br>
       <p >
         Donde tu aventura comienza...
      
        
       </p>
-      <br></br>
+      
     </div>
   </div>
   <div className="fixed-bg bg-2">
