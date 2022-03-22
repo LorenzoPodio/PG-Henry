@@ -42,7 +42,7 @@ addReview.post("/:id", async (req, res, next) => {
     
     // console.log(controlReview.map((e)=>e.userId), "AAAAAAA")
 
-    if (controlReview.map((e)=>e.userId).includes(getUserId.dataValues.id)){
+    if (controlReview?.map((e)=>e.userId).includes(getUserId?.dataValues?.id)){
       return res.status(403).json("Ya diste tu opinión")
     }
 
