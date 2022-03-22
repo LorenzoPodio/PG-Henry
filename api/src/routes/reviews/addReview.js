@@ -34,6 +34,17 @@ addReview.post("/:id", async (req, res, next) => {
     let buyedExcursion = orderProducts[0]?.map((e) => e.dataValues.name);
 
     // console.log(buyedExcursion, "probando buyedExcursion name???");
+    const controlReview = await Reviews.findAll({
+      where: {
+        excursionId: id,
+      },
+    });
+    
+    // console.log(controlReview.map((e)=>e.userId), "AAAAAAA")
+
+    if (controlReview.map((e)=>e.userId).includes(getUserId.dataValues.id)){
+      return res.status(403).json("Ya diste tu opinión")
+    }
 
     if (buyedExcursion?.includes(excursion?.dataValues?.name)) {
       await Reviews.create({
