@@ -30,7 +30,7 @@ export default function Filter({
         className="shadow-lg hover:shadow-md shadow-gray-400 text-sm font-semibold hover:shadow-black hover:bg-sky-500 hover:text-white text-center rounded-md h-9 w-full mx-1"
       >
         <option value="allItems">{defaultDescription}</option>
-        {defaultDescription !== "Fechas" ? (
+        {defaultDescription !== "Dia" ? (
           options?.map((option, i) => {
             return (
               <option key={i} value={option}>

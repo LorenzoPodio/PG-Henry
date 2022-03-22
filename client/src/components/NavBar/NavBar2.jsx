@@ -10,10 +10,12 @@ import { useCartContext } from "../../context/CartContext";
 
 const NavBar2 = () => {
   const [check, setCheck] = useState(true);
-  const { addUser } = useExcursionsContext();
+  const { addUser, isBanned } = useExcursionsContext();
   const { createCart, cartItems, isAdmin } = useCartContext();
   const [navigation, setNavigation] = useState();
-  const { loginWithRedirect, logout, user, isLoading } = useAuth0();
+  const { loginWithRedirect, logout, user, isLoading} = useAuth0();
+
+
   useEffect(() => {
     if (isAdmin) {
       setNavigation([
@@ -29,8 +31,9 @@ const NavBar2 = () => {
         { name: "Sobre Nosotros", href: "/nosotros", current: false },
       ]);
     }
+  
   }, [isAdmin]);
-
+  
   const [usuario, setUsuario] = useState({
     email: "0",
     name: "0",
@@ -105,6 +108,7 @@ const NavBar2 = () => {
       });
     }
   }
+
   return (
     <Disclosure as="nav" className="sticky -top-16 z-20 bg-sky-600">
       {({ open }) => (
@@ -170,6 +174,7 @@ const NavBar2 = () => {
                 {!user && !isLoading ? (
                   <>
                     <button
+                    type='reset'
                       className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                       onClick={async () => await loginWithRedirect()}
                     >
@@ -179,7 +184,7 @@ const NavBar2 = () => {
                 ) : (
                   <>
                     <Menu as="div" className="ml-3 relative">
-                      <div style={{ display: "flex", margin: "1rem" }}>
+                     { !isBanned && <div style={{ display: "flex", margin: "1rem" }}>
                         <Menu.Button className="bg-sky-600 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Carrito</span>
                           <ShoppingCartIcon
@@ -189,7 +194,7 @@ const NavBar2 = () => {
 
                           <span>{cartItems.length}</span>
                         </Menu.Button>
-                      </div>
+                      </div> }
                       <Transition
                         as={Fragment}
                         enter="transition ease-out duration-100"
@@ -212,7 +217,7 @@ const NavBar2 = () => {
                       <div>
                         <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Open user menu</span>
-                          {usuario?.picture.length > 0 ? (
+                          {user?.picture.length > 0 ? (
                             <img
                               className="h-8 w-8 rounded-full"
                               src={usuario?.picture}
