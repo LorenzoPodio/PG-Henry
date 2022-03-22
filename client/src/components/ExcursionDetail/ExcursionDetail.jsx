@@ -10,8 +10,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Carousel from "../Carousel/Carousel";
 import swal from "sweetalert";
 // eslint-disable-next-line
-import  {Mapa}  from "../MapBoxGL/MapBox"
-
+import { Mapa } from "../MapBoxGL/MapBox";
+import { Testimonials } from "../Testimonials/Testimonials";
 
 export const ExcursionDetail = () => {
   const [item, setItem] = useState({}); //Estado para construir item y agregarlo al carrito
@@ -22,7 +22,8 @@ export const ExcursionDetail = () => {
 
   const [disabled, setDisabled] = useState(true);
   // eslint-disable-next-line
-  const { excursionByid, getExcursionById, getAllOrders } = useExcursionsContext();
+  const { excursionByid, getExcursionById, getAllOrders } =
+    useExcursionsContext();
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
 
@@ -55,7 +56,7 @@ export const ExcursionDetail = () => {
           }
         })
         .catch((e) => {
-          return (setStock(0), setDisabled(true))
+          return setStock(0), setDisabled(true);
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,90 +101,90 @@ export const ExcursionDetail = () => {
       navigate("/excursiones");
     }
   };
-  
-  return (
-    <div className="md:flex items-start justify-center py-2 px-2">
-      <div
-        className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden"
-        style={{ display: "flex" }}
-      >
-        {excursionByid && <Carousel Images={excursionByid.Images} />}
-      </div>
 
-      <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6">
-        <div className="border-b border-gray-200 pb-3">
-          <p className="text-sm leading-none text-gray-600">
-            {excursionByid?.location}
-          </p>
-          <h1 className=" lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 mt-2">
-            {excursionByid?.name}
-          </h1>
-        </div>
-        <div className="inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start">
-          <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/3">
-            <p className="text-base leading-4 text-gray-800">Dia:</p>
-            <DetailDatePicker
-              handleDate={handleDate}
-              excursionDays={excursionByid?.date}
-            />
+  return (
+    <div className="bg-slate-100">
+      <div className="border-b border-gray-200 pb-3 text-center bg-slate-300">
+        <p className="text-sm leading-none text-gray-600">
+          {excursionByid?.location}
+        </p>
+        <h1 className=" lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 mt-2">
+          {excursionByid?.name}
+        </h1>
+      </div>
+      <div className="flex justify-center m-10 p-10 rounded-lg border border-gray-200 bg-white shadow-lg shadow-slate-500">
+        <div className="flex flex-col justify-between items-center w-2/5">
+          <div className="w-full">
+            {excursionByid && <Carousel Images={excursionByid.Images} />}
           </div>
-          <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
-            <p className="text-base leading-4 text-gray-800">Hora:</p>
-            {excursionByid?.time && (
-              <InputSelect
-                handleTime={handleTime}
-                options={excursionByid?.time}
+          <div id="prueba" className="flex justify-center w-full h-96">
+            <Mapa lat={excursionByid?.lat} long={excursionByid?.long} />
+          </div>
+        </div>
+        <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6 flex-col justify-center">
+          <div className="inline-flex w-full mb-2 border-b border-gray-200 items-center justify-start">
+            <div className="py-2 border-r border-l border-gray-200 flex items-center justify-around w-1/3">
+              <p className="text-base leading-4 text-gray-800">Dia:</p>
+              <DetailDatePicker
+                handleDate={handleDate}
+                excursionDays={excursionByid?.date}
               />
-            )}
+            </div>
+            <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
+              <p className="text-base leading-4 text-gray-800">Hora:</p>
+              {excursionByid?.time && (
+                <InputSelect
+                  handleTime={handleTime}
+                  options={excursionByid?.time}
+                />
+              )}
+            </div>
+            <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
+              <p className="text-base leading-4 text-gray-800">Personas:</p>
+              <input
+                onChange={(e) => handleQuantity(e)}
+                type="number"
+                name="quantity"
+                min={0}
+                max={6}
+                className="shadow-md text-center rounded-md h-9 w-1/3"
+                onKeyDown={(e) => e.preventDefault()}
+              />
+            </div>
           </div>
-          <div className="py-2 border-r border-gray-200 flex items-center justify-around w-1/3">
-            <p className="text-base leading-4 text-gray-800">Personas:</p>
-            <input
-              onChange={(e) => handleQuantity(e)}
-              type="number"
-              name="quantity"
-              min={0}
-              max={6}
-              className="shadow-md text-center rounded-md h-9 w-1/3"
-              onKeyDown={(e) => e.preventDefault()}
-            />
+          <div>
+            <p className="max-h-72 overflow-y-scroll text-sm lg:leading-tight leading-normal text-gray-600 mt-0">
+              {excursionByid?.description}
+            </p>
+            <p className="text-base leading-4 mt-4 text-gray-600">
+              Tipo de Excursión: {excursionByid?.excursionType}
+            </p>
+            <p className="text-base leading-4 mt-3 text-gray-600">
+              Extra: {excursionByid?.extra}
+            </p>
+            <p className="text-base font-bold leading-4 mt-3 mb-3 text-gray-600">
+              $ {excursionByid?.price}
+            </p>
+            <p className="text-base font-bold leading-4 mt-3 mb-3 text-gray-600">
+              Stock: {stock}
+            </p>
           </div>
-        </div>
-        <div>
-          <p className="max-h-72 overflow-y-scroll text-sm lg:leading-tight leading-normal text-gray-600 mt-0">
-            {excursionByid?.description}
-          </p>
-          <p className="text-base leading-4 mt-4 text-gray-600">
-            Tipo de Excursión: {excursionByid?.excursionType}
-          </p>
-          <p className="text-base leading-4 mt-3 text-gray-600">
-            Extra: {excursionByid?.extra}
-          </p>
-          <p className="text-base font-bold leading-4 mt-3 mb-3 text-gray-600">
-            $ {excursionByid?.price}
-          </p>
-          <p className="text-base font-bold leading-4 mt-3 mb-3 text-gray-600">
-            Stock: {stock}
-          </p>
-        </div>
-        <button
-          className="
+          <button
+            className="
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800
           text-base flex items-center justify-center leading-none text-white
-          bg-gray-800 w-full py-4 hover:bg-gray-700"
-          //Disabled, deshabilita el botón cuando el stock es 0.
-          disabled={disabled}
-          onClick={() => handleClick()}
-        >
-          Agregar al Carrito
-          <ShoppingCartIcon className="w-5 h-5 ml-1" />
-        </button>
+          bg-gray-800 w-full py-4 hover:bg-gray-700 rounded-md"
+            //Disabled, deshabilita el botón cuando el stock es 0.
+            disabled={disabled}
+            onClick={() => handleClick()}
+          >
+            Agregar al Carrito
+            <ShoppingCartIcon className="w-5 h-5 ml-1" />
+          </button>
+
+          <Testimonials />
+        </div>
       </div>
-      
-      <Mapa
-       lat={excursionByid?.lat}
-       long= {excursionByid?.long}
-      />
     </div>
   );
 };

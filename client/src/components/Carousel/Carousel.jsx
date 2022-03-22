@@ -4,20 +4,18 @@ import { Carousel } from "react-responsive-carousel";
 
 const CarouselComponent = ({ Images }) => {
   return (
-    <div className="carousel-wrapper">
-      <Carousel useKeyboardArrows infiniteLoop>
+    <div>
+      <Carousel useKeyboardArrows infiniteLoop autoPlay interval={6000}>
         {Images?.map((e, i) => {
           return (
             <div key={i}>
-              <img
-                src={e}
-                alt="Not found"
-                style={{
-                  width: "full",
-                  heigth: "auto",
-                  justifyContent: "center",
-                }}
-              />
+              <div>
+                <img
+                  className="h-96 object-cover rounded-md "
+                  src={e}
+                  alt="Not found"
+                />
+              </div>
             </div>
           );
         })}
