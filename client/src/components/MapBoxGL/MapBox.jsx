@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
-import './Map.css';
+
+import "./Map.css";
 
 export const Mapa = ({ lat, long }) => {
-  let latitud = lat ? lat : -30
-  let longitud = long ? long : -60
+  let latitud = lat ? lat : -30;
+  let longitud = long ? long : -60;
 
   const [viewport, setViewport] = useState({
     latitude: latitud,
@@ -14,15 +15,13 @@ export const Mapa = ({ lat, long }) => {
     zoom: 6,
   });
 
-
-
   // eslint-disable-next-line
   const [selected, setSelected] = useState(null);
-  const mapRef = useRef()
-  
+
+  const mapRef = useRef();
 
   useEffect(() => {
-    const listener = e => {
+    const listener = (e) => {
       if (e.key === "Escape") {
         setSelected(null);
       }
@@ -38,8 +37,6 @@ export const Mapa = ({ lat, long }) => {
     window.alert(title);
   };
 
-
-
   // eslint-disable-next-line
   function handleResult(result) {
     setViewport({
@@ -47,7 +44,7 @@ export const Mapa = ({ lat, long }) => {
       latitude: result?.latitude,
       longitude: result?.longitude,
     });
-  };
+  }
 
   function handleCoordinates(e) {
     console.log(e.lngLat);
@@ -55,12 +52,13 @@ export const Mapa = ({ lat, long }) => {
 
   return (
     <div className="rounded-md">
-      <ReactMapGL className="rounded-md"
+      <ReactMapGL
+        className="rounded-md"
         {...viewport}
         maxZoom={18}
         mapboxApiAccessToken="pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA"
-        mapStyle='mapbox://styles/mapbox/streets-v11'
-        onViewportChange={newViewport => {
+        mapStyle="mapbox://styles/mapbox/streets-v11"
+        onViewportChange={(newViewport) => {
           setViewport({ ...newViewport });
         }}
         ref={mapRef}
@@ -71,11 +69,12 @@ export const Mapa = ({ lat, long }) => {
           key={"33"}
           latitude={latitud}
           longitude={longitud}
-          onClick={markerClicked} feature={""}
+          onClick={markerClicked}
+          feature={""}
         >
           <button
             className="marker"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               setSelected("");
             }}

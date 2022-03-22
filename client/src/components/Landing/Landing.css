@@ -7,7 +7,7 @@
 }
 
 .fixed-bg {
-  min-height: 100%;
+  height: screen;
   background-size: cover;
   -webkit-background-size: cover !important; 
   -moz-background-size: cover !important; 
@@ -32,7 +32,7 @@ h2 {
 }
 
 img {
-  width: 100%;
+  width: 100vh;
   height: auto;
 }
 .main-text {
