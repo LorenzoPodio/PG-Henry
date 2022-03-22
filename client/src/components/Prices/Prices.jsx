@@ -10,7 +10,7 @@ export const Prices = () => {
       <div className="flex justify-center text-center mx-auto py-9">
         <div className="w-72">
           <h1 className="grid rounded-md shadow-lg shadow-gray-500 px-3 py-3 text-white bg-sky-600 font-bold text-xl">
-            TARIFAS
+            TARIFAS DE TODAS NUESTRAS EXCURSIONES
           </h1>
         </div>
       </div>
@@ -75,7 +75,7 @@ export const Prices = () => {
                               {e.excursionType}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                              {e.price}
+                              ${e.price}
                             </td>
                             <td className="px-6 py-4 ">
                               <span>
