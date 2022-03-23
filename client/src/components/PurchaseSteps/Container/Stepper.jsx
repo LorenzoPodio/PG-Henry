@@ -42,7 +42,7 @@ export default function Stepper() {
             </li>
           )}
           {step === "Payment" ? (
-            <li >
+            <li className={style.active}>
               <button >
                 Método de pago{" "}
               </button>
@@ -58,9 +58,7 @@ export default function Stepper() {
       </div>
       <div>
         {step === "OrderReview" && <OrderReview handleClick={handleClick} />}
-        {step === "PersonalDetails" && (
-          <PersonalDetails handleClick={handleClick} />
-        )}
+        {step === "PersonalDetails" && <PersonalDetails handleClick={handleClick} />}
         {step === "Payment" && <Payment handleClick={handleClick} />}
       </div>
     </div>
