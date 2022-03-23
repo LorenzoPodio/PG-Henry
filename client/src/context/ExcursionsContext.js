@@ -19,6 +19,7 @@ export const ExcursionsProvider = ({ children }) => {
   const [excursionByid, setExcursionByid] = useState();
   const [allOrders, setAllOrders] = useState();
   const [isBanned, setIsBanned] = useState(true);
+  const [reviews, setReviews] = useState([]);
   const { setLoading, user } = useCartContext();
 
   useEffect(() => {
@@ -70,7 +71,6 @@ export const ExcursionsProvider = ({ children }) => {
       .catch((e) => console.log("error en getusers", e));
     // eslint-disable-next-line
   }, [users, user]);
-
   useEffect(() => {
     axios(URL)
       .then((response) => {
@@ -94,6 +94,38 @@ export const ExcursionsProvider = ({ children }) => {
     } catch (error) {
       console.log("error", error);
     }
+  };
+
+  //Función para traer todas las reviews.
+  const getReviews = (id) => {
+    axios
+      .get(`http://localhost:3001/getreviews/${id}`)
+      .then((resp) => setReviews(() => resp.data))
+      .catch((e) => console.log(e));
+  };
+  //Funcion para agregar una review. Devuelve array con todas las reviews.
+  const addReview = (id, dataUser) => {
+    axios
+      .post(`http://localhost:3001/addreview/${id}`, dataUser)
+      .then((resp) =>
+        setReviews(() => {
+          swal({
+            title: "Respuesta enviada",
+            icon: "success",
+            text: "Gracias por compartir su experiencia",
+          });
+
+          return resp.data;
+        })
+      )
+      .catch((e) => {
+        swal({
+          title: "Ops...",
+          icon: "error",
+          text: "Hubo un inconveniente",
+        });
+        return console.log(e);
+      });
   };
 
   //feature_filter-implemented
@@ -262,6 +294,9 @@ export const ExcursionsProvider = ({ children }) => {
         getAllOrders,
         contactUs,
         isBanned,
+        getReviews,
+        reviews,
+        addReview,
       }}
     >
       {children}
