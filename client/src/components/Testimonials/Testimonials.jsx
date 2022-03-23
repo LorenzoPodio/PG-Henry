@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import NewReview from "./NewReview";
 import { Fragment } from "react";
@@ -16,16 +16,38 @@ const star = (
   </svg>
 );
 
-export const Testimonials = () => {
-  const { getReviews } = useExcursionsContext();
+export const Testimonials = ({ id }) => {
+  const { getReviews, reviews } = useExcursionsContext();
 
+  console.log("reviews", reviews);
+  useEffect(() => {
+    if (typeof id !== "undefined") {
+      getReviews(id);
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  console.log("reviews en TEstimonials.jsx", reviews);
   return (
     <div className="mx-auto bg-white shadow-lg rounded-lg my-32 px-4 py-4 max-w-sm ">
       <div className="mb-1 tracking-wide px-4 py-4">
-        <h1 className="text-gray-800 font-semibold mt-1">
-          Puntaje de esta excrusion 4.6
-        </h1>
-        <h3 className="text-gray-800 font-semibold mt-1">67 Users reviews</h3>
+        {reviews.length !== 0 ? (
+          <h3 className="text-gray-800 font-semibold mt-1">
+            Puntaje de esta excrusion{" "}
+            {reviews?.reduce(
+              (previousValue, currentObj) =>
+                parseInt(previousValue) + parseInt(currentObj.rating),
+              0
+            ) / reviews?.length}
+          </h3>
+        ) : (
+          <h3 className="text-gray-800 font-semibold mt-1">Sin puntaje</h3>
+        )}
+        <h4 className="text-gray-800 font-semibold mt-1">
+          ¡{reviews.length}{" "}
+          {reviews.length !== 1 ? <>personas opinaron</> : <>persona opinó</>}{" "}
+          sobre esta excursión!{" "}
+        </h4>
         <div className="border-b -mx-8 px-8 pb-3">
           <div className="flex items-center mt-1">
             <div className=" w-2/5 text-sky-500 tracking-tighter">
@@ -127,15 +149,12 @@ export const Testimonials = () => {
         </div>
       </div>
       <div className="w-full px-4">
-        <h3 className="font-medium tracking-tight">Review this item</h3>
-        <p className="text-gray-700 text-sm py-1">
-          give your opinion about this item.
-        </p>
+        <h4 className="font-medium tracking-tight mb-2">Danos tu opinión sobre la excursión</h4>
         <div>
-          <Popover as="div" className="ml-3 relative">
+          <Popover as="div" className="ml-3 relative mb-2">
             <div>
               <Popover.Button className=" flex w-full justify-center bg-sky-600 p-1 rounded-md text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                <h3>Agrega un comentario</h3>
+                <h4>Agrega un comentario</h4>
               </Popover.Button>
             </div>
             <Transition
@@ -151,15 +170,17 @@ export const Testimonials = () => {
                 className=" origin-top-right absolute bottom-10 right-0 mt-0 w-auto rounded-md shadow-lg  bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none justify-center flex"
                 style={{ zIndex: "1" }}
               >
-                <Popover.Panel>{({ active }) => <NewReview />}</Popover.Panel>
+                <Popover.Panel>
+                  {({ active }) => <NewReview id={id} />}
+                </Popover.Panel>
               </Popover.Panel>
             </Transition>
           </Popover>
         </div>
       </div>
       <div>
-        {getReviews ? (
-          getReviews?.map((e) => <TestimonialCard />)
+        {reviews ? (
+          reviews?.map((e) => <TestimonialCard props={e} />)
         ) : (
           <div>
             <div className="w-full lg:w-1/2">
@@ -180,9 +201,9 @@ export const Testimonials = () => {
               />
             </div>
             <div>
-              <h1 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800">
+              <h3 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800">
                 No hay contenido para mostrar 😬{" "}
-              </h1>
+              </h3>
               <p className="py-4 text-base text-gray-800">
                 Ponete en contacto con nosotros si pensas que deberíamos agregar
                 un nuevo viaje
