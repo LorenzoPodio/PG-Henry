@@ -442,13 +442,18 @@ export const EditExcursion = () => {
                         Agrega el lugar donde se realizará tu excursión.
                       </label>
                       <div className="mt-1">
-                      <select className="" onChange={(e) => handleLocation(e)}>
-                          <option name='location' value=''>Seleccione Ubicacion</option>
-                          {locations?.map(locat =>
-                              <option key={locat} name='location' value={locat}>{locat}</option>
-                          )}
-                      </select>
-                      </div>
+                    
+                    <textarea
+                        id="location"
+                        name="location"
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        placeholder={excursionByid?.location}
+                        defaultValue={""}
+                        onChange={(e) => handleLocation(e)}
+                      />
+                  
+                    </div>
                       <p className="mt-2 text-sm text-gray-500">
                         Agregar referencias puede ser una buena opción.
                       </p>

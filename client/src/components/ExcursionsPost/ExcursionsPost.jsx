@@ -93,7 +93,6 @@ export const ExcursionsPost = () => {
     }
 
     //HANDLE COORDENADAS
-
   function handleCoor(coor){
     setCoordenadas(coor)
   setInput({
@@ -105,7 +104,6 @@ export const ExcursionsPost = () => {
 
   ///HANDLE DE IMAGENES
   function handleImage(files) {
-    
     const formData = new FormData()
     formData.append("file", files[0])
     formData.append("upload_preset", "excursion")
@@ -446,12 +444,17 @@ export const ExcursionsPost = () => {
                       Agrega el lugar donde se realizará tu excursión.
                     </label>
                     <div className="mt-1">
-                    <select className="" onChange={(e) => handleLocation(e)}>
-                        <option name='location' value=''>Seleccione Ubicacion</option>
-                        {locations?.map(locat =>
-                            <option key={locat} name='location' value={locat}>{locat}</option>
-                        )}
-                    </select>
+                    
+                    <textarea
+                        id="location"
+                        name="location"
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        placeholder="Ingresa la locacion de la excrusion"
+                        defaultValue={""}
+                        onChange={(e) => handleLocation(e)}
+                      />
+                  
                     </div>
                     <p className="mt-2 text-sm text-gray-500">
                       Agregar referencias puede ser una buena opción.
