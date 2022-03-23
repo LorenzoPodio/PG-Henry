@@ -317,27 +317,28 @@ export const EditExcursion = () => {
                       Agrega el link de las imagenes que quieras mostrar.
                     </label>
                     <div key={excursionByid?.Image}>
-                      <div className="mt-1">
-                        <div>
+                      
+                      <div key="asdasd"className="mt-1">
+                      
   
                           <input type="file" onChange={(e) => handleImage(e.target.files)}></input>
   
-                        </div>
+                        
                       </div>
                     </div>
-                    <div className="photopost">
+                    <div key="aslasdl" className="photopost">
                    
                       {
                        imagesUrls.length < 1 ? 
 
                        excursionByid?.Images?.map((images) => (
                         
-                        <div>
+                        <div key="aslkasbfhfhasdl">
                         <Image
                         style={{width: 200, margin: 10}}
                         cloudName="excursion" 
                         publicId={images}/>
-                        <button type="button" value={images} onClick={(e) => deleteImage(e)}>X</button>
+                        <button type="button" key="aslkdjl"value={images} onClick={(e) => deleteImage(e)}>X</button>
                         </div>
                       ))
 
@@ -345,18 +346,18 @@ export const EditExcursion = () => {
   
                         imagesUrls?.map((images) => (
                         
-                          <div>
+                          <div key="asdasdasdkljlkj">
                           <Image
                           style={{width: 200, margin: 10}}
                           cloudName="excursion" 
                           publicId={images}/>
-                          <button type="button" value={images} onClick={(e) => deleteImage(e)}>X</button>
+                          <button key="aslkdjhasdl" type="button" value={images} onClick={(e) => deleteImage(e)}>X</button>
                           </div>
                         ))
                       }
                       
                     </div>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <p className="mt-2 text-sm text-gray-500" key="asdasdasdads">
                       Agrega imagenes que sean del lugar donde vas a realizar la
                       excursión.
                     </p>

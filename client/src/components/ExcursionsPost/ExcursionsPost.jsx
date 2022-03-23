@@ -34,7 +34,7 @@ export const ExcursionsPost = () => {
     long: ""
   });
 
-  const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
+
   const type =["Trekking", "Bus", "Lacustre"]
   
 
