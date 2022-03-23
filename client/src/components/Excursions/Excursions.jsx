@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import Filter from "../Filter/Filter";
 import { ExcursionCard } from "../ExcursionCard/ExcursionCard";
+import { ExcursionCardList } from "../ExcursionCard/ExcursionCardList";
 import SortByPrice from "../SortByPrice/SortByPrice";
 import SearchBar from "../SearchBar/SearchBar";
 import { useCartContext } from "../../context/CartContext";
@@ -17,7 +18,7 @@ export const Excursions = () => {
     setExcursionFiltered,
   } = useExcursionsContext();
   const { loading } = useCartContext();
-
+  const grid = false;
   useEffect(() => {
     getExcursions().then((r) => {
       return (setAllExcursions(r), setData(r), setExcursionFiltered(r));
@@ -70,12 +71,25 @@ export const Excursions = () => {
           <SearchBar />
         </div>
         <div style={{ backgroundColor: '#EEEEEE' }}>
-          <div className="lg:mx-32 lg:py-9 lg:px-11 md:mx-32 md:py-8 md:px-9 sm:mx-24 sm:py-8 sm:px-9 mx-10 py-8 px-9">
+          <div className= {grid===true?"lg:mx-32 lg:py-9 lg:px-11 md:mx-32 md:py-8 md:px-9 sm:mx-24 sm:py-8 sm:px-9 mx-10 py-8 px-9": " lg:mx-80 mt-20 mx-20 md:mx-18 sm:mx-16 " }>
             <h2 className="sr-only">Products</h2>
-            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-1 md:grid-cols-2 gap-x-6 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8">
-              {data && typeof data !== "string" ? (
+            <div className={grid===true? "grid grid-cols-1 gap-y-10 sm:grid-cols-1 md:grid-cols-2 gap-x-6 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8" :"grid grid-cols-1 gap-y-10 sm:grid-cols-1 md:grid-cols-1 gap-x-6 lg:grid-cols-1 2xl:grid-cols-1  " }>
+              {grid=== true && data && typeof data !== "string" ? (
                 data?.map((e) => (
                   <ExcursionCard
+                    key={e.id}
+                    id={e.id}
+                    name={e.name}
+                    images={e.Images}
+                    location={e.location}
+                    date={e.date}
+                    price={e.price}
+                    excursionType={e.excursionType}
+                  />
+                ))
+              ): grid=== false && data && typeof data !== "string" ? (
+                data?.map((e) => (
+                  <ExcursionCardList
                     key={e.id}
                     id={e.id}
                     name={e.name}
