@@ -62,7 +62,7 @@ export const ExcursionsProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/getusers?email=${user?.email}`)
+      .get(`/getusers?email=${user?.email}`)
       .then((resp) => {
         if (typeof resp.data?.isBanned !== "undefined") {
           setIsBanned(() => resp.data?.isBanned);
@@ -99,14 +99,14 @@ export const ExcursionsProvider = ({ children }) => {
   //Función para traer todas las reviews.
   const getReviews = (id) => {
     axios
-      .get(`http://localhost:3001/getreviews/${id}`)
+      .get(`/getreviews/${id}`)
       .then((resp) => setReviews(() => resp.data))
       .catch((e) => console.log(e));
   };
   //Funcion para agregar una review. Devuelve array con todas las reviews.
   const addReview = (id, dataUser) => {
     axios
-      .post(`http://localhost:3001/addreview/${id}`, dataUser)
+      .post(`/addreview/${id}`, dataUser)
       .then((resp) =>
         setReviews(() => {
           swal({
@@ -266,7 +266,7 @@ export const ExcursionsProvider = ({ children }) => {
 
   const contactUs = (dates) => {
     return axios
-      .post("http://localhost:3001/contactmail", dates)
+      .post("/contactmail", dates)
       .then((response) => response.data)
       .catch((err) => {});
   };
