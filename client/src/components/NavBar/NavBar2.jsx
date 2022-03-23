@@ -5,16 +5,14 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "../Cart/Cart";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import swal from "sweetalert";
 import { useCartContext } from "../../context/CartContext";
 
 const NavBar2 = () => {
-  const [check, setCheck] = useState(true);
+  
   const { addUser, isBanned } = useExcursionsContext();
   const { createCart, cartItems, isAdmin } = useCartContext();
   const [navigation, setNavigation] = useState();
   const { loginWithRedirect, logout, user, isLoading} = useAuth0();
-
 
   useEffect(() => {
     if (isAdmin) {
@@ -42,11 +40,10 @@ const NavBar2 = () => {
   });
 
   useEffect(() => {
-    setCheck(() => false);
     addUser(usuario);
     createCart(usuario.email);
     // eslint-disable-next-line
-  }, [user]);
+  }, [user,usuario]);
 
   function handleClick(e) {
     navigation?.map((item) => {
@@ -63,50 +60,17 @@ const NavBar2 = () => {
     return classes.filter(Boolean).join(" ");
   }
 
+
   if (user && usuario.email === "0") {
     setUsuario((prevState) => {
       return {
         ...prevState,
         email: user?.email,
         picture: user?.picture,
+        name: user.given_name,
+        lastName: user.family_name,
       };
     });
-
-
-    if (user.sub.search("google") === -1 && check) {
-      swal("Complete su nombre aqui:", {
-        content: "input",
-      }).then((value) => {
-        setUsuario((prevState) => {
-          return {
-            ...prevState,
-            name: value,
-          };
-        });
-        swal(`Su nombre es: ${value}`);
-
-        swal("Complete su apellido aqui:", {
-          content: "input",
-        }).then((value) => {
-          setUsuario((prevState) => {
-            return {
-              ...prevState,
-              lastName: value,
-            };
-          });
-
-          swal(`Sus datos fueron completados con exito!`);
-        });
-      });
-    } else {
-      setUsuario((prevState) => {
-        return {
-          ...prevState,
-          name: user.given_name,
-          lastName: user.family_name,
-        };
-      });
-    }
   }
 
   return (
@@ -176,7 +140,7 @@ const NavBar2 = () => {
                     <button
                     type='reset'
                       className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                      onClick={async () => await loginWithRedirect()}
+                      onClick={async () => await loginWithRedirect({ connection: 'google-oauth2' })}
                     >
                       Log in
                     </button>
@@ -217,11 +181,11 @@ const NavBar2 = () => {
                       <div>
                         <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Open user menu</span>
-                          {user?.picture.length > 0 ? (
+                          {user?.picture ? (
                             <img
                               className="h-8 w-8 rounded-full"
-                              src={usuario?.picture}
-                              alt="User profile"
+                              src={user?.picture}
+                              alt=" "
                             />
                           ) : (
                             <img
