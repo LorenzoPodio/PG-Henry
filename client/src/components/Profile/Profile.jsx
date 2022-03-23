@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
+import { Link } from "react-router-dom";
 
 export function Profile() {
-  // eslint-disable-next-line
-  const { allOrders, submitData } = useExcursionsContext();
+  const { submitData } = useExcursionsContext();
   const { user, dataUser, setDataUser, getDataUser } = useCartContext();
   const [completed, setCompleted] = useState([]);
   const [cancelled, setCancelled] = useState([]);
   // eslint-disable-next-line
   const [currentOrders, setCurrentOrders] = useState([]);
 
-console.log('dataUser', dataUser)
 
   useEffect(() => {
     getDataUser();
@@ -71,6 +70,7 @@ console.log('dataUser', dataUser)
   //     });
   //   }
   // });
+
 
   return (
     <div className="grid place-content-center">
@@ -197,7 +197,6 @@ console.log('dataUser', dataUser)
                     {cancelled?.reduce((accumulator, curr) => 
                        accumulator + parseInt(curr.order_details[0].totalPrice),0
                     )}
-                    
                     </dd>
                   </div>
                 </div>
@@ -251,8 +250,7 @@ console.log('dataUser', dataUser)
                     <dt className="text-sm font-medium text-gray-500">Orden</dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                       {o.id}
-                    </dd>
-                    
+                    </dd>     
                     <dt className="text-sm font-medium text-gray-500">Fecha</dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                       {o.date}
@@ -314,7 +312,6 @@ console.log('dataUser', dataUser)
                       {completed?.reduce((accumulator, curr) => 
                        accumulator + parseInt(curr.order_details[0].totalPrice),0
                     )}
-                    
                     </dd>
                   </div>
                 </div>

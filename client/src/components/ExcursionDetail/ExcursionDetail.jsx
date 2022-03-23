@@ -23,7 +23,7 @@ export const ExcursionDetail = () => {
   const { excursionByid, getExcursionById, isBanned } = useExcursionsContext();
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
-
+  console.log(excursionByid, "HOLAAAAAAAAAAAAAAA");
   useEffect(() => {
     getExcursionById(id);
     return () => {

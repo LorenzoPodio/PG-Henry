@@ -13,14 +13,12 @@ export default function PersonalDetails({ handleClick }) {
     getDataUser()
     // eslint-disable-next-line
   }, [])
-
   function isObjEmpty(obj) {
     for (var prop in obj) {
       if (obj.hasOwnProperty(prop)) return false;
     }
     return true;
   }
-
   let check = isObjEmpty(dataUser);
 
   function handleChange(e) {
@@ -59,102 +57,74 @@ export default function PersonalDetails({ handleClick }) {
     );
   } else {
     return (
-      <div>
-        <div className="container1">
-          <div className="card">
-            {/* {<div>
-          <img src={"/"} alt="nf" />
-        </div>} */}
-            <div className="bienvenidos">
-              <h2 className="h2-reg">Complete los datos para su compra </h2>
+      <div style={{ backgroundColor: '#D8D2CB' }}>
+        <div className="flex justify-center text-center mx-auto py-5">
+          <div className="w-96">
+            <h1 className="grid rounded-md shadow-lg shadow-gray-500 px-3 py-3 text-white bg-sky-600 font-bold text-xl">
+              COMPLETE EL FORMULARIO PARA CONTINUAR SU COMPRA
+            </h1>
+          </div>
+        </div>
+        <div className="flex justify-center py-5" style={{ backgroundColor: '#D8D2CB' }}>
+          <div className="flex flex-col w-1/3">
+            <div className="-my-2 sm:-mx-6 lg:-mx-8">
+              <div className="py-6  inline-block sm:px-6 lg:px-8 w-full text-center">
+                <div className="shadow-lg shadow-gray-500 overflow-hidden border-b border-gray-200 sm:rounded-lg w-full">
+                  <form style={{ backgroundColor: '#EEEEEE' }} onSubmit={(e) => handleSubmit(e)}
+                    className='w-full py-2'
+                  >
+                    <h1 className="font-semibold text-lg">
+                      DATOS PERSONALES:
+                    </h1>
+                    <div>
+                      <div>
+                        <input id="inpt_reg_new" type="text" placeholder="Nombre" value={dataUser?.name} name="name" disabled
+                          className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
+                        />
+                      </div>
+                      <input id="inpt_reg_new2" type="text" placeholder="Apellido" value={dataUser?.lastName} name="lastName" disabled
+                        className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
+                      />
+                    </div>
+                    <div>
+                      <input id="inpt_reg_new3" type="text" maxLength="10" placeholder="DNI (Solo Numeros)" value={dataUser?.dni} name="dni" onChange={(e) => handleChange(e)}
+                        className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
+                      />
+                    </div>
+                    {errors.dni && <p className="errorMsg">{errors.dni}</p>}
+                    <div>
+                      <input id="inpt_reg_new4" type="text" placeholder="Mail" value={dataUser?.email} name="email" readOnly disabled
+                        className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
+                      />
+                    </div>
+                    <div>
+                      <input id="inpt_reg_new5" type="text" placeholder="Direccion" value={dataUser?.adress} name="adress" onChange={(e) => handleChange(e)}
+                        className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
+                      />
+                    </div>
+                    {errors.adress && <p className="errorMsg">{errors.adress}</p>}
+                    <div className="text-center py-2">
+                      <div className="flex justify-around">
+                        <button onClick={() => handleClick("OrderReview")} type="button"
+                          className="px-7 py-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                        >
+                          Volver
+                        </button>
+                        <button value="Submit" type="submit"
+                          className="px-4 py-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                        >
+                          Continuar
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-            <form className="formR" onSubmit={(e) => handleSubmit(e)}>
-              <div>
-                <div>
-                  <input
-                    id="inpt_reg_new"
-                    type="text"
-                    placeholder="Nombre"
-                    value={dataUser?.name}
-                    name="name"
-                    className="bg-black-100 border border-black-100 text-blackk-100 text-blackounded-lg focus:ring-black-100 focus:border-black-100 block w-full p-2.5 cursor-not-allowed dark:bg-black-100 dark:border-black-100 dark:placeholder-black-100 dark:text-black-100 dark:focus:ring-black-100 dark:focus:border-black-100"
-                    disabled
-                  />
-                </div>
-                <input
-                  className="bg-black-100 border border-black-100 text-blackk-100 text-blackounded-lg focus:ring-black-100 focus:border-black-100 block w-full p-2.5 cursor-not-allowed dark:bg-black-100 dark:border-black-100 dark:placeholder-black-100 dark:text-black-100 dark:focus:ring-black-100 dark:focus:border-black-100"
-                  id="inpt_reg_new2"
-                  type="text"
-                  placeholder="Apellido"
-                  value={dataUser?.lastName}
-                  name="lastName"
-                  disabled
-                />
-              </div>
-              <div className=" py-2">
-                <input
-                  className="bg-black-100 border border-black-100 text-blackk-100 focus:ring-black-100 focus:border-black-100 block w-full p-2.5 dark:bg-black-100 dark:border-black-100 dark:placeholder-black-100 dark:text-black-100 dark:focus:ring-black-100 dark:focus:border-black-100"
-                  id="inpt_reg_new3"
-                  type="text"
-                  maxLength="10"
-                  placeholder="DNI (Solo Numeros)"
-                  value={dataUser?.dni}
-                  name="dni"
-                  onChange={(e) => handleChange(e)}
-                />
-              </div>
-              {errors.dni && <p className="errorMsg">{errors.dni}</p>}
-              <div className=" py-2">
-                <input
-                  id="inpt_reg_new4"
-                  type="text"
-                  placeholder="Mail"
-                  value={dataUser?.email}
-                  name="email"
-                  readOnly
-                  className="bg-black-100 border border-black-100 text-blackk-100 text-blackounded-lg focus:ring-black-100 focus:border-black-100 block w-full p-2.5 cursor-not-allowed dark:bg-black-100 dark:border-black-100 dark:placeholder-black-100 dark:text-black-100 dark:focus:ring-black-100 dark:focus:border-black-100"
-                  disabled
-                />
-              </div>
-
-              <div className=" py-2">
-                <input
-                  id="inpt_reg_new5"
-                  type="text"
-                  placeholder="Direccion"
-                  value={dataUser?.adress}
-                  name="adress"
-                  onChange={(e) => handleChange(e)}
-                  className="bg-black-100 border border-black-100 text-blackk-100 focus:ring-black-100 focus:border-black-100 block w-full p-2.5 dark:bg-black-100 dark:border-black-100 dark:placeholder-black-100 dark:text-black-100 dark:focus:ring-black-100 dark:focus:border-black-100"
-                />
-              </div>
-              {errors.adress && <p className="errorMsg">{errors.adress}</p>}
-              <div className="botonesReg py-4">
-                <div className="flex flex-row w-fit m-1">
-                  <span className=" px-6  hidden content-end sm:block mb-10 mt-5">
-                    <button
-                      onClick={() => handleClick("OrderReview")}
-                      type="button"
-                      className="inline-flex items-center px-7 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                    >
-                      Volver
-                    </button>
-                  </span>
-                  <span className="hidden content-end sm:block mb-10 mt-5">
-                    <button
-                      value="Submit"
-                      type="submit"
-                      className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-400 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                    >
-                      Continuar
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </form>
           </div>
         </div>
       </div>
     );
   }
 }
+

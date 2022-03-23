@@ -16,7 +16,7 @@ export const AdminMailer = () => {
   }); //Estado para construir item y agregarlo al carrito
   const [errors, setErrors] = useState({}); //Estado para manejar los errores del formulario
   const [disabled, setDisabled] = useState(true); //Habilitador del botón submit cuando no haya ningun error en el formulario
-  const { allExcursions } = useExcursionsContext();
+  const { allExcursions, allOrders } = useExcursionsContext();
 
   useEffect(() => {
     //useEffect para habilitar o deshabilitar el boton create, cuando se cumplan ciertas condiciones
@@ -91,6 +91,20 @@ export const AdminMailer = () => {
     });
   };
 
+  let verified = false;
+  let productsCompleted = allOrders.filter((e) => e.status === "completed");
+  const result = productsCompleted.map((e) => e.products);
+  result.forEach((e) =>
+    e.forEach((prod) => {
+      if (
+        item.name === prod.name &&
+        item.date === prod.date &&
+        item.time === prod.time
+      ) {
+        return (verified = true);
+      }
+    })
+  );
   return (
     <div className="md:flex justify-center py-20 px-2 font-medium">
       <div className="md:w-3/5 lg:ml-8 md:ml-6 md:mt-0 mt-6">
@@ -145,6 +159,16 @@ export const AdminMailer = () => {
             />
             {errors.time?.length > 0 && <p>{errors?.time}</p>}
           </div>
+        </div>
+
+        <div>
+          {verified === true ? (
+            <div>
+              Tienes excursiones vendidas relacionadas a esta búsqueda, contáctalos !
+            </div>
+          ) : (
+            <div>No se encontraron ventas que coincidan con esta fecha</div>
+          )}
         </div>
         <div className="block mb-6 border-gray-200 items-center justify-around ">
           <p className=" py-3 text-gray-800">Asunto:</p>

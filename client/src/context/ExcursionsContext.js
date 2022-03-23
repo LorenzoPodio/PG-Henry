@@ -65,7 +65,6 @@ export const ExcursionsProvider = ({ children }) => {
       .then((resp) => {
         if (typeof resp.data?.isBanned !== "undefined") {
           setIsBanned(() => resp.data?.isBanned);
-          console.log("hola soy useEffectDeexcursionContext", resp);
         }
       })
       .catch((e) => console.log("error en getusers", e));
