@@ -5,16 +5,21 @@ import { useCartContext } from "../../context/CartContext";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export function Profile() {
+  // eslint-disable-next-line
   const { allOrders, submitData } = useExcursionsContext();
   const { user, dataUser, setDataUser, getDataUser } = useCartContext();
   const [completed, setCompleted] = useState([]);
   const [cancelled, setCancelled] = useState([]);
+  // eslint-disable-next-line
   const [currentOrders, setCurrentOrders] = useState([]);
 
 console.log('dataUser', dataUser)
 
   useEffect(() => {
     getDataUser();
+    // eslint-disable-next-line
+  }, [user]);
+  useEffect(()=>{
     if (dataUser) {
       axios
         .get(
@@ -33,8 +38,7 @@ console.log('dataUser', dataUser)
         .then((resp) => setCurrentOrders(() => resp.data));
     }
     // eslint-disable-next-line
-  }, [user, dataUser]);
-
+  },[dataUser])
   const handleChange = (e) => {
     setDataUser((prevState) => {
       return { ...prevState, [e.target.name]: e.target.value };
@@ -47,7 +51,7 @@ console.log('dataUser', dataUser)
   // const currentOrders = [];
   // // const cancelled = [];
   // // const completed = [];
-  let totalPurchase = 0;
+  
 
   // eslint-disable-next-line
   // allOrders?.map((o) => {
@@ -190,12 +194,10 @@ console.log('dataUser', dataUser)
                       Precio total final
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {currentOrders?.map((o) => {
-                        return o.order_details.forEach(
-                          (od) => (totalPurchase += od.totalPrice)
-                        );
-                      })}
-                      {totalPurchase}
+                    {cancelled?.reduce((accumulator, curr) => 
+                       accumulator + parseInt(curr.order_details[0].totalPrice),0
+                    )}
+                    
                     </dd>
                   </div>
                 </div>
@@ -245,10 +247,15 @@ console.log('dataUser', dataUser)
             <dl>
               {completed?.map((o, i) => (
                 <div key={i}>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt className="text-sm font-medium text-gray-500">Orden</dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                       {o.id}
+                    </dd>
+                    
+                    <dt className="text-sm font-medium text-gray-500">Fecha</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {o.date}
                     </dd>
                   </div>
 
@@ -304,12 +311,10 @@ console.log('dataUser', dataUser)
                       Precio total final
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {currentOrders?.map((o) => {
-                        return o.order_details.forEach(
-                          (od) => (totalPurchase += od.totalPrice)
-                        );
-                      })}
-                      {totalPurchase}
+                      {completed?.reduce((accumulator, curr) => 
+                       accumulator + parseInt(curr.order_details[0].totalPrice),0
+                    )}
+                    
                     </dd>
                   </div>
                 </div>
