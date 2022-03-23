@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import NewReview from "./NewReview";
 import { Fragment } from "react";
@@ -18,27 +18,27 @@ const star = (
 
 export const Testimonials = ({ id }) => {
   const { getReviews, reviews } = useExcursionsContext();
+  const [stars, setStars] = useState({})
+  
 
-  const oneStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 1 : reviews.length) +
-    "%";
-  const twoStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 2 : reviews.length) +
-    "%";
-  const threeStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 3 : reviews.length) +
-    "%";
-  const fourStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 4 : reviews.length) +
-    "%";
-  const fiveStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 5 : reviews.length) +
-    "%";
+  useEffect(()=>{
+    setStars((prevState)=> { return {...prevState, oneStar: reviews?.filter((e) => e.rating === "1").length*100 /
+    (reviews?.length === 0 ? 1 : reviews?.length) +
+    "%"}})
+    setStars((prevState)=> { return {...prevState, twoStar: reviews?.filter((e) => e.rating === "2").length*100 /
+    (reviews?.length === 0 ? 1 : reviews?.length) +
+    "%"}})
+    setStars((prevState)=> { return {...prevState, threeStar: reviews?.filter((e) => e.rating === "3").length*100 /
+    (reviews?.length === 0 ? 1 : reviews?.length) +
+    "%"}})
+    setStars((prevState)=> { return {...prevState, fourStar: reviews?.filter((e) => e.rating === "4").length*100 /
+    (reviews?.length === 0 ? 1 : reviews?.length) +
+    "%"}})
+    setStars((prevState)=> { return {...prevState, fiveStar: reviews?.filter((e) => e.rating === "5").length*100 /
+    (reviews?.length === 0 ? 1 : reviews?.length) +
+    "%"}})
+  },[reviews])
+  
 
   useEffect(() => {
     if (typeof id !== "undefined") {
@@ -46,6 +46,7 @@ export const Testimonials = ({ id }) => {
     }
     // eslint-disable-next-line
   }, []);
+
 
   return (
     <div className="mx-auto bg-white shadow-lg rounded-lg my-32 px-4 py-4 max-w-sm ">
@@ -82,14 +83,14 @@ export const Testimonials = ({ id }) => {
               <div className="bg-gray-300 w-full rounded-lg h-2">
                 <div
                   className=" bg-sky-600 rounded-lg h-2"
-                  style={{ width: fiveStar }}
+                  style={{ width: stars.fiveStar }}
                 ></div>
               </div>
             </div>
             <div className="w-1/5 text-gray-700 pl-3">
               <span className="text-sm">
-                {reviews.filter((e) => e.rating === 5).length /
-                  (reviews.length === 0 ? 1 : reviews.length)}
+                {reviews?.filter((e) => e.rating === "5").length*100 /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
                 %
               </span>
               {/* aca hay que poner logica para porcentajes */}
@@ -109,14 +110,14 @@ export const Testimonials = ({ id }) => {
               <div className="bg-gray-300 w-full rounded-lg h-2">
                 <div
                   className="bg-sky-600 rounded-lg h-2"
-                  style={{ width: fourStar }}
+                  style={{ width: stars.fourStar }}
                 ></div>
               </div>
             </div>
             <div className="w-1/5 text-gray-700 pl-3">
               <span className="text-sm">
-                {reviews.filter((e) => e.rating === 4).length /
-                  (reviews.length === 0 ? 1 : reviews.length)}
+                {reviews?.filter((e) => e.rating === "4").length*100 /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
                 %
               </span>
 
@@ -136,14 +137,14 @@ export const Testimonials = ({ id }) => {
               <div className="bg-gray-300 w-full rounded-lg h-2">
                 <div
                   className="  bg-sky-600 rounded-lg h-2 "
-                  style={{ width: threeStar }}
+                  style={{ width: stars.threeStar }}
                 ></div>
               </div>
             </div>
             <div className="w-1/5 text-gray-700 pl-3">
               <span className="text-sm">
-                {reviews.filter((e) => e.rating === 3).length /
-                  (reviews.length === 0 ? 1 : reviews.length)}
+                {reviews?.filter((e) => e.rating === "3").length*100 /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
                 %
               </span>
 
@@ -162,14 +163,14 @@ export const Testimonials = ({ id }) => {
               <div className="bg-gray-300 w-full rounded-lg h-2">
                 <div
                   className="  bg-sky-600 rounded-lg h-2"
-                  style={{ width: twoStar }}
+                  style={{ width: stars.twoStar }}
                 ></div>
               </div>
             </div>
             <div className="w-1/5 text-gray-700 pl-3">
               <span className="text-sm">
-                {reviews.filter((e) => e.rating === 2).length /
-                  (reviews.length === 0 ? 1 : reviews.length)}
+                {reviews?.filter((e) => e.rating === "2").length*100 /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
                 %
               </span>
 
@@ -185,14 +186,14 @@ export const Testimonials = ({ id }) => {
               <div className="bg-gray-300 w-full rounded-lg h-2">
                 <div
                   className=" bg-sky-600 rounded-lg h-2"
-                  style={{ width: oneStar }}
+                  style={{ width: stars.oneStar }}
                 ></div>
               </div>
             </div>
             <div className="w-1/5 text-gray-700 pl-3">
               <span className="text-sm">
-                {reviews.filter((e) => e.rating === 1).length /
-                  (reviews.length === 0 ? 1 : reviews.length)}
+                {reviews?.filter((e) => e.rating === "1").length*100 /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
                 %
               </span>
 
