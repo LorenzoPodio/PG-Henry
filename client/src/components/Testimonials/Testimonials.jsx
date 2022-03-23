@@ -19,7 +19,6 @@ const star = (
 export const Testimonials = ({ id }) => {
   const { getReviews, reviews } = useExcursionsContext();
 
-  console.log("reviews", reviews);
   useEffect(() => {
     if (typeof id !== "undefined") {
       getReviews(id);
@@ -27,7 +26,6 @@ export const Testimonials = ({ id }) => {
     // eslint-disable-next-line
   }, []);
 
-  console.log("reviews en TEstimonials.jsx", reviews);
   return (
     <div className="mx-auto bg-white shadow-lg rounded-lg my-32 px-4 py-4 max-w-sm ">
       <div className="mb-1 tracking-wide px-4 py-4">
@@ -180,7 +178,7 @@ export const Testimonials = ({ id }) => {
       </div>
       <div>
         {reviews ? (
-          reviews?.map((e) => <TestimonialCard props={e} />)
+          reviews?.map((e,i) => <TestimonialCard props={e} key={i}/>)
         ) : (
           <div>
             <div className="w-full lg:w-1/2">

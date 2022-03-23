@@ -121,7 +121,7 @@ export const ExcursionsProvider = ({ children }) => {
         swal({
           title: "Ops...",
           icon: "error",
-          text: "No puede agregar mas de una opinión por excursión",
+          text: "Hubo un inconveniente",
         });
         return console.log(e);
       });

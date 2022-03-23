@@ -60,15 +60,15 @@ function NewReview({ id }) {
             onChange={(e) => handleChange(e)}
           >
             <input id="radio1" type="radio" name="rating" value="5" />
-            <label for="radio1">{star}</label>
+            <label htmlFor="radio1">{star}</label>
             <input id="radio2" type="radio" name="rating" value="4" />
-            <label for="radio2">{star}</label>
+            <label htmlFor="radio2">{star}</label>
             <input id="radio3" type="radio" name="rating" value="3" />
-            <label for="radio3">{star}</label>
+            <label htmlFor="radio3">{star}</label>
             <input id="radio4" type="radio" name="rating" value="2" />
-            <label for="radio4">{star}</label>
+            <label htmlFor="radio4">{star}</label>
             <input id="radio5" type="radio" name="rating" value="1" />
-            <label for="radio5">{star}</label>
+            <label htmlFor="radio5">{star}</label>
           </div>
         </div>
         <div className="mb-4">

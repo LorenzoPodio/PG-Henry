@@ -15,7 +15,7 @@ addReview.post("/:id", async (req, res, next) => {
 
     const orders = await Order.findAll({
       where: {
-        status: ["buying"], //esto iría en completed pero esta en buying para testear
+        status: ["completed"], //esto iría en completed pero esta en buying para testear
         userId: getUserId?.dataValues.id,
       },
       include: [
