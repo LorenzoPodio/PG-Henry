@@ -55,23 +55,12 @@ export default function SearchBar(props) {
 
   return (
     <div
-      style={{
-        margin: "2.5px 3.5px",
-        border: "solid black 1.95px",
-        borderRadius: "6px",
-        padding: "5px 10px",
-        width: "305px",
-      }}
+      className="justify-self-end w-full md:w-3/5 lg:w-3/5 xl:w-3/5 mx-1 my-0 text-right"
     >
       {
         <form onSubmit={(e) => handleSubmit(e)}>
           <input
-            style={{
-              border: "solid black 1.8px",
-              borderRadius: "8px",
-              marginRight: "8px",
-              paddingLeft: "4px",
-            }}
+            className="shadow-lg shadow-gray-400 hover:shadow-md hover:shadow-black text-center text-base font-semibold rounded-md h-9 mx-1 w-3/5"
             type="text"
             name="search"
             pattern=".*\S.*"
@@ -79,12 +68,7 @@ export default function SearchBar(props) {
             onChange={handleInputChanges}
           />
           <button
-            style={{
-              margin: "5px 5px",
-              border: "solid orange 1.6px",
-              borderRadius: "4px",
-              padding: "1.5px 3.6px",
-            }}
+            className="bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-gray-400 hover:shadow-md hover:shadow-black font-bold rounded-md mt-1 px-4 py-1 h-8"
             type="submit"
           >
             <span>Buscar</span>

@@ -18,7 +18,9 @@ conn.sync({ force: true }).then(() => {
       price: e.price,
       extra: e.extra,
       excursionType: e.excursionType,
-      stock: e.stock
+      stock: e.stock,
+      lat: e.lat,
+      long: e.long
     }).catch((err) => console.log(err))
     )
 

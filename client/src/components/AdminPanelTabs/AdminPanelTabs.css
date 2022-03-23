@@ -52,7 +52,7 @@ button {
   flex-grow : 1;
 }
 .content {
-  background: white;
+  background: #EEEEEE;
   width: 100%;
   height: 100%;
   display: none;

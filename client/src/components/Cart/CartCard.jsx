@@ -12,7 +12,7 @@ export const CartCard = ({ detailId, name, images, date, time, price, quantity, 
   }
 
   return (
-    <div className="flex px-2 py-1 mb-2 content-center justify-evenly rounded-md  bg-white sm:grid-rows-3">
+    <div className="flex px-2 py-1 mb-2 content-center justify-evenly rounded-md bg-slate-100 sm:grid-rows-3">
       {/* <NavLink
         // key={id}
         // to={`/excursion/detalle/${id}`}
@@ -60,7 +60,7 @@ export const CartCard = ({ detailId, name, images, date, time, price, quantity, 
 
         <button
           onClick={handelRemove}
-          className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded-md"
+          className="px-2 py-1 bg-red-600 hover:bg-red-700 hover:shadow-black shadow-md shadow-gray-500 text-white rounded-md"
         >
           <TrashIcon className="h-5 w-5 text-white-500" aria-hidden="true" />
         </button>

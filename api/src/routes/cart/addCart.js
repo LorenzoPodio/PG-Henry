@@ -16,8 +16,9 @@ addCart.post("/", async (req, res, next) => {
     } else {
       const getUserId = await User.findOne({
         where: {
-         email: email
-        }, attributes: ["id"],
+          email: email,
+        },
+        attributes: ["id"],
       });
       const stateCart = await Order.findOne({
         where: {
@@ -42,6 +43,7 @@ addCart.post("/", async (req, res, next) => {
         {
           where: {
             userId: stateCart?.dataValues.userId,
+            status: "empty",
           },
         }
       );

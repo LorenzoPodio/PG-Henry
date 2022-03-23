@@ -5,27 +5,33 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Cart from "../Cart/Cart";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import swal from "sweetalert";
 import { useCartContext } from "../../context/CartContext";
 
 const NavBar2 = () => {
-  const [check, setCheck] = useState(true);
-  const [navigation, setNavigation] = useState([
-    { name: "Excursiones", href: "/excursiones", current: false },
-    { name: "Tarifas", href: "/tarifas", current: false },
-    { name: "Sobre Nosotros", href: "/nosotros", current: false },
-    { name: "Panel Admin", href: "/panelAdmin", current: false },
-  ]);
+  
+  const { addUser, isBanned } = useExcursionsContext();
+  const { createCart, cartItems, isAdmin } = useCartContext();
+  const [navigation, setNavigation] = useState();
+  const { loginWithRedirect, logout, user, isLoading} = useAuth0();
 
-  // const [navigationAdmin, setNavigationAdmin] = useState([
-  //   { name: "Excursiones", href: "/excursiones", current: false },
-  //   { name: "Tarifas", href: "/tarifas", current: false },
-  //   { name: "Sobre Nosotros", href: "/nosotros", current: false },
-  //   { name: "Panel Admin", href: "/panelAdmin", current: false },
-  // ]);
-
-  const { loginWithRedirect, logout, user, isLoading } = useAuth0();
-
+  useEffect(() => {
+    if (isAdmin) {
+      setNavigation([
+        { name: "Excursiones", href: "/excursiones", current: false },
+        { name: "Tarifas", href: "/tarifas", current: false },
+        { name: "Sobre Nosotros", href: "/nosotros", current: false },
+        { name: "Panel Admin", href: "/panelAdmin", current: false },
+      ]);
+    } else {
+      setNavigation([
+        { name: "Excursiones", href: "/excursiones", current: false },
+        { name: "Tarifas", href: "/tarifas", current: false },
+        { name: "Sobre Nosotros", href: "/nosotros", current: false },
+      ]);
+    }
+  
+  }, [isAdmin]);
+  
   const [usuario, setUsuario] = useState({
     email: "0",
     name: "0",
@@ -33,16 +39,11 @@ const NavBar2 = () => {
     picture: "",
   });
 
-  const { addUser } = useExcursionsContext();
-
-  const { createCart, cartItems } = useCartContext();
-
   useEffect(() => {
-    setCheck(() => false);
     addUser(usuario);
     createCart(usuario.email);
     // eslint-disable-next-line
-  }, [user]);
+  }, [user,usuario]);
 
   function handleClick(e) {
     navigation?.map((item) => {
@@ -59,64 +60,21 @@ const NavBar2 = () => {
     return classes.filter(Boolean).join(" ");
   }
 
+
   if (user && usuario.email === "0") {
     setUsuario((prevState) => {
       return {
         ...prevState,
-        email: user.email,
-      };
-    });
-
-    setUsuario((prevState) => {
-      return {
-        ...prevState,
+        email: user?.email,
         picture: user?.picture,
+        name: user.given_name,
+        lastName: user.family_name,
       };
     });
-
-    if (user.sub.search("google") === -1 && check) {
-      swal("Complete su nombre aqui:", {
-        content: "input",
-      }).then((value) => {
-        setUsuario((prevState) => {
-          return {
-            ...prevState,
-            name: value,
-          };
-        });
-        swal(`Su nombre es: ${value}`);
-
-        swal("Complete su apellido aqui:", {
-          content: "input",
-        }).then((value) => {
-          setUsuario((prevState) => {
-            return {
-              ...prevState,
-              lastName: value,
-            };
-          });
-
-          swal(`Sus datos fueron completados con exito!`);
-        });
-      });
-    } else {
-      setUsuario((prevState) => {
-        return {
-          ...prevState,
-          name: user.given_name,
-        };
-      });
-      setUsuario((prevState) => {
-        return {
-          ...prevState,
-          lastName: user.family_name,
-        };
-      });
-    }
   }
 
   return (
-    <Disclosure as="nav" className="bg-sky-600">
+    <Disclosure as="nav" className="sticky -top-16 z-20 bg-sky-600">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -135,7 +93,7 @@ const NavBar2 = () => {
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
                   <button value={""} onClick={(e) => handleClick(e)}>
-                    <Link to="/">
+                    <Link to="/excursiones">
                       <img
                         className="block lg:hidden h-8 w-auto"
                         src="https://img.icons8.com/color/48/000000/around-the-globe.png"
@@ -144,7 +102,7 @@ const NavBar2 = () => {
                     </Link>
                   </button>
                   <button value={""} onClick={(e) => handleClick(e)}>
-                    <Link to="/">
+                    <Link to="/excursiones">
                       <img
                         className="hidden lg:block h-8 w-auto"
                         src="https://img.icons8.com/color/48/000000/around-the-globe.png" //desktop logo + nombre
@@ -155,7 +113,7 @@ const NavBar2 = () => {
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation?.map((item) => (
                       <Link key={item.href} to={item.href}>
                         <button
                           key={item.name}
@@ -180,8 +138,9 @@ const NavBar2 = () => {
                 {!user && !isLoading ? (
                   <>
                     <button
+                    type='reset'
                       className="text-white hover:bg-sky-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                      onClick={async () => await loginWithRedirect()}
+                      onClick={async () => await loginWithRedirect({ connection: 'google-oauth2' })}
                     >
                       Log in
                     </button>
@@ -189,7 +148,7 @@ const NavBar2 = () => {
                 ) : (
                   <>
                     <Menu as="div" className="ml-3 relative">
-                      <div style={{ display: "flex", margin: "1rem" }}>
+                     { !isBanned && <div style={{ display: "flex", margin: "1rem" }}>
                         <Menu.Button className="bg-sky-600 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Carrito</span>
                           <ShoppingCartIcon
@@ -199,7 +158,7 @@ const NavBar2 = () => {
 
                           <span>{cartItems.length}</span>
                         </Menu.Button>
-                      </div>
+                      </div> }
                       <Transition
                         as={Fragment}
                         enter="transition ease-out duration-100"
@@ -222,11 +181,11 @@ const NavBar2 = () => {
                       <div>
                         <Menu.Button className="bg-sky-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                           <span className="sr-only">Open user menu</span>
-                          {usuario?.picture.length > 0 ? (
+                          {user?.picture ? (
                             <img
                               className="h-8 w-8 rounded-full"
-                              src={usuario?.picture}
-                              alt="User profile"
+                              src={user?.picture}
+                              alt=" "
                             />
                           ) : (
                             <img
@@ -285,7 +244,7 @@ const NavBar2 = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item, i) => (
+              {navigation?.map((item, i) => (
                 <Disclosure.Button key={i}>
                   <Link to={item.href}>
                     <button

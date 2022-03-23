@@ -11,18 +11,36 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [dataUser, setDataUser] = useState({
+    adress: "",
+    dni: "",
+    email: "",
+    id: 3,
+    isAdmin: false,
+    isBanned: false,
+    lastName: "",
+    name: "s",
+  });
 
   useEffect(() => {
     if (user) {
       axios
-        .get(`/cart/getorderid/${user.email}`)
+
+        .get(`/cart/getorderid/${user?.email}`)
+
         .then((resp) => {
           return setCartItems(() => resp.data);
         })
         .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
+      axios
+        .get(`http://localhost:3001/getusers?email=${user?.email}`)
+        .then((resp) => {
+          setIsAdmin(() => resp.data.isAdmin);
+        })
+        .catch((e) => console.log("error en getusers", e));
     }
   }, [user]);
-
 
   const addItemToCart = (item) => {
     axios
@@ -41,17 +59,31 @@ export const CartProvider = ({ children }) => {
       });
   };
 
-  const removeItemFromCart = async item => {
-    try {
-      const { data } = await axios.put('/cart/substractcart', item);
-      return setCartItems(() => data);
-    } catch (error) {
-      swal("Algo salió mal", error , {
-        icon: "error",
-      });
-      return console.log('ERROR:', error);
+  //Función para traer datos de el usuario actualmente logeado.
+  function getDataUser() {
+    if (typeof user?.email !== "undefined") {
+      axios
+        .get(`http://localhost:3001/getusers?email=${user?.email}`)
+        .then((resp) => {
+          setDataUser(() => resp.data);
+        })
+        .catch((e) => console.log("error en getusers", e));
     }
   }
+
+  const removeItemFromCart = async (item) => {
+    try {
+
+      const { data } = await axios.put('/cart/substractcart', item);
+
+      return setCartItems(() => data);
+    } catch (error) {
+      swal("Algo salió mal", error, {
+        icon: "error",
+      });
+      return console.log("ERROR:", error);
+    }
+  };
 
   const createCart = (email) => {
     let mail = {};
@@ -59,9 +91,7 @@ export const CartProvider = ({ children }) => {
     return axios
       .post("/cart/orderpost", mail)
       .then((response) => response.data)
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
 
   return (
@@ -73,7 +103,11 @@ export const CartProvider = ({ children }) => {
         setLoading,
         loading,
         user,
-        removeItemFromCart
+        removeItemFromCart,
+        isAdmin,
+        getDataUser,
+        dataUser,
+        setDataUser,
       }}
     >
       {children}

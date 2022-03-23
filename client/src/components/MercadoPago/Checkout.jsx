@@ -8,9 +8,11 @@ export default function Checkout({ products, data }) {
     attr_data_preference.value = data.id; //Le asigna como valor el id que devuelve MP
 
     //Agrega atributos al elemento script
-    script.src =
-      "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+    script.src ="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
     script.setAttributeNode(attr_data_preference);
+    script.class= 'px-4 py-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500';
+    script.setAttributeNode(attr_data_preference);
+
 
     //Agrega el script como nodo hijo del elemento form
     document.getElementById("form1").appendChild(script);
@@ -31,30 +33,26 @@ export default function Checkout({ products, data }) {
           <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                <div className="overflow-hidden shadow-md sm:rounded-lg">
+                <div className="overflow-hidden shadow-lg shadow-gray-500 sm:rounded-lg m-5">
                   <table className="min-w-full">
                     <thead className="bg-sky-600">
                       <tr>
-                        <th
-                          scope="col"
+                        <th scope="col"
                           className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white"
                         >
                           sus excursiones
                         </th>
-                        <th
-                          scope="col"
+                        <th scope="col"
                           className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white"
                         >
                           cantidad
                         </th>
-                        <th
-                          scope="col"
+                        <th scope="col"
                           className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white"
                         >
                           horario elegido
                         </th>
-                        <th
-                          scope="col"
+                        <th scope="col"
                           className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-white "
                         >
                           precio
@@ -66,24 +64,26 @@ export default function Checkout({ products, data }) {
                     <tbody>
                       {products?.map((producto,i) => {
                         return(
-                      <tr key={i} className="bg-white border-b dark:bg-white-800 dark:border-white-700 bg-sky-400">
-                        <td className="py-4 px-6 text-sm font-medium text-white-900 whitespace-nowrap dark:text-white bg-sky-400">
+                      <tr key={i} className="border-b dark:bg-white-800 dark:border-white-700 bg-white">
+                        <td className="py-4 px-6 text-sm font-medium text-white-900 whitespace-nowrap">
                         {producto.product.name}
                         </td>
-                        <td className="py-4 px-6 text-sm font-medium text-white-500 whitespace-nowrap dark:text-white-400 bg-sky-400">
+                        <td className="py-4 px-6 text-sm font-medium text-white-500 whitespace-nowrap">
                         {producto.quantity} 
                         </td>
-                        <td className="py-4 px-6 text-sm font-medium text-white-500 whitespace-nowrap dark:text-white-400 bg-sky-400">
+                        <td className="py-4 px-6 text-sm font-medium text-white-500 whitespace-nowrap">
                           {producto.product.time} hs
                         </td>
-                        <td className="py-4 px-6 text-sm font-medium text-white-500 whitespace-nowrap dark:text-white-400 bg-sky-400">
+                        <td className="py-4 px-6 text-sm font-medium text-white-500 whitespace-nowrap">
                         {"$ " + producto.price}
                         </td>                      
                       </tr>
                       )})}
                     </tbody>
                   </table>
-                    <div className="py-3 px-6 text-xs font-medium tracking-wider text-rigth text-gray-700 uppercase dark:text-black-400">{"Precio a abonar total: $" + totalbuy}</div>
+                    <div className="py-3 px-6 text-base font-medium tracking-wider text-center uppercase" style={{ backgroundColor: '#D8D2CB' }}>
+                      {"Precio total a abonar: $" + totalbuy}
+                    </div>
                 </div>
               </div>
             </div>

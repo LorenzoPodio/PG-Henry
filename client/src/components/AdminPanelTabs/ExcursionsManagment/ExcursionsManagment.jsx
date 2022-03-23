@@ -24,14 +24,13 @@ export const ExcursionsManagment = () => {
   }
 
   return (
-    <div className="grid place-content-center bg-emerald-700" id="top">
-      <h1 className="grid place-content-center mt-0">PANEL DE CONTROL</h1>
-      <div className="flex flex-col w-fit mb-10">
-        <span className="hidden content-end sm:block mb-10 mt-5">
+    <div className="grid place-content-center" id="top">
+      <div className="flex flex-col mb-10">
+        <div className="hidden content-end sm:block mb-10 mt-5 px-8">
           <Link to="/crearExcursion">
             <button
               type="button"
-              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              className="shadow-lg shadow-gray-500 inline-flex items-center px-4 py-2 rounded-md text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
               <PlusCircleIcon
                 className="-ml-1 mr-2 h-5 w-5 text-white-500"
@@ -40,49 +39,28 @@ export const ExcursionsManagment = () => {
               Agregar Excursion
             </button>
           </Link>
-        </span>
+        </div>
 
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-10 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
+        <div className="overflow-x-auto">
+          <div className="pb-6 align-middle inline-block sm:px-6 lg:px-8">
+            <div className="shadow-lg shadow-gray-500 overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              <table className="divide-y divide-gray-200">
+                <thead className="bg-sky-600 text-white">
+                  <tr className="">
+                    <th scope="col" className="px-10 py-3 text-left text-xs font-medium uppercase tracking-wider">
                       nombre
                     </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
+                    <th scope="col" className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                       locacion
                     </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
+                    <th scope="col" className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                       tipo
                     </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
+                    <th scope="col" className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                       precio
                     </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      editar
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      borrar
+                    <th scope="col" className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                      acciones
                     </th>
                   </tr>
                 </thead>
@@ -91,34 +69,30 @@ export const ExcursionsManagment = () => {
                     allExcursions.map((e) => {
                       return (
                         <tr key={e.name}>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center">
-                              <div className="ml-4">
-                                <div className="text-sm font-medium text-gray-900">
-                                  {e.name}
-                                </div>
-                              </div>
+                          <td className="px-3 text-left py-3 whitespace-nowrap">
+                            <div className="overflow-x-auto w-20 lg:text-sm text-xs font-medium text-gray-900 sm:w-32 md:w-44 lg:w-full xl:w-full 2xl:w-full">
+                              {e.name}
                             </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm text-gray-900">
+                          <td className="px-3 text-center py-3 whitespace-nowrap">
+                            <div className="lg:text-sm text-xs text-gray-900">
                               {e.location}
                             </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-3 text-center py-3 whitespace-nowrap lg:text-sm text-xs text-gray-500">
                             {e.excursionType}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-3 text-center py-3 whitespace-nowrap lg:text-sm text-xs text-gray-500">
                             {e.price}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <span className="hidden sm:block">
+                          <td className="inline-flex px-3 text-center py-3 whitespace-nowrap lg:text-sm text-xs text-gray-500">
+                            <div className="hidden sm:block">
                               <Link
                                 to={`/editarExcursion?id=${e.id}&name=${e.name}`}
                               >
                                 <button
                                   type="button"
-                                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-300 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                                  className="inline-flex items-center px-4 py-2 shadow-lg shadow-gray-500 hover:shadow-black rounded-md lg:text-sm text-xs font-medium text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                                 >
                                   <PencilIcon
                                     className="-ml-1 mr-2 h-5 w-5 text-white-500"
@@ -127,16 +101,14 @@ export const ExcursionsManagment = () => {
                                   Editar
                                 </button>
                               </Link>
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <span className="hidden sm:block">
+                            </div>
+                            <div className="hidden sm:block ml-3">
                               <button
                                 onClick={(e) => handleDelete(e)}
                                 type="button"
                                 value={e.id}
                                 name={e.name}
-                                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                className="inline-flex items-center px-4 py-2 shadow-lg shadow-gray-500 hover:shadow-black rounded-md lg:text-sm text-xs font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                               >
                                 <TrashIcon
                                   className="-ml-1 mr-2 h-5 w-5 text-white-500"
@@ -144,7 +116,7 @@ export const ExcursionsManagment = () => {
                                 />
                                 Borrar
                               </button>
-                            </span>
+                            </div>
                           </td>
                         </tr>
                       );
