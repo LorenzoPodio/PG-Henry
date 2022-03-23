@@ -1,34 +1,75 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useExcursionsContext } from "../../context/ExcursionsContext";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
+import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export function Profile() {
-  const { user } = useAuth0();
-  const { allOrders, users } = useExcursionsContext();
+  const { submitData } = useExcursionsContext();
+  const { user, dataUser, setDataUser, getDataUser } = useCartContext();
+  const [completed, setCompleted] = useState([]);
+  const [cancelled, setCancelled] = useState([]);
+  // eslint-disable-next-line
+  const [currentOrders, setCurrentOrders] = useState([]);
 
-  const currentOrders = [];
-  const cancelled = [];
-  const completed = [];
-  let totalPurchase = 0;
-  let usuario = {};
+
+  useEffect(() => {
+    getDataUser();
+    // eslint-disable-next-line
+  }, [user]);
+  useEffect(()=>{
+    if (dataUser) {
+      axios
+        .get(
+          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}&status=cancelled`
+        )
+        .then((resp) => setCancelled(() => resp.data));
+      axios
+        .get(
+          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}&status=completed`
+        )
+        .then((resp) => setCompleted(() => resp.data));
+      axios
+        .get(
+          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}`
+        )
+        .then((resp) => setCurrentOrders(() => resp.data));
+    }
+    // eslint-disable-next-line
+  },[dataUser])
+  const handleChange = (e) => {
+    setDataUser((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
+  };
+  const handleClick = () => {
+    submitData(dataUser);
+  };
+
+  // const currentOrders = [];
+  // // const cancelled = [];
+  // // const completed = [];
+  
 
   // eslint-disable-next-line
-  allOrders?.map((o) => {
-    if (o?.user?.email === user?.email) {
-      return currentOrders.push(o);
-    }
-  });
-  // eslint-disable-next-line
-  currentOrders?.map((o) => {
-    if (o.status === "completed") {
-      return completed.push(o);
-    } else if (o.status === "cancelled") {
-      return cancelled.push(o);
-    }
-  });
+  // allOrders?.map((o) => {
+  //   if (o?.user?.email === user?.email) {
+  //     return currentOrders.push(o);
+  //   }
+  // });
+  // // eslint-disable-next-line
+  // currentOrders?.map((o) => {
+  //   if (o.status === "completed") {
+  //     return setCompleted((prevState) => {
+  //       return [...prevState, o];
+  //     });
+  //   } else if (o.status === "cancelled") {
+  //     return setCancelled((prevState) => {
+  //       return [...prevState, o];
+  //     });
+  //   }
+  // });
 
-  usuario = users?.find((u) => u.email === user?.email);
 
   return (
     <div className="grid place-content-center">
@@ -42,7 +83,7 @@ export function Profile() {
               <dt className="text-sm font-medium text-gray-500">Full name</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                 {user?.sub?.search("google") === -1
-                  ? usuario?.name + " " + usuario?.lastName
+                  ? dataUser?.name + " " + dataUser?.lastName
                   : user?.name}
               </dd>
             </div>
@@ -51,30 +92,32 @@ export function Profile() {
                 Email address
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {user?.email}
+                {dataUser?.email}
               </dd>
             </div>
 
-            {usuario?.adress && usuario?.dni ? (
-              <>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Direccion
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {usuario?.adress}
-                  </dd>
-                </div>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">DNI</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {usuario?.dni}
-                  </dd>
-                </div>
-              </>
-            ) : (
-              <></>
-            )}
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Direccion</dt>
+              <input
+                className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                value={dataUser?.adress}
+                name="adress"
+                placeholder="Dirección"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">DNI</dt>
+              <input
+                className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                value={dataUser?.dni}
+                name="dni"
+                placeholder="Dni"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+
+            <button onClick={() => handleClick()}>Editar</button>
           </dl>
         </div>
       </div>
@@ -150,12 +193,9 @@ export function Profile() {
                       Precio total final
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {currentOrders?.map((o) => {
-                        return o.order_details.forEach(
-                          (od) => (totalPurchase += od.totalPrice)
-                        );
-                      })}
-                      {totalPurchase}
+                    {cancelled?.reduce((accumulator, curr) => 
+                       accumulator + parseInt(curr.order_details[0].totalPrice),0
+                    )}
                     </dd>
                   </div>
                 </div>
@@ -205,10 +245,14 @@ export function Profile() {
             <dl>
               {completed?.map((o, i) => (
                 <div key={i}>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt className="text-sm font-medium text-gray-500">Orden</dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                       {o.id}
+                    </dd>     
+                    <dt className="text-sm font-medium text-gray-500">Fecha</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {o.date}
                     </dd>
                   </div>
 
@@ -264,12 +308,9 @@ export function Profile() {
                       Precio total final
                     </dt>
                     <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {currentOrders?.map((o) => {
-                        return o.order_details.forEach(
-                          (od) => (totalPurchase += od.totalPrice)
-                        );
-                      })}
-                      {totalPurchase}
+                      {completed?.reduce((accumulator, curr) => 
+                       accumulator + parseInt(curr.order_details[0].totalPrice),0
+                    )}
                     </dd>
                   </div>
                 </div>

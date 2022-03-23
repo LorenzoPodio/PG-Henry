@@ -1,61 +1,52 @@
-import React, { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React, { useState, useEffect } from "react";
+import { useCartContext } from "../../context/CartContext";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 import swal from "sweetalert";
 
 export default function PersonalDetails({ handleClick }) {
-  const { user } = useAuth0();
-  const { submitDates, users } = useExcursionsContext();
   // eslint-disable-next-line
   const [errors, setErrors] = useState({});
-  let usuario = {}
-  usuario = users?.find((u) => u.email === user?.email)
-  const [input, setInput] = useState({
-    name: usuario?.name,
-    lastName: usuario?.lastName,
-    dni: usuario?.dni ? usuario?.dni : "",
-    email: usuario?.email,
-    adress: usuario?.adress ? usuario.adress : ""
-  });
+  const {dataUser, getDataUser, setDataUser} = useCartContext();
+  const {submitData} = useExcursionsContext();
 
+  useEffect(()=> {
+    getDataUser()
+    // eslint-disable-next-line
+  }, [])
   function isObjEmpty(obj) {
     for (var prop in obj) {
       if (obj.hasOwnProperty(prop)) return false;
     }
     return true;
   }
-
-  let check = isObjEmpty(usuario)
+  let check = isObjEmpty(dataUser);
 
   function handleChange(e) {
     e.preventDefault();
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    })
+    setDataUser((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
   }
 
   function handleSubmit(e) {
-    if (input.dni.length === 0
-      ||
-      input.dni.length > 8 ||
-      input.adress.length <= 0
+    if (
+      dataUser.dni.length === 0 ||
+      dataUser.dni.length > 8 ||
+      dataUser.adress.length <= 0
     ) {
       e.preventDefault();
-      swal(
-        {
-          icon: "error",
-          text: "Complete todos los campos para continuar"
-        }
-      )
+      swal({
+        icon: "error",
+        text: "Complete todos los campos para continuar",
+      });
     } else {
       e.preventDefault();
-      submitDates(input);
-      handleClick("Payment")
+      submitData(dataUser);
+      handleClick("Payment");
     }
   }
   if (check) {
-    isObjEmpty(usuario)
+    isObjEmpty(dataUser);
     return (
       <div className="flex justify-around">
         <img
@@ -64,9 +55,7 @@ export default function PersonalDetails({ handleClick }) {
         />
       </div>
     );
-
-  }
-  else {
+  } else {
     return (
       <div style={{ backgroundColor: '#D8D2CB' }}>
         <div className="flex justify-center text-center mx-auto py-5">
@@ -89,27 +78,27 @@ export default function PersonalDetails({ handleClick }) {
                     </h1>
                     <div>
                       <div>
-                        <input id="inpt_reg_new" type="text" placeholder="Nombre" value={input.name} name="name" disabled
+                        <input id="inpt_reg_new" type="text" placeholder="Nombre" value={dataUser?.name} name="name" disabled
                           className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
                         />
                       </div>
-                      <input id="inpt_reg_new2" type="text" placeholder="Apellido" value={input.lastName} name="lastName" disabled
+                      <input id="inpt_reg_new2" type="text" placeholder="Apellido" value={dataUser?.lastName} name="lastName" disabled
                         className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
                       />
                     </div>
                     <div>
-                      <input id="inpt_reg_new3" type="text" maxLength="10" placeholder="DNI (Solo Numeros)" value={input.dni} name="dni" onChange={(e) => handleChange(e)}
+                      <input id="inpt_reg_new3" type="text" maxLength="10" placeholder="DNI (Solo Numeros)" value={dataUser?.dni} name="dni" onChange={(e) => handleChange(e)}
                         className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
                       />
                     </div>
                     {errors.dni && <p className="errorMsg">{errors.dni}</p>}
                     <div>
-                      <input id="inpt_reg_new4" type="text" placeholder="Mail" value={input.email} name="email" readOnly disabled
+                      <input id="inpt_reg_new4" type="text" placeholder="Mail" value={dataUser?.email} name="email" readOnly disabled
                         className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
                       />
                     </div>
                     <div>
-                      <input id="inpt_reg_new5" type="text" placeholder="Direccion" value={input.adress} name="adress" onChange={(e) => handleChange(e)}
+                      <input id="inpt_reg_new5" type="text" placeholder="Direccion" value={dataUser?.adress} name="adress" onChange={(e) => handleChange(e)}
                         className="bg-white m-2 w-3/5 h-10 p-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black font-semibold"
                       />
                     </div>
@@ -138,3 +127,4 @@ export default function PersonalDetails({ handleClick }) {
     );
   }
 }
+
