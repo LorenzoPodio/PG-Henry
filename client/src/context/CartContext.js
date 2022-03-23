@@ -22,7 +22,7 @@ export const CartProvider = ({ children }) => {
     lastName: "",
     name: "s",
   });
-
+ 
   useEffect(() => {
     if (user) {
       axios
