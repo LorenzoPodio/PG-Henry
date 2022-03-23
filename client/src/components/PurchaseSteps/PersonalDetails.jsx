@@ -10,8 +10,6 @@ export default function PersonalDetails({ handleClick }) {
   const {dataUser, getDataUser, setDataUser} = useCartContext();
   const {submitData} = useExcursionsContext();
 
-  console.log("dataUser en personaldetails", dataUser);
-
   useEffect(()=> {
     getDataUser()
     // eslint-disable-next-line

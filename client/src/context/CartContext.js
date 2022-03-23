@@ -23,8 +23,6 @@ export const CartProvider = ({ children }) => {
     name: "Luciano",
   });
 
-  console.log(dataUser, "dataUser from cartContext");
-
   useEffect(() => {
     if (user) {
       axios
@@ -37,7 +35,6 @@ export const CartProvider = ({ children }) => {
         .get(`http://localhost:3001/getusers?email=${user?.email}`)
         .then((resp) => {
           setIsAdmin(() => resp.data.isAdmin);
-          console.log("hola soy useEffect de cartcontext");
         })
         .catch((e) => console.log("error en getusers", e));
     }
