@@ -38,7 +38,7 @@ export const EditExcursion = () => {
     long: ""
   });
 
-  const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
+  
   const type =["Trekking", "Bus", "Lacustre"]
   
 
@@ -316,7 +316,7 @@ export const EditExcursion = () => {
                     >
                       Agrega el link de las imagenes que quieras mostrar.
                     </label>
-                    <div>
+                    <div key={excursionByid?.Image}>
                       <div className="mt-1">
                         <div>
   
