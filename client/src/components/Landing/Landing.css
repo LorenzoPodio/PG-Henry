@@ -7,7 +7,7 @@
 }
 
 .fixed-bg {
-  height: screen;
+  min-height: 100%;
   background-size: cover;
   -webkit-background-size: cover !important; 
   -moz-background-size: cover !important; 
@@ -31,8 +31,8 @@ h2 {
   
 }
 
-img {
-  width: 100vh;
+.img {
+  width: 100%;
   height: auto;
 }
 .main-text {
@@ -47,7 +47,7 @@ img {
 .text-box {
   background: rgba(255, 255, 255, 0.95);
   padding: 20px;
-  margin: 9% 0%;
+  margin: 10% 0%;
   max-width: 500px;
 }
 .fixed-bg h2 {

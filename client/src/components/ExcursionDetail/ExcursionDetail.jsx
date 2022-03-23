@@ -26,7 +26,7 @@ export const ExcursionDetail = () => {
 
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
-
+  console.log(excursionByid, "HOLAAAAAAAAAAAAAAA");
   useEffect(() => {
     getExcursionById(id);
     return () => {
@@ -56,7 +56,7 @@ export const ExcursionDetail = () => {
           }
         })
         .catch((e) => {
-          return setStock(0), setDisabled(true);
+          return (setStock(0), setDisabled(true));
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -190,7 +190,7 @@ export const ExcursionDetail = () => {
             </button>
           )}
           <div>
-            <Testimonials />
+            <Testimonials id={id}/>
           </div>
         </div>
       </div>

@@ -53,6 +53,7 @@ export const Footer = () => {
       <div>
         <Popover as="div" className="ml-3 relative">
           <div>
+
             <Popover.Button className=" flex bg-sky-600 p-1 rounded-md text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
               <span className="sr-only">ContactUs</span>
               <h3>Contactanos</h3>
