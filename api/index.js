@@ -1,7 +1,8 @@
 const excursiones = require('./src/models/data.json')
 const admins = require ('./src/models/admin.json')
+const review = require ('./src/models/reviews.json')
 const server = require('./src/app.js');
-const { conn, Excursion, User } = require('./src/db.js');
+const { conn, Excursion, User, Reviews } = require('./src/db.js');
 
 
 // Syncing all the models at once.
@@ -33,7 +34,18 @@ conn.sync({ force: true }).then(() => {
       adress:a.adress,
       lastName: a.lastName,
       isAdmin: a.isAdmin}
-    }))
+    }).catch((err) => console.log(err))
+    )
+
+
+    review.forEach((r)=> Reviews.create({
+      date: r.date,
+      description: r.description,
+      rating: r.rating,
+      excursionId: r.excursionId,
+      userId: r.userId
+    })
+    )
 
 
   });

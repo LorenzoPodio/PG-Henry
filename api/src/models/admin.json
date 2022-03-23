@@ -4,8 +4,63 @@
           "password": "excursionapp",
           "name": "ExcursionApp",
           "lastName": "Admin",
-          "dni": "39222444",
+          "dni": "3922244",
           "adress": "Henry 123",
           "isAdmin": true
-    }
+    },
+    {
+        "email": "excursionappmail1@gmail.com",
+        "password": "excursionapp",
+        "name": "ExcursionAppp",
+        "lastName": "Admin",
+        "dni": "3922444",
+        "adress": "Henry 123",
+        "isAdmin": true
+  },
+  {
+    "email": "excursionappmail2@gmail.com",
+    "password": "excursionapp",
+    "name": "ExcursionAppppp",
+    "lastName": "Admin",
+    "dni": "444",
+    "adress": "Henry 123",
+    "isAdmin": true
+},
+{
+    "email": "excursionappmail3@gmail.com",
+    "password": "excursionapp",
+    "name": "pppppp",
+    "lastName": "Admin",
+    "dni": "9222444",
+    "adress": "Henry 123",
+    "isAdmin": true
+},
+{
+    "email": "excursionappmail4@gmail.com",
+    "password": "excursionapp",
+    "name": "aaaaaaaaa",
+    "lastName": "Admin",
+    "dni": "322444",
+    "adress": "Henry 123",
+    "isAdmin": true
+},
+{
+    "email": "excursionappmail5@gmail.com",
+    "password": "excursionapp",
+    "name": "asdasd",
+    "lastName": "Admin",
+    "dni": "922244",
+    "adress": "Henry 123",
+    "isAdmin": true
+},
+{
+    "email": "excursionappmail6@gmail.com",
+    "password": "excursionapp",
+    "name": "sdfsdfsd",
+    "lastName": "Admin",
+    "dni": "39224",
+    "adress": "Henry 123",
+    "isAdmin": true
+}
+
 ]
