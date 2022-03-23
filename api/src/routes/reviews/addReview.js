@@ -16,7 +16,7 @@ addReview.post("/:id", async (req, res, next) => {
     const orders = await Order.findAll({
       where: {
         status: ["buying"], //esto iría en completed pero esta en buying para testear
-        userId: getUserId.dataValues.id,
+        userId: getUserId?.dataValues.id,
       },
       include: [
         { model: User, attributes: ["name", "email"] },
@@ -31,7 +31,7 @@ addReview.post("/:id", async (req, res, next) => {
     // console.log(excursion?.dataValues?.name, "EEEEEEEEEEEEEEEEEEEEEEEEE");
 
     let orderProducts = orders?.map((e) => e.products);
-    let buyedExcursion = orderProducts[0]?.map((e) => e.dataValues.name);
+    let buyedExcursion = orderProducts[0]?.map((e) => e?.dataValues.name);
 
     // console.log(buyedExcursion, "probando buyedExcursion name???");
     const controlReview = await Reviews.findAll({
@@ -50,7 +50,7 @@ addReview.post("/:id", async (req, res, next) => {
       await Reviews.create({
         description: description,
         rating: rating,
-        userId: getUserId.dataValues.id,
+        userId: getUserId?.dataValues.id,
         excursionId: id,
       });
       const response = await Reviews.findAll({ //posibilidad de mandar como respuesta directamente el array de opiniones
