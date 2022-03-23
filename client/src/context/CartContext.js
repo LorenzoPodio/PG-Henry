@@ -21,10 +21,13 @@ export const CartProvider = ({ children }) => {
           return setCartItems(() => resp.data);
         })
         .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
+        
         axios
         .get(`http://localhost:3001/getusers?email=${user.email}`)
         .then((resp)=>{
+          if(resp.data !== null){
            setIsAdmin(() => resp.data.isAdmin)
+          }
         })
         .catch((e) => console.log("error en getusers", e))
     }
