@@ -15,12 +15,12 @@ export const CartProvider = ({ children }) => {
   const [dataUser, setDataUser] = useState({
     adress: "",
     dni: "",
-    email: "luciano.p3196@gmail.com",
+    email: "",
     id: 3,
     isAdmin: false,
     isBanned: false,
-    lastName: "Pennacchioni",
-    name: "Luciano",
+    lastName: "",
+    name: "s",
   });
 
   useEffect(() => {

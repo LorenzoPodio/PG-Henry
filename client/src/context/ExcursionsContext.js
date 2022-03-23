@@ -130,7 +130,7 @@ export const ExcursionsProvider = ({ children }) => {
       return axios
         .put("http://localhost:3001/changedatesUser", data)
         .then((res) => {
-          swal("Excursion agregada al carrito", {
+          swal("Datos cargados correctamente", {
             icon: "success",
           });
           return res.data;

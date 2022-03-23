@@ -1,15 +1,39 @@
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export function Profile() {
-  const { allOrders, allExcursions, submitData } = useExcursionsContext();
+  const { allOrders, submitData } = useExcursionsContext();
   const { user, dataUser, setDataUser, getDataUser } = useCartContext();
+  const [completed, setCompleted] = useState([]);
+  const [cancelled, setCancelled] = useState([]);
+  const [currentOrders, setCurrentOrders] = useState([]);
+
+console.log('dataUser', dataUser)
 
   useEffect(() => {
     getDataUser();
+    if (dataUser) {
+      axios
+        .get(
+          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}&status=cancelled`
+        )
+        .then((resp) => setCancelled(() => resp.data));
+      axios
+        .get(
+          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}&status=completed`
+        )
+        .then((resp) => setCompleted(() => resp.data));
+      axios
+        .get(
+          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}`
+        )
+        .then((resp) => setCurrentOrders(() => resp.data));
+    }
     // eslint-disable-next-line
-  }, [user]);
+  }, [user, dataUser]);
 
   const handleChange = (e) => {
     setDataUser((prevState) => {
@@ -20,25 +44,29 @@ export function Profile() {
     submitData(dataUser);
   };
 
-  const currentOrders = [];
-  const cancelled = [];
-  const completed = [];
+  // const currentOrders = [];
+  // // const cancelled = [];
+  // // const completed = [];
   let totalPurchase = 0;
 
   // eslint-disable-next-line
-  allOrders?.map((o) => {
-    if (o?.user?.email === user?.email) {
-      return currentOrders.push(o);
-    }
-  });
-  // eslint-disable-next-line
-  currentOrders?.map((o) => {
-    if (o.status === "completed") {
-      return completed.push(o);
-    } else if (o.status === "cancelled") {
-      return cancelled.push(o);
-    }
-  });
+  // allOrders?.map((o) => {
+  //   if (o?.user?.email === user?.email) {
+  //     return currentOrders.push(o);
+  //   }
+  // });
+  // // eslint-disable-next-line
+  // currentOrders?.map((o) => {
+  //   if (o.status === "completed") {
+  //     return setCompleted((prevState) => {
+  //       return [...prevState, o];
+  //     });
+  //   } else if (o.status === "cancelled") {
+  //     return setCancelled((prevState) => {
+  //       return [...prevState, o];
+  //     });
+  //   }
+  // });
 
   return (
     <div className="grid place-content-center">
@@ -98,77 +126,83 @@ export function Profile() {
             Compras canceladas
           </h3>
         </div>
-        <div className="border-t border-gray-200">
-          <dl>
-            {cancelled?.map((o, i) => (
-              <div key={i}>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">Orden</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {o.id}
-                  </dd>
-                  <dt className="text-sm font-medium text-gray-500">Fecha</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {o.date}
-                  </dd>
-                </div>
-
-                {o?.order_details?.map((ods, i) => (
-                  <div key={i}>
-                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Excursion
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {allExcursions[ods?.productId]?.name}
-                      </dd>
-                    </div>
-
-                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Cantidad
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {ods.quantity}
-                      </dd>
-                    </div>
-
-                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Precio
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {ods.price}
-                      </dd>
-                    </div>
-
-                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Precio total de la excursion
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {ods.totalPrice}
-                      </dd>
-                    </div>
+        {cancelled.length < 1 ? (
+          <div className="text-lg leading-6 font-medium text-gray-900">
+            No hay compras canceladas
+          </div>
+        ) : (
+          <div className="border-t border-gray-200">
+            <dl>
+              {cancelled?.map((o, i) => (
+                <div key={i}>
+                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">Orden</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {o.id}
+                    </dd>
+                    <dt className="text-sm font-medium text-gray-500">Fecha</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {o.date}
+                    </dd>
                   </div>
-                ))}
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Precio total final
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {currentOrders?.map((o) => {
-                      return o.order_details.forEach(
-                        (od) => (totalPurchase += od.totalPrice)
-                      );
-                    })}
-                    {totalPurchase}
-                  </dd>
+
+                  {o?.products?.map((ods, i) => (
+                    <div key={i}>
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Excursion
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          {ods?.name}
+                        </dd>
+                      </div>
+
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Cantidad
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          {ods?.order_detail?.quantity}
+                        </dd>
+                      </div>
+
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Precio
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          {ods?.order_detail?.price}
+                        </dd>
+                      </div>
+
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Precio total de la excursion
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          {ods?.order_detail?.totalPrice}
+                        </dd>
+                      </div>
+                    </div>
+                  ))}
+                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Precio total final
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {currentOrders?.map((o) => {
+                        return o.order_details.forEach(
+                          (od) => (totalPurchase += od.totalPrice)
+                        );
+                      })}
+                      {totalPurchase}
+                    </dd>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </dl>
-        </div>
+              ))}
+            </dl>
+          </div>
+        )}
       </div>
 
       <div className="bg-white shadow overflow-hidden sm:rounded-lg">
@@ -177,73 +211,112 @@ export function Profile() {
             Compras completadas
           </h3>
         </div>
-        <div className="border-t border-gray-200">
-          <dl>
-            {completed?.map((o, i) => (
-              <div key={i}>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">Orden</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {o.id}
-                  </dd>
-                </div>
-
-                {o?.order_details?.map((ods, i) => (
-                  <div key={i}>
-                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Excursion
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {allExcursions[ods?.productId]?.name}
-                      </dd>
-                    </div>
-
-                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Cantidad
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {ods.quantity}
-                      </dd>
-                    </div>
-
-                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Precio
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {ods.price}
-                      </dd>
-                    </div>
-
-                    <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                      <dt className="text-sm font-medium text-gray-500">
-                        Precio total de la excursion
-                      </dt>
-                      <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {ods.totalPrice}
-                      </dd>
-                    </div>
+        {completed.length < 1 ? (
+          <div className="text-lg leading-6 font-medium text-gray-900">
+            <p>No hay compras completadas aun</p>
+            <Link to="/excursiones">
+              <button
+                type="reset"
+                className="
+                inset-y-0 right-0 
+                px-8
+                py-6
+                bg-blue-600
+                text-white
+                text-2xl
+                text-xs
+                leading-tight
+                uppercase
+                rounded
+                shadow-md
+                hover:bg-blue-700 hover:shadow-lg
+                focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+                active:bg-blue-800 active:shadow-lg
+                transition
+                duration-150
+                ease-in-out"
+              >
+                Comprar Excursiones
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div className="border-t border-gray-200">
+            <dl>
+              {completed?.map((o, i) => (
+                <div key={i}>
+                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">Orden</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {o.id}
+                    </dd>
                   </div>
-                ))}
-                <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Precio total final
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {currentOrders?.map((o) => {
-                      return o.order_details.forEach(
-                        (od) => (totalPurchase += od.totalPrice)
-                      );
-                    })}
-                    {totalPurchase}
-                  </dd>
+
+                  {o?.products?.map((ods, i) => (
+                    <div key={i}>
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Excursion
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          {ods?.name}
+                        </dd>
+                      </div>
+
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Cantidad
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          {ods?.order_detail?.quantity}
+                        </dd>
+                      </div>
+
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Precio
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          {ods?.order_detail?.price}
+                        </dd>
+                      </div>
+
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          Precio total de la excursion
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          {ods?.order_detail?.totalPrice}
+                        </dd>
+                      </div>
+                      <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt className="text-sm font-medium text-gray-500">
+                          ------------------------
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                          -------------------------------------------------------------
+                        </dd>
+                      </div>
+                    </div>
+                  ))}
+                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">
+                      Precio total final
+                    </dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {currentOrders?.map((o) => {
+                        return o.order_details.forEach(
+                          (od) => (totalPurchase += od.totalPrice)
+                        );
+                      })}
+                      {totalPurchase}
+                    </dd>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </dl>
-        </div>
+              ))}
+            </dl>
+          </div>
+        )}
       </div>
     </div>
   );
