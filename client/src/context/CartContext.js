@@ -34,7 +34,7 @@ export const CartProvider = ({ children }) => {
         })
         .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
       axios
-        .get(`http://localhost:3001/getusers?email=${user?.email}`)
+        .get(`/getusers?email=${user?.email}`)
         .then((resp) => {
           setIsAdmin(() => resp.data.isAdmin);
         })
@@ -63,7 +63,7 @@ export const CartProvider = ({ children }) => {
   function getDataUser() {
     if (typeof user?.email !== "undefined") {
       axios
-        .get(`http://localhost:3001/getusers?email=${user?.email}`)
+        .get(`/getusers?email=${user?.email}`)
         .then((resp) => {
           setDataUser(() => resp.data);
         })
