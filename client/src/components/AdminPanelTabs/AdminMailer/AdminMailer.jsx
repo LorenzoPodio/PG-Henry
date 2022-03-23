@@ -19,6 +19,7 @@ export const AdminMailer = () => {
   const { allExcursions, allOrders } = useExcursionsContext();
 
   useEffect(() => {
+
     //useEffect para habilitar o deshabilitar el boton create, cuando se cumplan ciertas condiciones
     if (
       item.name?.length > 0 &&
@@ -30,6 +31,7 @@ export const AdminMailer = () => {
       setDisabled(false);
     } else {
       setDisabled(true);
+
     }
   }, [item, disabled, errors]);
 

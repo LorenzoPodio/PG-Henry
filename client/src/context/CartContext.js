@@ -26,7 +26,9 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:3001/cart/getorderid/${user?.email}`)
+
+        .get(`/cart/getorderid/${user?.email}`)
+
         .then((resp) => {
           return setCartItems(() => resp.data);
         })
@@ -42,7 +44,7 @@ export const CartProvider = ({ children }) => {
 
   const addItemToCart = (item) => {
     axios
-      .post("http://localhost:3001/cart/addcart", item)
+      .post("/cart/addcart", item)
       .then((resp) => {
         swal("Excursion agregada al carrito", {
           icon: "success",
@@ -71,10 +73,9 @@ export const CartProvider = ({ children }) => {
 
   const removeItemFromCart = async (item) => {
     try {
-      const { data } = await axios.put(
-        "http://localhost:3001/cart/substractcart",
-        item
-      );
+
+      const { data } = await axios.put('/cart/substractcart', item);
+
       return setCartItems(() => data);
     } catch (error) {
       swal("Algo salió mal", error, {
@@ -88,7 +89,7 @@ export const CartProvider = ({ children }) => {
     let mail = {};
     mail.email = email;
     return axios
-      .post("http://localhost:3001/cart/orderpost", mail)
+      .post("/cart/orderpost", mail)
       .then((response) => response.data)
       .catch((err) => {});
   };

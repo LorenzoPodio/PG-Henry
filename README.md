@@ -1,6 +1,6 @@
-`Insertar foto de excursionApp`
 
-
+ <img src = "https://github.com/LorenzoPodio/PG-Henry/blob/master/client/public/Landing.PNG?raw=true" >
+ 
 # E.Commerce de Excursiones
 
 ## Tecnologías utilizadas :computer: 
