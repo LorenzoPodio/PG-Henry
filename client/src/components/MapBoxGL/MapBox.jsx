@@ -6,12 +6,14 @@ import "./Map.css";
 export const Mapa = ({ lat, long }) => {
   let latitud = lat ? lat : -30;
   let longitud = long ? long : -60;
+  let wvar = "75vh";
+  let hvar = "35vh";
 
   const [viewport, setViewport] = useState({
     latitude: latitud,
     longitude: longitud,
-    width: "37vw",
-    height: "40vh",
+    width: wvar,
+    height: hvar,
     zoom: 6,
   });
 
