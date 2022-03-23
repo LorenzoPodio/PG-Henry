@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useExcursionsContext } from "../../../context/ExcursionsContext";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import swal from "sweetalert";
+import { Menu, Transition } from '@headlessui/react';
+import { PurchasesDetail } from './PurchasesDetail';
 
 
 export const PurchasesManagment = () => {
-  const { cancelledOrder, allOrders} = useExcursionsContext();
+  const { cancelledOrder, allOrders } = useExcursionsContext();
 
 
   function handleCancelled(e) {
@@ -55,7 +57,7 @@ export const PurchasesManagment = () => {
   }
 
   return (
-    
+
     <div className="grid place-content-center" id="top">
       {!allOrders.length ? (
         <div className="flex flex-col w-fit m-10">
@@ -73,50 +75,29 @@ export const PurchasesManagment = () => {
         <div className="flex flex-col w-fit m-10">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="pb-6 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow-lg shadow-gray-500 overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              <div className="shadow-lg shadow-gray-500 border-b border-gray-200 sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-sky-600 text-white">
                     <tr>
-                      <th
-                        scope="col"
-                        className="px-10 py-3 text-left text-xs font-medium uppercase tracking-wider"
-                      >
+                      <th scope="col" className="px-10 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         ID
                       </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
-                      >
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Fecha Compra
                       </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
-                      >
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Detalle
                       </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
-                      >
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Precio Total
                       </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
-                      >
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Estatus
                       </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
-                      >
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Cliente
                       </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
-                      >
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Acciones
                       </th>
                     </tr>
@@ -141,7 +122,33 @@ export const PurchasesManagment = () => {
                               </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                              Excursiones: {concatNames(e.products)}
+                              {/* ------------------------------ DETALLE COMPRAAAAA -------------------------------- */}
+                              <Menu as="div" className="relative inline-block text-left">
+                                <div>
+                                  <Menu.Button
+                                    className="px-4 py-2 rounded-md shadow-lg hover:shadow-black shadow-gray-500 text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                  >
+                                    Ver Detalle
+                                  </Menu.Button>
+                                </div>
+                                <Transition as={Fragment} enter="transition ease-out duration-100" enterFrom="transform opacity-0 scale-95" enterTo="transform opacity-100 scale-100"
+                                  leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100" leaveTo="transform opacity-0 scale-95"
+                                >
+                                  <Menu.Items className="z-10 origin-top-right absolute mt-1 w-fit rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                    <div className="py-1">
+                                      <Menu.Item>
+                                        {() => (
+                                          <PurchasesDetail products={e.products}/>
+                                        )}
+                                      </Menu.Item>
+                                    </div>
+                                  </Menu.Items>
+                                </Transition>
+                              </Menu>
+                              {/* --------------------------------------------------------------------------------- */}
+                              {
+                                console.log('E.PRODUCTS', e.products)
+                              }
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                               ${sumSubTotals(e.order_details)}
