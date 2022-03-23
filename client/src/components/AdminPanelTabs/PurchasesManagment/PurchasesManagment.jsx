@@ -48,14 +48,6 @@ export const PurchasesManagment = () => {
     return total;
   }
 
-  const concatNames = (array) => {
-    let names = [];
-    for (let i = 0; i < array.length; i++) {
-      names.push(array[i].name);
-    }
-    return names.join(', ');
-  }
-
   return (
 
     <div className="grid place-content-center" id="top">
