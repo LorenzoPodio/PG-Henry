@@ -11,7 +11,9 @@ export default function Payment({ handleClick }) {
   //   //  IMPLEMENTACION DE MP
   useEffect(() => {
     axios
-      .post("http://localhost:3001/mercadopago", { email: user.email, cartItems: cartItems })
+
+      .post("/mercadopago", {email: user.email, cartItems: cartItems})
+
       .then((data) => {
         setData(data.data);
       })

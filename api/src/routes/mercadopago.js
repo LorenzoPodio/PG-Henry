@@ -40,11 +40,11 @@ mp.post("/", function (req, res) {
       installments: 3, //Cantidad máximo de cuotas
     },
     back_urls: {
-      success: "http://localhost:3001/mercadopago/feedback",
-      failure: "http://localhost:3001/mercadopago/feedback",
-      pending: "http://localhost:3001/mercadopago/feedback",
+      success: "https://excursionapp-pg.herokuapp.com/mercadopago/feedback",
+      failure: "https://excursionapp-pg.herokuapp.com/mercadopago/feedback",
+      pending: "https://excursionapp-pg.herokuapp.com/mercadopago/feedback",
     },
-    // auto_return: "approved",
+    auto_return: "approved",
   };
 
   mercadopago.preferences
@@ -412,7 +412,7 @@ mp.get("/feedback", async function (req, res, next) {
       });
     }
 
-    res.status(200).redirect("http://localhost:3000/excursiones");
+    res.status(200).redirect("https://excursionapp.vercel.app/excursiones");
   } catch (error) {
     next(error);
   }

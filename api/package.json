@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -L",
+    "forever": "forever index.js",
     "test": "mocha -w ./tests/**/*.spec.js"
   },
   "author": "Henry Students",
@@ -27,12 +28,13 @@
     "morgan": "^1.10.0",
     "nodemailer": "^6.7.2",
     "pg": "^8.5.1",
+    "nodemon": "^2.0.15",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
-    "nodemon": "^2.0.6",
+    
     "supertest": "^6.0.1",
     "supertest-session": "^4.1.0"
   }
