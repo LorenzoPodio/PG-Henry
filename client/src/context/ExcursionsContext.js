@@ -47,7 +47,6 @@ export const ExcursionsProvider = ({ children }) => {
       })
       .catch((err) => {});
   };
-  //
 
   //UnbanUser
   const UnbanUser = (id) => {
@@ -57,6 +56,7 @@ export const ExcursionsProvider = ({ children }) => {
         return setUsers(response.data);
       })
       .catch((err) => {});
+    // eslint-disable-next-line
   };
   //
 
@@ -64,12 +64,13 @@ export const ExcursionsProvider = ({ children }) => {
     axios
       .get(`http://localhost:3001/getusers?email=${user?.email}`)
       .then((resp) => {
-        setIsBanned(() => resp.data?.isBanned);
+        if (typeof resp.data?.isBanned !== "undefined") {
+          setIsBanned(() => resp.data?.isBanned);
+        }
       })
       .catch((e) => console.log("error en getusers", e));
     // eslint-disable-next-line
-  }, [banUser, UnbanUser]);
-
+  }, [users, user]);
   useEffect(() => {
     axios(URL)
       .then((response) => {
@@ -155,11 +156,23 @@ export const ExcursionsProvider = ({ children }) => {
   //
 
   //agregar dni y direccion a los datos de usuario para confirmar compra
-  const submitDates = (dates) => {
-    return axios
-      .put("http://localhost:3001/changedatesUser", dates)
-      .then((res) => res.data)
-      .catch((err) => {});
+  const submitData = (data) => {
+    if (data.email && data.adress) {
+      return axios
+        .put("http://localhost:3001/changedatesUser", data)
+        .then((res) => {
+          swal("Datos cargados correctamente", {
+            icon: "success",
+          });
+          return res.data;
+        })
+        .catch((err) => {});
+    }
+    else {
+      swal("No puede borrar los datos de contacto", {
+        icon: "error",
+      });
+    }
   };
 
   //postExcursion
@@ -277,7 +290,7 @@ export const ExcursionsProvider = ({ children }) => {
         banUser,
         UnbanUser,
         allOrders,
-        submitDates,
+        submitData,
         getAllOrders,
         contactUs,
         isBanned,

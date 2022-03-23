@@ -12,25 +12,33 @@ export const CartProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth0();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [dataUser, setDataUser] = useState({
+    adress: "",
+    dni: "",
+    email: "",
+    id: 3,
+    isAdmin: false,
+    isBanned: false,
+    lastName: "",
+    name: "s",
+  });
 
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:3001/cart/getorderid/${user.email}`)
+        .get(`http://localhost:3001/cart/getorderid/${user?.email}`)
         .then((resp) => {
           return setCartItems(() => resp.data);
         })
         .catch((e) => console.log("error en getorderid ", e)); //Harcodeamos el id del carrito
-        axios
-        .get(`http://localhost:3001/getusers?email=${user.email}`)
-        .then((resp)=>{
-           setIsAdmin(() => resp.data.isAdmin)
+      axios
+        .get(`http://localhost:3001/getusers?email=${user?.email}`)
+        .then((resp) => {
+          setIsAdmin(() => resp.data.isAdmin);
         })
-        .catch((e) => console.log("error en getusers", e))
+        .catch((e) => console.log("error en getusers", e));
     }
   }, [user]);
-
- 
 
   const addItemToCart = (item) => {
     axios
@@ -49,17 +57,32 @@ export const CartProvider = ({ children }) => {
       });
   };
 
-  const removeItemFromCart = async item => {
-    try {
-      const { data } = await axios.put('http://localhost:3001/cart/substractcart', item);
-      return setCartItems(() => data);
-    } catch (error) {
-      swal("Algo salió mal", error , {
-        icon: "error",
-      });
-      return console.log('ERROR:', error);
+  //Función para traer datos de el usuario actualmente logeado.
+  function getDataUser() {
+    if (typeof user?.email !== "undefined") {
+      axios
+        .get(`http://localhost:3001/getusers?email=${user?.email}`)
+        .then((resp) => {
+          setDataUser(() => resp.data);
+        })
+        .catch((e) => console.log("error en getusers", e));
     }
   }
+
+  const removeItemFromCart = async (item) => {
+    try {
+      const { data } = await axios.put(
+        "http://localhost:3001/cart/substractcart",
+        item
+      );
+      return setCartItems(() => data);
+    } catch (error) {
+      swal("Algo salió mal", error, {
+        icon: "error",
+      });
+      return console.log("ERROR:", error);
+    }
+  };
 
   const createCart = (email) => {
     let mail = {};
@@ -67,9 +90,7 @@ export const CartProvider = ({ children }) => {
     return axios
       .post("http://localhost:3001/cart/orderpost", mail)
       .then((response) => response.data)
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
 
   return (
@@ -83,6 +104,9 @@ export const CartProvider = ({ children }) => {
         user,
         removeItemFromCart,
         isAdmin,
+        getDataUser,
+        dataUser,
+        setDataUser,
       }}
     >
       {children}

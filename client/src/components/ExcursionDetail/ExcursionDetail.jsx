@@ -26,7 +26,7 @@ export const ExcursionDetail = () => {
 
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
-
+  console.log(excursionByid, "HOLAAAAAAAAAAAAAAA");
   useEffect(() => {
     getExcursionById(id);
     return () => {
