@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { getExcursions } from "./util/getExcursions";
 import { getAllUsers } from "./util/getAllUsers";
 import axios from "axios";
@@ -25,7 +20,6 @@ export const ExcursionsProvider = ({ children }) => {
   const [allOrders, setAllOrders] = useState();
   const [isBanned, setIsBanned] = useState(true);
   const { setLoading, user } = useCartContext();
-
 
   useEffect(() => {
     getExcursions().then((r) => {
@@ -132,10 +126,22 @@ export const ExcursionsProvider = ({ children }) => {
 
   //agregar dni y direccion a los datos de usuario para confirmar compra
   const submitData = (data) => {
-    return axios
-      .put("http://localhost:3001/changedatesUser", data)
-      .then((res) => res.data)
-      .catch((err) => {});
+    if (data.email && data.adress) {
+      return axios
+        .put("http://localhost:3001/changedatesUser", data)
+        .then((res) => {
+          swal("Excursion agregada al carrito", {
+            icon: "success",
+          });
+          return res.data;
+        })
+        .catch((err) => {});
+    }
+    else {
+      swal("No puede borrar los datos de contacto", {
+        icon: "error",
+      });
+    }
   };
 
   //postExcursion
