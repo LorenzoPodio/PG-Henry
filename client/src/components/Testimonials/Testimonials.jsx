@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import NewReview from "./NewReview";
 import { Fragment } from "react";
@@ -18,27 +18,55 @@ const star = (
 
 export const Testimonials = ({ id }) => {
   const { getReviews, reviews } = useExcursionsContext();
+  const [stars, setStars] = useState({});
 
-  const oneStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 1 : reviews.length) +
-    "%";
-  const twoStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 2 : reviews.length) +
-    "%";
-  const threeStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 3 : reviews.length) +
-    "%";
-  const fourStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 4 : reviews.length) +
-    "%";
-  const fiveStar =
-    reviews.filter((e) => e.rating === 1).length /
-      (reviews.length === 0 ? 5 : reviews.length) +
-    "%";
+  useEffect(() => {
+    setStars((prevState) => {
+      return {
+        ...prevState,
+        oneStar:
+          (reviews?.filter((e) => e.rating === "1").length * 100) /
+            (reviews?.length === 0 ? 1 : reviews?.length) +
+          "%",
+      };
+    });
+    setStars((prevState) => {
+      return {
+        ...prevState,
+        twoStar:
+          (reviews?.filter((e) => e.rating === "2").length * 100) /
+            (reviews?.length === 0 ? 1 : reviews?.length) +
+          "%",
+      };
+    });
+    setStars((prevState) => {
+      return {
+        ...prevState,
+        threeStar:
+          (reviews?.filter((e) => e.rating === "3").length * 100) /
+            (reviews?.length === 0 ? 1 : reviews?.length) +
+          "%",
+      };
+    });
+    setStars((prevState) => {
+      return {
+        ...prevState,
+        fourStar:
+          (reviews?.filter((e) => e.rating === "4").length * 100) /
+            (reviews?.length === 0 ? 1 : reviews?.length) +
+          "%",
+      };
+    });
+    setStars((prevState) => {
+      return {
+        ...prevState,
+        fiveStar:
+          (reviews?.filter((e) => e.rating === "5").length * 100) /
+            (reviews?.length === 0 ? 1 : reviews?.length) +
+          "%",
+      };
+    });
+  }, [reviews]);
 
   useEffect(() => {
     if (typeof id !== "undefined") {
@@ -48,235 +76,231 @@ export const Testimonials = ({ id }) => {
   }, []);
 
   return (
-    <div className=" bg-white shadow-lg rounded-lg flex text-center">
-      <div id="contenedor de puntuaciones" className="border-r-2">
-        <div id="estrellas y puntuacion">
-          <div className="mb-1 tracking-wide px-4 py-4">
-            {reviews.length !== 0 ? (
-              <h3 className="text-gray-800 font-semibold mt-1">
-                Puntaje de esta excrusion{" "}
-                {reviews?.reduce(
-                  (previousValue, currentObj) =>
-                    parseInt(previousValue) + parseInt(currentObj.rating),
-                  0
-                ) / reviews?.length}
-              </h3>
-            ) : (
-              <h3 className="text-gray-800 font-semibold mt-1">Sin puntaje</h3>
-            )}
-            <h4 className="text-gray-800 font-semibold mt-1">
-              ¡{reviews.length}{" "}
-              {reviews.length !== 1 ? (
-                <>personas opinaron</>
-              ) : (
-                <>persona opinó</>
-              )}{" "}
-              sobre esta excursión!{" "}
-            </h4>
-            <div className="border-b">
-              <div className="flex items-center mt-1">
-                <div className=" w-2/5 text-sky-500 tracking-tighter">
-                  <div className="flex mx-2">
-                    {star}
-                    {star}
-                    {star}
-                    {star}
-                    {star}
-                  </div>
-                </div>
-                <div className="w-2/5">
-                  <div className="bg-gray-300 w-full rounded-lg h-2">
-                    <div
-                      className=" bg-sky-600 rounded-lg h-2"
-                      style={{ width: fiveStar }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="w-1/5 text-gray-700 pl-3">
-                  <span className="text-sm">
-                    {reviews.filter((e) => e.rating === 5).length /
-                      (reviews.length === 0 ? 1 : reviews.length)}
-                    %
-                  </span>
-                  {/* aca hay que poner logica para porcentajes */}
-                </div>
+    <div className="mx-auto bg-white shadow-lg rounded-lg my-32 px-4 py-4 max-w-sm ">
+      <div className="mb-1 tracking-wide px-4 py-4">
+        {reviews.length !== 0 ? (
+          <h3 className="text-gray-800 font-semibold mt-1">
+            Puntaje de esta excrusion{" "}
+            {reviews?.reduce(
+              (previousValue, currentObj) =>
+                parseInt(previousValue) + parseInt(currentObj.rating),
+              0
+            ) / reviews?.length}
+          </h3>
+        ) : (
+          <h3 className="text-gray-800 font-semibold mt-1">Sin puntaje</h3>
+        )}
+        <h4 className="text-gray-800 font-semibold mt-1">
+          ¡{reviews.length}{" "}
+          {reviews.length !== 1 ? <>personas opinaron</> : <>persona opinó</>}{" "}
+          sobre esta excursión!{" "}
+        </h4>
+        <div className="border-b -mx-8 px-8 pb-3">
+          <div className="flex items-center mt-1">
+            <div className=" w-2/5 text-sky-500 tracking-tighter">
+              <div className="flex mx-2">
+                {star}
+                {star}
+                {star}
+                {star}
+                {star}
               </div>
-              {/* <!-- first --> */}
-              <div className="flex items-center mt-1">
-                <div className=" w-2/5 text-sky-500 tracking-tighter">
-                  <div className="flex mx-2">
-                    {star}
-                    {star}
-                    {star}
-                    {star}
-                  </div>
-                </div>
-                <div className="w-2/5">
-                  <div className="bg-gray-300 w-full rounded-lg h-2">
-                    <div
-                      className="bg-sky-600 rounded-lg h-2"
-                      style={{ width: fourStar }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="w-1/5 text-gray-700 pl-3">
-                  <span className="text-sm">
-                    {reviews.filter((e) => e.rating === 4).length /
-                      (reviews.length === 0 ? 1 : reviews.length)}
-                    %
-                  </span>
-                  {/* aca hay que poner logica para porcentajes */}
-                </div>
+            </div>
+            <div className="w-2/5">
+              <div className="bg-gray-300 w-full rounded-lg h-2">
+                <div
+                  className=" bg-sky-600 rounded-lg h-2"
+                  style={{ width: stars.fiveStar }}
+                ></div>
               </div>
-              {/* <!-- second --> */}
-              <div className="flex items-center mt-1">
-                <div className=" w-2/5 text-sky-500 tracking-tighter">
-                  <div className="flex mx-2">
-                    {star}
-                    {star}
-                    {star}
-                  </div>
-                </div>
-                <div className="w-2/5">
-                  <div className="bg-gray-300 w-full rounded-lg h-2">
-                    <div
-                      className="  bg-sky-600 rounded-lg h-2 "
-                      style={{ width: threeStar }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="w-1/5 text-gray-700 pl-3">
-                  <span className="text-sm">
-                    {reviews.filter((e) => e.rating === 3).length /
-                      (reviews.length === 0 ? 1 : reviews.length)}
-                    %
-                  </span>
-                  {/* aca hay que poner logica para porcentajes */}
-                </div>
-              </div>
-              {/* <!-- thierd --> */}
-              <div className="flex items-center mt-1">
-                <div className=" w-2/5 text-sky-500 tracking-tighter">
-                  <div className="flex mx-2">
-                    {star}
-                    {star}
-                  </div>
-                </div>
-                <div className="w-2/5">
-                  <div className="bg-gray-300 w-full rounded-lg h-2">
-                    <div
-                      className="  bg-sky-600 rounded-lg h-2"
-                      style={{ width: twoStar }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="w-1/5 text-gray-700 pl-3">
-                  <span className="text-sm">
-                    {reviews.filter((e) => e.rating === 2).length /
-                      (reviews.length === 0 ? 1 : reviews.length)}
-                    %
-                  </span>
-                  {/* aca hay que poner logica para porcentajes */}
-                </div>
-              </div>
-              {/* <!-- 4th --> */}
-              <div className="flex items-center mt-1">
-                <div className=" w-2/5 text-sky-500 tracking-tighter">
-                  <div className="flex mx-2">{star}</div>
-                </div>
-                <div className="w-2/5">
-                  <div className="bg-gray-300 w-full rounded-lg h-2">
-                    <div
-                      className=" bg-sky-600 rounded-lg h-2"
-                      style={{ width: oneStar }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="w-1/5 text-gray-700 pl-3">
-                  <span className="text-sm">
-                    {reviews.filter((e) => e.rating === 1).length /
-                      (reviews.length === 0 ? 1 : reviews.length)}
-                    %
-                  </span>
-                  {/* aca hay que poner logica para porcentajes */}
-                </div>
-              </div>
-              {/* <!-- 5th --> */}
+            </div>
+            <div className="w-1/5 text-gray-700 pl-3">
+              <span className="text-sm">
+                {(reviews?.filter((e) => e.rating === "5").length * 100) /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
+                %
+              </span>
+              {/* aca hay que poner logica para porcentajes */}
             </div>
           </div>
-        </div>
-        <div id="boton de agregar comentario">
-          <div className="w-full px-4 text-center">
-            <h4 className="font-medium tracking-tight mb-2">
-              Danos tu opinión sobre la excursión
-            </h4>
-            <div>
-              <Popover as="div" className="ml-3 relative mb-2">
-                <div>
-                  <Popover.Button className=" flex w-full justify-center bg-sky-600 p-1 rounded-md text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    <h4>Agrega un comentario</h4>
-                  </Popover.Button>
-                </div>
-                <Transition
-                  as={Fragment}
-                  enter="transition duration-100 ease-out"
-                  enterFrom="transform scale-95 opacity-0"
-                  enterTo="transform scale-100 opacity-100"
-                  leave="transition duration-75 ease-out"
-                  leaveFrom="transform scale-100 opacity-100"
-                  leaveTo="transform scale-95 opacity-0"
-                >
-                  <Popover.Panel
-                    className=" origin-top-right absolute bottom-10 right-0 mt-0 w-auto rounded-md shadow-lg  bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none justify-center flex"
-                    style={{ zIndex: "1" }}
-                  >
-                    <Popover.Panel>
-                      {({ active }) => <NewReview id={id} />}
-                    </Popover.Panel>
-                  </Popover.Panel>
-                </Transition>
-              </Popover>
+          {/* <!-- first --> */}
+          <div className="flex items-center mt-1">
+            <div className=" w-2/5 text-sky-500 tracking-tighter">
+              <div className="flex mx-2">
+                {star}
+                {star}
+                {star}
+                {star}
+              </div>
+            </div>
+            <div className="w-2/5">
+              <div className="bg-gray-300 w-full rounded-lg h-2">
+                <div
+                  className="bg-sky-600 rounded-lg h-2"
+                  style={{ width: stars.fourStar }}
+                ></div>
+              </div>
+            </div>
+            <div className="w-1/5 text-gray-700 pl-3">
+              <span className="text-sm">
+                {(reviews?.filter((e) => e.rating === "4").length * 100) /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
+                %
+              </span>
+
+              {/* aca hay que poner logica para porcentajes */}
             </div>
           </div>
+          {/* <!-- second --> */}
+          <div className="flex items-center mt-1">
+            <div className=" w-2/5 text-sky-500 tracking-tighter">
+              <div className="flex mx-2">
+                {star}
+                {star}
+                {star}
+              </div>
+            </div>
+            <div className="w-2/5">
+              <div className="bg-gray-300 w-full rounded-lg h-2">
+                <div
+                  className="  bg-sky-600 rounded-lg h-2 "
+                  style={{ width: stars.threeStar }}
+                ></div>
+              </div>
+            </div>
+            <div className="w-1/5 text-gray-700 pl-3">
+              <span className="text-sm">
+                {(reviews?.filter((e) => e.rating === "3").length * 100) /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
+                %
+              </span>
+
+              {/* aca hay que poner logica para porcentajes */}
+            </div>
+          </div>
+          {/* <!-- thierd --> */}
+          <div className="flex items-center mt-1">
+            <div className=" w-2/5 text-sky-500 tracking-tighter">
+              <div className="flex mx-2">
+                {star}
+                {star}
+              </div>
+            </div>
+            <div className="w-2/5">
+              <div className="bg-gray-300 w-full rounded-lg h-2">
+                <div
+                  className="  bg-sky-600 rounded-lg h-2"
+                  style={{ width: stars.twoStar }}
+                ></div>
+              </div>
+            </div>
+            <div className="w-1/5 text-gray-700 pl-3">
+              <span className="text-sm">
+                {(reviews?.filter((e) => e.rating === "2").length * 100) /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
+                %
+              </span>
+
+              {/* aca hay que poner logica para porcentajes */}
+            </div>
+          </div>
+          {/* <!-- 4th --> */}
+          <div className="flex items-center mt-1">
+            <div className=" w-2/5 text-sky-500 tracking-tighter">
+              <div className="flex mx-2">{star}</div>
+            </div>
+            <div className="w-2/5">
+              <div className="bg-gray-300 w-full rounded-lg h-2">
+                <div
+                  className=" bg-sky-600 rounded-lg h-2"
+                  style={{ width: stars.oneStar }}
+                ></div>
+              </div>
+            </div>
+            <div className="w-1/5 text-gray-700 pl-3">
+              <span className="text-sm">
+                {(reviews?.filter((e) => e.rating === "1").length * 100) /
+                  (reviews?.length === 0 ? 1 : reviews?.length)}
+                %
+              </span>
+
+              {/* aca hay que poner logica para porcentajes */}
+            </div>
+          </div>
+          {/* <!-- 5th --> */}
         </div>
       </div>
-      <div
-        id="contenedor de reviews"
-        className="flex items-center justify-center"
-      >
-        <div className="overflow-y-auto bg-slate-200 flex flex-col justify-center items-center">
-          {reviews ? (
-            reviews?.map((e, i) => <TestimonialCard props={e} key={i} />)
-          ) : (
+      <div className="w-full px-4">
+        <h4 className="font-medium tracking-tight mb-2">
+          Danos tu opinión sobre la excursión
+        </h4>
+        <div>
+          <Popover as="div" className="ml-3 relative mb-2">
             <div>
-              <div className="w-full lg:w-1/2">
-                <img
-                  className="hidden lg:block"
-                  src="https://i.ibb.co/v30JLYr/Group-192-2.png"
-                  alt=""
-                />
-                <img
-                  className="hidden md:block lg:hidden"
-                  src="https://i.ibb.co/c1ggfn2/Group-193.png"
-                  alt=""
-                />
-                <img
-                  className="md:hidden"
-                  src="https://i.ibb.co/8gTVH2Y/Group-198.png"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h3 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800">
-                  No hay contenido para mostrar 😬{" "}
-                </h3>
-                <button className="w-full lg:w-auto my-4 border rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
-                  Escribinos!
-                </button>
-              </div>
+              <Popover.Button className=" flex w-full justify-center bg-sky-600 p-1 rounded-md text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                <h4>Agrega un comentario</h4>
+              </Popover.Button>
             </div>
-          )}
+            <Transition
+              as={Fragment}
+              enter="transition duration-100 ease-out"
+              enterFrom="transform scale-95 opacity-0"
+              enterTo="transform scale-100 opacity-100"
+              leave="transition duration-75 ease-out"
+              leaveFrom="transform scale-100 opacity-100"
+              leaveTo="transform scale-95 opacity-0"
+            >
+              <Popover.Panel
+                className=" origin-top-right absolute bottom-10 right-0 mt-0 w-auto rounded-md shadow-lg  bg-sky-600 ring-1 ring-black ring-opacity-5 focus:outline-none justify-center flex"
+                style={{ zIndex: "1" }}
+              >
+                <Popover.Panel>
+                  {({ active }) => <NewReview id={id} />}
+                </Popover.Panel>
+              </Popover.Panel>
+            </Transition>
+          </Popover>
         </div>
+      </div>
+      <div>
+        {reviews ? (
+          reviews?.map((e, i) => <TestimonialCard props={e} key={i} />)
+        ) : (
+          <div>
+            <div className="w-full lg:w-1/2">
+              <img
+                className="hidden lg:block"
+                src="https://i.ibb.co/v30JLYr/Group-192-2.png"
+                alt=""
+              />
+              <img
+                className="hidden md:block lg:hidden"
+                src="https://i.ibb.co/c1ggfn2/Group-193.png"
+                alt=""
+              />
+              <img
+                className="md:hidden"
+                src="https://i.ibb.co/8gTVH2Y/Group-198.png"
+                alt=""
+              />
+            </div>
+            <div>
+              <h3 className="py-4 text-3xl lg:text-4xl font-extrabold text-gray-800">
+                No hay contenido para mostrar 😬{" "}
+              </h3>
+              <p className="py-4 text-base text-gray-800">
+                Ponete en contacto con nosotros si pensas que deberíamos agregar
+                un nuevo viaje
+              </p>
+              <p className="py-2 text-base text-gray-800">
+                Podes probar cambiando los filtros nuevamente!
+              </p>
+              <button className="w-full lg:w-auto my-4 border rounded-md px-1 sm:px-16 py-5 bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
+                Escribinos!
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

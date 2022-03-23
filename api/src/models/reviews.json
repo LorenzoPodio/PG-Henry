@@ -1,0 +1,51 @@
+[
+    {
+        "date":"2022-03-23",
+        "description":"increible",
+        "rating":5,
+        "excursionId":1,
+        "userId":1
+    },
+    {
+        "date":"2022-03-23",
+        "description":"increible a",
+        "rating":4,
+        "excursionId":1,
+        "userId":2
+    },
+    {
+        "date":"2022-03-23",
+        "description":"increible aa",
+        "rating":3,
+        "excursionId":1,
+        "userId":3
+    },
+    {
+        "date":"2022-03-23",
+        "description":"increible aaa",
+        "rating":5,
+        "excursionId":1,
+        "userId":4
+    },
+    {
+        "date":"2022-03-23",
+        "description":"increible aaaa",
+        "rating":2,
+        "excursionId":1,
+        "userId":5
+    },
+    {
+        "date":"2022-03-23",
+        "description":"increible aaaaa",
+        "rating":1,
+        "excursionId":1,
+        "userId":6
+    },
+    {
+        "date":"2022-03-23",
+        "description":"increible aaaaaa",
+        "rating":2,
+        "excursionId":1,
+        "userId":7
+    }
+]
