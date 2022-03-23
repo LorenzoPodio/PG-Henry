@@ -56,7 +56,7 @@ export const ExcursionDetail = () => {
           }
         })
         .catch((e) => {
-          return (setStock(0), setDisabled(true));
+          return setStock(0), setDisabled(true);
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -189,8 +189,8 @@ export const ExcursionDetail = () => {
               <ShoppingCartIcon className="w-5 h-5 ml-1" />
             </button>
           )}
-          <div>
-            <Testimonials id={id}/>
+          <div className="flex pt-10">
+            <Testimonials id={id} />
           </div>
         </div>
       </div>
