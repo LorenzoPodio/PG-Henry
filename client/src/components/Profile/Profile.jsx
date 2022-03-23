@@ -3,14 +3,22 @@ import { useCartContext } from "../../context/CartContext";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export function Profile() {
-  const { allOrders, allExcursions } = useExcursionsContext();
-  const { user, dataUser, getDataUser } = useCartContext();
+  const { allOrders, allExcursions, submitData } = useExcursionsContext();
+  const { user, dataUser, setDataUser, getDataUser } = useCartContext();
 
-  useEffect(()=> {
-    getDataUser()
+  useEffect(() => {
+    getDataUser();
     // eslint-disable-next-line
-  }, [])
-  
+  }, [user]);
+
+  const handleChange = (e) => {
+    setDataUser((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
+  };
+  const handleClick = () => {
+    submitData(dataUser);
+  };
 
   const currentOrders = [];
   const cancelled = [];
@@ -53,30 +61,32 @@ export function Profile() {
                 Email address
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {user?.email}
+                {dataUser?.email}
               </dd>
             </div>
 
-            {dataUser?.adress && dataUser?.dni ? (
-              <>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Direccion
-                  </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {user?.adress}
-                  </dd>
-                </div>
-                <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">DNI</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {user?.dni}
-                  </dd>
-                </div>
-              </>
-            ) : (
-              <></>
-            )}
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Direccion</dt>
+              <input
+                className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                value={dataUser?.adress}
+                name="adress"
+                placeholder="Dirección"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">DNI</dt>
+              <input
+                className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2"
+                value={dataUser?.dni}
+                name="dni"
+                placeholder="Dni"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+
+            <button onClick={() => handleClick()}>Editar</button>
           </dl>
         </div>
       </div>
