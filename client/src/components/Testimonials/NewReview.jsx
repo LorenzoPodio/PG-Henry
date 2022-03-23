@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
+import { useCartContext } from "../../context/CartContext";
 import "./NewReview.css";
 
 const star = (
@@ -14,28 +15,27 @@ const star = (
   </svg>
 );
 
-function NewReview() {
-  const { contactUs } = useExcursionsContext();
+function NewReview({ id }) {
+  const { user } = useCartContext();
+  const { addReview } = useExcursionsContext();
   const [input, setInput] = useState({
-    estrellas: 1,
-    review: "",
+    rating: 1,
+    description: "",
+    email: user?.email,
   });
 
   function handleChange(e) {
     e.preventDefault(e);
-    console.log(e);
-    setInput(() => {
+    setInput((prevState) => {
       return {
-        ...input,
+        ...prevState,
         [e.target.name]: e.target.value,
       };
     });
   }
 
   function handleSubmit(e) {
-    console.log(e);
-    console.log(input);
-    if (!input.review) {
+    if (!input.description) {
       e.preventDefault();
       swal({
         title: "Complete todos los campos",
@@ -43,13 +43,9 @@ function NewReview() {
       });
     } else {
       e.preventDefault();
-      swal({
-        title: "Respuesta enviada",
-        icon: "success",
-        text: "Gracias por compartir su experiencia",
-      });
+      addReview(id, input);
       setInput({
-        review: "",
+        description: "",
       });
     }
   }
@@ -63,16 +59,16 @@ function NewReview() {
             className="flex flex-row-reverse w-full justify-center items-center pt-6"
             onChange={(e) => handleChange(e)}
           >
-            <input id="radio1" type="radio" name="estrellas" value="5" />
-            <label for="radio1">{star}</label>
-            <input id="radio2" type="radio" name="estrellas" value="4" />
-            <label for="radio2">{star}</label>
-            <input id="radio3" type="radio" name="estrellas" value="3" />
-            <label for="radio3">{star}</label>
-            <input id="radio4" type="radio" name="estrellas" value="2" />
-            <label for="radio4">{star}</label>
-            <input id="radio5" type="radio" name="estrellas" value="1" />
-            <label for="radio5">{star}</label>
+            <input id="radio1" type="radio" name="rating" value="5" />
+            <label htmlFor="radio1">{star}</label>
+            <input id="radio2" type="radio" name="rating" value="4" />
+            <label htmlFor="radio2">{star}</label>
+            <input id="radio3" type="radio" name="rating" value="3" />
+            <label htmlFor="radio3">{star}</label>
+            <input id="radio4" type="radio" name="rating" value="2" />
+            <label htmlFor="radio4">{star}</label>
+            <input id="radio5" type="radio" name="rating" value="1" />
+            <label htmlFor="radio5">{star}</label>
           </div>
         </div>
         <div className="mb-4">
@@ -94,8 +90,8 @@ function NewReview() {
             m-0
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             "
-            id="review"
-            name="review"
+            id="description"
+            name="description"
             rows="3"
             placeholder="Contá tu experiencia"
             onChange={(e) => handleChange(e)}

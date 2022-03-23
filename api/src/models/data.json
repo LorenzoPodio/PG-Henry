@@ -2,6 +2,8 @@
     {
         "name": "El Chaltén",
         "stock": 25,
+        "lat": -49.34,
+        "long": -72.33,
         "Images": [
             "https://cdn.pixabay.com/photo/2017/07/27/20/06/laguna-de-los-tres-2546582_1280.jpg",
             "https://laderasur.com/content/uploads/2021/04/cortesia-municipalidad-el-chalten.jpg"
@@ -25,6 +27,8 @@
     {
         "name": "Paseo en yate por el Canal Beagle ",
         "stock": 25,
+        "lat": -54.82,
+        "long": -68.30,
         "Images": [
             "https://cdn.getyourguide.com/img/location/5d08b39b9877d.jpeg/88.jpg",
             "https://cdn2.civitatis.com/argentina/ushuaia/galeria/big/isla-lobos-canal-beagle.jpg"
@@ -49,6 +53,8 @@
     {
         "name": "Excursión al Valle de Calingasta",
         "stock": 25,
+        "lat": -31.44,
+        "long": -69.342,
         "Images": [
             "https://cdn2.civitatis.com/argentina/san-juan-argentina/excursion-valle-calingasta-grid.jpg",
             "https://i0.wp.com/www.turismoreligioso.travel/wp-content/uploads/2019/10/cristo-calingasta.jpg?fit=1038%2C584&ssl=1g"
@@ -75,6 +81,8 @@
     {
         "name": "Snorkel y paddle surf en el Dique Punta Negra",
         "stock": 25,
+        "lat": -31.52,
+        "long": -68.82,
         "Images": [
             "https://cdn2.civitatis.com/argentina/san-juan-argentina/galeria/header/practicando-snorkel-punta-negra.jpg",
             "https://cdn2.civitatis.com/argentina/san-juan-argentina/galeria/header/equipo-snorkel-dique-punta-negra.jpg"
@@ -107,6 +115,8 @@
     {
         "name": "Circuito Chico",
         "stock": 25,
+        "lat": -41.08,
+        "long": -71.52,
         "Images": [
             "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-03.jpg",
             "https://barilocheturismo.gob.ar/images/excursiones/circuito-chico/circuito-chico-02.jpg"
@@ -130,6 +140,8 @@
     {
         "name": "Circuito Grande",
         "stock": 25,
+        "lat": -42.52,
+        "long": -71.92,
         "Images": [
             "https://barilocheturismo.gob.ar/images/excursiones/circuito-grande/circuito-grande-03.jpg",
             "https://barilocheturismo.gob.ar/images/excursiones/circuito-grande/circuito-grande-02.jpg"
@@ -155,6 +167,8 @@
     {
         "name": "Buceo Nahuel Huapi",
         "stock": 25,
+        "lat": -41.05,
+        "long": -71.15,
         "Images": [
             "https://barilocheturismo.gob.ar/images/aventura/buceo/buceo_03.jpg",
             "https://barilocheturismo.gob.ar/images/aventura/buceo/buceo_01.jpg"
@@ -177,6 +191,8 @@
     {
         "name": "Quebrada de Humahuaca",
         "stock": 25,
+        "lat": -23.09,
+        "long": -65.34,
         "Images": [
             "https://static1.evcdn.net/images/reduction/1144506_w-850_h-400_q-100_m-crop.jpg",
             "https://blog.winesofargentina.com/wp-content/uploads/2015/11/quebrada-de-humahuaca.jpg"
@@ -203,6 +219,8 @@
     {
         "name": "Salinas Grandes",
         "stock": 25,
+        "lat": -23.62,
+        "long": -65.85,
         "Images": [
             "https://elonce-media.elonce.com/fotos-nuevo/2017/10/20/o_1508551866.jpg",
             "https://cdn.getyourguide.com/img/tour/5a74907116365.jpeg/146.jpg"
@@ -229,6 +247,8 @@
     {
         "name": "Iruya",
         "stock": 25,
+        "lat": -22.79,
+        "long": -65.22,
         "Images": [
             "https://dealtura.com.ar/images/iruya/iruya-town.jpg",
             "https://tripin.travel/wp-content/uploads/2020/06/vista-aerea-iruya-fcbk-1024x538.jpg"
@@ -254,6 +274,8 @@
     {
         "name": "Viñedos",
         "stock": 25,
+        "lat": -32.94,
+        "long": -68.81,
         "Images": [
             "https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/a2/6e/a0.jpg",
             "https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/a4/7f/30.jpg"
@@ -279,11 +301,13 @@
     {
         "name": "Aconcagua y Puente del Inca",
         "stock": 25,
+        "lat": -32.82,
+        "long": -69.92,
         "Images": [
             "https://cdn.getyourguide.com/img/tour/5d270118487af.jpeg/98.jpg",
             "https://cdn.getyourguide.com/img/tour/5d2702393b3c9.jpeg/145.jpg"
         ],
-        "description": "ste clásico tour de la provincia de Mendoza es un recorrido a través de la Ruta Internacional N°7, que comienza en el Acceso Sur, en la ciudad de Mendoza hasta llegar al límite con el Chile. Una ruta importante tanto histórica como paisajísticamente que hacen de esta excursión una vivencia inolvidable, imposible de explicar con imágenes y palabras.A 100 km de la ciudad capital está Uspallata, escenario de la ocupación indígena Huarpe en la época prehispánica y valle que sirve para poder diferenciar la finalización de la precordillera y el comienzo de la cordillera frontal.Más adelante, en Puente del Inca, a 2.720 metros sobre el nivel del mar, el río Las Cuevas ha horadado la montaña formando un puente natural a cuya vera afloran aguas termales.ntre Las Cuevas y el túnel internacional que lleva a Chile hay una ruta que, si las condiciones climáticas son favorables, permite ascender hacia el monumento del Cristo Redentor, emplazado a 4.200 metros de altura, que simboliza la fraternidad entre argentinos y chilenos. El regreso a la ciudad de Mendoza se realiza por la misma ruta.",
+        "description": "Este clásico tour de la provincia de Mendoza es un recorrido a través de la Ruta Internacional N°7, que comienza en el Acceso Sur, en la ciudad de Mendoza hasta llegar al límite con el Chile. Una ruta importante tanto histórica como paisajísticamente que hacen de esta excursión una vivencia inolvidable, imposible de explicar con imágenes y palabras.A 100 km de la ciudad capital está Uspallata, escenario de la ocupación indígena Huarpe en la época prehispánica y valle que sirve para poder diferenciar la finalización de la precordillera y el comienzo de la cordillera frontal.Más adelante, en Puente del Inca, a 2.720 metros sobre el nivel del mar, el río Las Cuevas ha horadado la montaña formando un puente natural a cuya vera afloran aguas termales.ntre Las Cuevas y el túnel internacional que lleva a Chile hay una ruta que, si las condiciones climáticas son favorables, permite ascender hacia el monumento del Cristo Redentor, emplazado a 4.200 metros de altura, que simboliza la fraternidad entre argentinos y chilenos. El regreso a la ciudad de Mendoza se realiza por la misma ruta.",
         "location": "Mendoza",
         "excursionType": "Trekking",
         "date": [
@@ -302,6 +326,8 @@
     {
         "name": "Rafting Potrerillos",
         "stock": 25,
+        "lat": -32.94,
+        "long": -69.21,
         "Images": [
             "https://latitur.com/uploads/media/cactus_product_tours_by_locals/329.empresa@xnoccioaventura.com/3968/thumb_3968_cactus_product_tours_by_locals_large.jpeg",
             "https://latitur.com/uploads/media/cactus_product_tours_by_locals/329.empresa@xnoccioaventura.com/2051/thumb_2051_cactus_product_tours_by_locals_large.jpeg"
@@ -324,6 +350,8 @@
     {
         "name": "Parque Provincial de Ischigualasto",
         "stock": 25,
+        "lat": -30.16,
+        "long": -67.84,
         "Images": [
             "https://cdn2.civitatis.com/argentina/san-juan-argentina/galeria/header/rocas-parque-ischigualasto.jpg",
             "https://cdn2.civitatis.com/argentina/san-juan-argentina/galeria/header/cancha-bochas-ischigualasto.jpg"
@@ -348,6 +376,8 @@
     {
         "name": "Crucero por los glaciares",
         "stock": 25,
+        "lat": -50.49,
+        "long": -73.13,
         "Images": [
             "https://cdn.getyourguide.com/img/tour/5ccc904ab251e.jpeg/98.jpg",
             "https://cdn.getyourguide.com/img/tour/5ccc904ab251e.jpeg/97.jpg"
@@ -370,6 +400,8 @@
     {
         "name": "Trekking laguna Esmeralda",
         "stock": 25,
+        "lat": -54.69,
+        "long": -68.12,
         "Images": [
             "http://www.ushuaiaexcursiones.com/images/sistema/actividades/galeria/laguna-esmeralda-3%20copia.jpg",
             "http://www.ushuaiaexcursiones.com/images/sistema/actividades/galeria/13266030_889492217863387_1617355526333880960_n%20copia.jpg"
@@ -393,6 +425,8 @@
     {
         "name": "Glaciar Vinciguerra",
         "stock": 25,
+        "lat": -54.72,
+        "long": -68.34,
         "Images": [
             "https://www.brasileirosemushuaia.com.br/media/catalog/product/cache/3/image/940x587/9df78eab33525d08d6e5fb8d27136e95/1/2/12_1_5.jpg",
             "http://www.ushuaiaexcursiones.com/images/sistema/actividades/galeria/laguna-de-los-tempanos-2%20copia.jpg"
@@ -415,6 +449,8 @@
     {
         "name": "Expedición 4x4 Off Road ",
         "stock": 25,
+        "lat": -54.70,
+        "long": -68.58,
         "Images": [
             "https://www.excursionesenushuaia.com/var/skiencerrocastor_com/storage/images/excursiones/lago-fagnano/aventura-4x4-nocturna/1995-40-esl-AR/Aventura-4x4-Nocturna.png",
             "https://www.pinguinosexp.com/media/catalogo/pics/56.jpg"
@@ -441,6 +477,8 @@
     {
         "name": "Rio manso",
         "stock": 25,
+        "lat": -41.09,
+        "long": -71.45,
         "Images": [
             "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-03.jpg",
             "https://barilocheturismo.gob.ar/images/excursiones/rio-manso/rio-manso-02.jpg"
@@ -465,6 +503,8 @@
     {
         "name": "El Bolson",
         "stock": 25,
+        "lat": -41.16,
+        "long": -71.31,
         "Images": [
             "https://barilocheturismo.gob.ar/images/excursiones/el-bolson/el-bolson-03.jpg",
             "https://barilocheturismo.gob.ar/images/excursiones/el-bolson/el-bolson-01.jpg"
