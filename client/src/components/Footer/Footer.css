@@ -6,13 +6,10 @@
     background-color: rgb(0, 0, 0, 0.1);    
     color: grey;
     height: 4rem;
-    position: relative;
+    width: 100%;
+    margin-top: auto;
   }
-  body{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh ;
-  }
+ 
   .social {
       margin-left: 8%;
       background-color: white;

@@ -13,7 +13,7 @@ import NavBar2 from "./components/NavBar/NavBar2";
 import { Landing } from "./components/Landing/Landing";
 import { EditExcursion } from "./components/EditExcursion/EditExcursion";
 import MapaSearch from "./components/MapBoxGL/MapBoxSearch";
-
+import "./App.css"
 import { Profile } from "./components/Profile/Profile";
 import { useCartContext } from "./context/CartContext";
 import { useExcursionsContext } from "./context/ExcursionsContext";
@@ -23,7 +23,7 @@ function App() {
   const { isBanned } = useExcursionsContext();
 
   return (
-    <div className="flex-col h-screen">
+    <div className="App">
       <NavBar2 />
       <Routes>
         <Route exact path="/" element={<Landing />} />
