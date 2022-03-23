@@ -5,15 +5,13 @@ import { useCartContext } from "../../context/CartContext";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
 
 export function Profile() {
-  // eslint-disable-next-line
-  const { allOrders, submitData } = useExcursionsContext();
+  const { submitData } = useExcursionsContext();
   const { user, dataUser, setDataUser, getDataUser } = useCartContext();
   const [completed, setCompleted] = useState([]);
   const [cancelled, setCancelled] = useState([]);
   // eslint-disable-next-line
   const [currentOrders, setCurrentOrders] = useState([]);
 
-console.log('dataUser', dataUser)
 
   useEffect(() => {
     getDataUser();
