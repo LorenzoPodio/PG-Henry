@@ -1,4 +1,3 @@
-import "./PersonalDetails.css";
 import React, { useState, useEffect } from "react";
 import { useCartContext } from "../../context/CartContext";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
