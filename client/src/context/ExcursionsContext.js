@@ -19,8 +19,8 @@ export const ExcursionsProvider = ({ children }) => {
   const [excursionByid, setExcursionByid] = useState();
   const [allOrders, setAllOrders] = useState();
   const [isBanned, setIsBanned] = useState(true);
+  const [reviews, setReviews] = useState([]);
   const { setLoading, user } = useCartContext();
-  
 
   useEffect(() => {
     getExcursions().then((r) => {
@@ -38,7 +38,6 @@ export const ExcursionsProvider = ({ children }) => {
     // eslint-disable-next-line
   }, []);
 
-
   //banUser
   const banUser = (id) => {
     return axios
@@ -46,9 +45,7 @@ export const ExcursionsProvider = ({ children }) => {
       .then((response) => {
         setUsers(response.data);
       })
-      .catch((err) => {
-      
-      });
+      .catch((err) => {});
   };
   //
 
@@ -59,22 +56,19 @@ export const ExcursionsProvider = ({ children }) => {
       .then((response) => {
         return setUsers(response.data);
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
   //
 
-  useEffect(()=> {
+  useEffect(() => {
     axios
-    .get(`http://localhost:3001/getusers?email=${user?.email}`)
-    .then((resp)=>{
-        setIsBanned(() => resp.data?.isBanned)
-    })
-    .catch((e) => console.log("error en getusers", e))
+      .get(`http://localhost:3001/getusers?email=${user?.email}`)
+      .then((resp) => {
+        setIsBanned(() => resp.data?.isBanned);
+      })
+      .catch((e) => console.log("error en getusers", e));
     // eslint-disable-next-line
-  }, [banUser, UnbanUser])
-
+  }, [banUser, UnbanUser]);
 
   useEffect(() => {
     axios(URL)
@@ -92,11 +86,45 @@ export const ExcursionsProvider = ({ children }) => {
 
   const getExcursionById = async (id) => {
     try {
-      const { data } = await axios(`http://localhost:3001/getexcursion?id=${id}`);
+      const { data } = await axios(
+        `http://localhost:3001/getexcursion?id=${id}`
+      );
       return setExcursionByid(data);
     } catch (error) {
       console.log("error", error);
     }
+  };
+
+  //Función para traer todas las reviews.
+  const getReviews = (id) => {
+    axios
+      .get(`http://localhost:3001/getreviews/${id}`)
+      .then((resp) => setReviews(() => resp.data))
+      .catch((e) => console.log(e));
+  };
+  //Funcion para agregar una review. Devuelve array con todas las reviews.
+  const addReview = (id, dataUser) => {
+    axios
+      .post(`http://localhost:3001/addreview/${id}`, dataUser)
+      .then((resp) =>
+        setReviews(() => {
+          swal({
+            title: "Respuesta enviada",
+            icon: "success",
+            text: "Gracias por compartir su experiencia",
+          });
+
+          return resp.data;
+        })
+      )
+      .catch((e) => {
+        swal({
+          title: "Ops...",
+          icon: "error",
+          text: "No puede agregar mas de una opinión por excursión",
+        });
+        return console.log(e);
+      });
   };
 
   //feature_filter-implemented
@@ -122,30 +150,24 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .post("http://localhost:3001/addUsers", user)
       .then((response) => response.data)
-      .catch((err) => {
-       
-      });
+      .catch((err) => {});
   };
   //
 
   //agregar dni y direccion a los datos de usuario para confirmar compra
   const submitDates = (dates) => {
     return axios
-    .put("http://localhost:3001/changedatesUser", dates)
-    .then((res) => res.data)
-    .catch((err) => {
-      
-    })
-  }
+      .put("http://localhost:3001/changedatesUser", dates)
+      .then((res) => res.data)
+      .catch((err) => {});
+  };
 
   //postExcursion
   const addExcursion = (excursion) => {
     return axios
       .post("http://localhost:3001/addexcursion", excursion)
       .then((response) => response.data)
-      .catch((err) => {
-      
-      });
+      .catch((err) => {});
   };
   //
 
@@ -160,13 +182,10 @@ export const ExcursionsProvider = ({ children }) => {
           setExcursionFiltered(response.data)
         );
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
   //
 
-  
   //editExcursion
   const editExcursion = (excursion, id) => {
     return axios
@@ -178,9 +197,7 @@ export const ExcursionsProvider = ({ children }) => {
           setExcursionFiltered(response.data)
         );
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
 
   //
@@ -213,20 +230,20 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .put(`http://localhost:3001/cart/canceledorder/${id}`)
       .then((response) => {
-        setAllOrders(response.data)
+        setAllOrders(response.data);
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
 
   const getAllOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3001/cart/getallorders");
-      return setAllOrders(() => data); 
+      const { data } = await axios.get(
+        "http://localhost:3001/cart/getallorders"
+      );
+      return setAllOrders(() => data);
     } catch (error) {
-      swal('Algo salió mal!', error , {icon: 'error'});
-      return console.log('ERROR: ', error);
+      swal("Algo salió mal!", error, { icon: "error" });
+      return console.log("ERROR: ", error);
     }
   };
 
@@ -234,9 +251,7 @@ export const ExcursionsProvider = ({ children }) => {
     return axios
       .post("http://localhost:3001/contactmail", dates)
       .then((response) => response.data)
-      .catch((err) => {
-      
-      });
+      .catch((err) => {});
   };
 
   return (
@@ -265,7 +280,10 @@ export const ExcursionsProvider = ({ children }) => {
         submitDates,
         getAllOrders,
         contactUs,
-        isBanned
+        isBanned,
+        getReviews,
+        reviews,
+        addReview,
       }}
     >
       {children}
