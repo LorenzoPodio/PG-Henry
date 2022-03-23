@@ -53,7 +53,7 @@ export const Footer = () => {
       <div>
         <Menu as="div" className="ml-3 relative">
           <div>
-            <Menu.Button className=" flex bg-sky-600 p-1 rounded-md text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+            <Menu.Button className=" flex bg-gray-500 p-1 rounded-md text-white hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
               <span className="sr-only">ContactUs</span>
               <h3>Contactanos</h3>
               <svg
