@@ -190,8 +190,8 @@ export function Profile() {
                         Precio total
                       </dt>
                       <dd>
-                        ${cancelled?.reduce((accumulator, curr) =>
-                          accumulator + parseInt(curr.order_details[0].totalPrice), 0
+                      ${o?.products.reduce((accumulator, curr) =>
+                          accumulator + parseInt(curr.order_detail.totalPrice), 0
                         )}
                       </dd>
                     </div>
@@ -296,8 +296,8 @@ export function Profile() {
                         Precio total
                       </dt>
                       <dd>
-                        ${completed?.reduce((accumulator, curr) =>
-                          accumulator + parseInt(curr.order_details[0].totalPrice), 0
+                        ${o?.products.reduce((accumulator, curr) =>
+                          accumulator + parseInt(curr.order_detail.totalPrice), 0
                         )}
                       </dd>
                     </div>

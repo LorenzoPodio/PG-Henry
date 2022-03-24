@@ -64,11 +64,11 @@ export const PurchasesManagment = () => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col w-fit h-full m-10 ">
+        <div className="flex flex-col w-fit h-screen m-10 ">
           <div className="-my-2 overflow-x-auto h-full sm:-mx-6 lg:-mx-8 rounded-lg">
             <div className="pb-6 align-middle inline-block min-w-full h-fit sm:px-6 lg:px-8 rounded-lg">
               <div className="shadow-lg shadow-gray-500 border-b h-full border-gray-200 rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200 h-fit">
+                <table className="min-w-full divide-y divide-gray-200 h-full">
                   <thead className="bg-sky-600 text-white">
                     <tr>
                       <th scope="col" className="px-10 py-3 text-left text-xs font-medium uppercase tracking-wider">
