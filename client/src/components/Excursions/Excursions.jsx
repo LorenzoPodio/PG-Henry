@@ -46,7 +46,7 @@ export const Excursions = () => {
     );
   } else {
     return (
-      <div style={{ backgroundColor: '#EEEEEE' }}>
+      <div className="min-h-screen" style={{ backgroundColor: '#EEEEEE' }}>
         <div className="z-10 sticky top-0 md:inline-flex lg:inline-flex sm:block items-center text-center justify-between w-full mb-2 py-1 px-10" style={{ backgroundColor: '#D8D2CB' }}>
           <Filter
             items={allExcursions}

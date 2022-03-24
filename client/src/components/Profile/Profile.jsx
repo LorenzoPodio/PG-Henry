@@ -22,17 +22,17 @@ export function Profile() {
     if (dataUser) {
       axios
         .get(
-          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}&status=cancelled`
+          `/cart/getcartuserid?email=${dataUser.email}&status=cancelled`
         )
         .then((resp) => setCancelled(() => resp.data));
       axios
         .get(
-          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}&status=completed`
+          `/cart/getcartuserid?email=${dataUser.email}&status=completed`
         )
         .then((resp) => setCompleted(() => resp.data));
       axios
         .get(
-          `http://localhost:3001/cart/getcartuserid?email=${dataUser.email}`
+          `/cart/getcartuserid?email=${dataUser.email}`
         )
         .then((resp) => setCurrentOrders(() => resp.data));
     }

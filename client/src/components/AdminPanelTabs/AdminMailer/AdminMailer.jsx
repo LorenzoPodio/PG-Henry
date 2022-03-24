@@ -88,7 +88,7 @@ export const AdminMailer = () => {
           };
         });
         setErrors(validate({ ...item, content: "", subject: "" }));
-        axios.post("http://localhost:3001/setmail", item);
+        axios.post("/setmail", item);
       } else swal(`El email no ha sido enviado!`);
     });
   };
