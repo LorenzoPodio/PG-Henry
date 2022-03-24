@@ -8,8 +8,8 @@ export const Mapa = ({ lat, long }) => {
   let longitud = long ? long : -60;
 
   const [viewport, setViewport] = useState({
-    latitude: latitud,
-    longitude: longitud,
+    latitude: lat,
+    longitude: long,
     width: "37vw",
     height: "40vh",
     zoom: 6,
@@ -26,25 +26,23 @@ export const Mapa = ({ lat, long }) => {
         setSelected(null);
       }
     };
+    setViewport({
+      latitude: lat,
+      longitude: long,
+      width: "37vw",
+      height: "40vh",
+      zoom: 6,
+    })
     window.addEventListener("keydown", listener);
     // CleanUp function >>> unmount comp
     return () => {
       window.removeEventListener("keydown", listener);
     };
-  }, []);
+  }, [lat,long]);
 
   const markerClicked = (title) => {
     window.alert(title);
   };
-
-  // eslint-disable-next-line
-  function handleResult(result) {
-    setViewport({
-      name: result?.place_name,
-      latitude: result?.latitude,
-      longitude: result?.longitude,
-    });
-  }
 
   function handleCoordinates(e) {
     console.log(e.lngLat);
