@@ -57,7 +57,7 @@ export default function PersonalDetails({ handleClick }) {
     );
   } else {
     return (
-      <div style={{ backgroundColor: '#D8D2CB' }}>
+      <div className="h-screen" style={{ backgroundColor: '#D8D2CB' }}>
         <div className="flex justify-center text-center mx-auto py-5">
           <div className="w-96">
             <h1 className="grid rounded-md shadow-lg shadow-gray-500 px-3 py-3 text-white bg-sky-600 font-bold text-xl">
@@ -111,7 +111,7 @@ export default function PersonalDetails({ handleClick }) {
                           Volver
                         </button>
                         <button value="Submit" type="submit"
-                          className="px-4 py-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                          className="px-4 py-2 rounded-md shadow-lg shadow-gray-500 hover:shadow-black text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                         >
                           Continuar
                         </button>

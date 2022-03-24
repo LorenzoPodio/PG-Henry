@@ -13,7 +13,7 @@ export const AdminPanelTabs = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#D8D2CB' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#D8D2CB' }}>
       <div className="flex py-8 text-center justify-center">
         <h1 className="grid rounded-md shadow-lg shadow-gray-500 w-64 px-2 py-3 text-white bg-sky-600 mt-0 mb-0 font-bold text-xl">PANEL DE CONTROL</h1>
       </div>

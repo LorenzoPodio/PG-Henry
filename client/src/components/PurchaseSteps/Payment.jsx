@@ -20,7 +20,7 @@ export default function Payment({ handleClick }) {
   }, []);
 
   return (
-    <div className='pb-4' style={{ backgroundColor: '#EEEEEE' }}>
+    <div className='pb-4 h-screen' style={{ backgroundColor: '#EEEEEE' }}>
       <div className="flex justify-center text-center mx-auto py-5" style={{ backgroundColor: '#D8D2CB' }}>
           <div className="w-72">
             <h1 className="grid rounded-md shadow-lg shadow-gray-500 px-3 py-3 text-white bg-sky-600 font-bold text-xl">
