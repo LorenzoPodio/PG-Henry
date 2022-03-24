@@ -35,7 +35,7 @@ export const Testimonials = ({ id }) => {
       return {
         ...prevState,
         twoStar:
-          (reviews?.filter((e) => e.rating === "2").length * 100) /
+           (reviews?.filter((e) => e.rating === "2").length * 100) /
             (reviews?.length === 0 ? 1 : reviews?.length) +
           "%",
       };
@@ -85,11 +85,11 @@ export const Testimonials = ({ id }) => {
           {reviews.length !== 0 ? (
             <h3 className="text-gray-800 font-semibold mt-1">
               Puntaje de esta excrusion{" "}
-              {reviews?.reduce(
+              {(reviews?.reduce(
                 (previousValue, currentObj) =>
                   parseInt(previousValue) + parseInt(currentObj.rating),
                 0
-              ) / reviews?.length}
+              ) / reviews?.length).toFixed(1)}
             </h3>
           ) : (
             <h3 className="text-gray-800 font-semibold mt-1">Sin puntaje</h3>
@@ -120,8 +120,8 @@ export const Testimonials = ({ id }) => {
               </div>
               <div className="w-1/5 text-gray-700 pl-3">
                 <span className="text-sm">
-                  {(reviews?.filter((e) => e.rating === "5").length * 100) /
-                    (reviews?.length === 0 ? 1 : reviews?.length)}
+                  {Math.round((reviews?.filter((e) => e.rating === "5").length * 100) /
+                    (reviews?.length === 0 ? 1 : reviews?.length))}
                   %
                 </span>
                 {/* aca hay que poner logica para porcentajes */}
@@ -147,8 +147,8 @@ export const Testimonials = ({ id }) => {
               </div>
               <div className="w-1/5 text-gray-700 pl-3">
                 <span className="text-sm">
-                  {(reviews?.filter((e) => e.rating === "4").length * 100) /
-                    (reviews?.length === 0 ? 1 : reviews?.length)}
+                  {Math.round((reviews?.filter((e) => e.rating === "4").length * 100) /
+                    (reviews?.length === 0 ? 1 : reviews?.length))}
                   %
                 </span>
                 {/* aca hay que poner logica para porcentajes */}
@@ -173,8 +173,8 @@ export const Testimonials = ({ id }) => {
               </div>
               <div className="w-1/5 text-gray-700 pl-3">
                 <span className="text-sm">
-                  {(reviews?.filter((e) => e.rating === "3").length * 100) /
-                    (reviews?.length === 0 ? 1 : reviews?.length)}
+                  {Math.round((reviews?.filter((e) => e.rating === "3").length * 100) /
+                    (reviews?.length === 0 ? 1 : reviews?.length))}
                   %
                 </span>
                 {/* aca hay que poner logica para porcentajes */}
@@ -198,8 +198,8 @@ export const Testimonials = ({ id }) => {
               </div>
               <div className="w-1/5 text-gray-700 pl-3">
                 <span className="text-sm">
-                  {(reviews?.filter((e) => e.rating === "2").length * 100) /
-                    (reviews?.length === 0 ? 1 : reviews?.length)}
+                  {Math.round((reviews?.filter((e) => e.rating === "2").length * 100) /
+                    (reviews?.length === 0 ? 1 : reviews?.length))}
                   %
                 </span>
                 {/* aca hay que poner logica para porcentajes */}
@@ -220,8 +220,8 @@ export const Testimonials = ({ id }) => {
               </div>
               <div className="w-1/5 text-gray-700 pl-3">
                 <span className="text-sm">
-                  {(reviews?.filter((e) => e.rating === "1").length * 100) /
-                    (reviews?.length === 0 ? 1 : reviews?.length)}
+                  {Math.round((reviews?.filter((e) => e.rating === "1").length * 100) /
+                    (reviews?.length === 0 ? 1 : reviews?.length))}
                   %
                 </span>
                 {/* aca hay que poner logica para porcentajes */}
@@ -266,7 +266,6 @@ export const Testimonials = ({ id }) => {
       <div className="flex justify-between p-2 self">
         <div
           className="flex flex-col justify-center items-center bg-slate-100 rounded-lg overflow-auto"
-          style={{ width: "700px", height: "100px" }}
         >
           {reviews ? (
             reviews?.map((e, i) => <TestimonialCard props={e} key={i} />)
