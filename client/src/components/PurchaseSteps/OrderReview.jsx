@@ -22,7 +22,7 @@ export default function OrderReview({ handleClick }) {
           </h1>
         </div>
       </div>
-      <div className="flex justify-between pl-28 pr-60 py-5" style={{ backgroundColor: '#EEEEEE' }}>
+      <div className="flex justify-between pl-28 pr-60 py-5 h-screen" style={{ backgroundColor: '#EEEEEE' }}>
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-6 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -89,7 +89,7 @@ export default function OrderReview({ handleClick }) {
               <Link to="/excursiones">
                 <button
                   type="button"
-                  className="px-4 py-2 border rounded-md hover:shadow-black shadow-lg shadow-gray-500 text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                  className="px-4 py-2 border rounded-md hover:shadow-black shadow-lg shadow-gray-500 text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                 >
                   Agregar Excursion
                 </button>
@@ -99,7 +99,7 @@ export default function OrderReview({ handleClick }) {
               <button
                 onClick={() => handleClick("PersonalDetails")}
                 type="button"
-                className="px-4 py-2 rounded-md hover:shadow-black shadow-lg shadow-gray-500 text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                className="px-4 py-2 rounded-md hover:shadow-black shadow-lg shadow-gray-500 text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
                 Continuar
               </button>
