@@ -227,13 +227,13 @@ mp.get("/feedback", async function (req, res, next) {
           }
         }
       }
-      await Order.findOrCreate({
-        where: {
-          userId: idUser,
-          status: "empty", 
-          date: new Date().toLocaleDateString(),
-        },
-      });
+      // await Order.findOrCreate({
+      //   where: {
+      //     userId: idUser,
+      //     status: "empty", 
+      //     date: new Date().toLocaleDateString(),
+      //   },
+      // });
       arrayHand(nameProd, mapPrice);
 
       transporter.sendMail(mailOptions, (error, info) => {
