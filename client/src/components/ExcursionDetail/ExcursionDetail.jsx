@@ -120,7 +120,7 @@ export const ExcursionDetail = () => {
         className="md:flex m-8 mt-0 p-4 shadow-lg shadow-gray-500 rounded-lg"
         style={{ backgroundColor: "#EEEEEE" }}
       >
-        <div className="flex flex-col justify-between items-center w-2/5">
+        <div className="flex flex-col justify-around items-center w-2/5">
           {excursionByid && <Carousel Images={excursionByid.Images} />}
           <div className="flex p-4 justify-center">
             <Mapa lat={excursionByid?.lat} long={excursionByid?.long} />

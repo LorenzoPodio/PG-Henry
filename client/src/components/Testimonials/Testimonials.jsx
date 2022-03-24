@@ -263,7 +263,7 @@ export const Testimonials = ({ id }) => {
           </div>
         </div>
       </div>
-      <div className="flex justify-between p-2 self">
+      <div className="flex w-1/2 justify-between p-2 self">
         <div
           className="flex flex-col justify-center items-center bg-slate-100 rounded-lg overflow-auto"
         >
