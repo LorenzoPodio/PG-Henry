@@ -160,7 +160,7 @@ export const EditExcursion = () => {
     editExcursion(input, id);
     setInput({
       name: "",
-      // Images: [],
+      // Images: []
       description: "",
       location: "",
       date: [],
