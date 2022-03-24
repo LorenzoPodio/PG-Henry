@@ -56,7 +56,7 @@ export const ExcursionDetail = () => {
           }
         })
         .catch((e) => {
-          return setStock(0), setDisabled(true);
+          return (setStock(0), setDisabled(true));
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,4 +1,4 @@
-import { ArrowNarrowDownIcon, DotsHorizontalIcon } from "@heroicons/react/solid";
+import { ArrowNarrowDownIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
