@@ -48,7 +48,7 @@ export const ExcursionsPost = () => {
   }
 
 
-  /// HANDLE CHECKBOX DE DATE
+  /// HANDLE CHECKBOX DE DAT
   const handleCheckboxDate = (e) => {
     if (e.target.checked) {
       setInput((prevState) => {
