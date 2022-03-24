@@ -3,7 +3,7 @@ const recoverPass = Router();
 const { UserAdmin } = require("../db.js");
 const transporter = require("../mailer/mailer")
 
-//ruta con envio de email con contraseña del usuario
+//ruta con envio de email con contraseña del usuario esta ruta no esta siendo utilizada
 
 recoverPass.post("/", async (req, res, next) => {
     try {
