@@ -17,7 +17,7 @@ export const EditExcursion = () => {
   const id = urlParams.get("id");
   const name = urlParams.get("name");
 
-  const [imagesUrls, setImagesUrls] = useState([])
+  // const [imagesUrls, setImagesUrls] = useState([])
   const navigate = useNavigate();
 
 
@@ -25,7 +25,7 @@ export const EditExcursion = () => {
   
   const [input, setInput] = useState({
     name: "",
-    Images: [],
+    // Images: [],
     description: "",
     location: "",
     date: [],
@@ -38,7 +38,7 @@ export const EditExcursion = () => {
     long: ""
   });
 
-  const locations = ["Bariloche", "Tucuman", "La Plata", "Villa Gesel"]
+  
   const type =["Trekking", "Bus", "Lacustre"]
   
 
@@ -113,30 +113,30 @@ export const EditExcursion = () => {
   }
 
   ///HANDLE DE IMAGENES
-  function handleImage(files) {
+  // function handleImage(files) {
     
-    const formData = new FormData()
-    formData.append("file", files[0])
-    formData.append("upload_preset", "excursion")
+  //   const formData = new FormData()
+  //   formData.append("file", files[0])
+  //   formData.append("upload_preset", "excursion")
 
-    axios.post("https://api.cloudinary.com/v1_1/excursionesapp/image/upload", formData)
-    .then((response) => {
+  //   axios.post("https://api.cloudinary.com/v1_1/excursionesapp/image/upload", formData)
+  //   .then((response) => {
      
-      setImagesUrls((prevState) => {
-        return [
-        ...prevState, response.data.secure_url
-        ]})
+  //     setImagesUrls((prevState) => {
+  //       return [
+  //       ...prevState, response.data.secure_url
+  //       ]})
      
-    })
-  }
+  //   })
+  // }
   
-  function deleteImage(e){
-    setImagesUrls((prevState) => {
-      return [
-      ...prevState.filter(img => img !== e.target.value)
-      ]})
+  // function deleteImage(e){
+  //   setImagesUrls((prevState) => {
+  //     return [
+  //     ...prevState.filter(img => img !== e.target.value)
+  //     ]})
 
-  }
+  // }
 
   ///HANDLE DE LOCATION
   function handleLocation(e) {
@@ -160,7 +160,7 @@ export const EditExcursion = () => {
     editExcursion(input, id);
     setInput({
       name: "",
-      Images: [],
+      // Images: [],
       description: "",
       location: "",
       date: [],
@@ -292,7 +292,7 @@ export const EditExcursion = () => {
           </div>
         </div>
         {/* Images */}
-        <div>
+        {/* <div>
           <div className="hidden sm:block" aria-hidden="true">
             <div className="py-5">
               <div className="border-t border-gray-200" />
@@ -316,28 +316,29 @@ export const EditExcursion = () => {
                     >
                       Agrega el link de las imagenes que quieras mostrar.
                     </label>
-                    <div>
-                      <div className="mt-1">
-                        <div>
+                    <div key={excursionByid?.Image}>
+                      
+                      <div key="asdasd"className="mt-1">
+                      
   
                           <input type="file" onChange={(e) => handleImage(e.target.files)}></input>
   
-                        </div>
+                        
                       </div>
                     </div>
-                    <div className="photopost">
+                    <div key="aslasdl" className="photopost">
                    
                       {
                        imagesUrls.length < 1 ? 
 
                        excursionByid?.Images?.map((images) => (
                         
-                        <div>
+                        <div key="aslkasbfhfhasdl">
                         <Image
                         style={{width: 200, margin: 10}}
                         cloudName="excursion" 
                         publicId={images}/>
-                        <button type="button" value={images} onClick={(e) => deleteImage(e)}>X</button>
+                        <button type="button" key="aslkdjl"value={images} onClick={(e) => deleteImage(e)}>X</button>
                         </div>
                       ))
 
@@ -345,18 +346,18 @@ export const EditExcursion = () => {
   
                         imagesUrls?.map((images) => (
                         
-                          <div>
+                          <div key="asdasdasdkljlkj">
                           <Image
                           style={{width: 200, margin: 10}}
                           cloudName="excursion" 
                           publicId={images}/>
-                          <button type="button" value={images} onClick={(e) => deleteImage(e)}>X</button>
+                          <button key="aslkdjhasdl" type="button" value={images} onClick={(e) => deleteImage(e)}>X</button>
                           </div>
                         ))
                       }
                       
                     </div>
-                    <p className="mt-2 text-sm text-gray-500">
+                    <p className="mt-2 text-sm text-gray-500" key="asdasdasdads">
                       Agrega imagenes que sean del lugar donde vas a realizar la
                       excursión.
                     </p>
@@ -365,7 +366,7 @@ export const EditExcursion = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
   
         {/* Description */}
         <div>
@@ -442,13 +443,18 @@ export const EditExcursion = () => {
                         Agrega el lugar donde se realizará tu excursión.
                       </label>
                       <div className="mt-1">
-                      <select className="" onChange={(e) => handleLocation(e)}>
-                          <option name='location' value=''>Seleccione Ubicacion</option>
-                          {locations?.map(locat =>
-                              <option key={locat} name='location' value={locat}>{locat}</option>
-                          )}
-                      </select>
-                      </div>
+                    
+                    <textarea
+                        id="location"
+                        name="location"
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        placeholder={excursionByid?.location}
+                        defaultValue={""}
+                        onChange={(e) => handleLocation(e)}
+                      />
+                  
+                    </div>
                       <p className="mt-2 text-sm text-gray-500">
                         Agregar referencias puede ser una buena opción.
                       </p>
@@ -927,4 +933,3 @@ export const EditExcursion = () => {
       </div>
     );
   };
-  
