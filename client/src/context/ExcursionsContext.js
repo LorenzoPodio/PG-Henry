@@ -87,7 +87,6 @@ export const ExcursionsProvider = ({ children }) => {
 
   const getExcursionById = async (id) => {
     try {
-
       const { data } = await axios(`/getexcursion?id=${id}`);
 
       return setExcursionByid(data);
@@ -107,22 +106,29 @@ export const ExcursionsProvider = ({ children }) => {
   const addReview = (id, dataUser) => {
     axios
       .post(`/addreview/${id}`, dataUser)
-      .then((resp) =>
-        setReviews(() => {
+      .then((resp) => {
+        if (typeof (resp.data) !== "string") {
           swal({
             title: "Respuesta enviada",
             icon: "success",
             text: "Gracias por compartir su experiencia",
           });
-
-          return resp.data;
-        })
-      )
+          setReviews(() => {
+            return resp.data;
+          });
+        } else if (typeof resp.data === "string") {
+          return swal({
+            title: "Ops...",
+            icon: "error",
+            text: resp.data,
+          });
+        }
+      })
       .catch((e) => {
         swal({
           title: "Ops...",
           icon: "error",
-          text: "Hubo un inconveniente",
+          text: "Hubo un inconveniente. Asegurese de estar logeado y haber completado todos los campos",
         });
         return console.log(e);
       });
@@ -168,14 +174,12 @@ export const ExcursionsProvider = ({ children }) => {
           return res.data;
         })
         .catch((err) => {});
-    }
-    else {
+    } else {
       swal("No puede borrar los datos de contacto", {
         icon: "error",
       });
     }
   };
-
 
   //postExcursion
   const addExcursion = (excursion) => {
@@ -199,9 +203,8 @@ export const ExcursionsProvider = ({ children }) => {
       })
 
       .catch((err) => {});
- };
+  };
   //
-  
 
   //editExcursion
   const editExcursion = (excursion, id) => {
@@ -254,10 +257,8 @@ export const ExcursionsProvider = ({ children }) => {
 
   const getAllOrders = async () => {
     try {
-
       const { data } = await axios.get("/cart/getallorders");
-      return setAllOrders(() => data); 
-
+      return setAllOrders(() => data);
     } catch (error) {
       swal("Algo salió mal!", error, { icon: "error" });
       return console.log("ERROR: ", error);
