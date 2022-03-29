@@ -84,7 +84,7 @@ export const Testimonials = ({ id }) => {
         <div className="mb-1 tracking-wide px-4 py-4">
           {reviews.length !== 0 ? (
             <h3 className="text-gray-800 font-semibold mt-1">
-              Puntaje de esta excrusion{" "}
+              Puntaje de esta excursiòn{" "}
               {(reviews?.reduce(
                 (previousValue, currentObj) =>
                   parseInt(previousValue) + parseInt(currentObj.rating),
