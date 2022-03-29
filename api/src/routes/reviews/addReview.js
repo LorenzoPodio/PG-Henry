@@ -43,7 +43,7 @@ addReview.post("/:id", async (req, res, next) => {
     // console.log(controlReview.map((e)=>e.userId), "AAAAAAA")
 
     if (controlReview?.map((e)=>e.userId).includes(getUserId?.dataValues?.id)){
-      return res.status(403).json("Ya diste tu opinión")
+      return res.status(200).send("Ya diste tu opinión")
     }
 
     if (buyedExcursion?.includes(excursion?.dataValues?.name)) {
@@ -64,8 +64,8 @@ addReview.post("/:id", async (req, res, next) => {
       return res.status(201).send(response); //en caso de no usar "response" cambiar el mensaje en el .send y comentar las lineas 57-64
     }
     return res
-      .status(404)
-      .json("Debes adquirir la excursión para dar una opinión");
+      .status(200)
+      .send("Debes comprar la excursión para dar una opinión");
   } catch (error) {
     next(error);
   }

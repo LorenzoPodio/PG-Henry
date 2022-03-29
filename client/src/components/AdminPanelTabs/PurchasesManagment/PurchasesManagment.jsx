@@ -138,9 +138,6 @@ export const PurchasesManagment = () => {
                                 </Transition>
                               </Menu>
                               {/* --------------------------------------------------------------------------------- */}
-                              {
-                                console.log('E.PRODUCTS', e.products)
-                              }
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                               ${sumSubTotals(e.order_details)}

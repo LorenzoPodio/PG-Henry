@@ -17,7 +17,6 @@ const star = (
 );
 
 export const Testimonials = ({ id }) => {
-  console.log("id", id);
   const { getReviews, reviews } = useExcursionsContext();
   const [stars, setStars] = useState({});
 
@@ -75,8 +74,6 @@ export const Testimonials = ({ id }) => {
     }
     // eslint-disable-next-line
   }, []);
-
-  console.log("reviews", reviews);
 
   return (
     <div className="mx-auto bg-white shadow-lg rounded-lg flex py-6">

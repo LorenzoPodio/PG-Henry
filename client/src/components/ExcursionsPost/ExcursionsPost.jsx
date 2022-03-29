@@ -163,7 +163,6 @@ export const ExcursionsPost = () => {
         !input.lat ||
         !input.long ||
         !input.location){
-          console.log(input)
           e.preventDefault();
           swal({
             title: "Ooops..",
@@ -177,7 +176,6 @@ export const ExcursionsPost = () => {
         if(input.Images.length === 0){
           input.Images = imagesUrls
         }
-    console.log(input)
     addExcursion(input)
     swal("Excursión creada exitosamente");
     setTimeout(() => (navigate("/excursiones")), 3000);

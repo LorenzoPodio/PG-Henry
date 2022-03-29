@@ -26,15 +26,22 @@ export const ExcursionDetail = () => {
 
   const { addItemToCart } = useCartContext();
   const navigate = useNavigate();
-  console.log(excursionByid, "HOLAAAAAAAAAAAAAAA");
   useEffect(() => {
     getExcursionById(id);
+    if(!user) {
+      swal({
+        title: "Inicie Sesión",
+        text: "Por favor inicie sesión para poder comprar",
+        icon: "warning",
+      });
+    }
     return () => {
       //componentWillUnmount, para resetear el item cuando se fueran del detalle de la excursión.
       setItem((prevState) => {
         return {};
       });
     };
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useExcursionsContext } from "../../context/ExcursionsContext";
-import {Image} from 'cloudinary-react';
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import MapaSearch from '../MapBoxGL/MapBoxSearch'
-import axios from "axios";
 
 export const EditExcursion = () => {
   //get params info
