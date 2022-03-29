@@ -163,7 +163,6 @@ export const ExcursionsPost = () => {
         !input.lat ||
         !input.long ||
         !input.location){
-          console.log(input)
           e.preventDefault();
           swal({
             title: "Ooops..",
