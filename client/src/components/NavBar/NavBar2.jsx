@@ -13,7 +13,7 @@ const NavBar2 = () => {
   const { createCart, cartItems, isAdmin } = useCartContext();
   const [navigation, setNavigation] = useState();
   const { loginWithRedirect, logout, user, isLoading} = useAuth0();
-
+  console.log(user);
   useEffect(() => {
     if (isAdmin) {
       setNavigation([
